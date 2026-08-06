@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "martelo-terrestre",
+  "nome": "Martelo terrestre",
+  "tipo": "OFS",
+  "dano": 95,
+  "energia": 80,
+  "elemento": "Colossal",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "pantano-de-morgh",
+  "nome": "Pântano de Morgh",
+  "elementos": [
+    "Umbral",
+    "Abissal"
+  ]
+}

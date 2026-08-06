@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "explosao-raivosa",
+  "nome": "Explosão Raivosa",
+  "tipo": "NEH",
+  "dano": 80,
+  "energia": 60,
+  "elemento": "Colossal / Ígnea",
+  "descricao": "Um golpe explosivo carregado de fúria que pode aumentar o ataque do usuário.\nEfeito: 30% de chance de aumentar o Ataque (+1 estágio)."
+}

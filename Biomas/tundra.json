@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "tundra",
+  "nome": "Tundra",
+  "elementos": [
+    "Geada",
+    "Colossal"
+  ]
+}

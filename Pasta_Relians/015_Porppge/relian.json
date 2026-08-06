@@ -1,0 +1,66 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "porppge",
+  "catalogNumber": 15,
+  "numeroCatalogo": 15,
+  "reliInfo": 15,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "015",
+  "nome": "Porppge",
+  "descricao": "",
+  "classe": "",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 1,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "porppge.png",
+    "shiny": "shiny.png",
+    "special": "especial.png"
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "loppypor",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    },
+    {
+      "nivel": 8,
+      "movimento": "passo-etereo"
+    },
+    {
+      "nivel": 15,
+      "movimento": "choque-etereo"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 10,
+      "nivelMaximo": 18,
+      "peso": 50
+    }
+  ]
+}

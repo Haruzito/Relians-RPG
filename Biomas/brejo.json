@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "brejo",
+  "nome": "Brejo",
+  "elementos": [
+    "Abissal",
+    "Umbral",
+    "Vital"
+  ]
+}

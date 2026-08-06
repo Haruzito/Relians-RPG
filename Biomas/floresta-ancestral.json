@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "floresta-ancestral",
+  "nome": "Floresta Ancestral",
+  "elementos": [
+    "Vital",
+    "Éter"
+  ]
+}

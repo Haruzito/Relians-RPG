@@ -1,0 +1,17 @@
+{
+  "id": "solitario",
+  "nome": "Solitário",
+  "descricao": "Preferem viver longe de grandes grupos, confiando principalmente em suas próprias habilidades.",
+  "comportamento": "Evitam multidões, patrulham seu território sozinhos e demonstram pouca necessidade de companhia.",
+  "paladar": "Amadeirado",
+  "status": {
+    "ataque": 5,
+    "defesa": 0,
+    "velocidade": 0,
+    "ataqueEspecial": 0,
+    "defesaEspecial": 5,
+    "precisao": -5
+  },
+  "hp": 5,
+  "eng": -5
+}

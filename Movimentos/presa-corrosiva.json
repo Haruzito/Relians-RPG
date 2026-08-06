@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "presa-corrosiva",
+  "nome": "Presa Corrosiva",
+  "tipo": "NEH",
+  "dano": 60,
+  "energia": 45,
+  "elemento": "Umbral",
+  "descricao": "Mordida tóxica que pode reduzir a Defesa e causar envenenamento.\nEfeito: 30% de chance de reduzir a Defesa (-1 estágio) e 20% de chance de envenenar."
+}

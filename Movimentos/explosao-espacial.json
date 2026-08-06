@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "explosao-espacial",
+  "nome": "Explosão espacial",
+  "tipo": "HIB",
+  "dano": 85,
+  "energia": 55,
+  "elemento": "Astral",
+  "descricao": ""
+}

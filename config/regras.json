@@ -1,0 +1,13 @@
+{
+  "kind": "rules",
+  "tipoArquivo": "regras",
+  "baseHp": 50,
+  "hpPerEvolution": 20,
+  "attrMin": 1,
+  "attrMax": 35,
+  "modMin": -7,
+  "modMax": 7,
+  "moveLimit": 6,
+  "shinyChance": 3,
+  "specialChance": 0.5
+}

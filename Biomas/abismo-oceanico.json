@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "abismo-oceanico",
+  "nome": "Abismo Oceânico",
+  "elementos": [
+    "Abissal",
+    "Umbral"
+  ]
+}

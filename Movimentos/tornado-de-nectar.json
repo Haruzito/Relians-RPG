@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "tornado-de-nectar",
+  "nome": "Tornado de Néctar",
+  "tipo": "NEH",
+  "dano": 35,
+  "energia": 50,
+  "elemento": "Vital / Tempestade",
+  "descricao": "Um tornado de néctar que afeta todos os inimigos no campo.\nEfeito: Causa dano a todos os inimigos e reduz a precisão deles."
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "campos-estelares",
+  "nome": "Campos Estelares",
+  "elementos": [
+    "Astral",
+    "Halo"
+  ]
+}

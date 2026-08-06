@@ -1,0 +1,17 @@
+{
+  "id": "adaptavel",
+  "nome": "Adaptável",
+  "descricao": "Relians adaptáveis conseguem se acostumar rapidamente a novos ambientes, alimentos e situações, demonstrando grande flexibilidade.",
+  "comportamento": "Exploram qualquer habitat sem hesitar e raramente demonstram desconforto diante de mudanças.",
+  "paladar": "Equilibrado",
+  "status": {
+    "ataque": -5,
+    "defesa": 0,
+    "velocidade": 5,
+    "ataqueEspecial": 0,
+    "defesaEspecial": 5,
+    "precisao": -5
+  },
+  "hp": 5,
+  "eng": 10
+}

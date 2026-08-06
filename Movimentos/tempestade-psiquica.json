@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "tempestade-psiquica",
+  "nome": "Tempestade Psíquica",
+  "tipo": "EFT",
+  "dano": 40,
+  "energia": 45,
+  "elemento": "Tempestade / Astral",
+  "descricao": ""
+}

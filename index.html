@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Relians v9.8.5</title>
+  <meta name="theme-color" content="#5946b2" />
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar app-header">
+  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v9.8.6</small></div></div>
+  <div class="top-actions toolbar-actions"><button id="newsBtn" class="toolbar-icon" title="Novidades"><span>🔔</span><b>Novidades</b></button>
+    <button id="diceBtn" class="toolbar-icon dice-toolbar-button" title="Rolador de dados"><span>🎲</span><b>Dados</b></button>
+    <button id="linkFolderBtn" class="primary toolbar-main"><span>◈</span> Vincular projeto</button>
+    <button id="syncFolderBtn" class="toolbar-icon" title="Sincronizar pasta"><span>↻</span><b>Sincronizar</b></button>
+    <button id="exportBtn" class="toolbar-icon" title="Exportar banco"><span>⇩</span><b>Exportar</b></button>
+    <label class="file-label toolbar-icon" title="Importar banco"><span>⇧</span><b>Importar</b><input id="importInput" type="file" accept="application/json" /></label>
+  </div>
+</header>
+<input id="relianFolderInput" type="file" multiple webkitdirectory directory hidden /><button id="resetBtn" type="button" hidden></button>
+<div id="folderStatus" class="folder-status">Nenhuma pasta vinculada. A importação manual continua disponível.</div>
+<nav class="tabs">
+  <button class="tab active" data-tab="generator">Gerador</button>
+  <button class="tab" data-tab="relians">Relians</button>
+  <button class="tab" data-tab="biomes">Biomas e regiões</button>
+  <button class="tab" data-tab="moves">Movimentos</button>
+  <button class="tab" data-tab="story">Criador de fichas</button>
+  <button class="tab" data-tab="sheetbank">Banco de fichas</button>
+  <button class="tab" data-tab="catalog">Catálogo</button>
+  <button class="tab" data-tab="rules">Regras</button>
+</nav>
+<main>
+<section id="generator" class="tab-panel active">
+  <div class="grid generator-layout">
+    <form id="generatorForm" class="card form-card sticky-card">
+      <div class="section-kicker">ENCONTRO</div><h2>Gerar ficha</h2>
+      <label>Região<select id="genRegion" required></select></label>
+      <label>Bioma<select id="genBiome" required></select></label>
+      <label>Período<select id="genPeriod" required><option value="manha">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite</option><option value="madrugada">Madrugada</option></select></label>
+      <div class="grid two compact"><label>Nível mínimo<input id="genMinLevel" type="number" min="1" max="100" value="10" required /></label><label>Nível máximo<input id="genMaxLevel" type="number" min="1" max="100" value="16" required /></label></div>
+      <label>Quantidade<input id="genAmount" type="number" min="1" max="12" value="1" required /></label>
+      <button type="submit" class="primary big-button">Gerar ficha</button>
+      <p class="hint">A ficha sorteia espécie, cor, atributos, traço, domínio e movimentos compatíveis.</p>
+    </form>
+    <div class="card"><div class="section-kicker">FILTRO ATUAL</div><h2>Relians disponíveis</h2><div id="eligibleList" class="eligible-grid"></div></div>
+  </div>
+  <div id="generatedArea" class="generated-area"></div>
+</section>
+
+<section id="relians" class="tab-panel">
+  <div class="editor-layout">
+    <aside class="card relian-sidebar movement-library"><div class="section-head"><div><div class="section-kicker">RELI-INFO</div><h2>Relians cadastrados</h2></div><button id="newRelianBtn" class="primary small">+ Novo</button></div><div id="reliansList" class="entity-list"></div></aside>
+    <form id="relianForm" class="card form-card editor-card">
+      <div class="editor-title"><div><div class="section-kicker">CADASTRO DA ESPÉCIE</div><h2 id="relianFormTitle">Cadastrar Relian</h2></div><span class="save-indicator">Salva no banco e na pasta vinculada</span></div>
+      <input id="relianId" type="hidden" />
+      <fieldset><legend>Identificação</legend>
+        <div class="grid four compact"><label>Reli-Info<input id="relianCatalog" type="number" min="1" placeholder="Número de catálogo" /></label><label>Variação evolutiva<input id="relianCatalogVariant" maxlength="3" placeholder="Ex.: A, B ou C" /></label><label>Nome<input id="relianName" required /></label><label>Classe<select id="relianClass"><option value="">NENHUMA</option><option value="OFS">Ofensivo (OFS)</option><option value="DEF">Defensivo (DEF)</option><option value="EFT">Efeito (EFT)</option><option value="NET">Neutro (NET)</option><option value="HIB">Híbrido (HIB)</option></select></label></div>
+        <div class="grid three compact element-select-grid">
+          <label>Elemento 1<select id="element1" class="element-select"></select></label>
+          <label>Elemento 2<select id="element2" class="element-select"></select></label>
+          <label>Elemento 3<select id="element3" class="element-select"></select></label>
+        </div>
+        <div id="elementPreview" class="element-preview" aria-live="polite"></div>
+        <div class="special-elements-block">
+          <div class="section-kicker">ESPECIAL COLOR</div>
+          <p class="field-help">Basic Color e Shiny Color usam os elementos acima. Preencha abaixo somente quando a Especial Color possuir elementos diferentes.</p>
+          <div class="grid three compact element-select-grid">
+            <label>Elemento Especial 1<select id="specialElement1" class="element-select"></select></label>
+            <label>Elemento Especial 2<select id="specialElement2" class="element-select"></select></label>
+            <label>Elemento Especial 3<select id="specialElement3" class="element-select"></select></label>
+          </div>
+          <div id="specialElementPreview" class="element-preview special-element-preview" aria-live="polite"></div>
+        </div>
+        <label class="relian-description-field">Descrição de catálogo<textarea id="relianDescription" rows="5" placeholder="Descreva a aparência, comportamento, habitat, curiosidades e outras informações da espécie..."></textarea></label>
+        <p class="field-help">Esta descrição aparece nas fichas geradas e no Banco de fichas, funcionando como texto do catálogo do Relian.</p>
+      </fieldset>
+      <fieldset><legend>Corpo e recursos</legend>
+        <div class="grid four compact"><label>Estágio evolutivo<input id="relianStage" type="number" min="1" value="1" /></label><label>ENG base<input id="relianEnergy" type="number" min="0" value="85" /></label><label>Gêneros<input id="relianGenders" value="Macho,Fêmea" /></label><label>Tamanhos<input id="relianSizes" value="P,M,G" /></label></div>
+        <div class="grid three compact"><label>Categoria de raridade<select id="relianRarity"><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="raro">Raro</option><option value="lendario">Lendário</option><option value="mitico">Mítico</option><option value="lendario-especial">Lendário Especial</option></select></label><label>Taxa base de captura (%)<input id="relianCaptureRate" type="number" min="0" max="100" step="0.1" value="40" /></label><label>Afinidade inicial<input id="relianAffinity" type="number" min="0" max="5" step="0.1" value="2" /></label></div>
+      </fieldset>
+      <fieldset><legend>Linha evolutiva</legend>
+        <p class="field-help">Vincule esta espécie às formas anterior e seguinte. O vínculo inverso é atualizado automaticamente.</p>
+        <div class="grid three compact"><label>Evolui de<select id="relianEvolvesFrom"></select></label><div class="evolution-target-field"><span class="field-label">Evolui para <small>(uma ou mais)</small></span><select id="relianEvolvesTo" multiple hidden aria-hidden="true"></select><div id="evolutionTargetsEditor" class="evolution-targets-editor"></div><button type="button" id="addEvolutionTargetBtn" class="open-evolution-picker">+ Adicionar evolução</button><small class="field-help">Adicione uma evolução por vez. Você pode remover ou adicionar quantas precisar.</small></div><label>Método de evolução<input id="relianEvolutionMethod" placeholder="Nível, Stone-Eng, evento..." /></label></div>
+      </fieldset>
+      <fieldset><legend>Imagens por coloração</legend>
+        <p class="field-help">Os arquivos ficam dentro da pasta do Relian. Ex.: <code>Pasta_Relians/Loppypor/basic.png</code>.</p>
+        <div class="grid three compact"><label>Basic Color<input id="relianImageBasic" placeholder="basic.png" /></label><label>Shiny Color<input id="relianImageShiny" placeholder="shiny.png" /></label><label>Especial Color<input id="relianImageSpecial" placeholder="especial.png" /></label></div>
+      </fieldset>
+      <fieldset><legend>Movimentos por nível</legend>
+        <p class="field-help">Escolha quais movimentos este Relian pode aprender e o nível de desbloqueio. Movimentos criados no editor ou adicionados à pasta <code>Movimentos</code> aparecem aqui automaticamente.</p>
+        <div id="learnsetEditor" class="learnset-editor"></div>
+        <button type="button" id="addLearnsetBtn" class="small">+ Adicionar movimento</button>
+      </fieldset>
+      <fieldset><legend>Aparições</legend><p class="field-help">Defina onde o Relian aparece. O nível mínimo e o máximo são obrigatórios: o gerador só poderá sortear esse Relian dentro dessa faixa.</p><div id="encountersEditor"></div><button type="button" id="addEncounterBtn" class="small">+ Adicionar aparição</button></fieldset>
+      <div class="form-actions"><button type="submit" class="primary">Salvar Relian</button><button type="button" id="deleteRelianBtn" class="danger">Excluir</button></div>
+    </form>
+  </div>
+</section>
+
+<section id="catalog" class="tab-panel">
+  <div class="catalog-layout">
+    <aside class="card catalog-sidebar">
+      <div class="section-head"><div><div class="section-kicker">RELI-INFO</div><h2>Catálogo de Relians</h2></div></div>
+      <div class="catalog-search-panel">
+        <label class="catalog-search-box" aria-label="Pesquisar no catálogo">
+          <span class="catalog-search-icon" aria-hidden="true">⌕</span>
+          <input id="catalogSearch" placeholder="Pesquise por nome, número, elemento..." autocomplete="off" />
+          <button type="button" id="catalogClearSearch" class="catalog-clear-search" title="Limpar pesquisa" aria-label="Limpar pesquisa">×</button>
+        </label>
+        <div class="catalog-filter-row">
+          <label>Elemento<select id="catalogElementFilter"><option value="">Todos</option></select></label>
+          <label>Raridade<select id="catalogRarityFilter"><option value="">Todas</option></select></label>
+        </div>
+        <div class="catalog-filter-row">
+          <label>Classe<select id="catalogClassFilter"><option value="">Todas</option></select></label>
+          <label>Ordenar<select id="catalogSort"><option value="number">Número</option><option value="name">Nome</option><option value="rarity">Raridade</option></select></label>
+        </div>
+        <div class="catalog-search-summary"><span id="catalogResultCount">0 Relians</span><button type="button" id="catalogResetFilters" class="small">Limpar filtros</button></div>
+      </div>
+      <div id="catalogResults" class="catalog-results"></div>
+    </aside>
+    <div id="catalogDetail" class="catalog-detail card">
+      <div class="catalog-empty"><b>Nenhum Relian selecionado</b><span>Pesquise e selecione uma espécie para consultar seus dados.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="biomes" class="tab-panel">
+  <div class="grid two region-biome-editors">
+    <form id="regionForm" class="card entity-editor-card"><div class="section-head"><div><div class="section-kicker">MAPA</div><h2>Adicionar região</h2></div></div><p class="field-help">A região é o nome do lugar. Selecione abaixo quais biomas existem nela.</p><label>Nome da região<input id="regionName" placeholder="Ex.: Vale de Aster" required /></label><fieldset><legend>Biomas presentes nesta região</legend><div id="regionBiomeChecks" class="region-biome-check-grid"></div><p class="field-help">Você pode deixar vazio e vincular os biomas depois.</p></fieldset><button class="primary">Salvar região</button></form>
+    <form id="biomeForm" class="card entity-editor-card"><div class="section-head"><div><div class="section-kicker">HABITAT</div><h2>Adicionar bioma</h2></div></div><p class="field-help">O bioma representa o ambiente natural. Marque quais elementos são comuns nele.</p><label>Nome do bioma<input id="biomeName" placeholder="Ex.: Campos Congelados" required /></label><fieldset><legend>Elementos comuns no bioma</legend><div id="biomeElementChecks" class="element-check-grid"></div></fieldset><button class="primary">Salvar bioma</button></form>
+  </div>
+  <div class="grid two"><div class="card"><h2>Regiões cadastradas</h2><div id="regionsList" class="entity-list rich-entity-list"></div></div><div class="card"><h2>Biomas cadastrados</h2><div id="biomesList" class="entity-list rich-entity-list"></div></div></div>
+  <div class="card"><h2>Lista de Relians por bioma</h2><label>Bioma<select id="biomeOverviewSelect"></select></label><div id="biomeRelianOverview" class="table-wrap"></div></div>
+</section>
+
+
+<section id="moves" class="tab-panel">
+  <div class="editor-layout">
+    <aside class="card relian-sidebar">
+      <div class="section-head"><div><div class="section-kicker">BIBLIOTECA</div><h2>Movimentos cadastrados</h2></div><button id="newMoveBtn" class="primary small">+ Novo</button></div>
+      <label>Pesquisar movimento<input id="moveSearch" placeholder="Nome, ID ou tipo..." /></label>
+      <div id="movesList" class="entity-list"></div>
+    </aside>
+    <form id="moveForm" class="card form-card editor-card movement-editor">
+      <div class="editor-title"><div><div class="section-kicker">EDITOR DE MOVIMENTO</div><h2 id="moveFormTitle">Cadastrar movimento</h2></div><span id="moveSaveStatus" class="save-indicator">Salva no banco e na pasta vinculada</span></div>
+      <input id="moveOriginalId" type="hidden" />
+      <fieldset><legend>Identificação</legend>
+        <div class="grid three compact"><label>Nome<input id="moveName" required placeholder="Ex.: Bicada Perfurante" /></label><label>ID do arquivo<input id="moveId" required placeholder="bicada-perfurante" /></label><label>Tipo / classe<input id="moveType" required placeholder="ATQ, EFT, NEH..." /></label></div>
+      </fieldset>
+      <fieldset><legend>Valores da habilidade</legend>
+        <div class="grid four compact"><label>Dano base<input id="moveDamage" type="number" value="0" /></label><label>Custo de ENG<input id="moveEnergy" type="number" min="0" value="0" /></label><label>Elemento 1<select id="moveElement1" class="move-element-editor-select"><option value="Nenhum">Nenhum</option><option value="Éter">Éter</option><option value="Vital">Vital</option><option value="Astral">Astral</option><option value="Halo">Halo</option><option value="Umbral">Umbral</option><option value="Tempestade">Tempestade</option><option value="Ígnea">Ígnea</option><option value="Abissal">Abissal</option><option value="Colossal">Colossal</option><option value="Geada">Geada</option></select></label><label>Elemento 2<select id="moveElement2" class="move-element-editor-select"><option value="Nenhum">Nenhum</option><option value="Éter">Éter</option><option value="Vital">Vital</option><option value="Astral">Astral</option><option value="Halo">Halo</option><option value="Umbral">Umbral</option><option value="Tempestade">Tempestade</option><option value="Ígnea">Ígnea</option><option value="Abissal">Abissal</option><option value="Colossal">Colossal</option><option value="Geada">Geada</option></select></label></div><p class="field-help move-element-help">Se os dois elementos estiverem como <b>Nenhum</b>, o movimento será tratado como Neutro.</p>
+        <div class="grid two compact"><label>Precisão<input id="moveAccuracy" type="number" min="0" value="0" /></label><label>Alcance<input id="moveRange" placeholder="Corpo a corpo, 5 m..." /></label></div>
+      </fieldset>
+      <fieldset><legend>Descrição</legend><label>Descrição do movimento<textarea id="moveDescription" rows="6" required placeholder="Explique o efeito da habilidade..."></textarea></label></fieldset>
+      <fieldset><legend>Informações opcionais</legend>
+        <div class="grid two"><label>Efeitos / observações <span class="field-help">Um por linha</span><textarea id="moveEffects" rows="5" placeholder="Reduz Defesa
+Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas por vírgula</span><textarea id="moveTags" rows="5" placeholder="contato, físico, perfurante"></textarea></label></div>
+      </fieldset>
+      <div class="form-actions"><button type="submit" class="primary">Salvar movimento</button><button type="button" id="deleteMoveBtn" class="danger">Excluir</button></div>
+      <p class="field-help">Com uma pasta-base vinculada em modo de escrita, o arquivo é criado em <code>Movimentos/id-do-movimento.json</code>. Sem vínculo, ele continua salvo no navegador e pode ser exportado.</p>
+    </form>
+  </div>
+</section>
+
+<section id="story" class="tab-panel">
+  <div class="editor-layout story-editor-layout">
+    <aside class="card relian-sidebar story-sidebar">
+      <div class="section-head"><div><div class="section-kicker">ARQUIVO DA CAMPANHA</div><h2>Criador de fichas</h2></div><button id="newStorySheetBtn" class="primary small">+ Nova</button></div>
+      <label>Pesquisar ficha<input id="storySearch" placeholder="Nome, personagem ou cena..." /></label>
+      <div id="storySheetsList" class="entity-list story-sheet-list"></div>
+      <p class="field-help story-sidebar-help">Clique no nome de uma ficha para abrir sua visualização ao lado. Use “Editar” quando quiser alterar os dados.</p>
+    </aside>
+    <div class="story-workspace">
+    <form id="storySheetForm" class="card form-card editor-card story-main-editor">
+      <div class="editor-title"><div><div class="section-kicker">EDITOR VISUAL</div><h2 id="storySheetTitle">Nova ficha de personagem</h2></div><span class="save-indicator">Prévia em tempo real · Salva no banco</span></div>
+      <input id="storySheetId" type="hidden" />
+      <input id="characterEquippedTeam" type="hidden" value="[]" />
+      <div class="story-editor-guide" aria-label="Organização do editor">
+        <span><b>1</b> Tipo</span><span><b>2</b> Identidade</span><span><b>3</b> Status</span><span><b>4</b> Equipe</span><span><b>5</b> Salvar</span>
+      </div>
+      <fieldset><legend>Tipo de ficha</legend>
+        <div class="story-type-switch">
+          <label><input type="radio" name="storyType" value="character" checked /> Personagem</label>
+          <label><input type="radio" name="storyType" value="relian" /> Relian específico</label>
+        </div>
+      </fieldset>
+      <div id="characterFields">
+        <fieldset><legend>Identidade do personagem</legend>
+          <div class="grid three compact"><label>Jogador<input id="characterPlayer" placeholder="Nome do jogador" /></label><label>Nome<input id="characterName" placeholder="Nome do personagem" /></label><label>Idade<input id="characterAge" type="number" min="0" /></label></div>
+          <div class="grid three compact"><label>Região<input id="characterRegion" placeholder="Região de origem" /></label><label>Classe<select id="characterClass"><option value="">Nenhuma</option><option>Desbravador</option><option>Naturalista</option><option>Artífice</option><option>Cuidador</option><option>Sentinela</option><option>Diplomata</option><option>Agente</option><option>Sobrevivencialista</option></select></label><label>Especialização<input id="characterSpecialization" placeholder="Escolhida futuramente" /></label></div>
+          <div class="grid four compact"><label>Nível<input id="characterLevel" type="number" min="0" max="100" value="0" /></label><label>Battle Rank<input id="characterRank" placeholder="Ex.: E" /></label><label>Estrelas obtidas<input id="characterStars" type="number" min="0" value="0" /></label><label>Raios obtidos<input id="characterRays" type="number" min="0" value="0" /></label></div>
+          <div class="grid three compact"><label>Reli-INF<input id="characterReliInf" type="number" min="0" value="1" /></label><label>Créditos<input id="characterCredits" type="number" min="0" step="0.01" value="0" /></label><label>Dinheiro<input id="characterMoney" type="number" min="0" step="0.01" value="0" /></label></div>
+          <label>Imagem / arquivo<input id="characterImage" placeholder="personagem.png" /></label>
+          <label>Descrição<textarea id="characterDescription" rows="3" placeholder="Personalidade, objetivos e informações importantes..."></textarea></label>
+        </fieldset>
+        <fieldset><legend>Status do personagem</legend>
+          <p class="field-help">Pelas regras, PV e Stamina são definidos por 2D60 + 30.</p>
+          <div class="grid four compact"><label>PV atual<input id="characterHpCurrent" type="number" min="0" value="30" /></label><label>PV máximo<input id="characterHpMax" type="number" min="1" value="30" /></label><label>Stamina atual<input id="characterStaCurrent" type="number" min="0" value="40" /></label><label>Stamina máxima<input id="characterStaMax" type="number" min="1" value="40" /></label></div>
+        </fieldset>
+        <fieldset><legend>Atributos — 6D35</legend><div id="characterAttributes" class="character-attributes-grid"></div></fieldset>
+        <fieldset><legend>Perícias</legend><p class="field-help">Pontos iniciais: 1D30 + INT + SAB. Durante a criação, nenhuma perícia pode ultrapassar 15.</p><div id="characterSkills" class="character-skills-grid"></div></fieldset>
+        <fieldset><legend>Equipamentos do personagem</legend><div id="characterEquipment" class="character-equipment-grid"></div></fieldset>
+        <fieldset><legend>Mochila</legend><p class="field-help">Adicione quantos itens precisar. Cada item pode ter nome e descrição próprios.</p><div id="characterBackpack" class="character-backpack-editor"></div><button type="button" id="addCharacterBackpackItemBtn" class="small">+ Adicionar item</button></fieldset>
+        <fieldset><legend>Equipe de Relians</legend>
+          <p class="field-help">Use uma espécie cadastrada ou carregue uma ficha pronta salva no Gerador.</p>
+          <div id="trainerTeamEditor" class="story-team-editor"></div>
+          <button type="button" id="addTrainerTeamBtn" class="small">+ Adicionar Relian à equipe</button>
+        </fieldset>
+      </div>
+      <div id="specialRelianFields" hidden>
+        <fieldset><legend>Relian específico</legend>
+          <div class="grid three compact"><label>Espécie<select id="specialSpecies"></select></label><label>Apelido<input id="specialNickname" placeholder="Nome desta ficha" /></label><label>Nível<input id="specialLevel" type="number" min="1" max="100" value="1" /></label></div>
+          <div class="grid three compact"><label>Coloração<select id="specialColor"><option value="basic">Basic Color</option><option value="shiny">Shiny Color</option><option value="special">Especial Color</option></select></label><label>Gênero<input id="specialGender" placeholder="Macho, Fêmea..." /></label><label>Tamanho<input id="specialSize" placeholder="P, M, G..." /></label></div>
+        </fieldset>
+        <fieldset><legend>Recursos e afinidade</legend>
+          <div class="grid four compact"><label>HP atual<input id="specialHpCurrent" type="number" min="0" value="100" /></label><label>HP máximo<input id="specialHpMax" type="number" min="1" value="100" /></label><label>ENG atual<input id="specialEngCurrent" type="number" min="0" value="65" /></label><label>ENG máxima<input id="specialEngMax" type="number" min="1" value="65" /></label></div>
+          <label>Afinidade<input id="specialAffinity" type="number" min="0" max="5" step="0.1" value="2" /></label>
+        </fieldset>
+        <fieldset><legend>Atributos personalizados</legend><div id="specialAttributes" class="special-attributes-grid"></div></fieldset>
+        <fieldset><legend>Traço, movimentos e contexto</legend>
+          <div class="grid two compact"><label>Traço<select id="specialTrait"></select></label><label>Cena / capítulo<input id="specialScene" placeholder="Ex.: Batalha no Observatório" /></label></div>
+          <div class="special-section-label"><b>Movimentos equipados</b><span>Escolha até 4 movimentos cadastrados.</span></div>
+          <div id="specialMovesEditor" class="special-moves-editor"></div>
+          <div class="special-section-label"><b>Itens segurados</b><span>Itens, artefatos ou equipamentos ligados a este Relian.</span></div>
+          <div id="specialItemsEditor" class="special-items-editor"></div>
+          <label>Anotações<textarea id="specialNotes" rows="5"></textarea></label>
+        </fieldset>
+      </div>
+      <div class="form-actions"><button type="submit" class="primary">Salvar ficha</button><button type="button" id="deleteStorySheetBtn" class="danger">Excluir</button></div>
+    </form>
+    <div id="storyPreview" class="story-preview story-side-preview"><div class="story-preview-empty"><b>Selecione ou crie uma ficha</b><span>A visualização aparecerá aqui.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sheetbank" class="tab-panel">
+  <div class="sheet-bank-layout">
+    <aside class="card sheet-bank-sidebar">
+      <div class="section-head"><div><div class="section-kicker">ARQUIVO DE FICHAS</div><h2>Banco de fichas</h2></div></div>
+      <div class="sheet-transfer-panel">
+        <button type="button" id="exportPlayerSheetBtn" class="primary small">Exportar ficha selecionada</button>
+        <label class="file-label small sheet-import-label">Importar ficha de jogador<input id="importPlayerSheetInput" type="file" accept="application/json,.relianficha" /></label>
+        <p>Envie uma ficha para outro jogador sem compartilhar o banco inteiro.</p>
+      </div>
+      <label>Pesquisar ficha<input id="savedSheetSearch" placeholder="Nome, personagem, espécie, raridade..." /></label>
+      <div id="savedRelianSheetsList" class="entity-list saved-sheet-list"></div>
+    </aside>
+    <section class="card sheet-bank-detail">
+      <div id="savedSheetDetail" class="saved-sheet-detail-empty">
+        <b>Nenhuma ficha selecionada</b>
+        <span>Selecione um Relian ou personagem para abrir a ficha completa.</span>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section id="rules" class="tab-panel">
+  <div class="grid two">
+    <form id="rulesForm" class="card form-card"><div class="section-kicker">CONFIGURAÇÃO GLOBAL</div><h2>Regras</h2>
+      <div class="grid two compact"><label>HP base<input id="ruleBaseHp" type="number" /></label><label>HP por evolução<input id="ruleHpPerEvolution" type="number" /></label></div>
+      <div class="grid two compact"><label>Dado mínimo do atributo<input id="ruleAttrMin" type="number" /></label><label>Dado máximo do atributo<input id="ruleAttrMax" type="number" /></label></div>
+      <div class="grid two compact"><label>Modificador mínimo<input id="ruleModMin" type="number" /></label><label>Modificador máximo<input id="ruleModMax" type="number" /></label></div>
+      <label>Limite de habilidades equipadas<input id="ruleMoveLimit" type="number" min="1" max="12" /></label>
+      <h3>Colorações</h3><p class="field-help">Basic Color usa todo o percentual restante.</p>
+      <div class="grid two compact"><label>Chance de Shiny Color (%)<input id="ruleShinyChance" type="number" min="0" max="100" step="0.01" /></label><label>Chance de Especial Color (%)<input id="ruleSpecialChance" type="number" min="0" max="100" step="0.01" /></label></div>
+      <button class="primary">Salvar regras</button>
+    </form>
+    <div class="card"><h2>Estrutura recomendada</h2><pre>Pasta_Relians/
+  Loppypor/
+    relian.json
+    basic.png
+    shiny.png
+    especial.png
+Tracos/
+  corpo-vigoroso.json
+Movimentos/
+  golpear.json
+config/
+  regioes_e_biomas.json</pre><p>A pasta vinculada é relida automaticamente enquanto a página estiver aberta.</p></div>
+  </div>
+</section>
+</main>
+<template id="encounterTemplate"><div class="encounter-row encounter-picker-row">
+  <section class="encounter-setting encounter-location-setting">
+    <div class="encounter-setting-title">Local de aparição</div>
+    <div class="encounter-location-grid">
+      <label class="enc-field"><span>Região</span><select class="enc-region" required></select></label>
+      <label class="enc-field"><span>Bioma</span><select class="enc-biome" required></select></label>
+    </div>
+    <small class="encounter-place-elements">Escolha a região e o bioma separadamente.</small>
+  </section>
+  <section class="encounter-setting encounter-period-setting">
+    <div class="encounter-setting-title">Períodos</div>
+    <div class="period-choice-grid" role="group" aria-label="Períodos de aparição">
+      <label class="period-choice"><input type="checkbox" class="enc-period" value="manha"><span>Manhã</span></label>
+      <label class="period-choice"><input type="checkbox" class="enc-period" value="tarde"><span>Tarde</span></label>
+      <label class="period-choice"><input type="checkbox" class="enc-period" value="noite"><span>Noite</span></label>
+      <label class="period-choice"><input type="checkbox" class="enc-period" value="madrugada"><span>Madrugada</span></label>
+    </div>
+  </section>
+  <section class="encounter-setting encounter-level-setting">
+    <div class="encounter-setting-title">Faixa de nível</div>
+    <div class="level-range-grid">
+      <label class="enc-field"><span>Mínimo</span><input class="enc-min" type="number" min="1" max="100" required placeholder="1" /></label>
+      <div class="level-range-arrow">até</div>
+      <label class="enc-field"><span>Máximo</span><input class="enc-max" type="number" min="1" max="100" required placeholder="10" /></label>
+    </div>
+    <small>O Relian só poderá aparecer dentro desta faixa.</small>
+  </section>
+  <section class="encounter-setting encounter-weight-setting">
+    <div class="encounter-setting-title">Peso de aparição</div>
+    <label class="enc-field"><span>Valor relativo</span><input class="enc-weight" type="number" min="1" max="9999" required placeholder="10" /></label>
+    <div class="weight-quick-buttons">
+      <button type="button" data-weight="5">5</button><button type="button" data-weight="10">10</button><button type="button" data-weight="25">25</button><button type="button" data-weight="50">50</button>
+    </div>
+    <small>Quanto maior, mais frequente em relação aos outros Relians do local.</small>
+  </section>
+  <button type="button" class="remove-enc danger" title="Remover aparição">×</button>
+</div></template>
+
+<dialog id="encounterPickerDialog" class="move-picker-dialog encounter-picker-dialog">
+  <div class="move-picker-head"><div><div class="section-kicker">HABITATS</div><h2>Selecionar região e bioma</h2></div><button type="button" id="encounterPickerCloseBtn" class="move-picker-close">×</button></div>
+  <div class="move-picker-filters encounter-picker-filters"><label>Pesquisar<input id="encounterPickerSearch" autocomplete="off" placeholder="Nome, elemento, região ou bioma..."></label><label>Elemento<select id="encounterPickerElement"><option value="">Todos os elementos</option><option value="Éter">Éter</option><option value="Vital">Vital</option><option value="Astral">Astral</option><option value="Halo">Halo</option><option value="Umbral">Umbral</option><option value="Tempestade">Tempestade</option><option value="Ígnea">Ígnea</option><option value="Abissal">Abissal</option><option value="Colossal">Colossal</option><option value="Geada">Geada</option></select></label></div>
+  <div id="encounterPickerList" class="move-picker-list encounter-picker-list"></div>
+  <div class="move-picker-footer"><button type="button" class="primary" onclick="document.getElementById('encounterPickerDialog').close()">Cancelar</button></div>
+</dialog>
+
+<dialog id="evolutionPickerDialog" class="move-picker-dialog evolution-picker-dialog">
+  <div class="move-picker-head">
+    <div><div class="section-kicker">LINHA EVOLUTIVA</div><h2>Adicionar evolução</h2></div>
+    <button type="button" id="evolutionPickerCloseBtn" class="move-picker-close" aria-label="Fechar">×</button>
+  </div>
+  <div class="move-picker-filters evolution-picker-filters">
+    <label>Pesquisar
+      <input id="evolutionPickerSearch" autocomplete="off" placeholder="Nome, número ou código do catálogo...">
+    </label>
+  </div>
+  <div id="evolutionPickerList" class="move-picker-list evolution-picker-list"></div>
+  <div class="move-picker-footer"><button type="button" class="primary" onclick="document.getElementById('evolutionPickerDialog').close()">Cancelar</button></div>
+</dialog>
+<dialog id="movePickerDialog" class="move-picker-dialog">
+  <div class="move-picker-head">
+    <div><div class="section-kicker">BIBLIOTECA DE MOVIMENTOS</div><h2>Selecionar movimento</h2></div>
+    <button type="button" id="movePickerCloseBtn" class="move-picker-close" aria-label="Fechar">×</button>
+  </div>
+  <div class="move-picker-filters">
+    <label>Pesquisar
+      <input id="movePickerSearch" autocomplete="off" placeholder="Nome, ID ou elemento...">
+    </label>
+    <label>Elemento
+      <select id="movePickerElement">
+        <option value="">Todos os elementos</option>
+        <option value="eter">Éter</option><option value="vital">Vital</option><option value="astral">Astral</option><option value="halo">Halo</option><option value="umbral">Umbral</option><option value="tempestade">Tempestade</option><option value="ignea">Ígnea</option><option value="abissal">Abissal</option><option value="colossal">Colossal</option><option value="geada">Geada</option><option value="nenhum">Sem elemento</option>
+      </select>
+    </label>
+  </div>
+  <div id="movePickerList" class="move-picker-list"></div>
+  <div class="move-picker-footer"><button type="button" id="movePickerClearBtn">Remover seleção</button><button type="button" class="primary" onclick="document.getElementById('movePickerDialog').close()">Cancelar</button></div>
+</dialog>
+<dialog id="diceDialog" class="dice-dialog">
+  <div class="dice-dialog-head">
+    <div><div class="section-kicker">FERRAMENTA DE RPG</div><h2>🎲 Rolador de dados</h2></div>
+    <button type="button" id="diceCloseBtn" class="dice-close" aria-label="Fechar">×</button>
+  </div>
+  <p class="dice-help">Digite como nos bots do Discord: <code>1d20+5*3</code>, <code>2d6+1d8-2</code> ou até <code>1d1000</code>.</p>
+  <form id="diceForm" class="dice-form">
+    <label>Expressão
+      <div class="dice-input-row"><input id="diceExpression" autocomplete="off" spellcheck="false" placeholder="Ex.: 1d20+5*3" maxlength="160" /><button type="submit" class="primary">Rolar</button></div>
+    </label>
+  </form>
+  <div class="dice-quick" aria-label="Rolagens rápidas">
+    <button type="button" data-dice-quick="1d4">d4</button><button type="button" data-dice-quick="1d6">d6</button><button type="button" data-dice-quick="1d8">d8</button><button type="button" data-dice-quick="1d10">d10</button><button type="button" data-dice-quick="1d12">d12</button><button type="button" data-dice-quick="1d20">d20</button><button type="button" data-dice-quick="1d100">d100</button><button type="button" data-dice-quick="1d1000">d1000</button>
+  </div>
+  <section id="diceResult" class="dice-result" aria-live="polite">
+    <span class="dice-result-placeholder">O resultado da rolagem aparecerá aqui.</span>
+  </section>
+  <div class="dice-history-head"><h3>Histórico</h3><button type="button" id="diceClearHistoryBtn" class="small">Limpar</button></div>
+  <div id="diceHistory" class="dice-history"></div>
+</dialog>
+<dialog id="sheetCaptureDialog" class="sheet-capture-dialog">
+  <div class="sheet-capture-head"><div><small>EXPORTAR FICHA</small><h2>Capturar ficha</h2></div><button type="button" id="sheetCaptureCloseBtn" class="dialog-icon-close" aria-label="Fechar">×</button></div>
+  <p>Salve somente a ficha, mantendo sua aparência e os efeitos visuais.</p>
+  <div class="sheet-capture-options">
+    <label>Qualidade<select id="sheetCaptureScale"><option value="1">Normal (1×)</option><option value="1.5">Alta (1,5×)</option><option value="2" selected>Máxima (2×)</option></select></label>
+    <label class="sheet-capture-check"><input id="sheetCaptureHideControls" type="checkbox" checked> Ocultar botões de edição na captura</label>
+  </div>
+  <div class="sheet-capture-formats">
+    <button type="button" id="sheetCapturePngBtn" class="capture-format-card"><b>Imagem PNG</b><span>Imagem estática em alta qualidade.</span></button>
+  </div>
+  <div id="sheetCaptureStatus" class="sheet-capture-status">Escolha o formato da captura.</div>
+</dialog>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="app.js"></script>
+<dialog id="newsDialog"><h2>📦 Novidades - v9.8.5</h2><ul><li>Fichas antigas agora podem ser atualizadas durante a importação</li><li>O arquivo original é baixado automaticamente como backup antes da atualização</li><li>Fichas de personagem também atualizam os Relians vinculados à equipe</li><li>Importar sem atualizar e Cancelar continuam disponíveis</li><li>Fichas atuais seguem sendo importadas diretamente, sem perguntas</li></ul><button onclick="document.getElementById('newsDialog').close()">Fechar</button></dialog><script>document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("newsBtn");if(b)b.onclick=()=>document.getElementById("newsDialog").showModal();});</script></body></html>

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "pradarias",
+  "nome": "Pradarias",
+  "elementos": [
+    "Vital",
+    "Tempestade"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "bosque-luminescente",
+  "nome": "Bosque Luminescente",
+  "elementos": [
+    "Vital",
+    "Halo"
+  ]
+}

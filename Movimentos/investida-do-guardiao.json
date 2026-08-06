@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "investida-do-guardiao",
+  "nome": "Investida do Guardião",
+  "tipo": "DEF",
+  "dano": 25,
+  "energia": 55,
+  "elemento": "Éter",
+  "descricao": ""
+}

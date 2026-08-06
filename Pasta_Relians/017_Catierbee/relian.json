@@ -1,0 +1,52 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "catierbee",
+  "catalogNumber": 17,
+  "numeroCatalogo": 17,
+  "reliInfo": 17,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "017",
+  "nome": "Catierbee",
+  "descricao": "",
+  "classe": "NET",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 1,
+  "energiaBase": 60,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "catierbee.png",
+    "shiny": "catierbee-s.png",
+    "special": "caiterbee-e.png"
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "gatabuss",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [],
+  "aparicoes": [
+    {
+      "regiao": "vale-lumen",
+      "bioma": "floresta",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 14,
+      "nivelMaximo": 20,
+      "peso": 13
+    }
+  ]
+}

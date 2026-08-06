@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "rugido-primordial",
+  "nome": "Rugido primordial",
+  "tipo": "DEF",
+  "dano": 10,
+  "energia": 40,
+  "elemento": "Colossal / Astral",
+  "descricao": ""
+}

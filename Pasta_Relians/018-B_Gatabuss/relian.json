@@ -1,0 +1,74 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "gatabuss",
+  "catalogNumber": 18,
+  "numeroCatalogo": 18,
+  "reliInfo": 18,
+  "catalogVariant": "B",
+  "variacaoCatalogo": "B",
+  "codigoCatalogo": "018-B",
+  "nome": "Gatabuss",
+  "descricao": "Quando uma Catierbee entra em contato com uma Magic Orb, ela absorve toda aquela energia mágica que a Orb emana, assim se tornando Gatabuss.\n\nGatabuss costumam buscar por regiões que possuam uma alta concentração de Energia Relia para se tornar mais fortes.",
+  "classe": "EFT",
+  "elementos": [
+    "Éter",
+    "Astral"
+  ],
+  "elementosEspeciais": [
+    "Tempestade",
+    "Astral"
+  ],
+  "estagio": 2,
+  "energiaBase": 70,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "M",
+    "G"
+  ],
+  "evoluiDe": "catierbee",
+  "evoluiPara": "",
+  "metodoEvolucao": "Item",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "abismo-de-nox",
+      "bioma": "ruinas-astrais",
+      "periodos": [
+        "noite",
+        "madrugada"
+      ],
+      "nivelMinimo": 30,
+      "nivelMaximo": 50,
+      "peso": 10
+    },
+    {
+      "regiao": "bosque-luminescente",
+      "bioma": "caverna-de-eter",
+      "periodos": [
+        "tarde",
+        "madrugada"
+      ],
+      "nivelMinimo": 30,
+      "nivelMaximo": 50,
+      "peso": 10
+    }
+  ]
+}

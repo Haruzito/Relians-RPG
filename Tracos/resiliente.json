@@ -1,0 +1,17 @@
+{
+  "id": "resiliente",
+  "nome": "Resiliente",
+  "descricao": "Desde o nascimento demonstram uma capacidade extraordinária de suportar dor, fadiga e condições adversas.",
+  "comportamento": "Continuam lutando mesmo após sofrer grandes ferimentos e raramente entram em pânico.",
+  "paladar": "Terroso",
+  "status": {
+    "ataque": 0,
+    "defesa": 5,
+    "velocidade": -5,
+    "ataqueEspecial": 0,
+    "defesaEspecial": 5,
+    "precisao": -5
+  },
+  "hp": 10,
+  "eng": -5
+}

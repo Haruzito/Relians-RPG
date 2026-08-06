@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "cuspe-de-nectar",
+  "nome": "Cuspe de Néctar",
+  "tipo": "EFT",
+  "dano": 10,
+  "energia": 15,
+  "elemento": "Vital",
+  "descricao": ""
+}

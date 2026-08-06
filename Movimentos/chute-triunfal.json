@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chute-triunfal",
+  "nome": "Chute triunfal",
+  "tipo": "OFS",
+  "dano": 35,
+  "energia": 50,
+  "elemento": "Éter",
+  "descricao": ""
+}

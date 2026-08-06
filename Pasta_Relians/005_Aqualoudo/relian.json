@@ -1,0 +1,59 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "aqualoudo",
+  "catalogNumber": 5,
+  "numeroCatalogo": 5,
+  "reliInfo": 5,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "005",
+  "nome": "Aqualoudo",
+  "descricao": "",
+  "classe": "DEF",
+  "elementos": [
+    "Abissal"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 2,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "aquecko",
+  "evoluiPara": "draquecko",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

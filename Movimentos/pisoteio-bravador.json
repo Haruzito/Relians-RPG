@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "pisoteio-bravador",
+  "nome": "Pisoteio Bravador",
+  "tipo": "OFS",
+  "dano": 40,
+  "energia": 60,
+  "elemento": "Éter / Ígnea",
+  "descricao": ""
+}

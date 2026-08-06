@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "queimadura-celeste",
+  "nome": "Queimadura Celeste",
+  "tipo": "HIB",
+  "dano": 75,
+  "energia": 65,
+  "elemento": "Ígnea / Astral",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chuva-de-pedras",
+  "nome": "Chuva de pedras",
+  "tipo": "OFS",
+  "dano": 50,
+  "energia": 45,
+  "elemento": "Colossal",
+  "descricao": ""
+}

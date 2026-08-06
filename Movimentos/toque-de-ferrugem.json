@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "toque-de-ferrugem",
+  "nome": "Toque de Ferrugem",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 45,
+  "elemento": "Umbral",
+  "descricao": ""
+}

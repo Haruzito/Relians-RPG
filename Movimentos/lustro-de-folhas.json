@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "lustro-de-folhas",
+  "nome": "Lustro de Folhas",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Vital / Éter",
+  "descricao": "O Datamon convoca folhas próximas e as entrelaça ao redor do próprio corpo, formando um manto natural que reflete energia elemental e amortece impactos mágicos.\nEfeito: Aumenta a Defesa Especial do Usuário por 3 turnos. Enquanto o efeito estiver ativo, qualquer ataque físico bem-sucedido destrói o manto, encerrando o efeito imediatamente."
+}

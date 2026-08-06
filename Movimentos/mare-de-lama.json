@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "mare-de-lama",
+  "nome": "Maré de Lama",
+  "tipo": "EFT",
+  "dano": 20,
+  "energia": 40,
+  "elemento": "Vital / Abissal",
+  "descricao": ""
+}

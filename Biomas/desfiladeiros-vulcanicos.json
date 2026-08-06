@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "desfiladeiros-vulcanicos",
+  "nome": "Desfiladeiros Vulcânicos",
+  "elementos": [
+    "Ígnea",
+    "Colossal",
+    "Tempestade"
+  ]
+}

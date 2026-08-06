@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "caverna-de-eter",
+  "nome": "Caverna de Éter",
+  "elementos": [
+    "Éter",
+    "Astral"
+  ]
+}

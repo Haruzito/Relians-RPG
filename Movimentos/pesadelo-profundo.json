@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "pesadelo-profundo",
+  "nome": "Pesadelo Profundo",
+  "tipo": "HIB",
+  "dano": 20,
+  "energia": 40,
+  "elemento": "Umbral",
+  "descricao": ""
+}

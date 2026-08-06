@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "floresta-cristalina",
+  "nome": "Floresta Cristalina",
+  "elementos": [
+    "Vital",
+    "Astral",
+    "Geada"
+  ]
+}

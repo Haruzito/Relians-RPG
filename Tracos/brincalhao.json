@@ -1,0 +1,17 @@
+{
+  "id": "brincalhao",
+  "nome": "Brincalhão",
+  "descricao": "Possuem uma personalidade alegre e curiosa, transformando quase qualquer situação em uma oportunidade para brincar.",
+  "comportamento": "Interagem facilmente com outros DataMons, gostam de explorar e frequentemente pregam pequenas peças.",
+  "paladar": "Frutado",
+  "status": {
+    "ataque": 0,
+    "defesa": -5,
+    "velocidade": 5,
+    "ataqueEspecial": -5,
+    "defesaEspecial": 0,
+    "precisao": 5
+  },
+  "hp": -5,
+  "eng": 10
+}

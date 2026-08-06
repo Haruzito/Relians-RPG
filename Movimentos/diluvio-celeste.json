@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "diluvio-celeste",
+  "nome": "Dilúvio Celeste",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 50,
+  "elemento": "Halo / Abissal",
+  "descricao": ""
+}

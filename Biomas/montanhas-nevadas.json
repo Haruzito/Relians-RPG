@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "montanhas-nevadas",
+  "nome": "Montanhas Nevadas",
+  "elementos": [
+    "Geada",
+    "Colossal"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "choque-etereo",
+  "nome": "Choque de Éter",
+  "tipo": "ATQ.ESP",
+  "elemento": "Éter",
+  "dano": 18,
+  "energia": 14,
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Dispara energia etérea concentrada.",
+  "efeitos": [],
+  "tags": []
+}

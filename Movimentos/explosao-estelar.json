@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "explosao-estelar",
+  "nome": "Explosão Estelar",
+  "tipo": "EFT",
+  "dano": 25,
+  "energia": 60,
+  "elemento": "Astral / Ígnea",
+  "descricao": ""
+}

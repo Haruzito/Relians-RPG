@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "grande-semente",
+  "nome": "Grande semente",
+  "tipo": "NET",
+  "dano": 10,
+  "energia": 30,
+  "elemento": "Vital",
+  "descricao": ""
+}

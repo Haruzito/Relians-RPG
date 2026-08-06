@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "corrente-dragonica",
+  "nome": "Corrente dragônica",
+  "tipo": "OFS",
+  "dano": 45,
+  "energia": 50,
+  "elemento": "Abissal / Tempestade",
+  "descricao": ""
+}

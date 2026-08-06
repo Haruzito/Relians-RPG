@@ -1,0 +1,60 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "nezhaspyro",
+  "catalogNumber": 9,
+  "numeroCatalogo": 9,
+  "reliInfo": 9,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "009",
+  "nome": "Nezhaspyro",
+  "descricao": "",
+  "classe": "OFS",
+  "elementos": [
+    "Ígnea",
+    "Colossal"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 3,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "incenderus",
+  "evoluiPara": "",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

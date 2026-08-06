@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "laboratorio",
+  "nome": "Laboratório",
+  "elementos": [
+    "Éter",
+    "Astral"
+  ]
+}

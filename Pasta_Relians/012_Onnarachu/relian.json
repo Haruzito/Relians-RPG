@@ -1,0 +1,118 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "onnarachu",
+  "catalogNumber": 12,
+  "numeroCatalogo": 12,
+  "reliInfo": 12,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "012",
+  "nome": "Onnarachu",
+  "descricao": "Após evoluir, deixa de ser a presa para se tornar o caçador. Onnarachu ganha garras e laminas potentes para cortar a casca rígida de suas presas, e defender seu território.\n\nIndivíduos da espécie costumam se juntar para duelar entre si. O mais forte costuma se tornar líder ancião da região em que vivem.",
+  "classe": "OFS",
+  "elementos": [
+    "Éter",
+    "Umbral"
+  ],
+  "elementosEspeciais": [
+    "Vital",
+    "Umbral"
+  ],
+  "estagio": 2,
+  "energiaBase": 80,
+  "raridade": "incomum",
+  "taxaCaptura": 30,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M"
+  ],
+  "evoluiDe": "kokpid",
+  "evoluiPara": "",
+  "metodoEvolucao": "Evento",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    },
+    {
+      "nivel": 18,
+      "movimento": "garras-de-aco"
+    },
+    {
+      "nivel": 18,
+      "movimento": "golpe-metalico"
+    },
+    {
+      "nivel": 18,
+      "movimento": "fagulha-selvagem"
+    },
+    {
+      "nivel": 20,
+      "movimento": "fitas-flamejantes"
+    },
+    {
+      "nivel": 20,
+      "movimento": "garra-de-eclipse"
+    },
+    {
+      "nivel": 20,
+      "movimento": "golpe-de-gelo"
+    },
+    {
+      "nivel": 20,
+      "movimento": "cruz-do-guerreiro"
+    },
+    {
+      "nivel": 22,
+      "movimento": "furia-berseker"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "vale-lumen",
+      "bioma": "campo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 40,
+      "peso": 28
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "floresta",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 40,
+      "peso": 28
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "ruinas",
+      "periodos": [
+        "manha",
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 40,
+      "peso": 28
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "empatico",
+  "nome": "Empático",
+  "descricao": "Demonstram uma forte conexão emocional com outros DataMons, compreendendo facilmente seus sentimentos.",
+  "comportamento": "Evitam conflitos desnecessários e costumam auxiliar aliados espontaneamente.",
+  "paladar": "Floral",
+  "status": {
+    "ataque": -5,
+    "defesa": -5,
+    "velocidade": 0,
+    "ataqueEspecial": 5,
+    "defesaEspecial": 5,
+    "precisao": 0
+  },
+  "hp": 5,
+  "eng": 5
+}

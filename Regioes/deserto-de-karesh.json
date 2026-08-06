@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "deserto-de-karesh",
+  "nome": "Deserto de Karesh",
+  "elementos": [
+    "Colossal",
+    "Ígnea"
+  ]
+}

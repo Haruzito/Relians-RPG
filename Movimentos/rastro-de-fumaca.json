@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "rastro-de-fumaca",
+  "nome": "Rastro de Fumaça",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 25,
+  "elemento": "Abissal",
+  "descricao": ""
+}

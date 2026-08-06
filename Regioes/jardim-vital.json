@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "jardim-vital",
+  "nome": "Jardim Vital",
+  "elementos": [
+    "Vital",
+    "Halo"
+  ]
+}

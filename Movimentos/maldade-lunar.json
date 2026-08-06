@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "maldade-lunar",
+  "nome": "Maldade Lunar",
+  "tipo": "OFS",
+  "dano": 30,
+  "energia": 50,
+  "elemento": "Umbral",
+  "descricao": ""
+}

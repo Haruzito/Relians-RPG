@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "jato-gasoso",
+  "nome": "Jato Gasoso",
+  "tipo": "OFS",
+  "dano": 20,
+  "energia": 25,
+  "elemento": "Abissal",
+  "descricao": ""
+}

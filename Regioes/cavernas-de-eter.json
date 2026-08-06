@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "cavernas-de-eter",
+  "nome": "Cavernas de Éter",
+  "elementos": [
+    "Éter",
+    "Astral"
+  ]
+}

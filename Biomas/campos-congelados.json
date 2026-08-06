@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "campos-congelados",
+  "nome": "Campos Congelados",
+  "elementos": [
+    "Geada",
+    "Tempestade"
+  ]
+}

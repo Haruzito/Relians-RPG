@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "presa-gelida",
+  "nome": "Presa Gélida",
+  "tipo": "NEH",
+  "dano": 45,
+  "energia": 25,
+  "elemento": "Geada / Éter",
+  "descricao": "O usuário morde o inimigo com presas congelantes."
+}

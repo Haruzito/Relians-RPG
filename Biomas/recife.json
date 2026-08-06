@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "recife",
+  "nome": "Recife",
+  "elementos": [
+    "Abissal",
+    "Vital",
+    "Halo"
+  ]
+}

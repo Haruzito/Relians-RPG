@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chamas-etereas",
+  "nome": "Chamas Etéreas",
+  "tipo": "NEH",
+  "dano": 75,
+  "energia": 55,
+  "elemento": "Ígnea / Astral",
+  "descricao": "Lança uma labareda ancestral que pode queimar e reduzir a resistência especial do inimigo.\nEfeito: 20% de chance de queimar o alvo e reduzir Sp. Def (-1 estágio)."
+}

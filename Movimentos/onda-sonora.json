@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "onda-sonora",
+  "nome": "Onda Sonora",
+  "tipo": "NET",
+  "dano": 20,
+  "energia": 45,
+  "elemento": "Éter",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "geleiras",
+  "nome": "Geleiras",
+  "elementos": [
+    "Geada",
+    "Abissal"
+  ]
+}

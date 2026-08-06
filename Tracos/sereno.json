@@ -1,0 +1,17 @@
+{
+  "id": "sereno",
+  "nome": "Sereno",
+  "descricao": "Relians serenos mantêm a calma mesmo nas situações mais perigosas, tomando decisões com clareza.",
+  "comportamento": "Raramente agem por impulso e costumam transmitir tranquilidade aos companheiros.",
+  "paladar": "Herbal",
+  "status": {
+    "ataque": -5,
+    "defesa": 0,
+    "velocidade": -5,
+    "ataqueEspecial": 0,
+    "defesaEspecial": 5,
+    "precisao": 5
+  },
+  "hp": 5,
+  "eng": 5
+}

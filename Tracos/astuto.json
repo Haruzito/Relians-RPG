@@ -1,0 +1,17 @@
+{
+  "id": "astuto",
+  "nome": "Astuto",
+  "descricao": "Possuem inteligência prática e sempre procuram a maneira mais eficiente de alcançar seus objetivos.",
+  "comportamento": "Preferem criar estratégias, utilizar armadilhas ou explorar as fraquezas do inimigo antes de agir.",
+  "paladar": "Amargo",
+  "status": {
+    "ataque": -5,
+    "defesa": 0,
+    "velocidade": 5,
+    "ataqueEspecial": 5,
+    "defesaEspecial": 0,
+    "precisao": 0
+  },
+  "hp": -5,
+  "eng": 5
+}

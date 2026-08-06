@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "tornado-estatico",
+  "nome": "Tornado Estático",
+  "tipo": "NEH",
+  "dano": 75,
+  "energia": 55,
+  "elemento": "Tempestade",
+  "descricao": "Uma rajada de vento eletrificado envolve o oponente e pode paralisá-lo.\nEfeito: 20% de chance de paralisar o alvo."
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "floresta-temperada",
+  "nome": "Floresta Temperada",
+  "elementos": [
+    "Vital",
+    "Éter"
+  ]
+}

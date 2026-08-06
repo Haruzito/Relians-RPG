@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "caverna-cristalina",
+  "nome": "Caverna Cristalina",
+  "elementos": [
+    "Astral",
+    "Colossal",
+    "Geada"
+  ]
+}

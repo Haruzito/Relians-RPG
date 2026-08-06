@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "ataque-meteorico",
+  "nome": "Ataque Meteórico",
+  "tipo": "EFT",
+  "dano": 90,
+  "energia": 70,
+  "elemento": "Astral / Colossal",
+  "descricao": "Dispara uma chuva de meteoritos metálicos que pode aumentar a própria velocidade.\nEfeito: 20% de chance de aumentar a velocidade (+20% de velocidade).\n\n(Efeito de campo)"
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "vortice-espiritual",
+  "nome": "Vórtice Espiritual",
+  "tipo": "HIB",
+  "dano": 60,
+  "energia": 40,
+  "elemento": "Tempestade / Umbral",
+  "descricao": ""
+}

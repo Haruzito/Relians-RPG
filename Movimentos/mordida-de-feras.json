@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "mordida-de-feras",
+  "nome": "Mordida de Feras",
+  "tipo": "NEH",
+  "dano": 50,
+  "energia": 30,
+  "elemento": "Umbral / Colossal",
+  "descricao": "Uma mordida feroz para ferir e intimidar."
+}

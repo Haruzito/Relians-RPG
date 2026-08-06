@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "ressonancia-ancia",
+  "nome": "Ressonância Anciã",
+  "tipo": "EFT",
+  "dano": 15,
+  "energia": 30,
+  "elemento": "Éter",
+  "descricao": ""
+}

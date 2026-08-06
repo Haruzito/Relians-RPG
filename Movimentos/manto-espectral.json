@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "manto-espectral",
+  "nome": "Manto Espectral",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 50,
+  "elemento": "Umbral",
+  "descricao": ""
+}

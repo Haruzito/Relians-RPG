@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "lanca-de-chamas",
+  "nome": "Lança de Chamas",
+  "tipo": "NET",
+  "dano": 20,
+  "energia": 25,
+  "elemento": "Ígnea",
+  "descricao": ""
+}

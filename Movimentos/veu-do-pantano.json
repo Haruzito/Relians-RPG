@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "veu-do-pantano",
+  "nome": "Véu do Pântano",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 30,
+  "elemento": "Abissal",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "nebulosa-envenenada",
+  "nome": "Nebulosa Envenenada",
+  "tipo": "EFT",
+  "dano": 10,
+  "energia": 45,
+  "elemento": "Umbral",
+  "descricao": ""
+}

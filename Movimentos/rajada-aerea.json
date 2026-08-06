@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "rajada-aerea",
+  "nome": "Rajada Aérea",
+  "tipo": "NET",
+  "dano": 20,
+  "energia": 25,
+  "elemento": "Halo",
+  "descricao": ""
+}

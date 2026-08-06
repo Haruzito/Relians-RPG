@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "vibracao-harmonica",
+  "nome": "Vibração Harmônica",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 55,
+  "elemento": "Astral",
+  "descricao": ""
+}

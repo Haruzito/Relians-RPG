@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "rugido-de-vitoria",
+  "nome": "Rugido de Vitória",
+  "tipo": "NEH",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Halo / Éter",
+  "descricao": "O datamon solta um uivo poderoso que inspira aliados e intimida inimigos.\nEfeito: Aumenta o Ataque e a Defesa de aliados em 1 estágio e reduz o Ataque dos inimigos próximos."
+}

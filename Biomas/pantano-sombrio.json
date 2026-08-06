@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "pantano-sombrio",
+  "nome": "Pântano Sombrio",
+  "elementos": [
+    "Umbral",
+    "Abissal"
+  ]
+}

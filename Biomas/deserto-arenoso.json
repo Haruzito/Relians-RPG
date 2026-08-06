@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "deserto-arenoso",
+  "nome": "Deserto Arenoso",
+  "elementos": [
+    "Colossal",
+    "Ígnea",
+    "Tempestade"
+  ]
+}

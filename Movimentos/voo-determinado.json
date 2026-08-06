@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "voo-determinado",
+  "nome": "Voo determinado",
+  "tipo": "OFS",
+  "dano": 30,
+  "energia": 45,
+  "elemento": "Halo",
+  "descricao": ""
+}

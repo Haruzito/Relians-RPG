@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "ruinas-antigas",
+  "nome": "Ruínas Antigas",
+  "elementos": [
+    "Éter",
+    "Umbral",
+    "Colossal"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "deserto-rochoso",
+  "nome": "Deserto Rochoso",
+  "elementos": [
+    "Colossal",
+    "Ígnea"
+  ]
+}

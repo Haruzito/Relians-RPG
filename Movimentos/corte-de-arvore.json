@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "corte-de-arvore",
+  "nome": "Corte de Árvore",
+  "tipo": "HIB",
+  "dano": 50,
+  "energia": 40,
+  "elemento": "Vital / Éter",
+  "descricao": ""
+}

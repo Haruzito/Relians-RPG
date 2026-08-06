@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "diluvio-lunar",
+  "nome": "Dilúvio Lunar",
+  "tipo": "HIB",
+  "dano": 65,
+  "energia": 50,
+  "elemento": "Abissal / Astral",
+  "descricao": ""
+}

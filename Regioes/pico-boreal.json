@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "pico-boreal",
+  "nome": "Pico Boreal",
+  "elementos": [
+    "Geada",
+    "Colossal"
+  ]
+}

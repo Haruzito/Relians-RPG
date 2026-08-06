@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "garras-de-aco",
+  "nome": "Garras de Aço",
+  "tipo": "NET",
+  "dano": 20,
+  "energia": 30,
+  "elemento": "Colossal",
+  "descricao": ""
+}

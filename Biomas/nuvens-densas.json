@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "nuvens-densas",
+  "nome": "Nuvens Densas",
+  "elementos": [
+    "Tempestade",
+    "Halo"
+  ]
+}

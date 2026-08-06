@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "manto-metalico",
+  "nome": "Manto Metálico",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Éter / Colossal",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "visao-infernal",
+  "nome": "Visão Infernal",
+  "tipo": "NEH",
+  "dano": 20,
+  "energia": 60,
+  "elemento": "Umbral / Vital",
+  "descricao": "Um olhar aterrorizante que paralisa e drena energia.\nEfeito: Causa paralisia e drena 10 de energia do inimigo por 3 turnos."
+}

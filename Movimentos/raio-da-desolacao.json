@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "raio-da-desolacao",
+  "nome": "Raio da Desolação",
+  "tipo": "EFT",
+  "dano": 25,
+  "energia": 65,
+  "elemento": "Tempestade",
+  "descricao": ""
+}

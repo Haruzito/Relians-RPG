@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "casulo-do-vento",
+  "nome": "Casulo do Vento",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 0,
+  "elemento": "Halo",
+  "descricao": ""
+}

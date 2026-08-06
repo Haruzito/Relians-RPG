@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "cruz-do-guerreiro",
+  "nome": "Cruz do Guerreiro",
+  "tipo": "HIB",
+  "dano": 25,
+  "energia": 50,
+  "elemento": "Éter / Ígnea",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "raiz-protetora",
+  "nome": "Raiz Protetora",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 90,
+  "elemento": "Vital",
+  "descricao": ""
+}

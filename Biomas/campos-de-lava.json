@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "campos-de-lava",
+  "nome": "Campos de Lava",
+  "elementos": [
+    "Ígnea",
+    "Colossal"
+  ]
+}

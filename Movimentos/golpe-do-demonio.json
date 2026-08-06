@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "golpe-do-demonio",
+  "nome": "Golpe do Demônio",
+  "tipo": "EFT",
+  "dano": 16,
+  "energia": 23,
+  "elemento": "Umbral / Ígnea",
+  "descricao": ""
+}

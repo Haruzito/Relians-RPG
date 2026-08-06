@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "floresta-nebulosa",
+  "nome": "Floresta Nebulosa",
+  "elementos": [
+    "Vital",
+    "Astral",
+    "Umbral"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "cidade",
+  "nome": "Cidade",
+  "elementos": [
+    "Éter",
+    "Colossal"
+  ]
+}

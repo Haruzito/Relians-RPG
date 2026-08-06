@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chicote-de-laminas",
+  "nome": "Chicote de Lâminas",
+  "tipo": "NEH",
+  "dano": 45,
+  "energia": 25,
+  "elemento": "Vital / Éter",
+  "descricao": "Cipós afiados atingem o adversário rapidamente."
+}

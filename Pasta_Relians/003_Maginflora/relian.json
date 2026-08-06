@@ -1,0 +1,75 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "maginflora",
+  "catalogNumber": 3,
+  "numeroCatalogo": 3,
+  "reliInfo": 3,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "003",
+  "nome": "Maginflora",
+  "descricao": "A bruxa da floresta. Maginflora é um Relian que após seu tempo em seu casulo meditando e absorvendo a energia Relia, ela se torna por fim é Maginflora. Com suas mais novas habilidades, ela passa a proteger a floresta de ameaças que possa afetar seu habitat.",
+  "classe": "EFT",
+  "elementos": [
+    "Astral",
+    "Vital"
+  ],
+  "elementosEspeciais": [
+    "Umbral",
+    "Vital"
+  ],
+  "estagio": 3,
+  "energiaBase": 80,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "lihtobrux",
+  "evoluiPara": "",
+  "metodoEvolucao": "Nível, Item",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "vento-cortante"
+    },
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "vale-lumen",
+      "bioma": "floresta",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 33,
+      "nivelMaximo": 45,
+      "peso": 68
+    }
+  ]
+}

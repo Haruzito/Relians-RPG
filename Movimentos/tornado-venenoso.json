@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "tornado-venenoso",
+  "nome": "Tornado venenoso",
+  "tipo": "EFT",
+  "dano": 15,
+  "energia": 50,
+  "elemento": "Umbral",
+  "descricao": ""
+}

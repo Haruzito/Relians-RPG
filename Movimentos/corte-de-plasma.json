@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "corte-de-plasma",
+  "nome": "Corte de Plasma",
+  "tipo": "HIB",
+  "dano": 40,
+  "energia": 40,
+  "elemento": "Ígnea",
+  "descricao": ""
+}

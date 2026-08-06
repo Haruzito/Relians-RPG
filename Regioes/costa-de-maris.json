@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "costa-de-maris",
+  "nome": "Costa de Maris",
+  "elementos": [
+    "Abissal",
+    "Tempestade"
+  ]
+}

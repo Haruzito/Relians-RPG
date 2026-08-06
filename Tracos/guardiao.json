@@ -1,0 +1,17 @@
+{
+  "id": "guardiao",
+  "nome": "Guardião",
+  "descricao": "Nascem com um forte instinto protetor, colocando aliados e território acima de si mesmos.",
+  "comportamento": "Costumam permanecer próximos do grupo, reagindo rapidamente quando alguém precisa de ajuda.",
+  "paladar": "Salgado",
+  "status": {
+    "ataque": -5,
+    "defesa": 5,
+    "velocidade": -5,
+    "ataqueEspecial": 0,
+    "defesaEspecial": 5,
+    "precisao": 0
+  },
+  "hp": 5,
+  "eng": -5
+}

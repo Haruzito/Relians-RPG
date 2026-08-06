@@ -1,0 +1,24 @@
+{
+  "name": "Gerador de Relians v9.8.1",
+  "short_name": "Relians v9.8.1",
+  "description": "Gerador, editor e catálogo de Relians.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f1ff",
+  "theme_color": "#5946b2",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

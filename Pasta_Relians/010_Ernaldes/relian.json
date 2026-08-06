@@ -1,0 +1,59 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "ernaldes",
+  "catalogNumber": 10,
+  "numeroCatalogo": 10,
+  "reliInfo": 10,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "010",
+  "nome": "Ernaldes",
+  "descricao": "Um Relian peculiar, não se sabe muito sobre está pequena criatura cujo esconde sua cabeça em algo metálico que lembra um balde.\n\nErnaldes costumam viver próximos a florestas de cogumelos gigantes, alguns teorizam que a coisa metálica em sua cabeça, seja um cogumelo de metal.",
+  "classe": "HIB",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 1,
+  "energiaBase": 85,
+  "raridade": "raro",
+  "taxaCaptura": 20,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

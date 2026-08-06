@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "bofetada-aquatica",
+  "nome": "Bofetada Aquática",
+  "tipo": "NET",
+  "dano": 40,
+  "energia": 20,
+  "elemento": "Abissal / Éter",
+  "descricao": "Um golpe ágil com um jato de água."
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "fogo-estelar",
+  "nome": "Fogo estelar",
+  "tipo": "HIB",
+  "dano": 55,
+  "energia": 65,
+  "elemento": "Ígnea / Astral",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "dunas",
+  "nome": "Dunas",
+  "elementos": [
+    "Colossal",
+    "Tempestade"
+  ]
+}

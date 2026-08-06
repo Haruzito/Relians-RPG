@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "cordilheira",
+  "nome": "Cordilheira",
+  "elementos": [
+    "Colossal",
+    "Tempestade"
+  ]
+}

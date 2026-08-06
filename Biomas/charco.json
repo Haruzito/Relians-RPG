@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "charco",
+  "nome": "Charco",
+  "elementos": [
+    "Abissal",
+    "Umbral"
+  ]
+}

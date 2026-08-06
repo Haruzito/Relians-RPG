@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "cavernas",
+  "nome": "Cavernas",
+  "elementos": [
+    "Colossal",
+    "Umbral"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "cristalizacao-ambar",
+  "nome": "Cristalização Âmbar",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Vital",
+  "descricao": ""
+}

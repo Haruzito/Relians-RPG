@@ -1,0 +1,17 @@
+{
+  "id": "agil",
+  "nome": "Ágil",
+  "descricao": "Nascem com reflexos extremamente rápidos e um corpo naturalmente leve, tornando seus movimentos difíceis de acompanhar.",
+  "comportamento": "Movem-se constantemente, evitam permanecer parados e adoram correr ou escalar.",
+  "paladar": "Cítrico",
+  "status": {
+    "ataque": 0,
+    "defesa": -5,
+    "velocidade": 10,
+    "ataqueEspecial": 0,
+    "defesaEspecial": -5,
+    "precisao": 0
+  },
+  "hp": -5,
+  "eng": 5
+}

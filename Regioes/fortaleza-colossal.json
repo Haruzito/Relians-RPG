@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "fortaleza-colossal",
+  "nome": "Fortaleza Colossal",
+  "elementos": [
+    "Colossal",
+    "Éter"
+  ]
+}

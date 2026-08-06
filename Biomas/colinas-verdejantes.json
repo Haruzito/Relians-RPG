@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "colinas-verdejantes",
+  "nome": "Colinas Verdejantes",
+  "elementos": [
+    "Vital",
+    "Éter"
+  ]
+}

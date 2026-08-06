@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "campos-abertos",
+  "nome": "Campos Abertos",
+  "elementos": [
+    "Éter",
+    "Vital"
+  ]
+}

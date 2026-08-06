@@ -1,0 +1,11 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "ruinas-de-arkhos",
+  "nome": "Ruínas de Arkhos",
+  "elementos": [
+    "Éter",
+    "Colossal",
+    "Umbral"
+  ]
+}

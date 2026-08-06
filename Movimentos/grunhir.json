@@ -1,0 +1,21 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "grunhir",
+  "nome": "Grunhir",
+  "tipo": "NET",
+  "elemento": "Éter",
+  "dano": 0,
+  "energia": 15,
+  "precisao": 30,
+  "alcance": "5m",
+  "descricao": "Um grunhido imbuído pela energia Relia pura, causando um medo em seu oponente. Só é eficaz em Relians de nível abaixo ao do Relian que usa este movimento.",
+  "efeitos": [
+    "Reduz a precisão",
+    "Reduz a iniciativa (vel)"
+  ],
+  "tags": [
+    "efeito",
+    "auditivo"
+  ]
+}

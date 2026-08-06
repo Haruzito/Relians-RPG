@@ -1,0 +1,40 @@
+{
+  "linhas_no_notion": 128,
+  "movimentos_unicos_importados": 122,
+  "duplicatas_resolvidas": [
+    "Ciclone Cortante",
+    "Fagulha Selvagem",
+    "Distorção Temporal"
+  ],
+  "modelos_ignorados": 3,
+  "observacao": "Linhas chamadas Nome foram tratadas como modelos vazios e não viraram movimentos.",
+  "elementos_convertidos_para_relians": true,
+  "mapeamento_aplicado": {
+    "Normal": "Éter",
+    "Planta": "Vital",
+    "Fada": "Halo",
+    "Gás": "Umbral",
+    "Elétrico": "Tempestade",
+    "Voador": "Tempestade",
+    "Água": "Abissal",
+    "Sombrio": "Umbral",
+    "Terra": "Colossal",
+    "Pedra": "Colossal",
+    "Fogo": "Ígnea",
+    "Gelo": "Geada",
+    "Cósmico": "Astral",
+    "Aço": "Colossal",
+    "Lutador": "Colossal",
+    "Venenoso": "Umbral",
+    "Fantasma": "Umbral",
+    "Psíquico": "Astral",
+    "Herói": "Halo",
+    "Som": "Tempestade",
+    "Luz": "Halo",
+    "Âmbar": "Vital",
+    "Seda": "Vital",
+    "Besta": "Colossal",
+    "Ancião": "Astral"
+  },
+  "movimentos_atualizados": 108
+}

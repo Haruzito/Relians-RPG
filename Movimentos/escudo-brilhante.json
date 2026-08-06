@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "escudo-brilhante",
+  "nome": "Escudo Brilhante",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Astral",
+  "descricao": ""
+}

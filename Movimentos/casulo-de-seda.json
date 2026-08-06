@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "casulo-de-seda",
+  "nome": "Casulo de Seda",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 50,
+  "elemento": "Vital",
+  "descricao": ""
+}

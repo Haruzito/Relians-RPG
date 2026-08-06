@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "investida-aerea",
+  "nome": "Investida Aérea",
+  "tipo": "OFS",
+  "dano": 20,
+  "energia": 45,
+  "elemento": "Éter / Halo",
+  "descricao": ""
+}

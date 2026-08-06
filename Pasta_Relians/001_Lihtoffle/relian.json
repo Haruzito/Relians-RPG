@@ -1,0 +1,74 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "lihtoffle",
+  "catalogNumber": 1,
+  "numeroCatalogo": 1,
+  "reliInfo": 1,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "001",
+  "nome": "Lihtoffle",
+  "descricao": "Lihtoffle é a lagarta da folha, costumam passar grande parte de seu tempo comendo folhas para que possa passar para seu próximo estágio da vida.\n\nLihtoffles adoram comer as folhas mais verdes antes de subir para o topo das árvores que vivem e se esconderem, sendo vistos raramente no chão devido a temerem seus predadores.",
+  "classe": "EFT",
+  "elementos": [
+    "Éter",
+    "Vital"
+  ],
+  "elementosEspeciais": [
+    "Umbral",
+    "Vital"
+  ],
+  "estagio": 1,
+  "energiaBase": 60,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "PP",
+    "P"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "lihtobrux",
+  "metodoEvolucao": "Nível",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    },
+    {
+      "nivel": 5,
+      "movimento": "chicote-de-seda"
+    },
+    {
+      "nivel": 10,
+      "movimento": "aroma-doce"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "vale-lumen",
+      "bioma": "floresta",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

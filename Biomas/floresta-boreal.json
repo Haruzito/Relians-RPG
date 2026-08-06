@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "floresta-boreal",
+  "nome": "Floresta Boreal",
+  "elementos": [
+    "Geada",
+    "Vital"
+  ]
+}

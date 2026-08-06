@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "penhascos-de-zephyr",
+  "nome": "Penhascos de Zephyr",
+  "elementos": [
+    "Tempestade",
+    "Colossal"
+  ]
+}

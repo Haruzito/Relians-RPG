@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "mar-aberto",
+  "nome": "Mar Aberto",
+  "elementos": [
+    "Abissal",
+    "Tempestade"
+  ]
+}

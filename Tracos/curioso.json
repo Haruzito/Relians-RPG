@@ -1,0 +1,17 @@
+{
+  "id": "curioso",
+  "nome": "Curioso",
+  "descricao": "Relians curiosos possuem um desejo incessante de explorar e compreender tudo ao seu redor, raramente ignorando algo desconhecido.",
+  "comportamento": "Investigam objetos, seguem rastros incomuns e frequentemente acabam descobrindo recursos escondidos.",
+  "paladar": "Agridoce",
+  "status": {
+    "ataque": -5,
+    "defesa": -5,
+    "velocidade": 0,
+    "ataqueEspecial": 5,
+    "defesaEspecial": 0,
+    "precisao": 5
+  },
+  "hp": -5,
+  "eng": 10
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "natureza-miseravel",
+  "nome": "Natureza miserável",
+  "tipo": "HIB",
+  "dano": 35,
+  "energia": 60,
+  "elemento": "Umbral / Vital",
+  "descricao": ""
+}

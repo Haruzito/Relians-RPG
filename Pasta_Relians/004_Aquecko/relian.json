@@ -1,0 +1,59 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "aquecko",
+  "catalogNumber": 4,
+  "numeroCatalogo": 4,
+  "reliInfo": 4,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "004",
+  "nome": "Aquecko",
+  "descricao": "",
+  "classe": "",
+  "elementos": [
+    "Abissal"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 1,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "aqualoudo",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

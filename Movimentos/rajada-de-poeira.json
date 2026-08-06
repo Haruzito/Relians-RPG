@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "rajada-de-poeira",
+  "nome": "Rajada de Poeira",
+  "tipo": "NET",
+  "dano": 36,
+  "energia": 15,
+  "elemento": "Éter",
+  "descricao": ""
+}

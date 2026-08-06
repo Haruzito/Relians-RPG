@@ -1,0 +1,17 @@
+{
+  "id": "territorial",
+  "nome": "Territorial",
+  "descricao": "Sentem um forte apego ao espaço que consideram seu, tornando-se extremamente determinados ao defendê-lo.",
+  "comportamento": "Marcam território, patrulham constantemente e reagem de forma hostil contra invasores.",
+  "paladar": "Defumado",
+  "status": {
+    "ataque": 5,
+    "defesa": 5,
+    "velocidade": -5,
+    "ataqueEspecial": -5,
+    "defesaEspecial": 0,
+    "precisao": 0
+  },
+  "hp": 5,
+  "eng": -5
+}

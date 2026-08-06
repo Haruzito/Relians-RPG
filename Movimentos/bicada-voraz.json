@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "bicada-voraz",
+  "nome": "Bicada Voraz",
+  "tipo": "NET",
+  "dano": 15,
+  "energia": 20,
+  "elemento": "Éter",
+  "descricao": ""
+}

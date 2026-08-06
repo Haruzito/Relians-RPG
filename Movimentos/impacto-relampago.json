@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "impacto-relampago",
+  "nome": "Impacto Relâmpago",
+  "tipo": "NEH",
+  "dano": 50,
+  "energia": 30,
+  "elemento": "Tempestade / Éter",
+  "descricao": "Um golpe físico carregado com eletricidade."
+}

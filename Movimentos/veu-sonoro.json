@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "veu-sonoro",
+  "nome": "Véu Sonoro",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Astral",
+  "descricao": ""
+}

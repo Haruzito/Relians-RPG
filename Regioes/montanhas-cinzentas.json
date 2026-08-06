@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "montanhas-cinzentas",
+  "nome": "Montanhas Cinzentas",
+  "elementos": [
+    "Colossal",
+    "Umbral"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "pele-rochosa",
+  "nome": "Pele Rochosa",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 40,
+  "elemento": "Colossal",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "rochas-igneas",
+  "nome": "Rochas Ígneas",
+  "elementos": [
+    "Ígnea",
+    "Colossal"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "raizes-da-decadencia",
+  "nome": "Raízes da Decadência",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 50,
+  "elemento": "Vital",
+  "descricao": ""
+}

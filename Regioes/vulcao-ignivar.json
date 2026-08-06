@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "vulcao-ignivar",
+  "nome": "Vulcão Ignivar",
+  "elementos": [
+    "Ígnea",
+    "Colossal"
+  ]
+}

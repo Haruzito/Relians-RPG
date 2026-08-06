@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "impacto-fantasmagorico",
+  "nome": "Impacto Fantasmagórico",
+  "tipo": "NEH",
+  "dano": 40,
+  "energia": 50,
+  "elemento": "Umbral / Astral",
+  "descricao": "O inimigo sente uma pressão mental, ficando confuso e enfraquecido.\nEfeito: Causa confusão e reduz o ataque do inimigo em 20% por 3 turnos."
+}

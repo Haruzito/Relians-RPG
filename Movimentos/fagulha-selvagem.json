@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "fagulha-selvagem",
+  "nome": "Fagulha Selvagem",
+  "tipo": "NET",
+  "dano": 20,
+  "energia": 35,
+  "elemento": "Ígnea",
+  "descricao": ""
+}

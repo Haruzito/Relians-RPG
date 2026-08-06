@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "soco-rochoso",
+  "nome": "Soco Rochoso",
+  "tipo": "OFS",
+  "dano": 50,
+  "energia": 30,
+  "elemento": "Éter / Colossal",
+  "descricao": ""
+}

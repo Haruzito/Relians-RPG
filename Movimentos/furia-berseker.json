@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "furia-berseker",
+  "nome": "Fúria berseker",
+  "tipo": "OFS",
+  "dano": 50,
+  "energia": 40,
+  "elemento": "Ígnea",
+  "descricao": ""
+}

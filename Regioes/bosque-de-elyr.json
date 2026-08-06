@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "bosque-de-elyr",
+  "nome": "Bosque de Elyr",
+  "elementos": [
+    "Vital",
+    "Éter"
+  ]
+}

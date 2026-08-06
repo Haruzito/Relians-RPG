@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "bola-de-nectar",
+  "nome": "Bola de Néctar",
+  "tipo": "EFT",
+  "dano": 25,
+  "energia": 30,
+  "elemento": "Vital",
+  "descricao": ""
+}

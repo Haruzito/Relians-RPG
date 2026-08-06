@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "lagos",
+  "nome": "Lagos",
+  "elementos": [
+    "Abissal",
+    "Vital"
+  ]
+}

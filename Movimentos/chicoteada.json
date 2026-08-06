@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chicoteada",
+  "nome": "Chicoteada",
+  "tipo": "NEH",
+  "dano": 10,
+  "energia": 20,
+  "elemento": "Éter",
+  "descricao": "Utilizando de algo longo para dar golpes precisos."
+}

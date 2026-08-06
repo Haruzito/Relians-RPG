@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "rugido-elemental",
+  "nome": "Rugido Elemental",
+  "tipo": "OFS",
+  "dano": 40,
+  "energia": 50,
+  "elemento": "Éter / Ígnea",
+  "descricao": ""
+}

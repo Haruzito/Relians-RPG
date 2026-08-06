@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "selva-densa",
+  "nome": "Selva Densa",
+  "elementos": [
+    "Vital",
+    "Abissal"
+  ]
+}

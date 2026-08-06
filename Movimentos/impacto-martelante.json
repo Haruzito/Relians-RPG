@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "impacto-martelante",
+  "nome": "Impacto Martelante",
+  "tipo": "OFS",
+  "dano": 65,
+  "energia": 50,
+  "elemento": "Éter / Colossal",
+  "descricao": ""
+}

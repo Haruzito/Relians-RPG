@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "deslizamento-terrestre",
+  "nome": "Deslizamento Terrestre",
+  "tipo": "OFS",
+  "dano": 40,
+  "energia": 30,
+  "elemento": "Colossal",
+  "descricao": ""
+}

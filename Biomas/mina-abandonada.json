@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "mina-abandonada",
+  "nome": "Mina Abandonada",
+  "elementos": [
+    "Colossal",
+    "Umbral"
+  ]
+}

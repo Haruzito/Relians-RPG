@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "penhascos-aereos",
+  "nome": "Penhascos Aéreos",
+  "elementos": [
+    "Tempestade",
+    "Colossal"
+  ]
+}

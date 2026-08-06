@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "escudo-do-caos",
+  "nome": "Escudo do Caos",
+  "tipo": "EFT",
+  "dano": 0,
+  "energia": 55,
+  "elemento": "Umbral / Tempestade",
+  "descricao": ""
+}

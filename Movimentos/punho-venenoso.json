@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "punho-venenoso",
+  "nome": "Punho Venenoso",
+  "tipo": "EFT",
+  "dano": 20,
+  "energia": 25,
+  "elemento": "Éter / Umbral",
+  "descricao": ""
+}

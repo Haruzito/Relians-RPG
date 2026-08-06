@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "tiros-disparados",
+  "nome": "Tiros disparados",
+  "tipo": "NET",
+  "dano": 15,
+  "energia": 40,
+  "elemento": "Éter",
+  "descricao": ""
+}

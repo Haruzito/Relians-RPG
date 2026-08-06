@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "zona-industrial",
+  "nome": "Zona Industrial",
+  "elementos": [
+    "Colossal",
+    "Tempestade",
+    "Umbral"
+  ]
+}

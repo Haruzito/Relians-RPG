@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "vento-cortante",
+  "nome": "Vento Cortante",
+  "tipo": "OFS",
+  "dano": 25,
+  "energia": 20,
+  "elemento": "Halo / Éter",
+  "descricao": ""
+}

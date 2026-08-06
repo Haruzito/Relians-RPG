@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chute-lunar",
+  "nome": "Chute Lunar",
+  "tipo": "NEH",
+  "dano": 40,
+  "energia": 20,
+  "elemento": "Halo / Éter",
+  "descricao": "Um chute ágil imbuído de energia mágica."
+}

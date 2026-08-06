@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "veneno-asfixiante",
+  "nome": "Veneno Asfixiante",
+  "tipo": "HIB",
+  "dano": 40,
+  "energia": 35,
+  "elemento": "Ígnea / Vital",
+  "descricao": ""
+}

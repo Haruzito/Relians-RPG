@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "manguezal",
+  "nome": "Manguezal",
+  "elementos": [
+    "Abissal",
+    "Vital"
+  ]
+}

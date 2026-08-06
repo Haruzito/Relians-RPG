@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "impacto-solido",
+  "nome": "Impacto Sólido",
+  "tipo": "OFS",
+  "dano": 40,
+  "energia": 30,
+  "elemento": "Éter",
+  "descricao": ""
+}

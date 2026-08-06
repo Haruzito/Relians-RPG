@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "golpe-de-gelo",
+  "nome": "Golpe de Gelo",
+  "tipo": "OFS",
+  "dano": 30,
+  "energia": 40,
+  "elemento": "Abissal",
+  "descricao": ""
+}

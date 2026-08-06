@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "explosao-venenosa",
+  "nome": "Explosão Venenosa",
+  "tipo": "EFT",
+  "dano": 30,
+  "energia": 40,
+  "elemento": "Umbral",
+  "descricao": ""
+}

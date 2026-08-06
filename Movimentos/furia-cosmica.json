@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "furia-cosmica",
+  "nome": "Fúria Cósmica",
+  "tipo": "HIB",
+  "dano": 40,
+  "energia": 35,
+  "elemento": "Ígnea / Astral",
+  "descricao": ""
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "planicies-de-solen",
+  "nome": "Planícies de Solen",
+  "elementos": [
+    "Vital",
+    "Tempestade"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "campos-nebulosos",
+  "nome": "Campos Nebulosos",
+  "elementos": [
+    "Astral",
+    "Umbral"
+  ]
+}

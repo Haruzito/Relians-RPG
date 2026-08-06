@@ -1,0 +1,10 @@
+{
+  "kind": "region",
+  "tipoArquivo": "regiao",
+  "id": "lago-espelhado",
+  "nome": "Lago Espelhado",
+  "elementos": [
+    "Abissal",
+    "Astral"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "poco-de-nectar",
+  "nome": "Poço de Néctar",
+  "tipo": "OFS",
+  "dano": 50,
+  "energia": 45,
+  "elemento": "Vital",
+  "descricao": ""
+}

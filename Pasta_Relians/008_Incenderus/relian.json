@@ -1,0 +1,59 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "incenderus",
+  "catalogNumber": 8,
+  "numeroCatalogo": 8,
+  "reliInfo": 8,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "008",
+  "nome": "Incenderus",
+  "descricao": "",
+  "classe": "OFS",
+  "elementos": [
+    "Ígnea"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 2,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "chibom",
+  "evoluiPara": "nezhaspyro",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

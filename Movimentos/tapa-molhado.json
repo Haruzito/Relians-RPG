@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "tapa-molhado",
+  "nome": "Tapa molhado",
+  "tipo": "NET",
+  "dano": 10,
+  "energia": 5,
+  "elemento": "Abissal / Éter",
+  "descricao": "Desfere um golpe úmido contra o alvo.\nEfeito: O oponente fica com status de MOLHADO por 4 turnos."
+}

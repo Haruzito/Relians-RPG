@@ -1,0 +1,59 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "chibom",
+  "catalogNumber": 7,
+  "numeroCatalogo": 7,
+  "reliInfo": 7,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "007",
+  "nome": "Chibom",
+  "descricao": "",
+  "classe": "OFS",
+  "elementos": [
+    "Ígnea"
+  ],
+  "elementosEspeciais": [],
+  "estagio": 1,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "incenderus",
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

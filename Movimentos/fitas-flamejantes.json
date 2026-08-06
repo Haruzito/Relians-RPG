@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "fitas-flamejantes",
+  "nome": "Fitas flamejantes",
+  "tipo": "EFT",
+  "dano": 20,
+  "energia": 28,
+  "elemento": "Ígnea",
+  "descricao": "Um golpe de cabeçada com suas fitas que causa uma queimadura de 3° grau ao encostar no alvo acertado, tendo a possibilidade de causar um efeito de status de (QUEIMANDO) por 3 turnos."
+}

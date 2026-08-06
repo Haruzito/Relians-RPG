@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "distorcao-temporal",
+  "nome": "Distorção Temporal",
+  "tipo": "DEF",
+  "dano": 0,
+  "energia": 70,
+  "elemento": "Astral",
+  "descricao": ""
+}

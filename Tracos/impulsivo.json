@@ -1,0 +1,17 @@
+{
+  "id": "impulsivo",
+  "nome": "Impulsivo",
+  "descricao": "Agem antes de pensar, confiando nos próprios reflexos e instintos para superar qualquer situação.",
+  "comportamento": "Entram facilmente em conflitos, exploram locais desconhecidos sem receio e raramente planejam suas ações.",
+  "paladar": "Azedo",
+  "status": {
+    "ataque": 5,
+    "defesa": -5,
+    "velocidade": 0,
+    "ataqueEspecial": 0,
+    "defesaEspecial": -5,
+    "precisao": 5
+  },
+  "hp": -5,
+  "eng": 5
+}

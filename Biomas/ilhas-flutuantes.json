@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "ilhas-flutuantes",
+  "nome": "Ilhas Flutuantes",
+  "elementos": [
+    "Tempestade",
+    "Halo",
+    "Astral"
+  ]
+}

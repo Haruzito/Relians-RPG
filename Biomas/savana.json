@@ -1,0 +1,11 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "savana",
+  "nome": "Savana",
+  "elementos": [
+    "Vital",
+    "Ígnea",
+    "Colossal"
+  ]
+}

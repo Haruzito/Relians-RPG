@@ -1,0 +1,10 @@
+{
+  "kind": "biome",
+  "tipoArquivo": "bioma",
+  "id": "ruinas-astrais",
+  "nome": "Ruínas Astrais",
+  "elementos": [
+    "Astral",
+    "Éter"
+  ]
+}

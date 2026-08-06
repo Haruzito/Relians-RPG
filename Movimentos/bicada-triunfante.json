@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "bicada-triunfante",
+  "nome": "Bicada Triunfante",
+  "tipo": "NET",
+  "dano": 30,
+  "energia": 35,
+  "elemento": "Éter",
+  "descricao": ""
+}

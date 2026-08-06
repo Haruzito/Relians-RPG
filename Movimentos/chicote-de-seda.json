@@ -1,0 +1,10 @@
+{
+  "tipoArquivo": "movimento",
+  "id": "chicote-de-seda",
+  "nome": "Chicote de Seda",
+  "tipo": "NET",
+  "dano": 20,
+  "energia": 15,
+  "elemento": "Vital",
+  "descricao": ""
+}
