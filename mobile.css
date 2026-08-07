@@ -1,0 +1,771 @@
+/* Relians RPG — camada responsiva mobile
+   Mantém o layout desktop intacto e reorganiza a interface em telas menores. */
+
+@media (max-width: 900px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  /* Cabeçalho */
+  .topbar,
+  .app-header {
+    position: relative !important;
+    top: auto !important;
+    padding: 13px 12px !important;
+    gap: 12px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .brand-block { width: 100%; min-width: 0; }
+  .brand-block h1 { font-size: 1.35rem; line-height: 1.1; }
+  .brand-block p { font-size: .78rem; line-height: 1.3; }
+  .brand-mark { flex: 0 0 auto; }
+
+  .toolbar-actions,
+  .top-actions {
+    width: calc(100% + 24px) !important;
+    margin: 0 -12px !important;
+    padding: 2px 12px 4px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .toolbar-actions button,
+  .toolbar-actions .file-label {
+    flex: 0 0 auto !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 13px !important;
+  }
+  .toolbar-actions b { display: inline !important; font-size: .78rem; }
+  .toolbar-actions .toolbar-main { min-width: max-content; }
+
+  .folder-status {
+    padding: 8px 12px !important;
+    font-size: .75rem !important;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  /* Navegação: continua visível, mas vira faixa de toque horizontal */
+  .tabs {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 30 !important;
+    width: 100%;
+    padding: 5px 8px !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 10px 13px !important;
+    border: 1px solid rgba(75, 144, 155, .32) !important;
+    border-radius: 10px !important;
+    scroll-snap-align: start;
+    background: rgba(5, 35, 44, .58) !important;
+  }
+  .tab.active {
+    border-color: var(--accent) !important;
+    background: linear-gradient(135deg, rgba(61,195,202,.22), rgba(7,39,49,.92)) !important;
+  }
+
+  main { width: 100%; max-width: 100%; padding: 12px 10px 28px !important; }
+  .tab-panel, .tab-panel.active { min-width: 0; }
+
+  /* Layouts gerais */
+  .generator-layout,
+  .editor-layout,
+  .catalog-layout,
+  .sheet-bank-layout,
+  .story-editor-layout,
+  .story-workspace,
+  .play-sheet-shell {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  .sticky-card,
+  .catalog-sidebar,
+  .relian-sidebar,
+  .story-sidebar,
+  .sheet-bank-sidebar,
+  .story-side-preview,
+  .play-sheet-loader {
+    position: relative !important;
+    top: auto !important;
+    max-height: none !important;
+  }
+
+  .card { padding: 14px !important; border-radius: 13px !important; min-width: 0; }
+  fieldset { padding: 12px !important; }
+  .section-head, .editor-title { align-items: flex-start; flex-wrap: wrap; }
+  .save-indicator { max-width: 100%; white-space: normal; }
+
+  /* Formulários */
+  .grid.two,
+  .grid.three,
+  .grid.four,
+  .story-main-editor .grid.two,
+  .story-main-editor .grid.three,
+  .story-main-editor .grid.four,
+  .character-attributes-grid,
+  .character-skills-grid,
+  .character-equipment-grid,
+  .resource-panel,
+  .bank-resource-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  input, select, textarea, button, .file-label { min-height: 44px; }
+  textarea { min-height: 92px; }
+  .form-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+    position: relative !important;
+    bottom: auto !important;
+  }
+  .form-actions > * { width: 100%; }
+  .inline-form { grid-template-columns: minmax(0, 1fr) !important; }
+  .inline-form button { width: 100%; }
+
+  /* Listas laterais: não ocupam a tela inteira */
+  .entity-list,
+  .catalog-results,
+  .story-sheet-list {
+    max-height: 310px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+
+  /* Fichas geradas */
+  .sheet-banner,
+  .saved-relian-header,
+  .catalog-profile-header,
+  .bank-character-card .character-sheet-header {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .portrait-panel,
+  .saved-relian-portrait,
+  .catalog-profile-image {
+    min-height: 210px !important;
+    height: auto !important;
+    border-right: 0 !important;
+  }
+  .relian-portrait,
+  .catalog-profile-image img { max-height: 230px; }
+  .sheet-header-info,
+  .catalog-profile-identity { padding: 15px !important; }
+  .sheet-name,
+  .catalog-profile-identity h2 { font-size: clamp(1.55rem, 8vw, 2.1rem) !important; overflow-wrap: anywhere; }
+  .sheet-body,
+  .saved-relian-body,
+  .bank-character-card .character-sheet-grid,
+  .catalog-profile-grid,
+  .active-player-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+  .moves-grid,
+  .bank-moves,
+  .owned-relians-grid,
+  .equipped-team-slots,
+  .active-team-grid,
+  .character-backpack-preview {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Tabelas e blocos largos */
+  .table-wrap,
+  .catalog-move-table,
+  .stat-table,
+  .overview-table {
+    max-width: 100%;
+  }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .stat-table, .overview-table { min-width: 560px; }
+  .catalog-move-head { display: none !important; }
+  .catalog-move-row {
+    grid-template-columns: 52px minmax(0, 1fr) 72px !important;
+    gap: 7px !important;
+  }
+  .catalog-move-row em { display: none !important; }
+
+  /* Catálogo */
+  .catalog-sidebar { order: 0; }
+  .catalog-detail { min-height: 360px !important; }
+  .catalog-empty { min-height: 300px !important; }
+  .catalog-results { padding-right: 0 !important; }
+  .catalog-result { min-height: 58px; }
+  .catalog-info-card dl { grid-template-columns: 1fr !important; }
+  .catalog-info-card dl div { align-items: flex-start; }
+
+  /* Modais e seletores */
+  [class$="-overlay"],
+  .character-guide-overlay {
+    padding: 8px !important;
+  }
+  [class$="-dialog"],
+  .character-guide-dialog,
+  .sheet-capture-dialog,
+  .move-picker-dialog,
+  .evolution-picker-dialog {
+    width: calc(100vw - 16px) !important;
+    max-width: none !important;
+    max-height: calc(100dvh - 16px) !important;
+    height: auto !important;
+    border-radius: 16px !important;
+  }
+  .move-picker-list,
+  .evolution-picker-list { height: min(52dvh, 480px) !important; }
+  .move-picker-result,
+  .evolution-picker-result { grid-template-columns: minmax(0, 1fr) !important; }
+
+  /* Mochila e equipe */
+  .bank-backpack-row { grid-template-columns: minmax(0, 1fr) !important; }
+  .bank-remove-backpack { width: 100% !important; }
+  .active-item-row { grid-template-columns: 30px minmax(0,1fr) !important; }
+  .active-item-row input:last-child { grid-column: 2 !important; }
+
+  /* Evita que conteúdos internos estourem a tela */
+  img, svg, canvas, video { max-width: 100%; }
+  pre { max-width: 100%; overflow-x: auto; }
+  .sheet-section, .catalog-info-card, .move-card, .entity-item { min-width: 0; }
+}
+
+@media (max-width: 560px) {
+  .brand-mark img { width: 46px; height: 46px; }
+  .brand-block h1 { font-size: 1.2rem; }
+  .version-label { font-size: .68rem; }
+
+  .toolbar-actions b { display: none !important; }
+  .toolbar-actions button,
+  .toolbar-actions .file-label {
+    width: 44px !important;
+    min-width: 44px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+  .toolbar-actions .toolbar-main {
+    width: auto !important;
+    min-width: 48px !important;
+    padding: 0 12px !important;
+  }
+  .toolbar-actions .toolbar-main span { margin: 0; }
+
+  .tab { font-size: .79rem; padding: 9px 11px !important; }
+  main { padding-inline: 7px !important; }
+  .card { padding: 11px !important; }
+  fieldset { padding: 10px !important; }
+
+  .encounter-row,
+  .encounter-picker-row,
+  .period-choice-grid,
+  .element-check-grid,
+  .region-biome-check-grid,
+  .catalog-filter-row,
+  .sheet-capture-options,
+  .sheet-capture-formats,
+  .active-resource-board,
+  .active-attributes {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .remove-enc { width: 100% !important; grid-column: auto !important; }
+
+  .resource-controls { display: grid !important; grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .resource-controls button { width: 100%; }
+  .rarity-summary-row, .catalog-line { gap: 5px; }
+
+  .catalog-result {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    padding: 9px !important;
+  }
+  .catalog-result > small,
+  .catalog-result > em { grid-column: 2 !important; }
+
+  .catalog-move-row {
+    grid-template-columns: 46px minmax(0,1fr) !important;
+  }
+  .catalog-move-row i,
+  .catalog-move-row em { display: none !important; }
+
+  .character-guide-tabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none;
+  }
+  .character-guide-tabs > * { flex: 0 0 auto; }
+}
+
+@media (max-width: 380px) {
+  .brand-block p { display: none; }
+  .tabs { padding-inline: 5px !important; }
+  .tab { font-size: .74rem; }
+  .card { border-radius: 10px !important; }
+  .sheet-name, .catalog-profile-identity h2 { font-size: 1.45rem !important; }
+}
+
+/* ===== MOBILE ETAPA 2: CATÁLOGO + BANCO DE FICHAS ===== */
+@media (max-width: 900px) {
+  /* Catálogo: busca primeiro, detalhes depois, sem blocos comprimidos */
+  #catalog .catalog-layout { display: flex !important; flex-direction: column !important; }
+  #catalog .catalog-sidebar { width: 100% !important; }
+  #catalog .catalog-search-panel { position: relative; z-index: 2; }
+  #catalog .catalog-search-box { min-height: 50px !important; border-radius: 14px !important; }
+  #catalog .catalog-search-box input { font-size: 16px !important; }
+  #catalog .catalog-filter-row { gap: 8px !important; }
+  #catalog .catalog-filter-row label { min-width: 0 !important; }
+  #catalog .catalog-filter-row select { width: 100% !important; }
+  #catalog .catalog-search-summary { flex-wrap: wrap !important; }
+  #catalog .catalog-search-summary #catalogResultCount { flex: 1 1 auto; }
+  #catalog .catalog-results {
+    max-height: 42dvh !important;
+    border-radius: 12px;
+    overscroll-behavior: contain;
+  }
+  #catalog .catalog-result {
+    width: 100% !important;
+    min-width: 0 !important;
+    align-items: center !important;
+    text-align: left !important;
+  }
+  #catalog .catalog-result > span { font-variant-numeric: tabular-nums; }
+  #catalog .catalog-detail {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  #catalog .catalog-profile-header { min-height: 0 !important; }
+  #catalog .catalog-profile-image { min-height: 200px !important; max-height: 320px !important; }
+  #catalog .catalog-profile-image img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+  #catalog .catalog-profile-identity { min-width: 0 !important; }
+  #catalog .identity-badges,
+  #catalog .catalog-line,
+  #catalog .rarity-summary-row { flex-wrap: wrap !important; }
+  #catalog .catalog-profile-grid { padding: 8px !important; }
+  #catalog .catalog-info-card { min-width: 0 !important; overflow: hidden !important; }
+  #catalog .catalog-info-card p,
+  #catalog .catalog-info-card dd,
+  #catalog .catalog-info-card li { overflow-wrap: anywhere; }
+
+  /* Banco de fichas: lista compacta e detalhe confortável */
+  #savedSheets .sheet-bank-layout { display: flex !important; flex-direction: column !important; }
+  #savedSheets .sheet-bank-sidebar { width: 100% !important; }
+  #savedSheets #savedSheetSearch { font-size: 16px !important; }
+  #savedSheets .saved-sheet-list {
+    max-height: 36dvh !important;
+    overscroll-behavior: contain;
+    border-radius: 12px;
+  }
+  #savedSheets .saved-sheet-row { padding: 9px !important; min-width: 0 !important; }
+  #savedSheets .entity-main-button { min-width: 0 !important; }
+  #savedSheets .entity-main-button b,
+  #savedSheets .entity-main-button small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #savedSheets .sheet-bank-detail { min-height: 0 !important; width: 100% !important; padding: 0 !important; }
+  #savedSheets .saved-sheet-detail { width: 100% !important; max-width: 100% !important; }
+
+  /* Ficha de personagem no banco */
+  #savedSheets .bank-character-card .character-sheet-header {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+  #savedSheets .bank-character-card .character-portrait {
+    min-height: 210px !important;
+    max-height: 320px !important;
+  }
+  #savedSheets .bank-character-card .character-portrait > div { min-height: inherit !important; }
+  #savedSheets .bank-character-card .character-portrait img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+  #savedSheets .bank-character-card .character-identity,
+  #savedSheets .bank-character-card .character-resources { padding: 14px !important; }
+  #savedSheets .bank-character-card .character-identity h2 { font-size: clamp(1.45rem, 7vw, 2rem) !important; overflow-wrap: anywhere; }
+  #savedSheets .bank-character-card .character-tags,
+  #savedSheets .bank-character-card .character-milestones { flex-wrap: wrap !important; }
+  #savedSheets .bank-character-card .character-resources > div { min-width: 0 !important; }
+  #savedSheets .bank-char-controls { display: grid !important; grid-template-columns: repeat(4,minmax(0,1fr)) !important; gap: 6px !important; }
+  #savedSheets .bank-char-controls button { width: 100% !important; min-width: 0 !important; padding-inline: 4px !important; }
+  #savedSheets .character-bank-actions { display: grid !important; grid-template-columns: 1fr !important; }
+  #savedSheets .character-bank-actions > * { width: 100% !important; }
+  #savedSheets .bank-character-card .character-sheet-grid { padding: 8px !important; }
+
+  /* 7 slots: legíveis e fáceis de tocar */
+  #savedSheets .equipped-team-heading { align-items: flex-start !important; flex-wrap: wrap !important; padding: 12px !important; }
+  #savedSheets .equipped-team-heading > div { min-width: 0; flex: 1 1 220px; }
+  #savedSheets .equipped-team-heading > b { flex: 0 0 auto; }
+  #savedSheets .equipped-team-slots { grid-template-columns: 1fr !important; padding: 10px !important; }
+  #savedSheets .equipped-relian-slot { padding: 10px !important; }
+  #savedSheets .equipped-relian-slot select { width: 100% !important; font-size: 16px !important; }
+
+  /* Mochila */
+  #savedSheets .bank-backpack-editor { padding: 10px !important; }
+  #savedSheets .bank-backpack-row { padding: 10px !important; gap: 8px !important; }
+  #savedSheets .bank-backpack-row input,
+  #savedSheets .bank-backpack-row textarea { width: 100% !important; font-size: 16px !important; }
+  #savedSheets .bank-backpack-actions { display: grid !important; grid-template-columns: 1fr 1fr !important; padding: 0 10px 10px !important; }
+  #savedSheets .bank-backpack-actions > * { width: 100% !important; }
+
+  /* Relians possuídos / ficha completa */
+  .character-guide-overlay { align-items: stretch !important; }
+  .character-guide-dialog {
+    grid-template-rows: auto auto minmax(0,1fr) !important;
+    margin: 0 !important;
+  }
+  .character-guide-header { position: relative; padding-right: 58px !important; }
+  .character-guide-close { position: absolute; right: 12px; top: 12px; }
+  .character-guide-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .character-guide-tabs button { flex: 0 0 auto !important; min-height: 44px !important; }
+  .character-guide-content { min-width: 0 !important; overscroll-behavior: contain; }
+  .guide-summary-head { min-width: 0 !important; }
+  .guide-owned-head { align-items: flex-start !important; flex-wrap: wrap !important; }
+  .owned-relians-grid { grid-template-columns: 1fr !important; }
+  .owned-relian-card { min-width: 0 !important; }
+  .owned-relian-main,
+  .owned-relian-title { min-width: 0 !important; }
+  .owned-relian-title { flex-wrap: wrap !important; }
+  .owned-relian-title h4 { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 560px) {
+  /* Catálogo estilo app: filtros empilhados e resultados maiores */
+  #catalog .catalog-search-panel { gap: 8px !important; }
+  #catalog .catalog-search-summary { align-items: stretch !important; }
+  #catalog .catalog-search-summary #catalogResetFilters { width: 100% !important; }
+  #catalog .catalog-results { max-height: 40dvh !important; }
+  #catalog .catalog-result {
+    grid-template-columns: 58px minmax(0,1fr) 28px !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 2px 8px !important;
+    padding: 11px 9px !important;
+    border-radius: 11px !important;
+  }
+  #catalog .catalog-result > span { grid-column: 1; grid-row: 1/4; align-self: center; text-align: center; }
+  #catalog .catalog-result > b { grid-column: 2; grid-row: 1; }
+  #catalog .catalog-result > small { grid-column: 2 !important; grid-row: 2 !important; }
+  #catalog .catalog-result > em { grid-column: 2 !important; grid-row: 3 !important; justify-self: start; }
+  #catalog .catalog-result > i { grid-column: 3 !important; grid-row: 1/4 !important; align-self: center; }
+  #catalog .catalog-profile-image { min-height: 190px !important; }
+
+  /* Banco: foco em toque */
+  #savedSheets .saved-sheet-list { max-height: 34dvh !important; }
+  #savedSheets .saved-sheet-row { min-height: 58px; }
+  #savedSheets .saved-sheet-row .danger { min-width: 42px !important; min-height: 42px !important; }
+  #savedSheets .bank-char-controls { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #savedSheets .bank-backpack-actions { grid-template-columns: 1fr !important; }
+  #savedSheets .equipped-team-heading > b { width: 100%; text-align: center; }
+
+  /* Ficha completa vira praticamente uma tela própria */
+  .character-guide-overlay { padding: 0 !important; }
+  .character-guide-dialog {
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+  .character-guide-header { padding: 13px 58px 13px 13px !important; }
+  .character-guide-header h2 { font-size: 1.45rem !important; }
+  .character-guide-header p { font-size: .82rem !important; }
+  .character-guide-tabs { padding: 8px !important; gap: 6px !important; }
+  .character-guide-tabs button { padding: 8px 10px !important; font-size: .78rem !important; }
+  .character-guide-content { padding: 8px !important; }
+  .guide-summary-head { padding: 10px !important; gap: 10px !important; }
+  .guide-portrait { height: 190px !important; }
+  .guide-grid { gap: 8px !important; }
+  .guide-grid > section { padding: 10px !important; }
+  .owned-relian-card,
+  .owned-relian-card.compact { grid-template-columns: 86px minmax(0,1fr) !important; gap: 8px !important; padding: 8px !important; }
+  .owned-relian-image,
+  .owned-relian-card.compact .owned-relian-image { min-height: 86px !important; }
+  .owned-relian-main > p { font-size: .78rem; }
+  .owned-relian-resources,
+  .owned-relian-moves { gap: 4px !important; }
+}
+
+@media (max-width: 380px) {
+  #catalog .catalog-result { grid-template-columns: 50px minmax(0,1fr) 22px !important; }
+  #savedSheets .bank-character-card .character-identity,
+  #savedSheets .bank-character-card .character-resources { padding: 10px !important; }
+  .owned-relian-card,
+  .owned-relian-card.compact { grid-template-columns: 72px minmax(0,1fr) !important; }
+  .owned-relian-image,
+  .owned-relian-card.compact .owned-relian-image { min-height: 72px !important; }
+}
+
+/* ===== MOBILE ETAPA 3: MODAIS, SELETORES E POLIMENTO FINAL ===== */
+@media (max-width: 900px) {
+  /* Modais nativos: sempre dentro da tela e confortáveis para toque */
+  dialog,
+  .dice-dialog,
+  .move-picker-dialog,
+  .evolution-picker-dialog,
+  .encounter-picker-dialog,
+  .sheet-capture-dialog {
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+    max-height: calc(100dvh - 16px) !important;
+    margin: auto !important;
+    border-radius: 16px !important;
+    overscroll-behavior: contain;
+  }
+  .dice-dialog,
+  .sheet-capture-dialog { overflow-y: auto !important; }
+  .move-picker-dialog,
+  .evolution-picker-dialog,
+  .encounter-picker-dialog {
+    height: calc(100dvh - 16px) !important;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    overflow: hidden !important;
+  }
+
+  /* Cabeçalhos dos seletores */
+  .move-picker-head,
+  .dice-dialog-head,
+  .sheet-capture-head {
+    padding: 14px !important;
+    gap: 10px !important;
+  }
+  .move-picker-head > div,
+  .dice-dialog-head > div,
+  .sheet-capture-head > div { min-width: 0; }
+  .move-picker-head h2,
+  .dice-dialog-head h2,
+  .sheet-capture-head h2 {
+    font-size: 1.2rem !important;
+    overflow-wrap: anywhere;
+  }
+  .move-picker-close,
+  .dice-close,
+  .dialog-icon-close,
+  .character-guide-close {
+    min-width: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px !important;
+  }
+
+  /* Filtros dos seletores */
+  .move-picker-filters,
+  .evolution-picker-filters,
+  .encounter-picker-filters {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
+  }
+  .move-picker-filters input,
+  .move-picker-filters select,
+  .evolution-picker-filters input,
+  .evolution-picker-filters select,
+  .encounter-picker-filters input,
+  .encounter-picker-filters select {
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 16px !important;
+  }
+
+  /* Listas de escolha: a área central vira a rolagem */
+  .move-picker-list,
+  .evolution-picker-list,
+  .encounter-picker-list {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 8px !important;
+  }
+  .move-picker-result,
+  .evolution-picker-result,
+  .encounter-picker-row {
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 11px !important;
+    gap: 7px !important;
+  }
+  .move-picker-result *,
+  .evolution-picker-result *,
+  .encounter-picker-row * { min-width: 0; }
+  .move-picker-result b,
+  .evolution-picker-result b,
+  .encounter-picker-row b { overflow-wrap: anywhere; }
+
+  .move-picker-footer {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+  .move-picker-footer > * { flex: 1 1 150px; }
+
+  /* Evoluções selecionadas */
+  .evolution-target-row {
+    align-items: center !important;
+    min-width: 0 !important;
+  }
+  .evolution-target-row > div { min-width: 0 !important; }
+  .evolution-target-row strong {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+  .evolution-target-row button {
+    width: 44px !important;
+    min-width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Botão de informação dos movimentos: tooltip não pode vazar da tela */
+  .move-info-button { width: 38px !important; height: 38px !important; min-height: 38px !important; }
+  .move-info-button::before {
+    position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 72px !important;
+    top: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 38dvh !important;
+    overflow-y: auto !important;
+    z-index: 12000 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+  .move-info-button::after { display: none !important; }
+
+  /* Captura de ficha */
+  .sheet-capture-options,
+  .sheet-capture-formats {
+    grid-template-columns: 1fr !important;
+    padding-inline: 14px !important;
+  }
+  .sheet-capture-dialog > p,
+  .sheet-capture-status { margin-inline: 14px !important; }
+  .capture-format-card { min-height: 84px !important; }
+
+  /* Rolador de dados */
+  .dice-dialog input,
+  .dice-dialog select,
+  .dice-dialog textarea { font-size: 16px !important; }
+
+  /* Ficha completa: header e abas sem vazamento */
+  .character-guide-overlay {
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+  .character-guide-dialog {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+  .character-guide-content { min-height: 0 !important; }
+
+  /* Evita zoom automático do iOS/Android em inputs pequenos */
+  input,
+  select,
+  textarea { font-size: max(16px, 1em); }
+
+  /* Barras horizontais internas ficam roláveis, nunca expandem o body */
+  .identity-badges,
+  .character-tags,
+  .character-milestones,
+  .owned-relian-resources,
+  .owned-relian-moves,
+  .rarity-summary-row,
+  .catalog-line {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Segurança contra larguras fixas remanescentes */
+  .tab-panel *,
+  dialog * { box-sizing: border-box; }
+  .tab-panel input,
+  .tab-panel select,
+  .tab-panel textarea { max-width: 100%; }
+}
+
+@media (max-width: 560px) {
+  /* Seletores em celulares estreitos ficam como páginas internas */
+  .move-picker-dialog,
+  .evolution-picker-dialog,
+  .encounter-picker-dialog,
+  .dice-dialog,
+  .sheet-capture-dialog {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+
+  .move-picker-result,
+  .evolution-picker-result,
+  .encounter-picker-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Cards complexos de Relian ficam totalmente verticais */
+  .owned-relian-card,
+  .owned-relian-card.compact {
+    grid-template-columns: 1fr !important;
+  }
+  .owned-relian-image,
+  .owned-relian-card.compact .owned-relian-image {
+    min-height: 150px !important;
+    max-height: 220px !important;
+  }
+
+  .bank-char-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .bank-resource label {
+    grid-template-columns: 1fr !important;
+  }
+  .bank-resource label input { width: 100% !important; }
+
+  .special-move-row {
+    grid-template-columns: 1fr !important;
+  }
+  .special-slot-number { margin-bottom: 2px; }
+  .special-move-info { grid-column: 1 !important; }
+}
+
+@media (max-width: 380px) {
+  /* Último nível de compactação para aparelhos bem estreitos */
+  .move-picker-head,
+  .dice-dialog-head,
+  .sheet-capture-head,
+  .character-guide-header { padding: 10px !important; }
+  .move-picker-filters,
+  .evolution-picker-filters,
+  .encounter-picker-filters { padding: 8px !important; }
+  .bank-char-controls { grid-template-columns: 1fr !important; }
+  .bank-backpack-actions { grid-template-columns: 1fr !important; }
+  .resource-controls { grid-template-columns: 1fr !important; }
+}
