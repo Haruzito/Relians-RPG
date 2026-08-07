@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "tempo-quente",
   "nome": "Tempo Quente",
   "tipo": "NEH",
+  "elementos": [
+    "Ígnea",
+    "Éter"
+  ],
+  "elemento": "Ígnea, Éter",
   "dano": 50,
   "energia": 60,
-  "elemento": "Ígnea / Éter",
-  "descricao": "Um golpe que aquece o ambiente ao redor, deixando o oponente exposto ao calor extremo.\nEfeito: O alvo entra no estado \"Queimando\", sofrendo dano contínuo por 3 turnos."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um golpe que aquece o ambiente ao redor, deixando o oponente exposto ao calor extremo.\nEfeito: O alvo entra no estado \"Queimando\", sofrendo dano contínuo por 3 turnos.",
+  "efeitos": [],
+  "tags": []
 }

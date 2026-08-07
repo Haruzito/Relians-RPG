@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "mistico",
   "nome": "Místico",
   "descricao": "Demonstram grande afinidade com energias naturais, manipulando-as com mais facilidade desde o nascimento.",
   "comportamento": "São calmos, observadores e costumam analisar a situação antes de agir.",
   "paladar": "Doce",
-  "status": {
+  "modificadores": {
     "ataque": -5,
     "defesa": 0,
     "velocidade": -5,
     "ataqueEspecial": 5,
     "defesaEspecial": 5,
-    "precisao": 0
-  },
-  "hp": -5,
-  "eng": 5
+    "precisao": 0,
+    "hp": -5,
+    "energia": 5
+  }
 }

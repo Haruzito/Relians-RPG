@@ -4,6 +4,9 @@
   "id": "grunhir",
   "nome": "Grunhir",
   "tipo": "NET",
+  "elementos": [
+    "Éter"
+  ],
   "elemento": "Éter",
   "dano": 0,
   "energia": 15,

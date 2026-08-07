@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "mare-de-lama",
   "nome": "Maré de Lama",
   "tipo": "EFT",
+  "elementos": [
+    "Vital",
+    "Abissal"
+  ],
+  "elemento": "Vital, Abissal",
   "dano": 20,
   "energia": 40,
-  "elemento": "Vital / Abissal",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

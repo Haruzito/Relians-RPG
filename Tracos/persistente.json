@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "persistente",
   "nome": "Persistente",
   "descricao": "Relians persistentes não desistem facilmente. Mesmo diante de repetidos fracassos, continuam tentando até alcançar seu objetivo.",
   "comportamento": "São determinados, pacientes e costumam terminar aquilo que começam.",
   "paladar": "Oleaginoso",
-  "status": {
+  "modificadores": {
     "ataque": 0,
     "defesa": 5,
     "velocidade": -5,
     "ataqueEspecial": -5,
     "defesaEspecial": 0,
-    "precisao": 5
-  },
-  "hp": 10,
-  "eng": 5
+    "precisao": 5,
+    "hp": 10,
+    "energia": 5
+  }
 }

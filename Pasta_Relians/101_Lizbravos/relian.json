@@ -21,8 +21,8 @@
   ],
   "estagio": 1,
   "energiaBase": 85,
-  "raridade": "lendario-especial",
-  "taxaCaptura": 1,
+  "raridade": "mitico",
+  "taxaCaptura": 2,
   "afinidadeBase": 2,
   "imagens": {
     "basic": "",
@@ -36,8 +36,10 @@
   "tamanhos": [
     "GG"
   ],
-  "evoluiDe": "",
+  "evoluiDe": "lizbaby",
   "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
   "metodoEvolucao": "",
   "tracos": [],
   "movimentos": [

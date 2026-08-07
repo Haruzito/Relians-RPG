@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "floresta-de-nym",
   "nome": "Floresta de Nym",
-  "elementos": [
-    "Vital",
-    "Astral"
-  ]
+  "biomas": []
 }

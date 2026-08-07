@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "tornado-de-nectar",
   "nome": "Tornado de Néctar",
   "tipo": "NEH",
+  "elementos": [
+    "Vital",
+    "Tempestade"
+  ],
+  "elemento": "Vital, Tempestade",
   "dano": 35,
   "energia": 50,
-  "elemento": "Vital / Tempestade",
-  "descricao": "Um tornado de néctar que afeta todos os inimigos no campo.\nEfeito: Causa dano a todos os inimigos e reduz a precisão deles."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um tornado de néctar que afeta todos os inimigos no campo.\nEfeito: Causa dano a todos os inimigos e reduz a precisão deles.",
+  "efeitos": [],
+  "tags": []
 }

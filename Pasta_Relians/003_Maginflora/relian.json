@@ -40,6 +40,8 @@
   ],
   "evoluiDe": "lihtobrux",
   "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
   "metodoEvolucao": "Nível, Item",
   "tracos": [],
   "movimentos": [

@@ -1,0 +1,5506 @@
+{
+  "kind": "relians-save",
+  "tipoArquivo": "banco-completo",
+  "saveVersion": 2,
+  "updatedAt": "2026-08-07T18:30:42.509Z",
+  "data": {
+    "rules": {
+      "baseHp": 50,
+      "baseEnergy": 65,
+      "hpPerEvolution": 20,
+      "attrMin": 1,
+      "attrMax": 35,
+      "modMin": -7,
+      "modMax": 7,
+      "moveLimit": 6,
+      "shinyChance": 3,
+      "specialChance": 0.5
+    },
+    "regions": [
+      {
+        "id": "ruinas-azuis",
+        "name": "Ruínas Azuis",
+        "elements": [],
+        "biomes": []
+      },
+      {
+        "id": "vale-lumen",
+        "name": "Vale de Lúmen",
+        "elements": [],
+        "biomes": []
+      },
+      {
+        "id": "montanhas-de-lumen",
+        "name": "Montanhas de Lúmen"
+      },
+      {
+        "id": "bosque-de-elyr",
+        "name": "Bosque de Elyr",
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Bosque de Elyr",
+        "elementos": [
+          "Vital",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "campos-da-aurora",
+        "name": "Campos da Aurora",
+        "elements": [
+          "Halo",
+          "Astral",
+          "Geada"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Campos da Aurora",
+        "elementos": [
+          "Halo",
+          "Astral",
+          "Geada"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "cavernas-de-eter",
+        "name": "Cavernas de Éter",
+        "elements": [
+          "Éter",
+          "Astral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Cavernas de Éter",
+        "elementos": [
+          "Éter",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "arquipelago-celeste",
+        "name": "Arquipélago Celeste",
+        "elements": [
+          "Tempestade",
+          "Halo"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Arquipélago Celeste",
+        "elementos": [
+          "Tempestade",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "abismo-de-nox",
+        "name": "Abismo de Nox",
+        "elements": [
+          "Umbral",
+          "Abissal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Abismo de Nox",
+        "elementos": [
+          "Umbral",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "campos-nebulosos",
+        "name": "Campos Nebulosos",
+        "elements": [
+          "Astral",
+          "Umbral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Campos Nebulosos",
+        "elementos": [
+          "Astral",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "costa-de-maris",
+        "name": "Costa de Maris",
+        "elements": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Costa de Maris",
+        "elementos": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "bosque-luminescente",
+        "name": "Bosque Luminescente",
+        "elements": [
+          "Vital",
+          "Halo"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Bosque Luminescente",
+        "elementos": [
+          "Vital",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "fenda-de-umbra",
+        "name": "Fenda de Umbra",
+        "elements": [
+          "Umbral",
+          "Astral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Fenda de Umbra",
+        "elementos": [
+          "Umbral",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "deserto-de-karesh",
+        "name": "Deserto de Karesh",
+        "elements": [
+          "Colossal",
+          "Ígnea"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Deserto de Karesh",
+        "elementos": [
+          "Colossal",
+          "Ígnea"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "baia-coralina",
+        "name": "Baía Coralina",
+        "elements": [
+          "Abissal",
+          "Vital",
+          "Halo"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Baía Coralina",
+        "elementos": [
+          "Abissal",
+          "Vital",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "cratera-de-halo",
+        "name": "Cratera de Halo",
+        "elements": [
+          "Halo",
+          "Colossal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Cratera de Halo",
+        "elementos": [
+          "Halo",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "floresta-de-nym",
+        "name": "Floresta de Nym",
+        "elements": [
+          "Vital",
+          "Astral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Floresta de Nym",
+        "elementos": [
+          "Vital",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "jardim-vital",
+        "name": "Jardim Vital",
+        "elements": [
+          "Vital",
+          "Halo"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Jardim Vital",
+        "elementos": [
+          "Vital",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "lago-espelhado",
+        "name": "Lago Espelhado",
+        "elements": [
+          "Abissal",
+          "Astral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Lago Espelhado",
+        "elementos": [
+          "Abissal",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "fortaleza-colossal",
+        "name": "Fortaleza Colossal",
+        "elements": [
+          "Colossal",
+          "Éter"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Fortaleza Colossal",
+        "elementos": [
+          "Colossal",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "mar-de-cristal",
+        "name": "Mar de Cristal",
+        "elements": [
+          "Abissal",
+          "Geada",
+          "Astral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Mar de Cristal",
+        "elementos": [
+          "Abissal",
+          "Geada",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "montanhas-cinzentas",
+        "name": "Montanhas Cinzentas",
+        "elements": [
+          "Colossal",
+          "Umbral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Montanhas Cinzentas",
+        "elementos": [
+          "Colossal",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "oasis-lumen",
+        "name": "Oásis Lumen",
+        "elements": [
+          "Vital",
+          "Abissal",
+          "Halo"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Oásis Lumen",
+        "elementos": [
+          "Vital",
+          "Abissal",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "observatorio-astral",
+        "name": "Observatório Astral",
+        "elements": [
+          "Astral",
+          "Éter"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Observatório Astral",
+        "elementos": [
+          "Astral",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "pantano-de-morgh",
+        "name": "Pântano de Morgh",
+        "elements": [
+          "Umbral",
+          "Abissal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Pântano de Morgh",
+        "elementos": [
+          "Umbral",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "penhascos-de-zephyr",
+        "name": "Penhascos de Zephyr",
+        "elements": [
+          "Tempestade",
+          "Colossal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Penhascos de Zephyr",
+        "elementos": [
+          "Tempestade",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "pico-boreal",
+        "name": "Pico Boreal",
+        "elements": [
+          "Geada",
+          "Colossal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Pico Boreal",
+        "elementos": [
+          "Geada",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "planicies-de-solen",
+        "name": "Planícies de Solen",
+        "elements": [
+          "Vital",
+          "Tempestade"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Planícies de Solen",
+        "elementos": [
+          "Vital",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "ruinas-de-arkhos",
+        "name": "Ruínas de Arkhos",
+        "elements": [
+          "Éter",
+          "Colossal",
+          "Umbral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Ruínas de Arkhos",
+        "elementos": [
+          "Éter",
+          "Colossal",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "vale-tempestuoso",
+        "name": "Vale Tempestuoso",
+        "elements": [
+          "Tempestade",
+          "Abissal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Vale Tempestuoso",
+        "elementos": [
+          "Tempestade",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "torre-dos-ecos",
+        "name": "Torre dos Ecos",
+        "elements": [
+          "Éter",
+          "Astral"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Torre dos Ecos",
+        "elementos": [
+          "Éter",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "vale-de-aster",
+        "name": "Vale de Aster",
+        "elements": [
+          "Éter",
+          "Vital"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Vale de Aster",
+        "elementos": [
+          "Éter",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "serra-rubra",
+        "name": "Serra Rubra",
+        "elements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Serra Rubra",
+        "elementos": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "vulcao-ignivar",
+        "name": "Vulcão Ignivar",
+        "elements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "kind": "region",
+        "tipoArquivo": "regiao",
+        "nome": "Vulcão Ignivar",
+        "elementos": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "biomes": []
+      }
+    ],
+    "biomes": [
+      {
+        "id": "campo",
+        "name": "Campo",
+        "elements": [],
+        "biomes": []
+      },
+      {
+        "id": "floresta",
+        "name": "Floresta",
+        "elements": [],
+        "biomes": []
+      },
+      {
+        "id": "ruinas",
+        "name": "Ruínas",
+        "elements": [],
+        "biomes": []
+      },
+      {
+        "id": "picos-nevados",
+        "name": "Picos nevados"
+      },
+      {
+        "id": "floresta-temperada",
+        "name": "Floresta Temperada",
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Floresta Temperada",
+        "elementos": [
+          "Vital",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "floresta-tropical",
+        "name": "Floresta Tropical",
+        "elements": [
+          "Vital",
+          "Abissal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Floresta Tropical",
+        "elementos": [
+          "Vital",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "floresta-nebulosa",
+        "name": "Floresta Nebulosa",
+        "elements": [
+          "Vital",
+          "Astral",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Floresta Nebulosa",
+        "elementos": [
+          "Vital",
+          "Astral",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "floresta-cristalina",
+        "name": "Floresta Cristalina",
+        "elements": [
+          "Vital",
+          "Astral",
+          "Geada"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Floresta Cristalina",
+        "elementos": [
+          "Vital",
+          "Astral",
+          "Geada"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "floresta-ancestral",
+        "name": "Floresta Ancestral",
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Floresta Ancestral",
+        "elementos": [
+          "Vital",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "selva-densa",
+        "name": "Selva Densa",
+        "elements": [
+          "Vital",
+          "Abissal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Selva Densa",
+        "elementos": [
+          "Vital",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "campos-abertos",
+        "name": "Campos Abertos",
+        "elements": [
+          "Éter",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Campos Abertos",
+        "elementos": [
+          "Éter",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "savana",
+        "name": "Savana",
+        "elements": [
+          "Vital",
+          "Ígnea",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Savana",
+        "elementos": [
+          "Vital",
+          "Ígnea",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "pradarias",
+        "name": "Pradarias",
+        "elements": [
+          "Vital",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Pradarias",
+        "elementos": [
+          "Vital",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "colinas-verdejantes",
+        "name": "Colinas Verdejantes",
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Colinas Verdejantes",
+        "elementos": [
+          "Vital",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "cordilheira",
+        "name": "Cordilheira",
+        "elements": [
+          "Colossal",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Cordilheira",
+        "elementos": [
+          "Colossal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "penhascos",
+        "name": "Penhascos",
+        "elements": [
+          "Colossal",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Penhascos",
+        "elementos": [
+          "Colossal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "montanhas-nevadas",
+        "name": "Montanhas Nevadas",
+        "elements": [
+          "Geada",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Montanhas Nevadas",
+        "elementos": [
+          "Geada",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "picos-cristalinos",
+        "name": "Picos Cristalinos",
+        "elements": [
+          "Geada",
+          "Astral",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Picos Cristalinos",
+        "elementos": [
+          "Geada",
+          "Astral",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "tundra",
+        "name": "Tundra",
+        "elements": [
+          "Geada",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Tundra",
+        "elementos": [
+          "Geada",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "geleiras",
+        "name": "Geleiras",
+        "elements": [
+          "Geada",
+          "Abissal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Geleiras",
+        "elementos": [
+          "Geada",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "campos-congelados",
+        "name": "Campos Congelados",
+        "elements": [
+          "Geada",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Campos Congelados",
+        "elementos": [
+          "Geada",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "floresta-boreal",
+        "name": "Floresta Boreal",
+        "elements": [
+          "Geada",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Floresta Boreal",
+        "elementos": [
+          "Geada",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "vulcoes",
+        "name": "Vulcões",
+        "elements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Vulcões",
+        "elementos": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "campos-de-lava",
+        "name": "Campos de Lava",
+        "elements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Campos de Lava",
+        "elementos": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "abismo-oceanico",
+        "name": "Abismo Oceânico",
+        "elements": [
+          "Abissal",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Abismo Oceânico",
+        "elementos": [
+          "Abissal",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "cachoeiras",
+        "name": "Cachoeiras",
+        "elements": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Cachoeiras",
+        "elementos": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "brejo",
+        "name": "Brejo",
+        "elements": [
+          "Abissal",
+          "Umbral",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Brejo",
+        "elementos": [
+          "Abissal",
+          "Umbral",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "caverna-cristalina",
+        "name": "Caverna Cristalina",
+        "elements": [
+          "Astral",
+          "Colossal",
+          "Geada"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Caverna Cristalina",
+        "elementos": [
+          "Astral",
+          "Colossal",
+          "Geada"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "campos-estelares",
+        "name": "Campos Estelares",
+        "elements": [
+          "Astral",
+          "Halo"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Campos Estelares",
+        "elementos": [
+          "Astral",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "charco",
+        "name": "Charco",
+        "elements": [
+          "Abissal",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Charco",
+        "elementos": [
+          "Abissal",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "caverna-de-eter",
+        "name": "Caverna de Éter",
+        "elements": [
+          "Éter",
+          "Astral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Caverna de Éter",
+        "elementos": [
+          "Éter",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "cavernas",
+        "name": "Cavernas",
+        "elements": [
+          "Colossal",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Cavernas",
+        "elementos": [
+          "Colossal",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "cidade",
+        "name": "Cidade",
+        "elements": [
+          "Éter",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Cidade",
+        "elementos": [
+          "Éter",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "deserto-arenoso",
+        "name": "Deserto Arenoso",
+        "elements": [
+          "Colossal",
+          "Ígnea",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Deserto Arenoso",
+        "elementos": [
+          "Colossal",
+          "Ígnea",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "deserto-rochoso",
+        "name": "Deserto Rochoso",
+        "elements": [
+          "Colossal",
+          "Ígnea"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Deserto Rochoso",
+        "elementos": [
+          "Colossal",
+          "Ígnea"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "desfiladeiros-vulcanicos",
+        "name": "Desfiladeiros Vulcânicos",
+        "elements": [
+          "Ígnea",
+          "Colossal",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Desfiladeiros Vulcânicos",
+        "elementos": [
+          "Ígnea",
+          "Colossal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "dunas",
+        "name": "Dunas",
+        "elements": [
+          "Colossal",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Dunas",
+        "elementos": [
+          "Colossal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "fenda-astral",
+        "name": "Fenda Astral",
+        "elements": [
+          "Astral",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Fenda Astral",
+        "elementos": [
+          "Astral",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "ilhas-flutuantes",
+        "name": "Ilhas Flutuantes",
+        "elements": [
+          "Tempestade",
+          "Halo",
+          "Astral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Ilhas Flutuantes",
+        "elementos": [
+          "Tempestade",
+          "Halo",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "laboratorio",
+        "name": "Laboratório",
+        "elements": [
+          "Éter",
+          "Astral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Laboratório",
+        "elementos": [
+          "Éter",
+          "Astral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "manguezal",
+        "name": "Manguezal",
+        "elements": [
+          "Abissal",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Manguezal",
+        "elementos": [
+          "Abissal",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "lagos",
+        "name": "Lagos",
+        "elements": [
+          "Abissal",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Lagos",
+        "elementos": [
+          "Abissal",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "mina-abandonada",
+        "name": "Mina Abandonada",
+        "elements": [
+          "Colossal",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Mina Abandonada",
+        "elementos": [
+          "Colossal",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "nuvens-densas",
+        "name": "Nuvens Densas",
+        "elements": [
+          "Tempestade",
+          "Halo"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Nuvens Densas",
+        "elementos": [
+          "Tempestade",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "mar-aberto",
+        "name": "Mar Aberto",
+        "elements": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Mar Aberto",
+        "elementos": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "oasis",
+        "name": "Oásis",
+        "elements": [
+          "Abissal",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Oásis",
+        "elementos": [
+          "Abissal",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "pantano-sombrio",
+        "name": "Pântano Sombrio",
+        "elements": [
+          "Umbral",
+          "Abissal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Pântano Sombrio",
+        "elementos": [
+          "Umbral",
+          "Abissal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "penhascos-aereos",
+        "name": "Penhascos Aéreos",
+        "elements": [
+          "Tempestade",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Penhascos Aéreos",
+        "elementos": [
+          "Tempestade",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "recife",
+        "name": "Recife",
+        "elements": [
+          "Abissal",
+          "Vital",
+          "Halo"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Recife",
+        "elementos": [
+          "Abissal",
+          "Vital",
+          "Halo"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "rios",
+        "name": "Rios",
+        "elements": [
+          "Abissal",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Rios",
+        "elementos": [
+          "Abissal",
+          "Vital"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "rochas-igneas",
+        "name": "Rochas Ígneas",
+        "elements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Rochas Ígneas",
+        "elementos": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "ruinas-antigas",
+        "name": "Ruínas Antigas",
+        "elements": [
+          "Éter",
+          "Umbral",
+          "Colossal"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Ruínas Antigas",
+        "elementos": [
+          "Éter",
+          "Umbral",
+          "Colossal"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "ruinas-astrais",
+        "name": "Ruínas Astrais",
+        "elements": [
+          "Astral",
+          "Éter"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Ruínas Astrais",
+        "elementos": [
+          "Astral",
+          "Éter"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "zona-industrial",
+        "name": "Zona Industrial",
+        "elements": [
+          "Colossal",
+          "Tempestade",
+          "Umbral"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Zona Industrial",
+        "elementos": [
+          "Colossal",
+          "Tempestade",
+          "Umbral"
+        ],
+        "biomes": []
+      },
+      {
+        "id": "vilarejo",
+        "name": "Vilarejo",
+        "elements": [
+          "Éter",
+          "Vital"
+        ],
+        "kind": "biome",
+        "tipoArquivo": "bioma",
+        "nome": "Vilarejo",
+        "elementos": [
+          "Éter",
+          "Vital"
+        ],
+        "biomes": []
+      }
+    ],
+    "traits": {
+      "feroz": {
+        "id": "feroz",
+        "name": "Feroz",
+        "description": "Relians ferozes possuem um instinto agressivo e enfrentam desafios sem hesitação, preferindo resolver conflitos pela força.",
+        "behavior": "Tendem a intimidar outros DataMons, são impulsivos em combate e dificilmente recuam diante de um adversário.",
+        "palate": "Ardente",
+        "mods": {
+          "ataque": 5,
+          "defesa": -5,
+          "velocidade": 5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": -5,
+          "precisao": 0,
+          "hp": 5,
+          "energia": -5
+        }
+      },
+      "guardiao": {
+        "id": "guardiao",
+        "name": "Guardião",
+        "description": "Nascem com um forte instinto protetor, colocando aliados e território acima de si mesmos.",
+        "behavior": "Costumam permanecer próximos do grupo, reagindo rapidamente quando alguém precisa de ajuda.",
+        "palate": "Salgado",
+        "mods": {
+          "ataque": -5,
+          "defesa": 5,
+          "velocidade": -5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 5,
+          "precisao": 0,
+          "hp": 5,
+          "energia": -5
+        }
+      },
+      "cacador": {
+        "id": "cacador",
+        "name": "Caçador",
+        "description": "Possuem sentidos apurados para perseguir presas e encontrar oportunidades antes dos demais.",
+        "behavior": "São pacientes durante a perseguição, mas extremamente rápidos ao atacar.",
+        "palate": "Umami",
+        "mods": {
+          "ataque": 0,
+          "defesa": 0,
+          "velocidade": 5,
+          "ataqueEspecial": -5,
+          "defesaEspecial": -5,
+          "precisao": 5,
+          "hp": -5,
+          "energia": 5
+        }
+      },
+      "mistico": {
+        "id": "mistico",
+        "name": "Místico",
+        "description": "Demonstram grande afinidade com energias naturais, manipulando-as com mais facilidade desde o nascimento.",
+        "behavior": "São calmos, observadores e costumam analisar a situação antes de agir.",
+        "palate": "Doce",
+        "mods": {
+          "ataque": -5,
+          "defesa": 0,
+          "velocidade": -5,
+          "ataqueEspecial": 5,
+          "defesaEspecial": 5,
+          "precisao": 0,
+          "hp": -5,
+          "energia": 5
+        }
+      },
+      "impulsivo": {
+        "id": "impulsivo",
+        "name": "Impulsivo",
+        "description": "Agem antes de pensar, confiando nos próprios reflexos e instintos para superar qualquer situação.",
+        "behavior": "Entram facilmente em conflitos, exploram locais desconhecidos sem receio e raramente planejam suas ações.",
+        "palate": "Azedo",
+        "mods": {
+          "ataque": 5,
+          "defesa": -5,
+          "velocidade": 0,
+          "ataqueEspecial": 0,
+          "defesaEspecial": -5,
+          "precisao": 5,
+          "hp": -5,
+          "energia": 5
+        }
+      },
+      "curioso": {
+        "id": "curioso",
+        "name": "Curioso",
+        "description": "Relians curiosos possuem um desejo incessante de explorar e compreender tudo ao seu redor, raramente ignorando algo desconhecido.",
+        "behavior": "Investigam objetos, seguem rastros incomuns e frequentemente acabam descobrindo recursos escondidos.",
+        "palate": "Agridoce",
+        "mods": {
+          "ataque": -5,
+          "defesa": -5,
+          "velocidade": 0,
+          "ataqueEspecial": 5,
+          "defesaEspecial": 0,
+          "precisao": 5,
+          "hp": -5,
+          "energia": 10
+        }
+      },
+      "resiliente": {
+        "id": "resiliente",
+        "name": "Resiliente",
+        "description": "Desde o nascimento demonstram uma capacidade extraordinária de suportar dor, fadiga e condições adversas.",
+        "behavior": "Continuam lutando mesmo após sofrer grandes ferimentos e raramente entram em pânico.",
+        "palate": "Terroso",
+        "mods": {
+          "ataque": 0,
+          "defesa": 5,
+          "velocidade": -5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 5,
+          "precisao": -5,
+          "hp": 10,
+          "energia": -5
+        }
+      },
+      "astuto": {
+        "id": "astuto",
+        "name": "Astuto",
+        "description": "Possuem inteligência prática e sempre procuram a maneira mais eficiente de alcançar seus objetivos.",
+        "behavior": "Preferem criar estratégias, utilizar armadilhas ou explorar as fraquezas do inimigo antes de agir.",
+        "palate": "Amargo",
+        "mods": {
+          "ataque": -5,
+          "defesa": 0,
+          "velocidade": 5,
+          "ataqueEspecial": 5,
+          "defesaEspecial": 0,
+          "precisao": 0,
+          "hp": -5,
+          "energia": 5
+        }
+      },
+      "territorial": {
+        "id": "territorial",
+        "name": "Territorial",
+        "description": "Sentem um forte apego ao espaço que consideram seu, tornando-se extremamente determinados ao defendê-lo.",
+        "behavior": "Marcam território, patrulham constantemente e reagem de forma hostil contra invasores.",
+        "palate": "Defumado",
+        "mods": {
+          "ataque": 5,
+          "defesa": 5,
+          "velocidade": -5,
+          "ataqueEspecial": -5,
+          "defesaEspecial": 0,
+          "precisao": 0,
+          "hp": 5,
+          "energia": -5
+        }
+      },
+      "sereno": {
+        "id": "sereno",
+        "name": "Sereno",
+        "description": "Relians serenos mantêm a calma mesmo nas situações mais perigosas, tomando decisões com clareza.",
+        "behavior": "Raramente agem por impulso e costumam transmitir tranquilidade aos companheiros.",
+        "palate": "Herbal",
+        "mods": {
+          "ataque": -5,
+          "defesa": 0,
+          "velocidade": -5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 5,
+          "precisao": 5,
+          "hp": 5,
+          "energia": 5
+        }
+      },
+      "destemido": {
+        "id": "destemido",
+        "name": "Destemido",
+        "description": "Relians destemidos raramente sentem medo. Encaram criaturas maiores e desafios perigosos com uma coragem quase irracional.",
+        "behavior": "São os primeiros a avançar em situações de risco e dificilmente fogem de uma batalha.",
+        "palate": "Picante",
+        "mods": {
+          "ataque": 5,
+          "defesa": 5,
+          "velocidade": 0,
+          "ataqueEspecial": -5,
+          "defesaEspecial": 0,
+          "precisao": -5,
+          "hp": 5,
+          "energia": 5
+        }
+      },
+      "agil": {
+        "id": "agil",
+        "name": "Ágil",
+        "description": "Nascem com reflexos extremamente rápidos e um corpo naturalmente leve, tornando seus movimentos difíceis de acompanhar.",
+        "behavior": "Movem-se constantemente, evitam permanecer parados e adoram correr ou escalar.",
+        "palate": "Cítrico",
+        "mods": {
+          "ataque": 0,
+          "defesa": -5,
+          "velocidade": 10,
+          "ataqueEspecial": 0,
+          "defesaEspecial": -5,
+          "precisao": 0,
+          "hp": -5,
+          "energia": 5
+        }
+      },
+      "voraz": {
+        "id": "voraz",
+        "name": "Voraz",
+        "description": "Possuem um metabolismo acelerado que os obriga a consumir alimento com frequência para manter suas energias.",
+        "behavior": "Estão sempre procurando algo para comer e dificilmente recusam uma refeição.",
+        "palate": "Carnudo",
+        "mods": {
+          "ataque": 5,
+          "defesa": 0,
+          "velocidade": -5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 0,
+          "precisao": -5,
+          "hp": 10,
+          "energia": -10
+        }
+      },
+      "empatico": {
+        "id": "empatico",
+        "name": "Empático",
+        "description": "Demonstram uma forte conexão emocional com outros DataMons, compreendendo facilmente seus sentimentos.",
+        "behavior": "Evitam conflitos desnecessários e costumam auxiliar aliados espontaneamente.",
+        "palate": "Floral",
+        "mods": {
+          "ataque": -5,
+          "defesa": -5,
+          "velocidade": 0,
+          "ataqueEspecial": 5,
+          "defesaEspecial": 5,
+          "precisao": 0,
+          "hp": 5,
+          "energia": 5
+        }
+      },
+      "persistente": {
+        "id": "persistente",
+        "name": "Persistente",
+        "description": "Relians persistentes não desistem facilmente. Mesmo diante de repetidos fracassos, continuam tentando até alcançar seu objetivo.",
+        "behavior": "São determinados, pacientes e costumam terminar aquilo que começam.",
+        "palate": "Oleaginoso",
+        "mods": {
+          "ataque": 0,
+          "defesa": 5,
+          "velocidade": -5,
+          "ataqueEspecial": -5,
+          "defesaEspecial": 0,
+          "precisao": 5,
+          "hp": 10,
+          "energia": 5
+        }
+      },
+      "adaptavel": {
+        "id": "adaptavel",
+        "name": "Adaptável",
+        "description": "Relians adaptáveis conseguem se acostumar rapidamente a novos ambientes, alimentos e situações, demonstrando grande flexibilidade.",
+        "behavior": "Exploram qualquer habitat sem hesitar e raramente demonstram desconforto diante de mudanças.",
+        "palate": "Equilibrado",
+        "mods": {
+          "ataque": -5,
+          "defesa": 0,
+          "velocidade": 5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 5,
+          "precisao": -5,
+          "hp": 5,
+          "energia": 10
+        }
+      },
+      "orgulhoso": {
+        "id": "orgulhoso",
+        "name": "Orgulhoso",
+        "description": "Carregam uma enorme confiança em suas próprias capacidades, recusando-se a demonstrar fraqueza diante dos outros.",
+        "behavior": "Gostam de liderar, aceitam desafios com facilidade e evitam recuar, mesmo quando seria mais prudente.",
+        "palate": "Encorpado",
+        "mods": {
+          "ataque": 5,
+          "defesa": -5,
+          "velocidade": 0,
+          "ataqueEspecial": 5,
+          "defesaEspecial": -5,
+          "precisao": 0,
+          "hp": 5,
+          "energia": 5
+        }
+      },
+      "brincalhao": {
+        "id": "brincalhao",
+        "name": "Brincalhão",
+        "description": "Possuem uma personalidade alegre e curiosa, transformando quase qualquer situação em uma oportunidade para brincar.",
+        "behavior": "Interagem facilmente com outros DataMons, gostam de explorar e frequentemente pregam pequenas peças.",
+        "palate": "Frutado",
+        "mods": {
+          "ataque": 0,
+          "defesa": -5,
+          "velocidade": 5,
+          "ataqueEspecial": -5,
+          "defesaEspecial": 0,
+          "precisao": 5,
+          "hp": -5,
+          "energia": 10
+        }
+      },
+      "solitario": {
+        "id": "solitario",
+        "name": "Solitário",
+        "description": "Preferem viver longe de grandes grupos, confiando principalmente em suas próprias habilidades.",
+        "behavior": "Evitam multidões, patrulham seu território sozinhos e demonstram pouca necessidade de companhia.",
+        "palate": "Amadeirado",
+        "mods": {
+          "ataque": 5,
+          "defesa": 0,
+          "velocidade": 0,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 5,
+          "precisao": -5,
+          "hp": 5,
+          "energia": -5
+        }
+      },
+      "intuitivo": {
+        "id": "intuitivo",
+        "name": "Intuitivo",
+        "description": "Relians intuitivos parecem prever perigos e oportunidades antes que eles aconteçam, guiando-se mais pelo instinto do que pela lógica.",
+        "behavior": "Costumam tomar decisões rápidas, confiar em seus pressentimentos e raramente ignoram uma sensação estranha.",
+        "palate": "Refrescante",
+        "mods": {
+          "ataque": -5,
+          "defesa": 0,
+          "velocidade": -5,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 5,
+          "precisao": 5,
+          "hp": 5,
+          "energia": 5
+        }
+      },
+      "pes-ligeiros": {
+        "id": "pes-ligeiros",
+        "name": "Pés Ligeiros",
+        "description": "Paciente durante a perseguição, mas extremamente rápido ao atacar.",
+        "mods": {
+          "velocidade": 5,
+          "precisao": 4,
+          "defesaEspecial": 5,
+          "ataqueEspecial": -5
+        }
+      },
+      "corpo-vigoroso": {
+        "id": "corpo-vigoroso",
+        "name": "Corpo Vigoroso",
+        "description": "Possui constituição acima da média.",
+        "mods": {
+          "hp": 10,
+          "energia": 5,
+          "defesa": 2
+        }
+      }
+    },
+    "moves": {
+      "golpear": {
+        "id": "golpear",
+        "name": "Golpear",
+        "type": "NET",
+        "damage": 10,
+        "energy": 20,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "passo-etereo": {
+        "id": "passo-etereo",
+        "name": "Passo Etéreo",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 8,
+        "elements": [],
+        "element": "",
+        "accuracy": 0,
+        "range": "",
+        "description": "Reposiciona-se com auxílio do Éter.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "choque-etereo": {
+        "id": "choque-etereo",
+        "name": "Choque de Éter",
+        "type": "ATQ.ESP",
+        "damage": 18,
+        "energy": 14,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Dispara energia etérea concentrada.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "achar-tesouro": {
+        "id": "achar-tesouro",
+        "name": "Achar tesouro",
+        "type": "NET",
+        "damage": 0,
+        "energy": 30,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "O DataMon cava o chão gastando seu turno para achar um item no chão, podendo usar o item para atirar em seu inimigo.\n\nEfeito: Ao cavar o chão, obtém um item aleatório.\nRole D100:\n\n1-70= Nada | 71-90= Berry | 91 - 100 = Pedra.\nBerry = Efeito da fruta encontrada.\n\nPedra = Causa 30 de dano.\nSe o DataMon estiver com um item em mãos e tentar usar o movimento novamente, ele automaticamente arremessará o item atual no adversário.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "amarracao": {
+        "id": "amarracao",
+        "name": "Amarração",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 30,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "ataque-meteorico": {
+        "id": "ataque-meteorico",
+        "name": "Ataque Meteórico",
+        "type": "EFT",
+        "damage": 90,
+        "energy": 70,
+        "elements": [
+          "Astral",
+          "Colossal"
+        ],
+        "element": "Astral, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "Dispara uma chuva de meteoritos metálicos que pode aumentar a própria velocidade.\nEfeito: 20% de chance de aumentar a velocidade (+20% de velocidade).\n\n(Efeito de campo)",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "aroma-doce": {
+        "id": "aroma-doce",
+        "name": "Aroma doce",
+        "type": "NEH",
+        "damage": 0,
+        "energy": 50,
+        "elements": [
+          "Halo",
+          "Umbral"
+        ],
+        "element": "Halo, Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um aroma adocicado que faz o datamon ficar perdido.\nEfeito: O oponente rola 1d2, se cair 1, perderá o turno, se cair 2, não perderá.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "barao-do-pedal": {
+        "id": "barao-do-pedal",
+        "name": "Barão do pedal",
+        "type": "NEH",
+        "damage": 20,
+        "energy": 25,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Dá uma pisada pesada com botas pesadas.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "batido-de-abacate": {
+        "id": "batido-de-abacate",
+        "name": "Batido de abacate",
+        "type": "NEH",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "element": "Vital, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Rouba a energia do datamon oponente, preenchendo sua própria energia.\nEfeito: Rouba 40% da energia do oponente, revitalizando sua energia própria.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "bicada-voraz": {
+        "id": "bicada-voraz",
+        "name": "Bicada Voraz",
+        "type": "NET",
+        "damage": 15,
+        "energy": 20,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "bicada-triunfante": {
+        "id": "bicada-triunfante",
+        "name": "Bicada Triunfante",
+        "type": "NET",
+        "damage": 30,
+        "energy": 35,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "bofetada-aquatica": {
+        "id": "bofetada-aquatica",
+        "name": "Bofetada Aquática",
+        "type": "NET",
+        "damage": 40,
+        "energy": 20,
+        "elements": [
+          "Abissal",
+          "Éter"
+        ],
+        "element": "Abissal, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um golpe ágil com um jato de água.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "casulo-de-seda": {
+        "id": "casulo-de-seda",
+        "name": "Casulo de Seda",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 50,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "bola-de-nectar": {
+        "id": "bola-de-nectar",
+        "name": "Bola de Néctar",
+        "type": "EFT",
+        "damage": 25,
+        "energy": 30,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "casulo-do-vento": {
+        "id": "casulo-do-vento",
+        "name": "Casulo do Vento",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 0,
+        "elements": [
+          "Halo"
+        ],
+        "element": "Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chamas-etereas": {
+        "id": "chamas-etereas",
+        "name": "Chamas Etéreas",
+        "type": "NEH",
+        "damage": 75,
+        "energy": 55,
+        "elements": [
+          "Ígnea",
+          "Astral"
+        ],
+        "element": "Ígnea, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "Lança uma labareda ancestral que pode queimar e reduzir a resistência especial do inimigo.\nEfeito: 20% de chance de queimar o alvo e reduzir Sp. Def (-1 estágio).",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "cantico-lunar": {
+        "id": "cantico-lunar",
+        "name": "Cântico Lunar",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 30,
+        "elements": [
+          "Halo"
+        ],
+        "element": "Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chamas-guerreiras": {
+        "id": "chamas-guerreiras",
+        "name": "Chamas Guerreiras",
+        "type": "NEH",
+        "damage": 75,
+        "energy": 50,
+        "elements": [
+          "Ígnea",
+          "Halo"
+        ],
+        "element": "Ígnea, Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "Taturá envolve seus punhos em chamas intensas e desfere um golpe poderoso.\nEfeito: Aumenta o Ataque em 1 estágio ao acertar o golpe.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chicote-de-laminas": {
+        "id": "chicote-de-laminas",
+        "name": "Chicote de Lâminas",
+        "type": "NEH",
+        "damage": 45,
+        "energy": 25,
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "element": "Vital, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Cipós afiados atingem o adversário rapidamente.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chicoteada": {
+        "id": "chicoteada",
+        "name": "Chicoteada",
+        "type": "NEH",
+        "damage": 10,
+        "energy": 20,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Utilizando de algo longo para dar golpes precisos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chicote-de-seda": {
+        "id": "chicote-de-seda",
+        "name": "Chicote de Seda",
+        "type": "NET",
+        "damage": 20,
+        "energy": 15,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chute-lunar": {
+        "id": "chute-lunar",
+        "name": "Chute Lunar",
+        "type": "NEH",
+        "damage": 40,
+        "energy": 20,
+        "elements": [
+          "Halo",
+          "Éter"
+        ],
+        "element": "Halo, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um chute ágil imbuído de energia mágica.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chute-triunfal": {
+        "id": "chute-triunfal",
+        "name": "Chute triunfal",
+        "type": "OFS",
+        "damage": 35,
+        "energy": 50,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "ciclone-cortante": {
+        "id": "ciclone-cortante",
+        "name": "Ciclone Cortante",
+        "type": "NEH",
+        "damage": 35,
+        "energy": 50,
+        "elements": [
+          "Tempestade",
+          "Vital"
+        ],
+        "element": "Tempestade, Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "Rajadas de vento velozes e afiadas atingem o inimigo, reduzindo sua precisão.\nEfeito: Tem 30% de chance de reduzir a Precisão do alvo em 1 estágio.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "chuva-de-pedras": {
+        "id": "chuva-de-pedras",
+        "name": "Chuva de pedras",
+        "type": "OFS",
+        "damage": 50,
+        "energy": 45,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "corrente-dragonica": {
+        "id": "corrente-dragonica",
+        "name": "Corrente dragônica",
+        "type": "OFS",
+        "damage": 45,
+        "energy": 50,
+        "elements": [
+          "Abissal",
+          "Tempestade"
+        ],
+        "element": "Abissal, Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "corte-de-arvore": {
+        "id": "corte-de-arvore",
+        "name": "Corte de Árvore",
+        "type": "HIB",
+        "damage": 50,
+        "energy": 40,
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "element": "Vital, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "corte-de-plasma": {
+        "id": "corte-de-plasma",
+        "name": "Corte de Plasma",
+        "type": "HIB",
+        "damage": 40,
+        "energy": 40,
+        "elements": [
+          "Ígnea"
+        ],
+        "element": "Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "cristalizacao-ambar": {
+        "id": "cristalizacao-ambar",
+        "name": "Cristalização Âmbar",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "cruz-do-guerreiro": {
+        "id": "cruz-do-guerreiro",
+        "name": "Cruz do Guerreiro",
+        "type": "HIB",
+        "damage": 25,
+        "energy": 50,
+        "elements": [
+          "Éter",
+          "Ígnea"
+        ],
+        "element": "Éter, Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "cuspe-de-nectar": {
+        "id": "cuspe-de-nectar",
+        "name": "Cuspe de Néctar",
+        "type": "EFT",
+        "damage": 10,
+        "energy": 15,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "deslizamento-terrestre": {
+        "id": "deslizamento-terrestre",
+        "name": "Deslizamento Terrestre",
+        "type": "OFS",
+        "damage": 40,
+        "energy": 30,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "diluvio-lunar": {
+        "id": "diluvio-lunar",
+        "name": "Dilúvio Lunar",
+        "type": "HIB",
+        "damage": 65,
+        "energy": 50,
+        "elements": [
+          "Abissal",
+          "Astral"
+        ],
+        "element": "Abissal, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "distorcao-temporal": {
+        "id": "distorcao-temporal",
+        "name": "Distorção Temporal",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 70,
+        "elements": [
+          "Astral"
+        ],
+        "element": "Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "diluvio-celeste": {
+        "id": "diluvio-celeste",
+        "name": "Dilúvio Celeste",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 50,
+        "elements": [
+          "Halo",
+          "Abissal"
+        ],
+        "element": "Halo, Abissal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "dois-caras-de-bicicleta": {
+        "id": "dois-caras-de-bicicleta",
+        "name": "Dois Caras de Bicicleta",
+        "type": "NET",
+        "damage": 0,
+        "energy": 60,
+        "elements": [
+          "Umbral",
+          "Éter"
+        ],
+        "element": "Umbral, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Uma abordagem inesperada e sorrateira, inspirada em histórias urbanas de roubo misterioso. O DataMon surpreende o alvo com uma ação rápida e oportunista.\nEfeito: Rouba um item pertencente ao adversário ou ao DataMon inimigo.\n\nRole D100:\n\n1-80 = Nada acontece.\n\n81-100 = Rouba o item. 1D2 para item.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "escudo-brilhante": {
+        "id": "escudo-brilhante",
+        "name": "Escudo Brilhante",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Astral"
+        ],
+        "element": "Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "escudo-celestial": {
+        "id": "escudo-celestial",
+        "name": "Escudo Celestial",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 70,
+        "elements": [
+          "Halo",
+          "Astral"
+        ],
+        "element": "Halo, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "estapear": {
+        "id": "estapear",
+        "name": "Estapear",
+        "type": "NEH",
+        "damage": 10,
+        "energy": 5,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "O DataMon acerta um tapa no inimigo, causando dano.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "escudo-do-caos": {
+        "id": "escudo-do-caos",
+        "name": "Escudo do Caos",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 55,
+        "elements": [
+          "Umbral",
+          "Tempestade"
+        ],
+        "element": "Umbral, Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "explosao-espacial": {
+        "id": "explosao-espacial",
+        "name": "Explosão espacial",
+        "type": "HIB",
+        "damage": 85,
+        "energy": 55,
+        "elements": [
+          "Astral"
+        ],
+        "element": "Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "explosao-estelar": {
+        "id": "explosao-estelar",
+        "name": "Explosão Estelar",
+        "type": "EFT",
+        "damage": 25,
+        "energy": 60,
+        "elements": [
+          "Astral",
+          "Ígnea"
+        ],
+        "element": "Astral, Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "explosao-raivosa": {
+        "id": "explosao-raivosa",
+        "name": "Explosão Raivosa",
+        "type": "NEH",
+        "damage": 80,
+        "energy": 60,
+        "elements": [
+          "Colossal",
+          "Ígnea"
+        ],
+        "element": "Colossal, Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um golpe explosivo carregado de fúria que pode aumentar o ataque do usuário.\nEfeito: 30% de chance de aumentar o Ataque (+1 estágio).",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "explosao-venenosa": {
+        "id": "explosao-venenosa",
+        "name": "Explosão Venenosa",
+        "type": "EFT",
+        "damage": 30,
+        "energy": 40,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "fagulha-selvagem": {
+        "id": "fagulha-selvagem",
+        "name": "Fagulha Selvagem",
+        "type": "NET",
+        "damage": 20,
+        "energy": 35,
+        "elements": [
+          "Ígnea"
+        ],
+        "element": "Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "fitas-flamejantes": {
+        "id": "fitas-flamejantes",
+        "name": "Fitas flamejantes",
+        "type": "EFT",
+        "damage": 20,
+        "energy": 28,
+        "elements": [
+          "Ígnea"
+        ],
+        "element": "Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um golpe de cabeçada com suas fitas que causa uma queimadura de 3° grau ao encostar no alvo acertado, tendo a possibilidade de causar um efeito de status de (QUEIMANDO) por 3 turnos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "fogo-estelar": {
+        "id": "fogo-estelar",
+        "name": "Fogo estelar",
+        "type": "HIB",
+        "damage": 55,
+        "energy": 65,
+        "elements": [
+          "Ígnea",
+          "Astral"
+        ],
+        "element": "Ígnea, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "furia-berseker": {
+        "id": "furia-berseker",
+        "name": "Fúria berseker",
+        "type": "OFS",
+        "damage": 50,
+        "energy": 40,
+        "elements": [
+          "Ígnea"
+        ],
+        "element": "Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "furia-cosmica": {
+        "id": "furia-cosmica",
+        "name": "Fúria Cósmica",
+        "type": "HIB",
+        "damage": 40,
+        "energy": 35,
+        "elements": [
+          "Ígnea",
+          "Astral"
+        ],
+        "element": "Ígnea, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "garra-de-eclipse": {
+        "id": "garra-de-eclipse",
+        "name": "Garra de Eclipse",
+        "type": "NEH",
+        "damage": 70,
+        "energy": 50,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "Garras etéreas atacam o inimigo, drenando um pouco do seu HP.\nEfeito: Recupera 30% do dano causado como HP.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "golpe-de-gelo": {
+        "id": "golpe-de-gelo",
+        "name": "Golpe de Gelo",
+        "type": "OFS",
+        "damage": 30,
+        "energy": 40,
+        "elements": [
+          "Abissal"
+        ],
+        "element": "Abissal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "garras-de-aco": {
+        "id": "garras-de-aco",
+        "name": "Garras de Aço",
+        "type": "NET",
+        "damage": 20,
+        "energy": 30,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "golpe-do-demonio": {
+        "id": "golpe-do-demonio",
+        "name": "Golpe do Demônio",
+        "type": "EFT",
+        "damage": 16,
+        "energy": 23,
+        "elements": [
+          "Umbral",
+          "Ígnea"
+        ],
+        "element": "Umbral, Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "golpe-metalico": {
+        "id": "golpe-metalico",
+        "name": "Golpe Metálico",
+        "type": "OFS",
+        "damage": 35,
+        "energy": 25,
+        "elements": [
+          "Éter",
+          "Colossal"
+        ],
+        "element": "Éter, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "grande-semente": {
+        "id": "grande-semente",
+        "name": "Grande semente",
+        "type": "NET",
+        "damage": 10,
+        "energy": 30,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "grito-da-vitoria": {
+        "id": "grito-da-vitoria",
+        "name": "Grito da Vitória",
+        "type": "NEH",
+        "damage": 60,
+        "energy": 40,
+        "elements": [
+          "Halo",
+          "Tempestade"
+        ],
+        "element": "Halo, Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um grito poderoso que inspira aliados e intimida o inimigo.\nEfeito: Reduz o ataque do inimigo em 1 nível e aumenta o ataque do usuário em 1 nível.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "ilusao-cosmica": {
+        "id": "ilusao-cosmica",
+        "name": "Ilusão Cósmica",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Astral"
+        ],
+        "element": "Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "impacto-fantasmagorico": {
+        "id": "impacto-fantasmagorico",
+        "name": "Impacto Fantasmagórico",
+        "type": "NEH",
+        "damage": 40,
+        "energy": 50,
+        "elements": [
+          "Umbral",
+          "Astral"
+        ],
+        "element": "Umbral, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "O inimigo sente uma pressão mental, ficando confuso e enfraquecido.\nEfeito: Causa confusão e reduz o ataque do inimigo em 20% por 3 turnos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "impacto-martelante": {
+        "id": "impacto-martelante",
+        "name": "Impacto Martelante",
+        "type": "OFS",
+        "damage": 65,
+        "energy": 50,
+        "elements": [
+          "Éter",
+          "Colossal"
+        ],
+        "element": "Éter, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "impacto-relampago": {
+        "id": "impacto-relampago",
+        "name": "Impacto Relâmpago",
+        "type": "NEH",
+        "damage": 50,
+        "energy": 30,
+        "elements": [
+          "Tempestade",
+          "Éter"
+        ],
+        "element": "Tempestade, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um golpe físico carregado com eletricidade.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "impacto-solido": {
+        "id": "impacto-solido",
+        "name": "Impacto Sólido",
+        "type": "OFS",
+        "damage": 40,
+        "energy": 30,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "investida-aerea": {
+        "id": "investida-aerea",
+        "name": "Investida Aérea",
+        "type": "OFS",
+        "damage": 20,
+        "energy": 45,
+        "elements": [
+          "Éter",
+          "Halo"
+        ],
+        "element": "Éter, Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "investida-do-guardiao": {
+        "id": "investida-do-guardiao",
+        "name": "Investida do Guardião",
+        "type": "DEF",
+        "damage": 25,
+        "energy": 55,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "investida-selvagem": {
+        "id": "investida-selvagem",
+        "name": "Investida Selvagem",
+        "type": "NET",
+        "damage": 40,
+        "energy": 20,
+        "elements": [
+          "Colossal",
+          "Éter"
+        ],
+        "element": "Colossal, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "O usuário avança contra o inimigo com força bruta.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "jato-gasoso": {
+        "id": "jato-gasoso",
+        "name": "Jato Gasoso",
+        "type": "OFS",
+        "damage": 20,
+        "energy": 25,
+        "elements": [
+          "Abissal"
+        ],
+        "element": "Abissal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "lanca-de-chamas": {
+        "id": "lanca-de-chamas",
+        "name": "Lança de Chamas",
+        "type": "NET",
+        "damage": 20,
+        "energy": 25,
+        "elements": [
+          "Ígnea"
+        ],
+        "element": "Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "lustro-de-folhas": {
+        "id": "lustro-de-folhas",
+        "name": "Lustro de Folhas",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Vital",
+          "Éter"
+        ],
+        "element": "Vital, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "O Datamon convoca folhas próximas e as entrelaça ao redor do próprio corpo, formando um manto natural que reflete energia elemental e amortece impactos mágicos.\nEfeito: Aumenta a Defesa Especial do Usuário por 3 turnos. Enquanto o efeito estiver ativo, qualquer ataque físico bem-sucedido destrói o manto, encerrando o efeito imediatamente.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "manto-espectral": {
+        "id": "manto-espectral",
+        "name": "Manto Espectral",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 50,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "manto-metalico": {
+        "id": "manto-metalico",
+        "name": "Manto Metálico",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Éter",
+          "Colossal"
+        ],
+        "element": "Éter, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "maldade-lunar": {
+        "id": "maldade-lunar",
+        "name": "Maldade Lunar",
+        "type": "OFS",
+        "damage": 30,
+        "energy": 50,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "mare-de-lama": {
+        "id": "mare-de-lama",
+        "name": "Maré de Lama",
+        "type": "EFT",
+        "damage": 20,
+        "energy": 40,
+        "elements": [
+          "Vital",
+          "Abissal"
+        ],
+        "element": "Vital, Abissal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "martelo-geologico": {
+        "id": "martelo-geologico",
+        "name": "Martelo Geológico",
+        "type": "NEH",
+        "damage": 85,
+        "energy": 65,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um soco brutal carregado de força tectônica que pode diminuir a velocidade do oponente.\nEfeito: 30% de chance de reduzir a Velocidade (-1 estágio).",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "martelo-terrestre": {
+        "id": "martelo-terrestre",
+        "name": "Martelo terrestre",
+        "type": "OFS",
+        "damage": 95,
+        "energy": 80,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "mordida-de-feras": {
+        "id": "mordida-de-feras",
+        "name": "Mordida de Feras",
+        "type": "NEH",
+        "damage": 50,
+        "energy": 30,
+        "elements": [
+          "Umbral",
+          "Colossal"
+        ],
+        "element": "Umbral, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "Uma mordida feroz para ferir e intimidar.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "menemenema": {
+        "id": "menemenema",
+        "name": "Menemenema",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "O Datamon libera uma energia venenosa distorcida que contamina o fluxo vital do alvo, corrompendo efeitos restaurativos e transformando cura em sofrimento.\nEfeito: Causa dano especial do tipo Veneno e aplica Inversão Vital por 3 turnos. Enquanto o efeito estiver ativo, qualquer efeito de cura ou item restaurativo usado pelo alvo passa a causar dano equivalente ao valor que seria curado. (Item de remoção de envenenamento cura este Efeito)",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "natureza-miseravel": {
+        "id": "natureza-miseravel",
+        "name": "Natureza miserável",
+        "type": "HIB",
+        "damage": 35,
+        "energy": 60,
+        "elements": [
+          "Umbral",
+          "Vital"
+        ],
+        "element": "Umbral, Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "nebulosa-envenenada": {
+        "id": "nebulosa-envenenada",
+        "name": "Nebulosa Envenenada",
+        "type": "EFT",
+        "damage": 10,
+        "energy": 45,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "nocturnal-migue": {
+        "id": "nocturnal-migue",
+        "name": "Nocturnal Migue",
+        "type": "NEH",
+        "damage": 24,
+        "energy": 20,
+        "elements": [
+          "Tempestade",
+          "Éter"
+        ],
+        "element": "Tempestade, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um truque sorrateiro realizado à noite, onde o DataMon libera uma descarga elétrica súbita enquanto se esconde nas sombras, pegando o oponente desprevenido.\nEfeito: O adversário fica temporariamente paralisado por 1d10 turnos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "onda-sonora": {
+        "id": "onda-sonora",
+        "name": "Onda Sonora",
+        "type": "NET",
+        "damage": 20,
+        "energy": 45,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "pancada-sombria": {
+        "id": "pancada-sombria",
+        "name": "Pancada Sombria",
+        "type": "NEH",
+        "damage": 45,
+        "energy": 25,
+        "elements": [
+          "Umbral",
+          "Éter"
+        ],
+        "element": "Umbral, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um ataque rápido que deixa um rastro de sombras.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "pesadelo-profundo": {
+        "id": "pesadelo-profundo",
+        "name": "Pesadelo Profundo",
+        "type": "HIB",
+        "damage": 20,
+        "energy": 40,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "pele-rochosa": {
+        "id": "pele-rochosa",
+        "name": "Pele Rochosa",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "pisoteio-bravador": {
+        "id": "pisoteio-bravador",
+        "name": "Pisoteio Bravador",
+        "type": "OFS",
+        "damage": 40,
+        "energy": 60,
+        "elements": [
+          "Éter",
+          "Ígnea"
+        ],
+        "element": "Éter, Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "po-lunar": {
+        "id": "po-lunar",
+        "name": "Pó lunar",
+        "type": "NEH",
+        "damage": 0,
+        "energy": 60,
+        "elements": [
+          "Astral",
+          "Umbral"
+        ],
+        "element": "Astral, Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "Uma leve brisa cheia do pó da lua.\nEfeito: Transforma o peso do adversário em dano, sendo PP 1d5, P 1d10, M 1d20, G 1d40, GG 1d80, XGG 1d180.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "poco-de-nectar": {
+        "id": "poco-de-nectar",
+        "name": "Poço de Néctar",
+        "type": "OFS",
+        "damage": 50,
+        "energy": 45,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "polen-ilusorio": {
+        "id": "polen-ilusorio",
+        "name": "Pólen Ilusório",
+        "type": "NEH",
+        "damage": 55,
+        "energy": 40,
+        "elements": [
+          "Vital",
+          "Umbral"
+        ],
+        "element": "Vital, Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "Lança um pólen psíquico no inimigo, podendo deixá-lo confuso.\nEfeito: 40% de chance de causar Confusão.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "presa-corrosiva": {
+        "id": "presa-corrosiva",
+        "name": "Presa Corrosiva",
+        "type": "NEH",
+        "damage": 60,
+        "energy": 45,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "Mordida tóxica que pode reduzir a Defesa e causar envenenamento.\nEfeito: 30% de chance de reduzir a Defesa (-1 estágio) e 20% de chance de envenenar.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "presa-gelida": {
+        "id": "presa-gelida",
+        "name": "Presa Gélida",
+        "type": "NEH",
+        "damage": 45,
+        "energy": 25,
+        "elements": [
+          "Geada",
+          "Éter"
+        ],
+        "element": "Geada, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "O usuário morde o inimigo com presas congelantes.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "punho-da-gloria": {
+        "id": "punho-da-gloria",
+        "name": "Punho da Glória",
+        "type": "OFS",
+        "damage": 50,
+        "energy": 60,
+        "elements": [
+          "Colossal"
+        ],
+        "element": "Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "punho-venenoso": {
+        "id": "punho-venenoso",
+        "name": "Punho Venenoso",
+        "type": "EFT",
+        "damage": 20,
+        "energy": 25,
+        "elements": [
+          "Éter",
+          "Umbral"
+        ],
+        "element": "Éter, Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "queimadura-celeste": {
+        "id": "queimadura-celeste",
+        "name": "Queimadura Celeste",
+        "type": "HIB",
+        "damage": 75,
+        "energy": 65,
+        "elements": [
+          "Ígnea",
+          "Astral"
+        ],
+        "element": "Ígnea, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "raiz-protetora": {
+        "id": "raiz-protetora",
+        "name": "Raiz Protetora",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 90,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "raio-da-desolacao": {
+        "id": "raio-da-desolacao",
+        "name": "Raio da Desolação",
+        "type": "EFT",
+        "damage": 25,
+        "energy": 65,
+        "elements": [
+          "Tempestade"
+        ],
+        "element": "Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "raizes-da-decadencia": {
+        "id": "raizes-da-decadencia",
+        "name": "Raízes da Decadência",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 50,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rajada-aerea": {
+        "id": "rajada-aerea",
+        "name": "Rajada Aérea",
+        "type": "NET",
+        "damage": 20,
+        "energy": 25,
+        "elements": [
+          "Halo"
+        ],
+        "element": "Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rajada-de-poeira": {
+        "id": "rajada-de-poeira",
+        "name": "Rajada de Poeira",
+        "type": "NET",
+        "damage": 36,
+        "energy": 15,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rastro-de-fumaca": {
+        "id": "rastro-de-fumaca",
+        "name": "Rastro de Fumaça",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 25,
+        "elements": [
+          "Abissal"
+        ],
+        "element": "Abissal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "ressonancia-ancia": {
+        "id": "ressonancia-ancia",
+        "name": "Ressonância Anciã",
+        "type": "EFT",
+        "damage": 15,
+        "energy": 30,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "roubar-habilidade": {
+        "id": "roubar-habilidade",
+        "name": "Roubar Habilidade",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Umbral",
+          "Éter"
+        ],
+        "element": "Umbral, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Com astúcia e sombras, o DataMon imita os movimentos do inimigo e assume temporariamente uma de suas técnicas.\nEfeito: Você rouba uma habilidade do DataMon adversário e pode usá-la por 1 turno.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rugido-celestial": {
+        "id": "rugido-celestial",
+        "name": "Rugido Celestial",
+        "type": "NEH",
+        "damage": 65,
+        "energy": 40,
+        "elements": [
+          "Tempestade",
+          "Halo"
+        ],
+        "element": "Tempestade, Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "Emite um rugido ensurdecedor que causa dano e reduz o Ataque Especial do oponente.\nEfeito: Reduz o Sp. Atk do alvo (-1 estágio).",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rugido-de-vitoria": {
+        "id": "rugido-de-vitoria",
+        "name": "Rugido de Vitória",
+        "type": "NEH",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Halo",
+          "Éter"
+        ],
+        "element": "Halo, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "O datamon solta um uivo poderoso que inspira aliados e intimida inimigos.\nEfeito: Aumenta o Ataque e a Defesa de aliados em 1 estágio e reduz o Ataque dos inimigos próximos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rugido-primordial": {
+        "id": "rugido-primordial",
+        "name": "Rugido primordial",
+        "type": "DEF",
+        "damage": 10,
+        "energy": 40,
+        "elements": [
+          "Colossal",
+          "Astral"
+        ],
+        "element": "Colossal, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "rugido-elemental": {
+        "id": "rugido-elemental",
+        "name": "Rugido Elemental",
+        "type": "OFS",
+        "damage": 40,
+        "energy": 50,
+        "elements": [
+          "Éter",
+          "Ígnea"
+        ],
+        "element": "Éter, Ígnea",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "salto-ardente": {
+        "id": "salto-ardente",
+        "name": "Salto Ardente",
+        "type": "HIB",
+        "damage": 80,
+        "energy": 45,
+        "elements": [
+          "Ígnea",
+          "Tempestade"
+        ],
+        "element": "Ígnea, Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "Ele pula com agilidade, girando no ar e liberando chamas em volta antes de aterrissar com um chute poderoso.\nEfeito: Aumenta a Velocidade em 1 estágio após o ataque.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "static-breakdance": {
+        "id": "static-breakdance",
+        "name": "Static Breakdance",
+        "type": "NEH",
+        "damage": 0,
+        "energy": 35,
+        "elements": [
+          "Tempestade",
+          "Colossal"
+        ],
+        "element": "Tempestade, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "O usuário realiza uma dança acelerada com descargas elétricas, aumentando sua velocidade momentaneamente e carregando energia para um golpe mais forte.\nEfeito: Aumenta a Velocidade do usuário em +1 e carrega eletricidade, não acumulativo. O próximo ataque do usuário do tipo Elétrico causará 50% mais dano, mas, após o ataque, sua velocidade será reduzida em -2.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "soco-rochoso": {
+        "id": "soco-rochoso",
+        "name": "Soco Rochoso",
+        "type": "OFS",
+        "damage": 50,
+        "energy": 30,
+        "elements": [
+          "Éter",
+          "Colossal"
+        ],
+        "element": "Éter, Colossal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "sugar-nectar": {
+        "id": "sugar-nectar",
+        "name": "Sugar néctar",
+        "type": "NEH",
+        "damage": 0,
+        "energy": 50,
+        "elements": [
+          "Vital",
+          "Umbral"
+        ],
+        "element": "Vital, Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "O amor pelo néctar das plantas, bebendo o doce suco da vida.\nEfeito: O datamon drena 20% da força vital do oponente.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tempo-quente": {
+        "id": "tempo-quente",
+        "name": "Tempo Quente",
+        "type": "NEH",
+        "damage": 50,
+        "energy": 60,
+        "elements": [
+          "Ígnea",
+          "Éter"
+        ],
+        "element": "Ígnea, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um golpe que aquece o ambiente ao redor, deixando o oponente exposto ao calor extremo.\nEfeito: O alvo entra no estado \"Queimando\", sofrendo dano contínuo por 3 turnos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tempestade-psiquica": {
+        "id": "tempestade-psiquica",
+        "name": "Tempestade Psíquica",
+        "type": "EFT",
+        "damage": 40,
+        "energy": 45,
+        "elements": [
+          "Tempestade",
+          "Astral"
+        ],
+        "element": "Tempestade, Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tapa-molhado": {
+        "id": "tapa-molhado",
+        "name": "Tapa molhado",
+        "type": "NET",
+        "damage": 10,
+        "energy": 5,
+        "elements": [
+          "Abissal",
+          "Éter"
+        ],
+        "element": "Abissal, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "Desfere um golpe úmido contra o alvo.\nEfeito: O oponente fica com status de MOLHADO por 4 turnos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tiros-disparados": {
+        "id": "tiros-disparados",
+        "name": "Tiros disparados",
+        "type": "NET",
+        "damage": 15,
+        "energy": 40,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "toque-de-ferrugem": {
+        "id": "toque-de-ferrugem",
+        "name": "Toque de Ferrugem",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 45,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tornado-de-nectar": {
+        "id": "tornado-de-nectar",
+        "name": "Tornado de Néctar",
+        "type": "NEH",
+        "damage": 35,
+        "energy": 50,
+        "elements": [
+          "Vital",
+          "Tempestade"
+        ],
+        "element": "Vital, Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um tornado de néctar que afeta todos os inimigos no campo.\nEfeito: Causa dano a todos os inimigos e reduz a precisão deles.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tornado-estatico": {
+        "id": "tornado-estatico",
+        "name": "Tornado Estático",
+        "type": "NEH",
+        "damage": 75,
+        "energy": 55,
+        "elements": [
+          "Tempestade"
+        ],
+        "element": "Tempestade",
+        "accuracy": 0,
+        "range": "",
+        "description": "Uma rajada de vento eletrificado envolve o oponente e pode paralisá-lo.\nEfeito: 20% de chance de paralisar o alvo.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "tornado-venenoso": {
+        "id": "tornado-venenoso",
+        "name": "Tornado venenoso",
+        "type": "EFT",
+        "damage": 15,
+        "energy": 50,
+        "elements": [
+          "Umbral"
+        ],
+        "element": "Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "torrente-de-ambar": {
+        "id": "torrente-de-ambar",
+        "name": "Torrente de âmbar",
+        "type": "NET",
+        "damage": 10,
+        "energy": 10,
+        "elements": [
+          "Vital"
+        ],
+        "element": "Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "veneno-asfixiante": {
+        "id": "veneno-asfixiante",
+        "name": "Veneno Asfixiante",
+        "type": "HIB",
+        "damage": 40,
+        "energy": 35,
+        "elements": [
+          "Ígnea",
+          "Vital"
+        ],
+        "element": "Ígnea, Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "vento-cortante": {
+        "id": "vento-cortante",
+        "name": "Vento Cortante",
+        "type": "OFS",
+        "damage": 25,
+        "energy": 20,
+        "elements": [
+          "Halo",
+          "Éter"
+        ],
+        "element": "Halo, Éter",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "veu-do-pantano": {
+        "id": "veu-do-pantano",
+        "name": "Véu do Pântano",
+        "type": "DEF",
+        "damage": 0,
+        "energy": 30,
+        "elements": [
+          "Abissal"
+        ],
+        "element": "Abissal",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "veu-sonoro": {
+        "id": "veu-sonoro",
+        "name": "Véu Sonoro",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 40,
+        "elements": [
+          "Astral"
+        ],
+        "element": "Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "vibracao-harmonica": {
+        "id": "vibracao-harmonica",
+        "name": "Vibração Harmônica",
+        "type": "EFT",
+        "damage": 0,
+        "energy": 55,
+        "elements": [
+          "Astral"
+        ],
+        "element": "Astral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "visao-infernal": {
+        "id": "visao-infernal",
+        "name": "Visão Infernal",
+        "type": "NEH",
+        "damage": 20,
+        "energy": 60,
+        "elements": [
+          "Umbral",
+          "Vital"
+        ],
+        "element": "Umbral, Vital",
+        "accuracy": 0,
+        "range": "",
+        "description": "Um olhar aterrorizante que paralisa e drena energia.\nEfeito: Causa paralisia e drena 10 de energia do inimigo por 3 turnos.",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "voo-determinado": {
+        "id": "voo-determinado",
+        "name": "Voo determinado",
+        "type": "OFS",
+        "damage": 30,
+        "energy": 45,
+        "elements": [
+          "Halo"
+        ],
+        "element": "Halo",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "vortice-espiritual": {
+        "id": "vortice-espiritual",
+        "name": "Vórtice Espiritual",
+        "type": "HIB",
+        "damage": 60,
+        "energy": 40,
+        "elements": [
+          "Tempestade",
+          "Umbral"
+        ],
+        "element": "Tempestade, Umbral",
+        "accuracy": 0,
+        "range": "",
+        "description": "",
+        "effects": [],
+        "tags": [],
+        "saveVersion": 2
+      },
+      "grunhir": {
+        "id": "grunhir",
+        "name": "Grunhir",
+        "type": "NET",
+        "damage": 0,
+        "energy": 15,
+        "elements": [
+          "Éter"
+        ],
+        "element": "Éter",
+        "accuracy": 30,
+        "range": "5m",
+        "description": "Um grunhido imbuído pela energia Relia pura, causando um medo em seu oponente. Só é eficaz em Relians de nível abaixo ao do Relian que usa este movimento.",
+        "effects": [
+          "Reduz a precisão",
+          "Reduz a iniciativa (vel)"
+        ],
+        "tags": [
+          "efeito",
+          "auditivo"
+        ],
+        "saveVersion": 2
+      }
+    },
+    "storySheets": [],
+    "savedRelianSheets": [
+      {
+        "id": "ficha-mshnko5q-wjt7",
+        "speciesId": "nezhaspyro",
+        "speciesName": "Nezhaspyro",
+        "nickname": "Nezhaspyro",
+        "level": 10,
+        "color": "shiny",
+        "rarity": "comum",
+        "gender": "Fêmea",
+        "size": "P",
+        "hpCurrent": 85,
+        "hpMax": 85,
+        "engCurrent": 75,
+        "engMax": 75,
+        "affinity": 2,
+        "traitId": "intuitivo",
+        "attributes": {
+          "ataque": 26,
+          "defesa": 18,
+          "velocidade": -2,
+          "ataqueEspecial": 15,
+          "defesaEspecial": 34,
+          "precisao": 22
+        },
+        "attributeReducers": {
+          "ataque": 0,
+          "defesa": 0,
+          "velocidade": 0,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 0,
+          "precisao": 0
+        },
+        "moves": [
+          "golpear"
+        ],
+        "activeElements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "createdAt": "2026-08-06T15:10:36.110Z",
+        "saveVersion": 2,
+        "originalTrainer": "",
+        "items": [],
+        "attrs": {},
+        "notes": ""
+      },
+      {
+        "id": "relian-importado-mshsdkzw",
+        "speciesId": "nezhaspyro",
+        "speciesName": "Nezhaspyro",
+        "nickname": "Nezhaspyro",
+        "level": 10,
+        "color": "shiny",
+        "rarity": "comum",
+        "gender": "Fêmea",
+        "size": "P",
+        "hpCurrent": 85,
+        "hpMax": 85,
+        "engCurrent": 75,
+        "engMax": 75,
+        "affinity": 2,
+        "traitId": "intuitivo",
+        "attributes": {
+          "ataque": 26,
+          "defesa": 18,
+          "velocidade": -2,
+          "ataqueEspecial": 15,
+          "defesaEspecial": 34,
+          "precisao": 22
+        },
+        "attributeReducers": {
+          "ataque": 0,
+          "defesa": 0,
+          "velocidade": 0,
+          "ataqueEspecial": 0,
+          "defesaEspecial": 0,
+          "precisao": 0
+        },
+        "moves": [
+          "golpear"
+        ],
+        "activeElements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "createdAt": "2026-08-06T15:10:36.110Z",
+        "saveVersion": 2,
+        "originalTrainer": "",
+        "items": [],
+        "attrs": {},
+        "notes": ""
+      }
+    ],
+    "relians": [
+      {
+        "id": "porppge",
+        "catalogNumber": 15,
+        "name": "Porppge",
+        "class": "",
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "elements": [
+          "Éter"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "images": {
+          "basic": "porppge.png",
+          "shiny": "shiny.png",
+          "special": "especial.png"
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P"
+        ],
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 8,
+            "moveId": "passo-etereo"
+          },
+          {
+            "level": 15,
+            "moveId": "choque-etereo"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 10,
+            "maxLevel": 18,
+            "weight": 50
+          }
+        ],
+        "description": "",
+        "evolvesFrom": "",
+        "evolvesTo": "loppypor",
+        "evolutionMethod": "",
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "loppypor"
+        ]
+      },
+      {
+        "id": "catierbee",
+        "catalogNumber": 17,
+        "name": "Catierbee",
+        "description": "",
+        "class": "NET",
+        "elements": [
+          "Éter"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "catierbee.png",
+          "shiny": "catierbee-s.png",
+          "special": "caiterbee-e.png"
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P"
+        ],
+        "traitIds": [],
+        "evolvesFrom": "",
+        "evolvesTo": "gatabuss",
+        "evolutionMethod": "",
+        "learnset": [],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 14,
+            "maxLevel": 20,
+            "weight": 13
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "gatabuss"
+        ]
+      },
+      {
+        "id": "loppypor",
+        "catalogNumber": 16,
+        "name": "Loppypor",
+        "description": "Loppypors possuem hábitos noturnos, preferindo fazer a busca de seus alimentos durante o período da noite enquanto sua prole descansa em sua toca.",
+        "class": "NET",
+        "elements": [
+          "Éter"
+        ],
+        "stage": 2,
+        "baseEnergy": 80,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "M"
+        ],
+        "evolvesFrom": "porppge",
+        "evolvesTo": "",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "noite"
+            ],
+            "minLevel": 22,
+            "maxLevel": 35,
+            "weight": 25
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "noite"
+            ],
+            "minLevel": 22,
+            "maxLevel": 35,
+            "weight": 25
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "catierai",
+        "catalogNumber": 18,
+        "name": "Catierai",
+        "description": "Após uma Catierbee entrar em contato com a rocha chamada \"Espada do Herói\", ele evolui para Catierai, sua forma ofensiva. Catierais costumam andar sozinhos por regiões montanhosas em busca de aprimorar sua resistência. Alguns dizem que o mesmo é um exímio caçador solitário, possuindo uma forte determinação e altruísmo, sempre salvando viajantes perdidos aos arredores.",
+        "class": "OFS",
+        "elements": [
+          "Éter",
+          "Geada"
+        ],
+        "stage": 2,
+        "baseEnergy": 70,
+        "rarity": "raro",
+        "captureRate": 20,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "catierai_b.png",
+          "shiny": "catierai_s.png",
+          "special": "catierai_e.png"
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "G"
+        ],
+        "evolvesFrom": "",
+        "evolvesTo": "",
+        "evolutionMethod": "Item",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "montanhas-de-lumen",
+            "biome": "picos-nevados",
+            "periods": [
+              "madrugada"
+            ],
+            "minLevel": 30,
+            "maxLevel": 55,
+            "weight": 50
+          },
+          {
+            "region": "montanhas-de-lumen",
+            "biome": "ruinas",
+            "periods": [
+              "tarde"
+            ],
+            "minLevel": 30,
+            "maxLevel": 55,
+            "weight": 50
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "A",
+        "evolvesToMany": []
+      },
+      {
+        "id": "lihtoffle",
+        "catalogNumber": 1,
+        "name": "Lihtoffle",
+        "description": "Lihtoffle é a lagarta da folha, costumam passar grande parte de seu tempo comendo folhas para que possa passar para seu próximo estágio da vida.\n\nLihtoffles adoram comer as folhas mais verdes antes de subir para o topo das árvores que vivem e se esconderem, sendo vistos raramente no chão devido a temerem seus predadores.",
+        "class": "EFT",
+        "elements": [
+          "Éter",
+          "Vital"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "PP",
+          "P"
+        ],
+        "evolvesFrom": "",
+        "evolvesTo": "lihtobrux",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 5,
+            "moveId": "chicote-de-seda"
+          },
+          {
+            "level": 10,
+            "moveId": "aroma-doce"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "noite"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [
+          "Umbral",
+          "Vital"
+        ],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "lihtobrux"
+        ]
+      },
+      {
+        "id": "lihtobrux",
+        "catalogNumber": 2,
+        "name": "Lihtobrux",
+        "description": "Após Lihtoffle comer o suficiente, ele escolhe as folhas mais resistentes e limpas que encontrar para que assim possa fazer seu casulo para passar pela metamorfose que o transformará em seu estágio final.\n\nApós chegar neste estado, Lihtobrux’s ficam escondidos nas copas das árvores repousando para não gastar tanta energia.",
+        "class": "EFT",
+        "elements": [
+          "Éter",
+          "Vital"
+        ],
+        "stage": 1,
+        "baseEnergy": 70,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M"
+        ],
+        "evolvesFrom": "lihtoffle",
+        "evolvesTo": "maginflora",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 16,
+            "maxLevel": 24,
+            "weight": 70
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [
+          "Umbral",
+          "Vital"
+        ],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "maginflora"
+        ]
+      },
+      {
+        "id": "maginflora",
+        "catalogNumber": 3,
+        "name": "Maginflora",
+        "description": "A bruxa da floresta. Maginflora é um Relian que após seu tempo em seu casulo meditando e absorvendo a energia Relia, ela se torna por fim é Maginflora. Com suas mais novas habilidades, ela passa a proteger a floresta de ameaças que possa afetar seu habitat.",
+        "class": "EFT",
+        "elements": [
+          "Astral",
+          "Vital"
+        ],
+        "stage": 3,
+        "baseEnergy": 80,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "lihtobrux",
+        "evolvesTo": "",
+        "evolutionMethod": "Nível, Item",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 1,
+            "moveId": "vento-cortante"
+          },
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "noite"
+            ],
+            "minLevel": 33,
+            "maxLevel": 45,
+            "weight": 68
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [
+          "Umbral",
+          "Vital"
+        ],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "aquecko",
+        "catalogNumber": 4,
+        "name": "Aquecko",
+        "description": "",
+        "class": "",
+        "elements": [
+          "Abissal"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "",
+        "evolvesTo": "aqualoudo",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "aqualoudo"
+        ]
+      },
+      {
+        "id": "aqualoudo",
+        "catalogNumber": 5,
+        "name": "Aqualoudo",
+        "description": "",
+        "class": "DEF",
+        "elements": [
+          "Abissal"
+        ],
+        "stage": 2,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "aquecko",
+        "evolvesTo": "draquecko",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "draquecko"
+        ]
+      },
+      {
+        "id": "draquecko",
+        "catalogNumber": 6,
+        "name": "Draquecko",
+        "description": "",
+        "class": "DEF",
+        "elements": [
+          "Abissal",
+          "Umbral"
+        ],
+        "stage": 3,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "aqualoudo",
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "chibom",
+        "catalogNumber": 7,
+        "name": "Chibom",
+        "description": "",
+        "class": "OFS",
+        "elements": [
+          "Ígnea"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "",
+        "evolvesTo": "incenderus",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "incenderus"
+        ]
+      },
+      {
+        "id": "incenderus",
+        "catalogNumber": 8,
+        "name": "Incenderus",
+        "description": "",
+        "class": "OFS",
+        "elements": [
+          "Ígnea"
+        ],
+        "stage": 2,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "chibom",
+        "evolvesTo": "nezhaspyro",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "nezhaspyro"
+        ]
+      },
+      {
+        "id": "nezhaspyro",
+        "catalogNumber": 9,
+        "name": "Nezhaspyro",
+        "description": "",
+        "class": "OFS",
+        "elements": [
+          "Ígnea",
+          "Colossal"
+        ],
+        "stage": 3,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "incenderus",
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "ernaldes",
+        "catalogNumber": 10,
+        "name": "Ernaldes",
+        "description": "Um Relian peculiar, não se sabe muito sobre está pequena criatura cujo esconde sua cabeça em algo metálico que lembra um balde.\n\nErnaldes costumam viver próximos a florestas de cogumelos gigantes, alguns teorizam que a coisa metálica em sua cabeça, seja um cogumelo de metal.",
+        "class": "HIB",
+        "elements": [
+          "Éter"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "rarity": "raro",
+        "captureRate": 20,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "",
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "lizbravos",
+        "catalogNumber": 101,
+        "name": "Lizbravos",
+        "description": "",
+        "class": "HIB",
+        "elements": [
+          "Halo",
+          "Colossal"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "rarity": "mitico",
+        "captureRate": 2,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "GG"
+        ],
+        "evolvesFrom": "lizbaby",
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "ruinas",
+            "periods": [
+              "manha",
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 70,
+            "maxLevel": 100,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "specialElements": [
+          "Umbral",
+          "Colossal"
+        ],
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "kokpid",
+        "catalogNumber": 11,
+        "name": "Kokpid",
+        "description": "Kokpids costumam viver em pastos comendo a grama verde, fugindo para dentro de suas tocas quando se sentem ameaçados.",
+        "class": "NET",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Umbral"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "PP",
+          "P"
+        ],
+        "evolvesFrom": "",
+        "evolvesTo": "onnarachu",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 4,
+            "moveId": "amarracao"
+          },
+          {
+            "level": 8,
+            "moveId": "casulo-de-seda"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 1,
+            "maxLevel": 5,
+            "weight": 10
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 1,
+            "maxLevel": 5,
+            "weight": 10
+          }
+        ],
+        "imageDataByColor": {},
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": [
+          "onnarachu"
+        ]
+      },
+      {
+        "id": "onnarachu",
+        "catalogNumber": 12,
+        "name": "Onnarachu",
+        "description": "Após evoluir, deixa de ser a presa para se tornar o caçador. Onnarachu ganha garras e laminas potentes para cortar a casca rígida de suas presas, e defender seu território.\n\nIndivíduos da espécie costumam se juntar para duelar entre si. O mais forte costuma se tornar líder ancião da região em que vivem.",
+        "class": "OFS",
+        "elements": [
+          "Éter",
+          "Umbral"
+        ],
+        "specialElements": [
+          "Vital",
+          "Umbral"
+        ],
+        "stage": 2,
+        "baseEnergy": 80,
+        "rarity": "incomum",
+        "captureRate": 30,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M"
+        ],
+        "evolvesFrom": "kokpid",
+        "evolvesTo": "",
+        "evolutionMethod": "Evento",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 18,
+            "moveId": "garras-de-aco"
+          },
+          {
+            "level": 18,
+            "moveId": "golpe-metalico"
+          },
+          {
+            "level": 18,
+            "moveId": "fagulha-selvagem"
+          },
+          {
+            "level": 20,
+            "moveId": "fitas-flamejantes"
+          },
+          {
+            "level": 20,
+            "moveId": "garra-de-eclipse"
+          },
+          {
+            "level": 20,
+            "moveId": "golpe-de-gelo"
+          },
+          {
+            "level": 20,
+            "moveId": "cruz-do-guerreiro"
+          },
+          {
+            "level": 22,
+            "moveId": "furia-berseker"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 20,
+            "maxLevel": 40,
+            "weight": 28
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 20,
+            "maxLevel": 40,
+            "weight": 28
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "ruinas",
+            "periods": [
+              "manha",
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 20,
+            "maxLevel": 40,
+            "weight": 28
+          }
+        ],
+        "imageDataByColor": {},
+        "saveVersion": 2,
+        "catalogVariant": "",
+        "evolvesToMany": []
+      },
+      {
+        "id": "gatabuss",
+        "catalogNumber": 18,
+        "name": "Gatabuss",
+        "description": "Quando uma Catierbee entra em contato com uma Magic Orb, ela absorve toda aquela energia mágica que a Orb emana, assim se tornando Gatabuss.\n\nGatabuss costumam buscar por regiões que possuam uma alta concentração de Energia Relia para se tornar mais fortes.",
+        "class": "EFT",
+        "elements": [
+          "Éter",
+          "Astral"
+        ],
+        "specialElements": [
+          "Tempestade",
+          "Astral"
+        ],
+        "stage": 2,
+        "baseEnergy": 70,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "catierbee",
+        "evolvesTo": "",
+        "evolutionMethod": "Item",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "abismo-de-nox",
+            "biome": "ruinas-astrais",
+            "periods": [
+              "noite",
+              "madrugada"
+            ],
+            "minLevel": 30,
+            "maxLevel": 50,
+            "weight": 10
+          },
+          {
+            "region": "bosque-luminescente",
+            "biome": "caverna-de-eter",
+            "periods": [
+              "tarde",
+              "madrugada"
+            ],
+            "minLevel": 30,
+            "maxLevel": 50,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {},
+        "catalogVariant": "B",
+        "evolvesToMany": []
+      },
+      {
+        "id": "seredige",
+        "catalogNumber": 13,
+        "catalogVariant": "",
+        "name": "Seredige",
+        "description": "",
+        "class": "NET",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Éter"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [
+          "bigsmoquil"
+        ],
+        "evolvesTo": "bigsmoquil",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 5,
+            "maxLevel": 10,
+            "weight": 25
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "bigsmoquil",
+        "catalogNumber": 14,
+        "catalogVariant": "",
+        "name": "Bigsmoquil",
+        "description": "",
+        "class": "DEF",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Éter",
+          "Umbral"
+        ],
+        "stage": 2,
+        "baseEnergy": 80,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "M"
+        ],
+        "evolvesFrom": "seredige",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "dendelimp",
+        "catalogNumber": 19,
+        "catalogVariant": "",
+        "name": "Dendelimp",
+        "description": "Um ser pequeno com uma grande convulsividade por limpeza. Após encontrar um local ideal para tornar o seu lar, Dendelimp costuma fazer uma grande limpeza tirando impurezas ou coisas que considera sujeira de dentro de sua toca que comumente são feitas em áreas de rocha ou em arvores. As vezes até  disputam contra Serediges para tomar suas tocas para si.",
+        "class": "EFT",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Astral"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [
+          "dandetton"
+        ],
+        "evolvesTo": "dandetton",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 25
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "dandetton",
+        "catalogNumber": 20,
+        "catalogVariant": "",
+        "name": "Dandetton",
+        "description": "Sua aparência formosa e exuberante, vem devido a sua convulsividade por limpeza, seu pelo é tão macio e limpo que confunde chumaços de seus pelos com algodão fresquinho.\n\nEvitam entrar em brigas quando estão próximos a épocas de acasalamentos, pois os Machos exibem seus pelos exuberantes para as fêmeas na tentativa de atrair elas, o pelo mais limpo e mais brilhoso costuma chamar amais atenção.",
+        "class": "EFT",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Astral"
+        ],
+        "stage": 2,
+        "baseEnergy": 80,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "M"
+        ],
+        "evolvesFrom": "dendelimp",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "manha",
+              "tarde"
+            ],
+            "minLevel": 20,
+            "maxLevel": 40,
+            "weight": 25
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "lizbaby",
+        "catalogNumber": 100,
+        "catalogVariant": "",
+        "name": "Lizbaby",
+        "description": "Após tempos de estudos, foi descoberto que a grande fera mítica Lizbravos possuía um pre-estagio. O choque da descoberta fez com que os cientistas buscassem entender quais outras feras cósmicas possuíssem essa dadiva.",
+        "class": "NET",
+        "elements": [
+          "Halo"
+        ],
+        "specialElements": [
+          "Umbral"
+        ],
+        "stage": 1,
+        "baseEnergy": 70,
+        "rarity": "mitico",
+        "captureRate": 2,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [
+          "lizbravos"
+        ],
+        "evolvesTo": "lizbravos",
+        "evolutionMethod": "evento",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      }
+    ],
+    "saveVersion": 2
+  }
+}

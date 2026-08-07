@@ -1,0 +1,62 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "bigsmoquil",
+  "catalogNumber": 14,
+  "numeroCatalogo": 14,
+  "reliInfo": 14,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "014",
+  "nome": "Bigsmoquil",
+  "descricao": "",
+  "classe": "DEF",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [
+    "Éter",
+    "Umbral"
+  ],
+  "estagio": 2,
+  "energiaBase": 80,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "M"
+  ],
+  "evoluiDe": "seredige",
+  "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

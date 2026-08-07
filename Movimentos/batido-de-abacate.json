@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "batido-de-abacate",
   "nome": "Batido de abacate",
   "tipo": "NEH",
+  "elementos": [
+    "Vital",
+    "Éter"
+  ],
+  "elemento": "Vital, Éter",
   "dano": 0,
   "energia": 40,
-  "elemento": "Vital / Éter",
-  "descricao": "Rouba a energia do datamon oponente, preenchendo sua própria energia.\nEfeito: Rouba 40% da energia do oponente, revitalizando sua energia própria."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Rouba a energia do datamon oponente, preenchendo sua própria energia.\nEfeito: Rouba 40% da energia do oponente, revitalizando sua energia própria.",
+  "efeitos": [],
+  "tags": []
 }

@@ -39,6 +39,8 @@
   ],
   "evoluiDe": "kokpid",
   "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
   "metodoEvolucao": "Evento",
   "tracos": [],
   "movimentos": [

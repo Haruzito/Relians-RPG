@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "rugido-celestial",
   "nome": "Rugido Celestial",
   "tipo": "NEH",
+  "elementos": [
+    "Tempestade",
+    "Halo"
+  ],
+  "elemento": "Tempestade, Halo",
   "dano": 65,
   "energia": 40,
-  "elemento": "Tempestade / Halo",
-  "descricao": "Emite um rugido ensurdecedor que causa dano e reduz o Ataque Especial do oponente.\nEfeito: Reduz o Sp. Atk do alvo (-1 estágio)."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Emite um rugido ensurdecedor que causa dano e reduz o Ataque Especial do oponente.\nEfeito: Reduz o Sp. Atk do alvo (-1 estágio).",
+  "efeitos": [],
+  "tags": []
 }

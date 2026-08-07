@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "chamas-guerreiras",
   "nome": "Chamas Guerreiras",
   "tipo": "NEH",
+  "elementos": [
+    "Ígnea",
+    "Halo"
+  ],
+  "elemento": "Ígnea, Halo",
   "dano": 75,
   "energia": 50,
-  "elemento": "Ígnea / Halo",
-  "descricao": "Taturá envolve seus punhos em chamas intensas e desfere um golpe poderoso.\nEfeito: Aumenta o Ataque em 1 estágio ao acertar o golpe."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Taturá envolve seus punhos em chamas intensas e desfere um golpe poderoso.\nEfeito: Aumenta o Ataque em 1 estágio ao acertar o golpe.",
+  "efeitos": [],
+  "tags": []
 }

@@ -1,0 +1,65 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "dendelimp",
+  "catalogNumber": 19,
+  "numeroCatalogo": 19,
+  "reliInfo": 19,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "019",
+  "nome": "Dendelimp",
+  "descricao": "Um ser pequeno com uma grande convulsividade por limpeza. Após encontrar um local ideal para tornar o seu lar, Dendelimp costuma fazer uma grande limpeza tirando impurezas ou coisas que considera sujeira de dentro de sua toca que comumente são feitas em áreas de rocha ou em arvores. As vezes até  disputam contra Serediges para tomar suas tocas para si.",
+  "classe": "EFT",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [
+    "Astral"
+  ],
+  "estagio": 1,
+  "energiaBase": 60,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "dandetton",
+  "evoluiParaMultiplas": [
+    "dandetton"
+  ],
+  "evolvesToMany": [
+    "dandetton"
+  ],
+  "metodoEvolucao": "Nível",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 25
+    }
+  ]
+}

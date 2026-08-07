@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "torre-dos-ecos",
   "nome": "Torre dos Ecos",
-  "elementos": [
-    "Éter",
-    "Astral"
-  ]
+  "biomas": []
 }

@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "escudo-do-caos",
   "nome": "Escudo do Caos",
   "tipo": "EFT",
+  "elementos": [
+    "Umbral",
+    "Tempestade"
+  ],
+  "elemento": "Umbral, Tempestade",
   "dano": 0,
   "energia": 55,
-  "elemento": "Umbral / Tempestade",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

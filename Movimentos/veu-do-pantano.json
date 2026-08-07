@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "veu-do-pantano",
   "nome": "Véu do Pântano",
   "tipo": "DEF",
+  "elementos": [
+    "Abissal"
+  ],
+  "elemento": "Abissal",
   "dano": 0,
   "energia": 30,
-  "elemento": "Abissal",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

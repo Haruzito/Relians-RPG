@@ -1,0 +1,57 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "dandetton",
+  "catalogNumber": 20,
+  "numeroCatalogo": 20,
+  "reliInfo": 20,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "020",
+  "nome": "Dandetton",
+  "descricao": "Sua aparência formosa e exuberante, vem devido a sua convulsividade por limpeza, seu pelo é tão macio e limpo que confunde chumaços de seus pelos com algodão fresquinho.\n\nEvitam entrar em brigas quando estão próximos a épocas de acasalamentos, pois os Machos exibem seus pelos exuberantes para as fêmeas na tentativa de atrair elas, o pelo mais limpo e mais brilhoso costuma chamar amais atenção.",
+  "classe": "EFT",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [
+    "Astral"
+  ],
+  "estagio": 2,
+  "energiaBase": 80,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "M"
+  ],
+  "evoluiDe": "dendelimp",
+  "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [],
+  "aparicoes": [
+    {
+      "regiao": "vale-lumen",
+      "bioma": "campo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 40,
+      "peso": 25
+    }
+  ]
+}

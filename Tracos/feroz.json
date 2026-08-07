@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "feroz",
   "nome": "Feroz",
   "descricao": "Relians ferozes possuem um instinto agressivo e enfrentam desafios sem hesitação, preferindo resolver conflitos pela força.",
   "comportamento": "Tendem a intimidar outros DataMons, são impulsivos em combate e dificilmente recuam diante de um adversário.",
   "paladar": "Ardente",
-  "status": {
+  "modificadores": {
     "ataque": 5,
     "defesa": -5,
     "velocidade": 5,
     "ataqueEspecial": 0,
     "defesaEspecial": -5,
-    "precisao": 0
-  },
-  "hp": 5,
-  "eng": -5
+    "precisao": 0,
+    "hp": 5,
+    "energia": -5
+  }
 }

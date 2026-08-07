@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "chute-lunar",
   "nome": "Chute Lunar",
   "tipo": "NEH",
+  "elementos": [
+    "Halo",
+    "Éter"
+  ],
+  "elemento": "Halo, Éter",
   "dano": 40,
   "energia": 20,
-  "elemento": "Halo / Éter",
-  "descricao": "Um chute ágil imbuído de energia mágica."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um chute ágil imbuído de energia mágica.",
+  "efeitos": [],
+  "tags": []
 }

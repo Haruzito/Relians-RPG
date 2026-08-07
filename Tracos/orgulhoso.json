@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "orgulhoso",
   "nome": "Orgulhoso",
   "descricao": "Carregam uma enorme confiança em suas próprias capacidades, recusando-se a demonstrar fraqueza diante dos outros.",
   "comportamento": "Gostam de liderar, aceitam desafios com facilidade e evitam recuar, mesmo quando seria mais prudente.",
   "paladar": "Encorpado",
-  "status": {
+  "modificadores": {
     "ataque": 5,
     "defesa": -5,
     "velocidade": 0,
     "ataqueEspecial": 5,
     "defesaEspecial": -5,
-    "precisao": 0
-  },
-  "hp": 5,
-  "eng": 5
+    "precisao": 0,
+    "hp": 5,
+    "energia": 5
+  }
 }

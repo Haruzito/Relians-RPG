@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "serra-rubra",
   "nome": "Serra Rubra",
-  "elementos": [
-    "Ígnea",
-    "Colossal"
-  ]
+  "biomas": []
 }

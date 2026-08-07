@@ -37,6 +37,12 @@
   ],
   "evoluiDe": "",
   "evoluiPara": "onnarachu",
+  "evoluiParaMultiplas": [
+    "onnarachu"
+  ],
+  "evolvesToMany": [
+    "onnarachu"
+  ],
   "metodoEvolucao": "Nível",
   "tracos": [],
   "movimentos": [

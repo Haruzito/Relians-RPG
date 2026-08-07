@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "ciclone-cortante",
   "nome": "Ciclone Cortante",
   "tipo": "NEH",
+  "elementos": [
+    "Tempestade",
+    "Vital"
+  ],
+  "elemento": "Tempestade, Vital",
   "dano": 35,
   "energia": 50,
-  "elemento": "Tempestade / Vital",
-  "descricao": "Rajadas de vento velozes e afiadas atingem o inimigo, reduzindo sua precisão.\nEfeito: Tem 30% de chance de reduzir a Precisão do alvo em 1 estágio."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Rajadas de vento velozes e afiadas atingem o inimigo, reduzindo sua precisão.\nEfeito: Tem 30% de chance de reduzir a Precisão do alvo em 1 estágio.",
+  "efeitos": [],
+  "tags": []
 }

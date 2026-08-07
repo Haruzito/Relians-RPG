@@ -3,9 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "oasis-lumen",
   "nome": "Oásis Lumen",
-  "elementos": [
-    "Vital",
-    "Abissal",
-    "Halo"
-  ]
+  "biomas": []
 }

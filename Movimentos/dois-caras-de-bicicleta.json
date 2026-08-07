@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "dois-caras-de-bicicleta",
   "nome": "Dois Caras de Bicicleta",
   "tipo": "NET",
+  "elementos": [
+    "Umbral",
+    "Éter"
+  ],
+  "elemento": "Umbral, Éter",
   "dano": 0,
   "energia": 60,
-  "elemento": "Umbral / Éter",
-  "descricao": "Uma abordagem inesperada e sorrateira, inspirada em histórias urbanas de roubo misterioso. O DataMon surpreende o alvo com uma ação rápida e oportunista.\nEfeito: Rouba um item pertencente ao adversário ou ao DataMon inimigo.\n\nRole D100:\n\n1-80 = Nada acontece.\n\n81-100 = Rouba o item. 1D2 para item."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Uma abordagem inesperada e sorrateira, inspirada em histórias urbanas de roubo misterioso. O DataMon surpreende o alvo com uma ação rápida e oportunista.\nEfeito: Rouba um item pertencente ao adversário ou ao DataMon inimigo.\n\nRole D100:\n\n1-80 = Nada acontece.\n\n81-100 = Rouba o item. 1D2 para item.",
+  "efeitos": [],
+  "tags": []
 }

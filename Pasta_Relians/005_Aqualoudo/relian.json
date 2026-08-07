@@ -36,6 +36,12 @@
   ],
   "evoluiDe": "aquecko",
   "evoluiPara": "draquecko",
+  "evoluiParaMultiplas": [
+    "draquecko"
+  ],
+  "evolvesToMany": [
+    "draquecko"
+  ],
   "metodoEvolucao": "",
   "tracos": [],
   "movimentos": [

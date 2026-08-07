@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "observatorio-astral",
   "nome": "Observatório Astral",
-  "elementos": [
-    "Astral",
-    "Éter"
-  ]
+  "biomas": []
 }

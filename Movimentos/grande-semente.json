@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "grande-semente",
   "nome": "Grande semente",
   "tipo": "NET",
+  "elementos": [
+    "Vital"
+  ],
+  "elemento": "Vital",
   "dano": 10,
   "energia": 30,
-  "elemento": "Vital",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

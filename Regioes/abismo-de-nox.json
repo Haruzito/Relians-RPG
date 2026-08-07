@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "abismo-de-nox",
   "nome": "Abismo de Nox",
-  "elementos": [
-    "Umbral",
-    "Abissal"
-  ]
+  "biomas": []
 }

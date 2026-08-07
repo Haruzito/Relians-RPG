@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "estapear",
   "nome": "Estapear",
   "tipo": "NEH",
+  "elementos": [
+    "Éter"
+  ],
+  "elemento": "Éter",
   "dano": 10,
   "energia": 5,
-  "elemento": "Éter",
-  "descricao": "O DataMon acerta um tapa no inimigo, causando dano."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "O DataMon acerta um tapa no inimigo, causando dano.",
+  "efeitos": [],
+  "tags": []
 }

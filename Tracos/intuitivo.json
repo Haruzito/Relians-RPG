@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "intuitivo",
   "nome": "Intuitivo",
   "descricao": "Relians intuitivos parecem prever perigos e oportunidades antes que eles aconteçam, guiando-se mais pelo instinto do que pela lógica.",
   "comportamento": "Costumam tomar decisões rápidas, confiar em seus pressentimentos e raramente ignoram uma sensação estranha.",
   "paladar": "Refrescante",
-  "status": {
+  "modificadores": {
     "ataque": -5,
     "defesa": 0,
     "velocidade": -5,
     "ataqueEspecial": 0,
     "defesaEspecial": 5,
-    "precisao": 5
-  },
-  "hp": 5,
-  "eng": 5
+    "precisao": 5,
+    "hp": 5,
+    "energia": 5
+  }
 }

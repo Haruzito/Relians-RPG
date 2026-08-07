@@ -1,1 +1,16 @@
-{"tipoArquivo":"movimento","id":"passo-etereo","nome":"Passo Etéreo","tipo":"EFT","dano":0,"energia":8,"descricao":"Reposiciona-se com auxílio do Éter."}
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "passo-etereo",
+  "nome": "Passo Etéreo",
+  "tipo": "EFT",
+  "elementos": [],
+  "elemento": "",
+  "dano": 0,
+  "energia": 8,
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Reposiciona-se com auxílio do Éter.",
+  "efeitos": [],
+  "tags": []
+}

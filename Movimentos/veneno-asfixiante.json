@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "veneno-asfixiante",
   "nome": "Veneno Asfixiante",
   "tipo": "HIB",
+  "elementos": [
+    "Ígnea",
+    "Vital"
+  ],
+  "elemento": "Ígnea, Vital",
   "dano": 40,
   "energia": 35,
-  "elemento": "Ígnea / Vital",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

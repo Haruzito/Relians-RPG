@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "maldade-lunar",
   "nome": "Maldade Lunar",
   "tipo": "OFS",
+  "elementos": [
+    "Umbral"
+  ],
+  "elemento": "Umbral",
   "dano": 30,
   "energia": 50,
-  "elemento": "Umbral",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

@@ -34,6 +34,12 @@
   ],
   "evoluiDe": "",
   "evoluiPara": "gatabuss",
+  "evoluiParaMultiplas": [
+    "gatabuss"
+  ],
+  "evolvesToMany": [
+    "gatabuss"
+  ],
   "metodoEvolucao": "",
   "tracos": [],
   "movimentos": [],

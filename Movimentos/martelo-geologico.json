@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "martelo-geologico",
   "nome": "Martelo Geológico",
   "tipo": "NEH",
+  "elementos": [
+    "Colossal"
+  ],
+  "elemento": "Colossal",
   "dano": 85,
   "energia": 65,
-  "elemento": "Colossal",
-  "descricao": "Um soco brutal carregado de força tectônica que pode diminuir a velocidade do oponente.\nEfeito: 30% de chance de reduzir a Velocidade (-1 estágio)."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um soco brutal carregado de força tectônica que pode diminuir a velocidade do oponente.\nEfeito: 30% de chance de reduzir a Velocidade (-1 estágio).",
+  "efeitos": [],
+  "tags": []
 }

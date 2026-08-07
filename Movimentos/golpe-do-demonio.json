@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "golpe-do-demonio",
   "nome": "Golpe do Demônio",
   "tipo": "EFT",
+  "elementos": [
+    "Umbral",
+    "Ígnea"
+  ],
+  "elemento": "Umbral, Ígnea",
   "dano": 16,
   "energia": 23,
-  "elemento": "Umbral / Ígnea",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

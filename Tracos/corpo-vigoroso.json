@@ -1,0 +1,14 @@
+{
+  "kind": "trait",
+  "tipoArquivo": "traco",
+  "id": "corpo-vigoroso",
+  "nome": "Corpo Vigoroso",
+  "descricao": "Possui constituição acima da média.",
+  "comportamento": "",
+  "paladar": "",
+  "modificadores": {
+    "hp": 10,
+    "energia": 5,
+    "defesa": 2
+  }
+}

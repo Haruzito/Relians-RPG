@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "soco-rochoso",
   "nome": "Soco Rochoso",
   "tipo": "OFS",
+  "elementos": [
+    "Éter",
+    "Colossal"
+  ],
+  "elemento": "Éter, Colossal",
   "dano": 50,
   "energia": 30,
-  "elemento": "Éter / Colossal",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

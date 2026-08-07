@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "menemenema",
   "nome": "Menemenema",
   "tipo": "EFT",
+  "elementos": [
+    "Umbral"
+  ],
+  "elemento": "Umbral",
   "dano": 0,
   "energia": 40,
-  "elemento": "Umbral",
-  "descricao": "O Datamon libera uma energia venenosa distorcida que contamina o fluxo vital do alvo, corrompendo efeitos restaurativos e transformando cura em sofrimento.\nEfeito: Causa dano especial do tipo Veneno e aplica Inversão Vital por 3 turnos. Enquanto o efeito estiver ativo, qualquer efeito de cura ou item restaurativo usado pelo alvo passa a causar dano equivalente ao valor que seria curado. (Item de remoção de envenenamento cura este Efeito)"
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "O Datamon libera uma energia venenosa distorcida que contamina o fluxo vital do alvo, corrompendo efeitos restaurativos e transformando cura em sofrimento.\nEfeito: Causa dano especial do tipo Veneno e aplica Inversão Vital por 3 turnos. Enquanto o efeito estiver ativo, qualquer efeito de cura ou item restaurativo usado pelo alvo passa a causar dano equivalente ao valor que seria curado. (Item de remoção de envenenamento cura este Efeito)",
+  "efeitos": [],
+  "tags": []
 }

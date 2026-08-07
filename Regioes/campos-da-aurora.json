@@ -3,9 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "campos-da-aurora",
   "nome": "Campos da Aurora",
-  "elementos": [
-    "Halo",
-    "Astral",
-    "Geada"
-  ]
+  "biomas": []
 }

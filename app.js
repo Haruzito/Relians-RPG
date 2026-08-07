@@ -64,6 +64,12 @@ function normalizeColorId(value='basic'){
   if(raw==='shiny'||raw.includes('shiny'))return 'shiny';
   return 'basic';
 }
+function colorName(value='basic'){
+  const color=normalizeColorId(value);
+  if(color==='shiny')return 'Shiny Color';
+  if(color==='special')return 'Especial Color';
+  return 'Basic Color';
+}
 function getRelianElements(r,colorId='basic'){
   const color=normalizeColorId(colorId);
   const base=Array.isArray(r?.elements)?r.elements.filter(Boolean):[];
@@ -275,7 +281,17 @@ const defaultData={
   ]
 };
 let data=loadData();
+let selectedSavedSheetId=''; // ficha selecionada no Banco de Fichas; precisa existir antes de qualquer render/sincronização
 let linkedDirectory=null,folderSignature='',syncTimer=null;
+let folderWriteQueue=Promise.resolve(),folderWriteInProgress=false,lastFolderWriteAt=0,folderSyncDebounceTimer=null;
+
+function normalizeRarityId(value){
+  const raw=String(value||'comum').trim().toLowerCase();
+  const clean=raw.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim();
+  if(clean==='lendario especial')return 'unico';
+  if(clean==='unico')return 'unico';
+  return raw;
+}
 
 function migrateRelianRecord(raw={}){
   const normalized=normalizeRelian(raw);
@@ -307,7 +323,7 @@ function migrateSavedRelianSheet(raw={}){
     nickname:String(raw.nickname||raw.apelido||''),
     level:Math.max(1,Number(raw.level??raw.nivel??1)||1),
     color:normalizeColorId(raw.color||raw.coloracao||'basic'),
-    rarity:String(raw.rarity||raw.raridade||'comum'),
+    rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),
     originalTrainer:String(raw.originalTrainer||raw.treinadorOriginal||''),
     items:Array.isArray(raw.items)?raw.items:[],
     moves:Array.isArray(raw.moves)?raw.moves:[],
@@ -374,7 +390,7 @@ function loadData(){
     return migrateData(clone(defaultData));
   }
 }
-function saveData(){data=migrateData(data);localStorage.setItem(STORAGE_KEY,JSON.stringify(data));renderAll()}
+function saveData({sync=true}={}){data=migrateData(data);localStorage.setItem(STORAGE_KEY,JSON.stringify(data));renderAll();if(sync)queueFullFolderSync('saveData')}
 function nameOf(list,id){return list.find(x=>x.id===id)?.name||id}
 function fillSelect(select,items){const old=select.value;select.innerHTML=items.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');if(items.some(x=>x.id===old))select.value=old}
 function setupTabs(){document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');el(b.dataset.tab).classList.add('active')})}
@@ -425,14 +441,14 @@ function resolveRelianImage(r,colorId='basic'){
 }
 function resolveImage(g){return resolveRelianImage(g.r,g.color.id)}
 function resourceBox(uid,type,label,current,max){const pct=max>0?Math.max(0,Math.min(100,current/max*100)):0,icon=type==='energy'?'⚡':'♥';return `<div class="resource-box ${type==='energy'?'eng':''}" data-resource="${type}"><div class="resource-title"><span class="resource-label"><span class="resource-icon">${icon}</span>${label}</span></div><div class="resource-value"><span class="resource-current">${current}</span><span class="resource-divider">/</span><span class="resource-max">${max}</span></div><div class="resource-track"><div class="resource-fill" style="width:${pct}%"></div></div><div class="resource-controls"><button type="button" data-uid="${uid}" data-resource-action="current" data-resource="${type}" data-delta="-5">−5</button><button type="button" data-uid="${uid}" data-resource-action="current" data-resource="${type}" data-delta="-1">−1</button><button type="button" data-uid="${uid}" data-resource-action="current" data-resource="${type}" data-delta="1">+1</button><button type="button" data-uid="${uid}" data-resource-action="current" data-resource="${type}" data-delta="5">+5</button><button type="button" title="Diminuir máximo" data-uid="${uid}" data-resource-action="max" data-resource="${type}" data-delta="-1">Máx −</button><button type="button" title="Aumentar máximo" data-uid="${uid}" data-resource-action="max" data-resource="${type}" data-delta="1">Máx +</button></div></div>`}
-const RARITY_NAMES={comum:'Comum',incomum:'Incomum',raro:'Raro',lendario:'Lendário',mitico:'Mítico','lendario-especial':'Lendário Especial'};
-const RARITY_BASE={comum:40,incomum:30,raro:20,lendario:5,mitico:2,'lendario-especial':1};
+const RARITY_NAMES={comum:'Comum',incomum:'Incomum',raro:'Raro',lendario:'Lendário',mitico:'Mítico',unico:'Único'};
+const RARITY_BASE={comum:40,incomum:30,raro:20,lendario:5,mitico:2,unico:1};
 function rarityEffectHtml(rarity,scope='sheet'){
   const configs={
     raro:{symbols:['✦','•','✧'],count:14},
     lendario:{symbols:['✦','◆','✧'],count:18},
     mitico:{symbols:['✧','✦','◈'],count:20},
-    'lendario-especial':{symbols:['✦','◆','✧','◈'],count:22}
+    unico:{symbols:['✦','◆','✧','◈'],count:22}
   };
   const cfg=configs[rarity];
   if(!cfg)return'';
@@ -446,7 +462,7 @@ function rarityEffectHtml(rarity,scope='sheet'){
 }
 const CUBES={padrao:{name:'Datacubo Padrão',bonus:0},avancado:{name:'Datacubo Avançado',bonus:10},superior:{name:'Datacubo Superior',bonus:20},experimental:{name:'Datacubo Experimental',bonus:40},especializado:{name:'Datacubo Especializado',bonus:30},datacorrect:{name:'DataCorrect',bonus:25},content:{name:'Content',bonus:30},ambar:{name:'Datacubo Âmbar',bonus:25},dataprisma:{name:'DataPrisma',bonus:100}};
 function affinityMood(v){if(v<=1)return{emoji:'😠',label:'Muito irritado'};if(v<=2)return{emoji:'😐',label:'Neutro'};if(v<=3)return{emoji:'🙂',label:'Levemente feliz'};if(v<=4)return{emoji:'😄',label:'Feliz'};return{emoji:'🤩',label:'Muito feliz'}}
-function captureBreakdown(g){const hpPct=g.hp?g.currentHp/g.hp*100:100;let hpBonus=hpPct<=10?20:hpPct<=30?10:0;let cube=CUBES[g.captureCube]||CUBES.padrao;let cubeBonus=cube.bonus;if(g.captureCube==='dataprisma'&&(['lendario','mitico','lendario-especial'].includes(g.r.rarity)))cubeBonus=0;const statusBonus=g.negativeStatus?15:0,affinityBonus=g.affinity>=4.1?10:0,base=Number(g.r.captureRate??RARITY_BASE[g.r.rarity]??40);const automatic=g.captureCube==='dataprisma'&&!['lendario','mitico','lendario-especial'].includes(g.r.rarity);const total=automatic?100:Math.max(0,Math.min(100,base+cubeBonus+hpBonus+statusBonus+affinityBonus));return{base,cube,cubeBonus,hpBonus,statusBonus,affinityBonus,total,automatic,hpPct}}
+function captureBreakdown(g){const hpPct=g.hp?g.currentHp/g.hp*100:100;let hpBonus=hpPct<=10?20:hpPct<=30?10:0;let cube=CUBES[g.captureCube]||CUBES.padrao;let cubeBonus=cube.bonus;if(g.captureCube==='dataprisma'&&(['lendario','mitico','unico'].includes(g.r.rarity)))cubeBonus=0;const statusBonus=g.negativeStatus?15:0,affinityBonus=g.affinity>=4.1?10:0,base=Number(g.r.captureRate??RARITY_BASE[g.r.rarity]??40);const automatic=g.captureCube==='dataprisma'&&!['lendario','mitico','unico'].includes(g.r.rarity);const total=automatic?100:Math.max(0,Math.min(100,base+cubeBonus+hpBonus+statusBonus+affinityBonus));return{base,cube,cubeBonus,hpBonus,statusBonus,affinityBonus,total,automatic,hpPct}}
 function capturePanel(g){const c=captureBreakdown(g),m=affinityMood(g.affinity);return `<section class="sheet-section"><div class="sheet-section-title">CAPTURA E AFINIDADE</div><div class="sheet-section-content capture-panel"><div class="capture-summary"><div class="capture-chance-card"><span class="capture-card-label">CHANCE FINAL</span><b class="capture-rate">${c.total.toFixed(1)}%</b><small>Resultado necessário no 1d100</small></div><div class="affinity-display"><div class="affinity-main"><span class="affinity-emoji">${m.emoji}</span><div><b>${g.affinity.toFixed(1)} / 5,0</b><small>${m.label}</small></div></div><div class="affinity-adjustments"><span>Ajustar afinidade</span><div><button type="button" data-affinity-delta="-0.5" data-uid="${g.uid}">−0,5</button><button type="button" data-affinity-delta="-0.1" data-uid="${g.uid}">−0,1</button><button type="button" data-affinity-delta="0.1" data-uid="${g.uid}">+0,1</button><button type="button" data-affinity-delta="0.5" data-uid="${g.uid}">+0,5</button></div></div></div></div><div class="capture-controls"><label>Datacubo<select data-capture-control="cube" data-uid="${g.uid}">${Object.entries(CUBES).map(([id,x])=>`<option value="${id}" ${g.captureCube===id?'selected':''}>${x.name}</option>`).join('')}</select></label><label class="check-control"><input type="checkbox" data-capture-control="status" data-uid="${g.uid}" ${g.negativeStatus?'checked':''}> Status negativo (+15%)</label></div><div class="capture-formula"><span>Base ${c.base}%</span><span>Cubo +${c.cubeBonus}%</span><span>Vida +${c.hpBonus}%</span><span>Status +${c.statusBonus}%</span><span>Afinidade +${c.affinityBonus}%</span></div><button type="button" class="primary capture-roll-btn" data-capture-roll="1" data-uid="${g.uid}">Rolar captura (1d100)</button>${g.captureRoll!=null?`<div class="capture-result ${g.captureResult==='Capturado!'?'success':'failure'}"><b>Resultado: ${g.captureRoll}</b><span>${g.captureResult}</span></div>`:''}</div></section>`}
 const generatedState=new Map();
 function renderGenerated(g){
@@ -516,7 +532,7 @@ function catalogFilteredItems(){
   const rarity=String(el('catalogRarityFilter')?.value||'');
   const classFilter=String(el('catalogClassFilter')?.value||'');
   const sort=String(el('catalogSort')?.value||'number');
-  const rarityOrder={comum:1,incomum:2,raro:3,lendario:4,'lendario-especial':5,mitico:6};
+  const rarityOrder={comum:1,incomum:2,raro:3,lendario:4,'unico':5,mitico:6};
   const items=data.relians.filter(r=>{
     const hay=[r.name,r.id,catalogCode(r),r.catalogNumber,r.catalogVariant,...(r.elements||[]),r.class,classInfo(r.class)?.name,RARITY_NAMES[r.rarity]||r.rarity].join(' ').toLocaleLowerCase('pt-BR');
     if(q&&!hay.includes(q))return false;
@@ -735,7 +751,97 @@ function refreshEncounterSelects(){
     fillEncounterBiomeSelect(row,row.querySelector('.enc-biome').value);
   })
 }
-el('relianForm').onsubmit=async e=>{e.preventDefault();const encounterRows=[...document.querySelectorAll('.encounter-row')];if(!encounterRows.length)return alert('Adicione pelo menos uma aparição com nível mínimo e máximo.');const encounters=encounterRows.map(row=>({region:row.querySelector('.enc-region').value,biome:row.querySelector('.enc-biome').value,periods:[...row.querySelectorAll('.enc-period:checked')].map(x=>x.value),minLevel:+row.querySelector('.enc-min').value,maxLevel:+row.querySelector('.enc-max').value,weight:+row.querySelector('.enc-weight').value||1}));for(const enc of encounters){if(!enc.minLevel||!enc.maxLevel)return alert('Preencha o nível mínimo e o nível máximo de todas as aparições.');if(enc.minLevel>enc.maxLevel)return alert('O nível mínimo não pode ser maior que o nível máximo.');if(!enc.periods.length)return alert('Informe ao menos um período em cada aparição.');}const originalId=el('relianId').value;const oldRelian=data.relians.find(x=>x.id===originalId);const id=originalId||slug(el('relianName').value);const catalogNumber=normalizeCatalogNumber(el('relianCatalog').value);if(catalogNumber===null)return alert('Informe um número de catálogo válido, maior que zero.');const catalogVariant=normalizeCatalogVariant(el('relianCatalogVariant')?.value);const repeatedCatalog=data.relians.find(x=>x.id!==originalId&&normalizeCatalogNumber(x.catalogNumber)===catalogNumber&&normalizeCatalogVariant(x.catalogVariant)===catalogVariant);if(repeatedCatalog)return alert(`O código de catálogo #${catalogCode(catalogNumber,catalogVariant)} já pertence a ${repeatedCatalog.name}.`);const r={id,catalogNumber,catalogVariant,name:el('relianName').value.trim(),description:el('relianDescription').value.trim(),class:normalizeRelianClass(el('relianClass').value),elements:[1,2,3].map(n=>el('element'+n).value.trim()).filter(Boolean),specialElements:[1,2,3].map(n=>el('specialElement'+n).value.trim()).filter(Boolean),stage:+el('relianStage').value||1,baseEnergy:+el('relianEnergy').value||0,rarity:el('relianRarity').value,captureRate:+el('relianCaptureRate').value,baseAffinity:+el('relianAffinity').value,images:{basic:el('relianImageBasic').value.trim(),shiny:el('relianImageShiny').value.trim(),special:el('relianImageSpecial').value.trim()},genders:el('relianGenders').value.split(',').map(x=>x.trim()).filter(Boolean),sizes:el('relianSizes').value.split(',').map(x=>x.trim()).filter(Boolean),evolvesFrom:el('relianEvolvesFrom').value,evolvesToMany:[...el('relianEvolvesTo').selectedOptions].map(o=>o.value).filter(Boolean),evolvesTo:[...el('relianEvolvesTo').selectedOptions].map(o=>o.value).filter(Boolean)[0]||'',evolutionMethod:el('relianEvolutionMethod').value.trim(),traitIds:[],learnset:readLearnsetEditor(),encounters};const idx=data.relians.findIndex(x=>x.id===id);if(idx>=0)data.relians[idx]={...data.relians[idx],...r};else data.relians.push(r);syncEvolutionLinks(r);saveData();editRelian(id);try{const result=await writeRelianFile(r,oldRelian);if(result.saved){for(const partnerId of [r.evolvesFrom,...relianEvolutionTargets(r)].filter(Boolean)){const partner=data.relians.find(x=>x.id===partnerId);if(partner)await writeRelianFile(partner,partner)}}alert(result.saved?'Relian e vínculos evolutivos salvos em Pasta_Relians.':'Relian salvo no navegador. Vincule a pasta-base para criar a pasta automaticamente.')}catch(err){console.error(err);alert('O Relian foi salvo no navegador, mas não foi possível escrever na pasta. Verifique a permissão de edição.')}}
+el('relianForm').onsubmit=async e=>{
+  e.preventDefault();
+  const submitButton=e.submitter||e.currentTarget.querySelector('button[type="submit"]');
+  if(submitButton)submitButton.disabled=true;
+  try{
+    const encounterRows=[...document.querySelectorAll('.encounter-row')];
+    if(!encounterRows.length){alert('Adicione pelo menos uma aparição com nível mínimo e máximo.');return}
+    const encounters=encounterRows.map(row=>({
+      region:row.querySelector('.enc-region')?.value||'',
+      biome:row.querySelector('.enc-biome')?.value||'',
+      periods:[...row.querySelectorAll('.enc-period:checked')].map(x=>x.value),
+      minLevel:+(row.querySelector('.enc-min')?.value||0),
+      maxLevel:+(row.querySelector('.enc-max')?.value||0),
+      weight:+(row.querySelector('.enc-weight')?.value||1)||1
+    }));
+    for(const enc of encounters){
+      if(!enc.region||!enc.biome){alert('Escolha a região e o bioma de todas as aparições.');return}
+      if(!enc.minLevel||!enc.maxLevel){alert('Preencha o nível mínimo e o nível máximo de todas as aparições.');return}
+      if(enc.minLevel>enc.maxLevel){alert('O nível mínimo não pode ser maior que o nível máximo.');return}
+      if(!enc.periods.length){alert('Informe ao menos um período em cada aparição.');return}
+    }
+    const originalId=el('relianId').value;
+    const oldRelian=data.relians.find(x=>x.id===originalId)||null;
+    const name=el('relianName').value.trim();
+    if(!name){alert('Informe o nome do Relian.');return}
+    const id=originalId||slug(name);
+    const catalogNumber=normalizeCatalogNumber(el('relianCatalog').value);
+    if(catalogNumber===null){alert('Informe um número de catálogo válido, maior que zero.');return}
+    const catalogVariant=normalizeCatalogVariant(el('relianCatalogVariant')?.value);
+    const repeatedCatalog=data.relians.find(x=>x.id!==originalId&&normalizeCatalogNumber(x.catalogNumber)===catalogNumber&&normalizeCatalogVariant(x.catalogVariant)===catalogVariant);
+    if(repeatedCatalog){alert(`O código de catálogo #${catalogCode(catalogNumber,catalogVariant)} já pertence a ${repeatedCatalog.name}.`);return}
+    const selectedEvolutionIds=[...el('relianEvolvesTo').selectedOptions].map(o=>o.value).filter(Boolean);
+    const r={
+      id,catalogNumber,catalogVariant,name,
+      description:el('relianDescription').value.trim(),
+      class:normalizeRelianClass(el('relianClass').value),
+      elements:[1,2,3].map(n=>el('element'+n).value.trim()).filter(Boolean),
+      specialElements:[1,2,3].map(n=>el('specialElement'+n).value.trim()).filter(Boolean),
+      stage:+el('relianStage').value||1,
+      baseEnergy:+el('relianEnergy').value||0,
+      rarity:normalizeRarityId(el('relianRarity').value),
+      captureRate:+el('relianCaptureRate').value,
+      baseAffinity:+el('relianAffinity').value,
+      images:{basic:el('relianImageBasic').value.trim(),shiny:el('relianImageShiny').value.trim(),special:el('relianImageSpecial').value.trim()},
+      genders:el('relianGenders').value.split(',').map(x=>x.trim()).filter(Boolean),
+      sizes:el('relianSizes').value.split(',').map(x=>x.trim()).filter(Boolean),
+      evolvesFrom:el('relianEvolvesFrom').value,
+      evolvesToMany:selectedEvolutionIds,
+      evolvesTo:selectedEvolutionIds[0]||'',
+      evolutionMethod:el('relianEvolutionMethod').value.trim(),
+      traitIds:Array.isArray(oldRelian?.traitIds)?oldRelian.traitIds:[],
+      learnset:readLearnsetEditor(),
+      encounters
+    };
+    const idx=data.relians.findIndex(x=>x.id===originalId||x.id===id);
+    if(idx>=0)data.relians[idx]={...data.relians[idx],...r};
+    else data.relians.push(r);
+    syncEvolutionLinks(r);
+    // Primeiro salva no navegador. A gravação na pasta é feita de forma serializada logo abaixo.
+    saveData({sync:false});
+    editRelian(id);
+
+    const folder=await getWritableLinkedDirectory({request:true});
+    if(!folder){
+      alert('Relian salvo no navegador. Para salvar automaticamente em Pasta_Relians, vincule a pasta do projeto pelo botão “Vincular projeto”.');
+      return;
+    }
+    const result=await enqueueFolderWrite(async()=>{
+      const saved=await writeRelianFile(r,oldRelian,{requestPermission:false});
+      if(saved.saved){
+        for(const partnerId of [r.evolvesFrom,...relianEvolutionTargets(r)].filter(Boolean)){
+          const partner=data.relians.find(x=>x.id===partnerId);
+          if(partner)await writeRelianFile(partner,partner,{requestPermission:false});
+        }
+        await writeRootSnapshotOnly();
+      }
+      return saved;
+    },'salvar-relian');
+    if(result?.saved){
+      setFolderStatus(`Relian salvo automaticamente em Pasta_Relians/${result.folderName}/relian.json`,true);
+      alert(`Relian salvo com sucesso em Pasta_Relians/${result.folderName}.`);
+    }else{
+      alert('Relian salvo no navegador, mas a pasta local não pôde ser atualizada. Clique em “Sincronizar” para autorizar novamente.');
+    }
+  }catch(err){
+    console.error('Erro ao salvar Relian:',err);
+    alert(`Não foi possível concluir o salvamento do Relian: ${err.message||err.name||'erro desconhecido'}`);
+  }finally{
+    if(submitButton)submitButton.disabled=false;
+  }
+}
 el('deleteRelianBtn').onclick=async()=>{const id=el('relianId').value;if(id&&confirm('Excluir este Relian?')){const old=data.relians.find(x=>x.id===id);data.relians=data.relians.filter(x=>x.id!==id);saveData();await deleteRelianFolder(old);clearRelianForm()}}
 
 
@@ -789,6 +895,73 @@ function relianFolderName(relian){
 }
 function relianToFileData(r){return{kind:'relian',tipoArquivo:'relian',id:r.id,catalogNumber:normalizeCatalogNumber(r.catalogNumber),numeroCatalogo:normalizeCatalogNumber(r.catalogNumber),reliInfo:normalizeCatalogNumber(r.catalogNumber),catalogVariant:normalizeCatalogVariant(r.catalogVariant),variacaoCatalogo:normalizeCatalogVariant(r.catalogVariant),codigoCatalogo:catalogCode(r),nome:r.name,descricao:r.description||'',classe:r.class,elementos:r.elements,elementosEspeciais:r.specialElements||[],estagio:r.stage,energiaBase:r.baseEnergy,raridade:r.rarity,taxaCaptura:r.captureRate,afinidadeBase:r.baseAffinity,imagens:r.images,generos:r.genders,tamanhos:r.sizes,evoluiDe:r.evolvesFrom||'',evoluiPara:relianEvolutionTargets(r)[0]||'',evoluiParaMultiplas:relianEvolutionTargets(r),evolvesToMany:relianEvolutionTargets(r),metodoEvolucao:r.evolutionMethod||'',tracos:r.traitIds,movimentos:(r.learnset||[]).map(x=>({nivel:x.level,movimento:x.moveId})),aparicoes:(r.encounters||[]).map(e=>({regiao:e.region,bioma:e.biome,periodos:e.periods,nivelMinimo:e.minLevel,nivelMaximo:e.maxLevel,peso:e.weight}))}}
 async function writeJsonFile(dirName,fileName,payload){if(!linkedDirectory)return{saved:false,reason:'no-folder'};if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false,reason:'permission'};const dir=await linkedDirectory.getDirectoryHandle(dirName,{create:true});const file=await dir.getFileHandle(fileName,{create:true});const writable=await file.createWritable();await writable.write(JSON.stringify(payload,null,2));await writable.close();folderSignature='';return{saved:true}}
+async function writeRootJsonFile(fileName,payload){
+  if(!linkedDirectory)return{saved:false,reason:'no-folder'};
+  if(!await ensurePermission(linkedDirectory,false,'readwrite'))return{saved:false,reason:'permission'};
+  const file=await linkedDirectory.getFileHandle(fileName,{create:true});
+  const writable=await file.createWritable();
+  await writable.write(JSON.stringify(payload,null,2));
+  await writable.close();
+  return{saved:true};
+}
+function traitToFileData(trait){
+  const t=normalizeTrait(trait||{});
+  return{kind:'trait',tipoArquivo:'traco',id:t.id,nome:t.name,descricao:t.description||'',comportamento:t.behavior||'',paladar:t.palate||'',modificadores:t.mods||{}};
+}
+async function getWritableLinkedDirectory({request=false}={}){
+  if(!linkedDirectory){
+    try{linkedDirectory=await loadHandle()}catch(err){console.warn('Não foi possível restaurar a pasta vinculada:',err)}
+  }
+  if(!linkedDirectory)return null;
+  const allowed=await ensurePermission(linkedDirectory,request,'readwrite');
+  if(!allowed)return null;
+  return linkedDirectory;
+}
+async function enqueueFolderWrite(task,reason='alteracao'){
+  folderWriteQueue=folderWriteQueue.then(async()=>{
+    const folder=await getWritableLinkedDirectory({request:false});
+    if(!folder)return false;
+    return task();
+  }).catch(err=>{
+    console.error('Falha na fila de gravação da pasta:',reason,err);
+    setFolderStatus(`Falha ao salvar na pasta local: ${err.message||err.name||'erro desconhecido'}`,false,true);
+    return false;
+  });
+  return folderWriteQueue;
+}
+async function writeRootSnapshotOnly(){
+  if(!linkedDirectory)return false;
+  const snapshot={kind:'relians-save',tipoArquivo:'banco-completo',saveVersion:SAVE_SCHEMA_VERSION,updatedAt:new Date().toISOString(),data:migrateData(clone(data))};
+  return writeRootJsonFile('relians-save.json',snapshot);
+}
+async function writeFullFolderSnapshot(){
+  if(!linkedDirectory)return false;
+  if(!await ensurePermission(linkedDirectory,false,'readwrite'))return false;
+  folderWriteInProgress=true;
+  try{
+    const snapshot={kind:'relians-save',tipoArquivo:'banco-completo',saveVersion:SAVE_SCHEMA_VERSION,updatedAt:new Date().toISOString(),data:migrateData(clone(data))};
+    await writeRootJsonFile('relians-save.json',snapshot);
+    await writeConfigFile('regras.json',{kind:'rules',tipoArquivo:'regras',...data.rules});
+    for(const item of data.regions||[])await writeNamedEntityFile('Regioes',item,'region');
+    for(const item of data.biomes||[])await writeNamedEntityFile('Biomas',item,'biome');
+    for(const move of Object.values(data.moves||{}))await writeMoveFile(move);
+    for(const trait of Object.values(data.traits||{}))await writeJsonFile('Tracos',`${trait.id}.json`,traitToFileData(trait));
+    for(const relian of data.relians||[])await writeRelianFile(relian,null);
+    for(const sheet of data.storySheets||[])await writeStorySheetFile(sheet,'');
+    lastFolderWriteAt=Date.now();
+    try{const files=await collectDirectoryFiles(linkedDirectory);folderSignature=signatureOf(files)}catch{folderSignature=''}
+    setFolderStatus(`Tudo sincronizado com ${linkedDirectory.name} · ${new Date().toLocaleTimeString()}`,true);
+    return true;
+  }finally{folderWriteInProgress=false}
+}
+function queueFullFolderSync(reason='change'){
+  if(!linkedDirectory)return;
+  clearTimeout(folderSyncDebounceTimer);
+  folderSyncDebounceTimer=setTimeout(()=>{
+    enqueueFolderWrite(()=>writeFullFolderSnapshot(),reason);
+  },450);
+}
+
 async function writeConfigFile(fileName,payload){return writeJsonFile('config',fileName,payload)}
 async function writeNamedEntityFile(folder,item,kind){const result=await writeJsonFile(folder,`${item.id}.json`,{kind,tipoArquivo:kind==='region'?'regiao':'bioma',id:item.id,nome:item.name,...(kind==='region'?{biomas:item.biomes||[]}:{elementos:item.elements||[]})});if(result.saved)setFolderStatus(`${kind==='region'?'Região':'Bioma'} salvo em ${folder}/${item.id}.json`,true);return result}
 async function deleteNamedEntityFile(folder,id){if(!linkedDirectory||!await ensurePermission(linkedDirectory,true,'readwrite'))return false;try{const dir=await linkedDirectory.getDirectoryHandle(folder);await dir.removeEntry(`${id}.json`);folderSignature='';return true}catch(err){if(err.name!=='NotFoundError')console.warn(err);return false}}
@@ -803,9 +976,9 @@ async function removeRelianFolderCandidates(root,r,except=''){
     catch(err){if(err.name!=='NotFoundError')console.warn(err)}
   }
 }
-async function writeRelianFile(r,oldRelian=null){
+async function writeRelianFile(r,oldRelian=null,{requestPermission=false}={}){
   if(!linkedDirectory)return{saved:false,reason:'no-folder'};
-  if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false,reason:'permission'};
+  if(!await ensurePermission(linkedDirectory,requestPermission,'readwrite'))return{saved:false,reason:'permission'};
   const root=await linkedDirectory.getDirectoryHandle('Pasta_Relians',{create:true});
   const folderName=relianFolderName(r);
   const dir=await root.getDirectoryHandle(folderName,{create:true});
@@ -919,12 +1092,12 @@ function normalizeTrait(raw){
   }
 }
 function normalizeMove(raw){const name=String(raw.name||raw.nome||'').trim();const source=Array.isArray(raw.elements||raw.elementos)?(raw.elements||raw.elementos):String(raw.element||raw.elemento||'').split(/[\/,+]/);const elements=[...new Set(source.map(x=>String(x||'').trim()).filter(x=>MOVE_ELEMENT_COLORS[x]))].slice(0,2);return{id:String(raw.id||slug(name)),name,type:String(raw.type||raw.tipo||'NEH'),damage:Number(raw.damage??raw.dano??0),energy:Number(raw.energy??raw.energia??0),elements,element:elements.join(', '),accuracy:Number(raw.accuracy??raw.precisao??0),range:String(raw.range||raw.alcance||''),description:String(raw.description||raw.descricao||''),effects:raw.effects||raw.efeitos||[],tags:raw.tags||raw.etiquetas||[]}}
-function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:String(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
+function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
 async function fileToDataURL(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)})}
 async function importFileSet(files,{silent=false}={}){
   const list=[...files],jsonFiles=list.filter(f=>f.name.toLowerCase().endsWith('.json'));let added=0,updated=0,traits=0,moves=0,ignored=0;
   const imageMap=new Map();for(const f of list)if(/\.(png|jpe?g|webp|gif)$/i.test(f.name)){const rel=(f.webkitRelativePath||f.name).replace(/\\/g,'/');imageMap.set(rel.toLowerCase(),f);imageMap.set(f.name.toLowerCase(),f)}
-  for(const file of jsonFiles){try{const raw=JSON.parse(await file.text()),path=(file.webkitRelativePath||file.name).replace(/\\/g,'/').toLowerCase();if(Array.isArray(raw.regions)||Array.isArray(raw.biomes)){mergeNamedList(data.regions,raw.regions);mergeNamedList(data.biomes,raw.biomes);continue}if(path.includes('/regioes/')||raw.kind==='region'||raw.tipoArquivo==='regiao'){mergeNamedList(data.regions,Array.isArray(raw)?raw:[raw]);continue}if(path.includes('/biomas/')||raw.kind==='biome'||raw.tipoArquivo==='bioma'){mergeNamedList(data.biomes,Array.isArray(raw)?raw:[raw]);continue}if(path.endsWith('/config/regras.json')||raw.kind==='rules'||raw.tipoArquivo==='regras'){data.rules={...data.rules,...raw};delete data.rules.kind;delete data.rules.tipoArquivo;continue}if(path.includes('/tracos/')||raw.kind==='trait'||raw.tipoArquivo==='traco'){for(const t of(Array.isArray(raw)?raw:[raw])){const n=normalizeTrait(t);if(n.name){data.traits[n.id]=n;traits++}}continue}if(path.includes('/fichas_especiais/')||raw.kind==='story-sheet'||raw.tipoArquivo==='ficha-especial'){for(const s of(Array.isArray(raw)?raw:[raw])){if(s.id){const i=(data.storySheets||[]).findIndex(x=>x.id===s.id);i>=0?data.storySheets[i]=s:data.storySheets.push(s)}}continue}if(path.includes('/movimentos/')||raw.kind==='move'||raw.tipoArquivo==='movimento'){for(const m of(Array.isArray(raw)?raw:[raw])){const n=normalizeMove(m);if(n.name){data.moves[n.id]=n;moves++}}continue}const candidates=Array.isArray(raw)?raw:Array.isArray(raw.relians)?raw.relians:[raw];for(const c of candidates){const r=normalizeRelian(c);const relativePath=(file.webkitRelativePath||'').replace(/\\/g,'/');const parentName=relativePath.split('/').slice(-2,-1)[0]||'';const folderMatch=parentName.match(/^(\d{1,6})(?:-([A-Z0-9]{1,3}))?_(.+)$/i);if(folderMatch){if(!r.catalogNumber)r.catalogNumber=Number(folderMatch[1])||null;if(!r.catalogVariant)r.catalogVariant=normalizeCatalogVariant(folderMatch[2]||'')}if(!r.name||!r.encounters.length){ignored++;continue}const folder=relativePath.split('/').slice(0,-1).join('/');r.imageDataByColor={};for(const color of['basic','shiny','special']){const filename=r.images[color];if(!filename)continue;const img=imageMap.get(`${folder}/${filename}`.toLowerCase())||imageMap.get(filename.toLowerCase());if(img)r.imageDataByColor[color]=await fileToDataURL(img)}const idx=data.relians.findIndex(x=>x.id===r.id);if(idx>=0){data.relians[idx]={...data.relians[idx],...r};updated++}else{data.relians.push(r);added++}}}catch(err){console.warn(file.name,err);ignored++}}
+  for(const file of jsonFiles){try{const raw=JSON.parse(await file.text()),path=(file.webkitRelativePath||file.name).replace(/\\/g,'/').toLowerCase();if(raw?.kind==='relians-save'&&raw?.data){data=migrateData(raw.data);continue}if(Array.isArray(raw.regions)||Array.isArray(raw.biomes)){mergeNamedList(data.regions,raw.regions);mergeNamedList(data.biomes,raw.biomes);continue}if(path.includes('/regioes/')||raw.kind==='region'||raw.tipoArquivo==='regiao'){mergeNamedList(data.regions,Array.isArray(raw)?raw:[raw]);continue}if(path.includes('/biomas/')||raw.kind==='biome'||raw.tipoArquivo==='bioma'){mergeNamedList(data.biomes,Array.isArray(raw)?raw:[raw]);continue}if(path.endsWith('/config/regras.json')||raw.kind==='rules'||raw.tipoArquivo==='regras'){data.rules={...data.rules,...raw};delete data.rules.kind;delete data.rules.tipoArquivo;continue}if(path.includes('/tracos/')||raw.kind==='trait'||raw.tipoArquivo==='traco'){for(const t of(Array.isArray(raw)?raw:[raw])){const n=normalizeTrait(t);if(n.name){data.traits[n.id]=n;traits++}}continue}if(path.includes('/fichas_especiais/')||raw.kind==='story-sheet'||raw.tipoArquivo==='ficha-especial'){for(const s of(Array.isArray(raw)?raw:[raw])){if(s.id){const i=(data.storySheets||[]).findIndex(x=>x.id===s.id);i>=0?data.storySheets[i]=s:data.storySheets.push(s)}}continue}if(path.includes('/movimentos/')||raw.kind==='move'||raw.tipoArquivo==='movimento'){for(const m of(Array.isArray(raw)?raw:[raw])){const n=normalizeMove(m);if(n.name){data.moves[n.id]=n;moves++}}continue}const candidates=Array.isArray(raw)?raw:Array.isArray(raw.relians)?raw.relians:[raw];for(const c of candidates){const r=normalizeRelian(c);const relativePath=(file.webkitRelativePath||'').replace(/\\/g,'/');const parentName=relativePath.split('/').slice(-2,-1)[0]||'';const folderMatch=parentName.match(/^(\d{1,6})(?:-([A-Z0-9]{1,3}))?_(.+)$/i);if(folderMatch){if(!r.catalogNumber)r.catalogNumber=Number(folderMatch[1])||null;if(!r.catalogVariant)r.catalogVariant=normalizeCatalogVariant(folderMatch[2]||'')}if(!r.name||!r.encounters.length){ignored++;continue}const folder=relativePath.split('/').slice(0,-1).join('/');r.imageDataByColor={};for(const color of['basic','shiny','special']){const filename=r.images[color];if(!filename)continue;const img=imageMap.get(`${folder}/${filename}`.toLowerCase())||imageMap.get(filename.toLowerCase());if(img)r.imageDataByColor[color]=await fileToDataURL(img)}const idx=data.relians.findIndex(x=>x.id===r.id);if(idx>=0){data.relians[idx]={...data.relians[idx],...r};updated++}else{data.relians.push(r);added++}}}catch(err){console.warn(file.name,err);ignored++}}
   saveData();if(!silent)alert(`Importação concluída: ${added} novo(s), ${updated} atualizado(s), ${traits} traço(s), ${moves} movimento(s), ${ignored} ignorado(s).`);return{added,updated,traits,moves,ignored};
 }
 el('relianFolderInput').onchange=async e=>{if(e.target.files.length)await importFileSet(e.target.files);e.target.value=''}
@@ -934,12 +1107,55 @@ async function loadHandle(){const db=await openHandleDB();return new Promise((re
 async function collectDirectoryFiles(dir,prefix=''){const out=[];for await(const[name,handle]of dir.entries()){const path=prefix?`${prefix}/${name}`:name;if(handle.kind==='file'){const f=await handle.getFile();Object.defineProperty(f,'webkitRelativePath',{value:path});out.push(f)}else out.push(...await collectDirectoryFiles(handle,path))}return out}
 function signatureOf(files){return files.map(f=>`${f.webkitRelativePath}:${f.size}:${f.lastModified}`).sort().join('|')}
 async function ensurePermission(handle,request=false,mode='read'){if(!handle)return false;const opts={mode};if(await handle.queryPermission(opts)==='granted')return true;return request&&(await handle.requestPermission(opts)==='granted')}
-async function syncLinkedFolder({request=false,silent=false}={}){if(!linkedDirectory)return false;if(!await ensurePermission(linkedDirectory,request,'read')){setFolderStatus('Pasta encontrada, mas precisa de autorização.',false,true);return false}const files=await collectDirectoryFiles(linkedDirectory),sig=signatureOf(files);if(sig!==folderSignature){folderSignature=sig;await importFileSet(files,{silent:true});setFolderStatus(`Pasta sincronizada: ${linkedDirectory.name} · ${new Date().toLocaleTimeString()}`,true);if(!silent)alert('Pasta sincronizada e banco atualizado.')}return true}
+async function syncLinkedFolder({request=false,silent=false,writeBack=true}={}){
+  if(!linkedDirectory)return false;
+  if(folderWriteInProgress)return true;
+  if(!await ensurePermission(linkedDirectory,request,'readwrite')){setFolderStatus('Pasta encontrada, mas precisa de autorização de leitura e gravação.',false,true);return false}
+  const files=await collectDirectoryFiles(linkedDirectory),sig=signatureOf(files);
+  if(sig!==folderSignature){
+    folderSignature=sig;
+    await importFileSet(files,{silent:true});
+  }
+  if(writeBack)await writeFullFolderSnapshot();
+  setFolderStatus(`Pasta sincronizada: ${linkedDirectory.name} · ${new Date().toLocaleTimeString()}`,true);
+  if(!silent)alert('Pasta sincronizada. O banco e os arquivos locais estão atualizados.');
+  return true
+}
 function setFolderStatus(text,ok=false,warn=false){el('folderStatus').textContent=text;el('folderStatus').className='folder-status'+(ok?' ok':'')+(warn?' warn':'')}
-el('linkFolderBtn').onclick=async()=>{if(!window.showDirectoryPicker)return alert('Seu navegador não permite vincular pastas. Use “Importar pasta”.');try{linkedDirectory=await showDirectoryPicker({mode:'readwrite'});await saveHandle(linkedDirectory);folderSignature='';await syncLinkedFolder({request:true});startAutoSync()}catch(err){if(err.name!=='AbortError')alert('Não foi possível vincular a pasta.')}}
-el('syncFolderBtn').onclick=async()=>{if(!linkedDirectory)linkedDirectory=await loadHandle();if(!linkedDirectory)return alert('Nenhuma pasta vinculada.');await syncLinkedFolder({request:true})}
-function startAutoSync(){clearInterval(syncTimer);syncTimer=setInterval(()=>syncLinkedFolder({silent:true}).catch(console.warn),3000)}
-async function restoreLinkedFolder(){try{linkedDirectory=await loadHandle();if(linkedDirectory){setFolderStatus(`Pasta lembrada: ${linkedDirectory.name}. Verificando autorização...`,false,true);await syncLinkedFolder({silent:true});startAutoSync()}}catch(err){console.warn(err)}}
+el('linkFolderBtn').onclick=async()=>{
+  if(!window.isSecureContext||!window.showDirectoryPicker)return alert('Para gravar automaticamente na pasta, abra o Gerador por localhost no Chrome/Edge. Ex.: http://localhost:8000');
+  try{
+    linkedDirectory=await window.showDirectoryPicker({mode:'readwrite'});
+    if(!await ensurePermission(linkedDirectory,true,'readwrite'))throw new Error('Permissão de gravação negada.');
+    await saveHandle(linkedDirectory);
+    folderSignature='';
+    await syncLinkedFolder({request:false,silent:true,writeBack:true});
+    startAutoSync();
+    alert(`Projeto vinculado a ${linkedDirectory.name}. A partir de agora, cada alteração salva no Gerador será gravada automaticamente nessa pasta.`);
+  }catch(err){
+    console.error('Falha ao vincular pasta:',err);
+    if(err.name!=='AbortError')alert(`Não foi possível vincular a pasta: ${err.message||err.name||'erro desconhecido'}`)
+  }
+}
+el('syncFolderBtn').onclick=async()=>{
+  try{
+    if(!linkedDirectory)linkedDirectory=await loadHandle();
+    if(!linkedDirectory)return alert('Nenhuma pasta vinculada.');
+    if(!await ensurePermission(linkedDirectory,true,'readwrite'))return alert('Autorize leitura e gravação da pasta para sincronizar.');
+    await syncLinkedFolder({request:false,silent:false,writeBack:true});
+  }catch(err){console.error(err);alert(`Falha ao sincronizar: ${err.message||err.name||'erro desconhecido'}`)}
+}
+function startAutoSync(){clearInterval(syncTimer);syncTimer=null;/* alterações feitas no Gerador já usam saveData() -> queueFullFolderSync(); leitura da pasta fica no botão Sincronizar */}
+async function restoreLinkedFolder(){
+  try{
+    linkedDirectory=await loadHandle();
+    if(linkedDirectory){
+      setFolderStatus(`Pasta lembrada: ${linkedDirectory.name}. Clique em Sincronizar se o navegador pedir autorização.`,false,true);
+      const granted=await ensurePermission(linkedDirectory,false,'readwrite');
+      if(granted){await syncLinkedFolder({silent:true,writeBack:true});startAutoSync()}
+    }
+  }catch(err){console.warn(err)}
+}
 el('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='relians-banco-v4-4.json';a.click();URL.revokeObjectURL(a.href)}
 el('importInput').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{data=migrateData(JSON.parse(await f.text()));saveData();alert('Banco importado.')}catch{alert('Arquivo inválido.')}}
 el('resetBtn').onclick=()=>{if(confirm('Restaurar exemplos?')){data=clone(defaultData);saveData();clearRelianForm()}}

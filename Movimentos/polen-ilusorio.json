@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "polen-ilusorio",
   "nome": "Pólen Ilusório",
   "tipo": "NEH",
+  "elementos": [
+    "Vital",
+    "Umbral"
+  ],
+  "elemento": "Vital, Umbral",
   "dano": 55,
   "energia": 40,
-  "elemento": "Vital / Umbral",
-  "descricao": "Lança um pólen psíquico no inimigo, podendo deixá-lo confuso.\nEfeito: 40% de chance de causar Confusão."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Lança um pólen psíquico no inimigo, podendo deixá-lo confuso.\nEfeito: 40% de chance de causar Confusão.",
+  "efeitos": [],
+  "tags": []
 }

@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "pancada-sombria",
   "nome": "Pancada Sombria",
   "tipo": "NEH",
+  "elementos": [
+    "Umbral",
+    "Éter"
+  ],
+  "elemento": "Umbral, Éter",
   "dano": 45,
   "energia": 25,
-  "elemento": "Umbral / Éter",
-  "descricao": "Um ataque rápido que deixa um rastro de sombras."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um ataque rápido que deixa um rastro de sombras.",
+  "efeitos": [],
+  "tags": []
 }

@@ -39,6 +39,12 @@
   ],
   "evoluiDe": "lihtoffle",
   "evoluiPara": "maginflora",
+  "evoluiParaMultiplas": [
+    "maginflora"
+  ],
+  "evolvesToMany": [
+    "maginflora"
+  ],
   "metodoEvolucao": "Nível",
   "tracos": [],
   "movimentos": [

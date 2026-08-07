@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "grito-da-vitoria",
   "nome": "Grito da Vitória",
   "tipo": "NEH",
+  "elementos": [
+    "Halo",
+    "Tempestade"
+  ],
+  "elemento": "Halo, Tempestade",
   "dano": 60,
   "energia": 40,
-  "elemento": "Halo / Tempestade",
-  "descricao": "Um grito poderoso que inspira aliados e intimida o inimigo.\nEfeito: Reduz o ataque do inimigo em 1 nível e aumenta o ataque do usuário em 1 nível."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um grito poderoso que inspira aliados e intimida o inimigo.\nEfeito: Reduz o ataque do inimigo em 1 nível e aumenta o ataque do usuário em 1 nível.",
+  "efeitos": [],
+  "tags": []
 }

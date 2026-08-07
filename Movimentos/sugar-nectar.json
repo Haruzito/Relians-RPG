@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "sugar-nectar",
   "nome": "Sugar néctar",
   "tipo": "NEH",
+  "elementos": [
+    "Vital",
+    "Umbral"
+  ],
+  "elemento": "Vital, Umbral",
   "dano": 0,
   "energia": 50,
-  "elemento": "Vital / Umbral",
-  "descricao": "O amor pelo néctar das plantas, bebendo o doce suco da vida.\nEfeito: O datamon drena 20% da força vital do oponente."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "O amor pelo néctar das plantas, bebendo o doce suco da vida.\nEfeito: O datamon drena 20% da força vital do oponente.",
+  "efeitos": [],
+  "tags": []
 }

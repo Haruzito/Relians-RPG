@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "natureza-miseravel",
   "nome": "Natureza miserável",
   "tipo": "HIB",
+  "elementos": [
+    "Umbral",
+    "Vital"
+  ],
+  "elemento": "Umbral, Vital",
   "dano": 35,
   "energia": 60,
-  "elemento": "Umbral / Vital",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

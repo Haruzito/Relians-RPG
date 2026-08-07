@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "raio-da-desolacao",
   "nome": "Raio da Desolação",
   "tipo": "EFT",
+  "elementos": [
+    "Tempestade"
+  ],
+  "elemento": "Tempestade",
   "dano": 25,
   "energia": 65,
-  "elemento": "Tempestade",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

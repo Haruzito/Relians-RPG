@@ -1,0 +1,15 @@
+{
+  "kind": "trait",
+  "tipoArquivo": "traco",
+  "id": "pes-ligeiros",
+  "nome": "Pés Ligeiros",
+  "descricao": "Paciente durante a perseguição, mas extremamente rápido ao atacar.",
+  "comportamento": "",
+  "paladar": "",
+  "modificadores": {
+    "velocidade": 5,
+    "precisao": 4,
+    "defesaEspecial": 5,
+    "ataqueEspecial": -5
+  }
+}

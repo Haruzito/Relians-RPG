@@ -3,9 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "mar-de-cristal",
   "nome": "Mar de Cristal",
-  "elementos": [
-    "Abissal",
-    "Geada",
-    "Astral"
-  ]
+  "biomas": []
 }

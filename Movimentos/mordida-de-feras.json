@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "mordida-de-feras",
   "nome": "Mordida de Feras",
   "tipo": "NEH",
+  "elementos": [
+    "Umbral",
+    "Colossal"
+  ],
+  "elemento": "Umbral, Colossal",
   "dano": 50,
   "energia": 30,
-  "elemento": "Umbral / Colossal",
-  "descricao": "Uma mordida feroz para ferir e intimidar."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Uma mordida feroz para ferir e intimidar.",
+  "efeitos": [],
+  "tags": []
 }

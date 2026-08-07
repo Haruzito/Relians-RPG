@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "garra-de-eclipse",
   "nome": "Garra de Eclipse",
   "tipo": "NEH",
+  "elementos": [
+    "Umbral"
+  ],
+  "elemento": "Umbral",
   "dano": 70,
   "energia": 50,
-  "elemento": "Umbral",
-  "descricao": "Garras etéreas atacam o inimigo, drenando um pouco do seu HP.\nEfeito: Recupera 30% do dano causado como HP."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Garras etéreas atacam o inimigo, drenando um pouco do seu HP.\nEfeito: Recupera 30% do dano causado como HP.",
+  "efeitos": [],
+  "tags": []
 }

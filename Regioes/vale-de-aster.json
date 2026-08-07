@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "vale-de-aster",
   "nome": "Vale de Aster",
-  "elementos": [
-    "Éter",
-    "Vital"
-  ]
+  "biomas": []
 }

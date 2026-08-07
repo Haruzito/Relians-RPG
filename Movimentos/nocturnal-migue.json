@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "nocturnal-migue",
   "nome": "Nocturnal Migue",
   "tipo": "NEH",
+  "elementos": [
+    "Tempestade",
+    "Éter"
+  ],
+  "elemento": "Tempestade, Éter",
   "dano": 24,
   "energia": 20,
-  "elemento": "Tempestade / Éter",
-  "descricao": "Um truque sorrateiro realizado à noite, onde o DataMon libera uma descarga elétrica súbita enquanto se esconde nas sombras, pegando o oponente desprevenido.\nEfeito: O adversário fica temporariamente paralisado por 1d10 turnos."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um truque sorrateiro realizado à noite, onde o DataMon libera uma descarga elétrica súbita enquanto se esconde nas sombras, pegando o oponente desprevenido.\nEfeito: O adversário fica temporariamente paralisado por 1d10 turnos.",
+  "efeitos": [],
+  "tags": []
 }

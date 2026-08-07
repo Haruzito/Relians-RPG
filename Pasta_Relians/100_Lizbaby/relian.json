@@ -1,0 +1,65 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "lizbaby",
+  "catalogNumber": 100,
+  "numeroCatalogo": 100,
+  "reliInfo": 100,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "100",
+  "nome": "Lizbaby",
+  "descricao": "Após tempos de estudos, foi descoberto que a grande fera mítica Lizbravos possuía um pre-estagio. O choque da descoberta fez com que os cientistas buscassem entender quais outras feras cósmicas possuíssem essa dadiva.",
+  "classe": "NET",
+  "elementos": [
+    "Halo"
+  ],
+  "elementosEspeciais": [
+    "Umbral"
+  ],
+  "estagio": 1,
+  "energiaBase": 70,
+  "raridade": "mitico",
+  "taxaCaptura": 2,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "lizbravos",
+  "evoluiParaMultiplas": [
+    "lizbravos"
+  ],
+  "evolvesToMany": [
+    "lizbravos"
+  ],
+  "metodoEvolucao": "evento",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

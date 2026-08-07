@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "garras-de-aco",
   "nome": "Garras de Aço",
   "tipo": "NET",
+  "elementos": [
+    "Colossal"
+  ],
+  "elemento": "Colossal",
   "dano": 20,
   "energia": 30,
-  "elemento": "Colossal",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

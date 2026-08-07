@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "investida-selvagem",
   "nome": "Investida Selvagem",
   "tipo": "NET",
+  "elementos": [
+    "Colossal",
+    "Éter"
+  ],
+  "elemento": "Colossal, Éter",
   "dano": 40,
   "energia": 20,
-  "elemento": "Colossal / Éter",
-  "descricao": "O usuário avança contra o inimigo com força bruta."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "O usuário avança contra o inimigo com força bruta.",
+  "efeitos": [],
+  "tags": []
 }

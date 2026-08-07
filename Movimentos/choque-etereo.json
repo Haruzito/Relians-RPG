@@ -4,6 +4,9 @@
   "id": "choque-etereo",
   "nome": "Choque de Éter",
   "tipo": "ATQ.ESP",
+  "elementos": [
+    "Éter"
+  ],
   "elemento": "Éter",
   "dano": 18,
   "energia": 14,

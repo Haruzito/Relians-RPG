@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "static-breakdance",
   "nome": "Static Breakdance",
   "tipo": "NEH",
+  "elementos": [
+    "Tempestade",
+    "Colossal"
+  ],
+  "elemento": "Tempestade, Colossal",
   "dano": 0,
   "energia": 35,
-  "elemento": "Tempestade / Colossal",
-  "descricao": "O usuário realiza uma dança acelerada com descargas elétricas, aumentando sua velocidade momentaneamente e carregando energia para um golpe mais forte.\nEfeito: Aumenta a Velocidade do usuário em +1 e carrega eletricidade, não acumulativo. O próximo ataque do usuário do tipo Elétrico causará 50% mais dano, mas, após o ataque, sua velocidade será reduzida em -2."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "O usuário realiza uma dança acelerada com descargas elétricas, aumentando sua velocidade momentaneamente e carregando energia para um golpe mais forte.\nEfeito: Aumenta a Velocidade do usuário em +1 e carrega eletricidade, não acumulativo. O próximo ataque do usuário do tipo Elétrico causará 50% mais dano, mas, após o ataque, sua velocidade será reduzida em -2.",
+  "efeitos": [],
+  "tags": []
 }

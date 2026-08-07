@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "cratera-de-halo",
   "nome": "Cratera de Halo",
-  "elementos": [
-    "Halo",
-    "Colossal"
-  ]
+  "biomas": []
 }

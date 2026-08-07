@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "furia-berseker",
   "nome": "Fúria berseker",
   "tipo": "OFS",
+  "elementos": [
+    "Ígnea"
+  ],
+  "elemento": "Ígnea",
   "dano": 50,
   "energia": 40,
-  "elemento": "Ígnea",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

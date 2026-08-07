@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "casulo-do-vento",
   "nome": "Casulo do Vento",
   "tipo": "EFT",
+  "elementos": [
+    "Halo"
+  ],
+  "elemento": "Halo",
   "dano": 0,
   "energia": 0,
-  "elemento": "Halo",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

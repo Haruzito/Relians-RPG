@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "pesadelo-profundo",
   "nome": "Pesadelo Profundo",
   "tipo": "HIB",
+  "elementos": [
+    "Umbral"
+  ],
+  "elemento": "Umbral",
   "dano": 20,
   "energia": 40,
-  "elemento": "Umbral",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

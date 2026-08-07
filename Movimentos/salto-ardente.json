@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "salto-ardente",
   "nome": "Salto Ardente",
   "tipo": "HIB",
+  "elementos": [
+    "Ígnea",
+    "Tempestade"
+  ],
+  "elemento": "Ígnea, Tempestade",
   "dano": 80,
   "energia": 45,
-  "elemento": "Ígnea / Tempestade",
-  "descricao": "Ele pula com agilidade, girando no ar e liberando chamas em volta antes de aterrissar com um chute poderoso.\nEfeito: Aumenta a Velocidade em 1 estágio após o ataque."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Ele pula com agilidade, girando no ar e liberando chamas em volta antes de aterrissar com um chute poderoso.\nEfeito: Aumenta a Velocidade em 1 estágio após o ataque.",
+  "efeitos": [],
+  "tags": []
 }

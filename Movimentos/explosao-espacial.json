@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "explosao-espacial",
   "nome": "Explosão espacial",
   "tipo": "HIB",
+  "elementos": [
+    "Astral"
+  ],
+  "elemento": "Astral",
   "dano": 85,
   "energia": 55,
-  "elemento": "Astral",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

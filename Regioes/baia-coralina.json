@@ -3,9 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "baia-coralina",
   "nome": "Baía Coralina",
-  "elementos": [
-    "Abissal",
-    "Vital",
-    "Halo"
-  ]
+  "biomas": []
 }

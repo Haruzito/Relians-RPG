@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "corte-de-plasma",
   "nome": "Corte de Plasma",
   "tipo": "HIB",
+  "elementos": [
+    "Ígnea"
+  ],
+  "elemento": "Ígnea",
   "dano": 40,
   "energia": 40,
-  "elemento": "Ígnea",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

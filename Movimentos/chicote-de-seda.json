@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "chicote-de-seda",
   "nome": "Chicote de Seda",
   "tipo": "NET",
+  "elementos": [
+    "Vital"
+  ],
+  "elemento": "Vital",
   "dano": 20,
   "energia": 15,
-  "elemento": "Vital",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

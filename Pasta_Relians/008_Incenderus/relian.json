@@ -36,6 +36,12 @@
   ],
   "evoluiDe": "chibom",
   "evoluiPara": "nezhaspyro",
+  "evoluiParaMultiplas": [
+    "nezhaspyro"
+  ],
+  "evolvesToMany": [
+    "nezhaspyro"
+  ],
   "metodoEvolucao": "",
   "tracos": [],
   "movimentos": [

@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "voraz",
   "nome": "Voraz",
   "descricao": "Possuem um metabolismo acelerado que os obriga a consumir alimento com frequência para manter suas energias.",
   "comportamento": "Estão sempre procurando algo para comer e dificilmente recusam uma refeição.",
   "paladar": "Carnudo",
-  "status": {
+  "modificadores": {
     "ataque": 5,
     "defesa": 0,
     "velocidade": -5,
     "ataqueEspecial": 0,
     "defesaEspecial": 0,
-    "precisao": -5
-  },
-  "hp": 10,
-  "eng": -10
+    "precisao": -5,
+    "hp": 10,
+    "energia": -10
+  }
 }

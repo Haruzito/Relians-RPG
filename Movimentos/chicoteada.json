@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "chicoteada",
   "nome": "Chicoteada",
   "tipo": "NEH",
+  "elementos": [
+    "Éter"
+  ],
+  "elemento": "Éter",
   "dano": 10,
   "energia": 20,
-  "elemento": "Éter",
-  "descricao": "Utilizando de algo longo para dar golpes precisos."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Utilizando de algo longo para dar golpes precisos.",
+  "efeitos": [],
+  "tags": []
 }

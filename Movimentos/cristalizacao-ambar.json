@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "cristalizacao-ambar",
   "nome": "Cristalização Âmbar",
   "tipo": "DEF",
+  "elementos": [
+    "Vital"
+  ],
+  "elemento": "Vital",
   "dano": 0,
   "energia": 40,
-  "elemento": "Vital",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

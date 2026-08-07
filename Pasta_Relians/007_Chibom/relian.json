@@ -36,6 +36,12 @@
   ],
   "evoluiDe": "",
   "evoluiPara": "incenderus",
+  "evoluiParaMultiplas": [
+    "incenderus"
+  ],
+  "evolvesToMany": [
+    "incenderus"
+  ],
   "metodoEvolucao": "",
   "tracos": [],
   "movimentos": [

@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "roubar-habilidade",
   "nome": "Roubar Habilidade",
   "tipo": "EFT",
+  "elementos": [
+    "Umbral",
+    "Éter"
+  ],
+  "elemento": "Umbral, Éter",
   "dano": 0,
   "energia": 40,
-  "elemento": "Umbral / Éter",
-  "descricao": "Com astúcia e sombras, o DataMon imita os movimentos do inimigo e assume temporariamente uma de suas técnicas.\nEfeito: Você rouba uma habilidade do DataMon adversário e pode usá-la por 1 turno."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Com astúcia e sombras, o DataMon imita os movimentos do inimigo e assume temporariamente uma de suas técnicas.\nEfeito: Você rouba uma habilidade do DataMon adversário e pode usá-la por 1 turno.",
+  "efeitos": [],
+  "tags": []
 }

@@ -1,17 +1,19 @@
 {
+  "kind": "trait",
+  "tipoArquivo": "traco",
   "id": "destemido",
   "nome": "Destemido",
   "descricao": "Relians destemidos raramente sentem medo. Encaram criaturas maiores e desafios perigosos com uma coragem quase irracional.",
   "comportamento": "São os primeiros a avançar em situações de risco e dificilmente fogem de uma batalha.",
   "paladar": "Picante",
-  "status": {
+  "modificadores": {
     "ataque": 5,
     "defesa": 5,
     "velocidade": 0,
     "ataqueEspecial": -5,
     "defesaEspecial": 0,
-    "precisao": -5
-  },
-  "hp": 5,
-  "eng": 5
+    "precisao": -5,
+    "hp": 5,
+    "energia": 5
+  }
 }

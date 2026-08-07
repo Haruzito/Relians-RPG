@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "chicote-de-laminas",
   "nome": "Chicote de Lâminas",
   "tipo": "NEH",
+  "elementos": [
+    "Vital",
+    "Éter"
+  ],
+  "elemento": "Vital, Éter",
   "dano": 45,
   "energia": 25,
-  "elemento": "Vital / Éter",
-  "descricao": "Cipós afiados atingem o adversário rapidamente."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Cipós afiados atingem o adversário rapidamente.",
+  "efeitos": [],
+  "tags": []
 }

@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "manto-espectral",
   "nome": "Manto Espectral",
   "tipo": "DEF",
+  "elementos": [
+    "Umbral"
+  ],
+  "elemento": "Umbral",
   "dano": 0,
   "energia": 50,
-  "elemento": "Umbral",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "raiz-protetora",
   "nome": "Raiz Protetora",
   "tipo": "DEF",
+  "elementos": [
+    "Vital"
+  ],
+  "elemento": "Vital",
   "dano": 0,
   "energia": 90,
-  "elemento": "Vital",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

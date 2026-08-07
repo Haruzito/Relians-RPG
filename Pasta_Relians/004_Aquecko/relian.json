@@ -36,6 +36,12 @@
   ],
   "evoluiDe": "",
   "evoluiPara": "aqualoudo",
+  "evoluiParaMultiplas": [
+    "aqualoudo"
+  ],
+  "evolvesToMany": [
+    "aqualoudo"
+  ],
   "metodoEvolucao": "",
   "tracos": [],
   "movimentos": [

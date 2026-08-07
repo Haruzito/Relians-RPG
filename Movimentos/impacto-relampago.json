@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "impacto-relampago",
   "nome": "Impacto Relâmpago",
   "tipo": "NEH",
+  "elementos": [
+    "Tempestade",
+    "Éter"
+  ],
+  "elemento": "Tempestade, Éter",
   "dano": 50,
   "energia": 30,
-  "elemento": "Tempestade / Éter",
-  "descricao": "Um golpe físico carregado com eletricidade."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um golpe físico carregado com eletricidade.",
+  "efeitos": [],
+  "tags": []
 }

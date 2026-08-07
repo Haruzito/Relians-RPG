@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "bofetada-aquatica",
   "nome": "Bofetada Aquática",
   "tipo": "NET",
+  "elementos": [
+    "Abissal",
+    "Éter"
+  ],
+  "elemento": "Abissal, Éter",
   "dano": 40,
   "energia": 20,
-  "elemento": "Abissal / Éter",
-  "descricao": "Um golpe ágil com um jato de água."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Um golpe ágil com um jato de água.",
+  "efeitos": [],
+  "tags": []
 }

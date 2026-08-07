@@ -1,10 +1,18 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "barao-do-pedal",
   "nome": "Barão do pedal",
   "tipo": "NEH",
+  "elementos": [
+    "Éter"
+  ],
+  "elemento": "Éter",
   "dano": 20,
   "energia": 25,
-  "elemento": "Éter",
-  "descricao": "Dá uma pisada pesada com botas pesadas."
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "Dá uma pisada pesada com botas pesadas.",
+  "efeitos": [],
+  "tags": []
 }

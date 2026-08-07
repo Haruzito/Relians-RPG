@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "diluvio-celeste",
   "nome": "Dilúvio Celeste",
   "tipo": "DEF",
+  "elementos": [
+    "Halo",
+    "Abissal"
+  ],
+  "elemento": "Halo, Abissal",
   "dano": 0,
   "energia": 50,
-  "elemento": "Halo / Abissal",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }

@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "arquipelago-celeste",
   "nome": "Arquipélago Celeste",
-  "elementos": [
-    "Tempestade",
-    "Halo"
-  ]
+  "biomas": []
 }

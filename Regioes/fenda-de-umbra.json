@@ -3,8 +3,5 @@
   "tipoArquivo": "regiao",
   "id": "fenda-de-umbra",
   "nome": "Fenda de Umbra",
-  "elementos": [
-    "Umbral",
-    "Astral"
-  ]
+  "biomas": []
 }

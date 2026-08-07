@@ -1,10 +1,19 @@
 {
+  "kind": "move",
   "tipoArquivo": "movimento",
   "id": "rugido-elemental",
   "nome": "Rugido Elemental",
   "tipo": "OFS",
+  "elementos": [
+    "Éter",
+    "Ígnea"
+  ],
+  "elemento": "Éter, Ígnea",
   "dano": 40,
   "energia": 50,
-  "elemento": "Éter / Ígnea",
-  "descricao": ""
+  "precisao": 0,
+  "alcance": "",
+  "descricao": "",
+  "efeitos": [],
+  "tags": []
 }
