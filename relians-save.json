@@ -2,7 +2,7 @@
   "kind": "relians-save",
   "tipoArquivo": "banco-completo",
   "saveVersion": 2,
-  "updatedAt": "2026-08-07T20:06:49.999Z",
+  "updatedAt": "2026-08-08T23:54:23.049Z",
   "data": {
     "rules": {
       "baseHp": 50,
@@ -3941,101 +3941,122 @@
         "saveVersion": 2
       }
     },
-    "storySheets": [],
-    "savedRelianSheets": [
+    "storySheets": [
       {
-        "id": "ficha-mshnko5q-wjt7",
-        "speciesId": "nezhaspyro",
-        "speciesName": "Nezhaspyro",
-        "nickname": "Nezhaspyro",
-        "level": 10,
-        "color": "shiny",
-        "rarity": "comum",
-        "gender": "Fêmea",
-        "size": "P",
-        "hpCurrent": 85,
-        "hpMax": 85,
-        "engCurrent": 75,
-        "engMax": 75,
-        "affinity": 2,
-        "traitId": "intuitivo",
-        "attributes": {
-          "ataque": 26,
-          "defesa": 18,
-          "velocidade": -2,
-          "ataqueEspecial": 15,
-          "defesaEspecial": 34,
-          "precisao": 22
+        "id": "character-helio-stevans-mskucm4o",
+        "type": "character",
+        "character": {
+          "player": "Hemmyr",
+          "name": "Hélio Stevans",
+          "age": 23,
+          "region": "Colonia de Lumén",
+          "className": "Desbravador",
+          "specialization": "",
+          "level": 0,
+          "rank": "E",
+          "stars": 0,
+          "rays": 0,
+          "reliInf": 1,
+          "credits": 0,
+          "money": 0,
+          "image": "",
+          "description": "",
+          "hpCurrent": 30,
+          "hpMax": 30,
+          "staCurrent": 40,
+          "staMax": 40,
+          "attributes": {
+            "forca": 1,
+            "agilidade": 1,
+            "vigor": 1,
+            "presenca": 1,
+            "intelecto": 1,
+            "sabedoria": 1
+          },
+          "skills": {
+            "Acrobacias": 0,
+            "Atletismo": 0,
+            "Arte": 0,
+            "História": 0,
+            "Herborismo": 0,
+            "Intimidação": 0,
+            "Adestramento": 0,
+            "Atualidade": 0,
+            "Atuação": 0,
+            "Iniciativa": 0,
+            "Investigação": 0,
+            "Luta": 0,
+            "Culinária": 0,
+            "Conhecimento": 0,
+            "Ciências": 0,
+            "Lábia": 0,
+            "Liderança": 0,
+            "Medicina": 0,
+            "Crime": 0,
+            "Carisma": 0,
+            "Cartografia": 0,
+            "Misticismo": 0,
+            "Montaria": 0,
+            "Navegação": 0,
+            "Diplomacia": 0,
+            "Direção": 0,
+            "Disfarce": 0,
+            "Psicologia": 0,
+            "Percepção": 0,
+            "Reflexos": 0,
+            "Engenharia": 0,
+            "Estratégia": 0,
+            "Enganação": 0,
+            "Religião": 0,
+            "Sobrevivência": 0,
+            "Tática": 0,
+            "Fortitude": 0,
+            "Furtividade": 0,
+            "Fabricação": 0,
+            "TI": 0,
+            "Vontade": 0,
+            "Zoologia": 0
+          },
+          "equipment": [
+            {
+              "name": "",
+              "description": ""
+            },
+            {
+              "name": "",
+              "description": ""
+            },
+            {
+              "name": "",
+              "description": ""
+            },
+            {
+              "name": "",
+              "description": ""
+            }
+          ],
+          "backpack": [],
+          "team": [
+            {
+              "speciesId": "nezhaspyro",
+              "savedSheetId": "ficha-mshnko5q-wjt7",
+              "nickname": "Nezhaspyro",
+              "level": 10,
+              "color": "shiny",
+              "notes": ""
+            }
+          ],
+          "equippedRelianIds": [
+            "ficha-mshnko5q-wjt7"
+          ],
+          "items": [],
+          "notes": ""
         },
-        "attributeReducers": {
-          "ataque": 0,
-          "defesa": 0,
-          "velocidade": 0,
-          "ataqueEspecial": 0,
-          "defesaEspecial": 0,
-          "precisao": 0
-        },
-        "moves": [
-          "golpear"
-        ],
-        "activeElements": [
-          "Ígnea",
-          "Colossal"
-        ],
-        "createdAt": "2026-08-06T15:10:36.110Z",
-        "saveVersion": 2,
-        "originalTrainer": "",
-        "items": [],
-        "attrs": {},
-        "notes": ""
-      },
-      {
-        "id": "relian-importado-mshsdkzw",
-        "speciesId": "nezhaspyro",
-        "speciesName": "Nezhaspyro",
-        "nickname": "Nezhaspyro",
-        "level": 10,
-        "color": "shiny",
-        "rarity": "comum",
-        "gender": "Fêmea",
-        "size": "P",
-        "hpCurrent": 85,
-        "hpMax": 85,
-        "engCurrent": 75,
-        "engMax": 75,
-        "affinity": 2,
-        "traitId": "intuitivo",
-        "attributes": {
-          "ataque": 26,
-          "defesa": 18,
-          "velocidade": -2,
-          "ataqueEspecial": 15,
-          "defesaEspecial": 34,
-          "precisao": 22
-        },
-        "attributeReducers": {
-          "ataque": 0,
-          "defesa": 0,
-          "velocidade": 0,
-          "ataqueEspecial": 0,
-          "defesaEspecial": 0,
-          "precisao": 0
-        },
-        "moves": [
-          "golpear"
-        ],
-        "activeElements": [
-          "Ígnea",
-          "Colossal"
-        ],
-        "createdAt": "2026-08-06T15:10:36.110Z",
-        "saveVersion": 2,
-        "originalTrainer": "",
-        "items": [],
-        "attrs": {},
-        "notes": ""
+        "updatedAt": "2026-08-08T20:43:36.072Z",
+        "saveVersion": 2
       }
     ],
+    "savedRelianSheets": [],
     "relians": [
       {
         "id": "porppge",
@@ -5478,6 +5499,537 @@
         ],
         "evolvesTo": "lizbravos",
         "evolutionMethod": "evento",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "salamenta",
+        "catalogNumber": 21,
+        "catalogVariant": "",
+        "name": "Salamenta",
+        "description": "Um lagartinho ardente, vivem pelas florestas em busca de presas para se alimentar. Costumam ser bem curiosos quando encontram outras espécies, muitas vezes dando mordidas de teste para saber se o que vê é comestível, algo que pode até ser confundido com a mordida apaixonada que eles dão, quando gostam de algo ou alguém.",
+        "class": "OFS",
+        "elements": [
+          "Vital",
+          "Ígnea"
+        ],
+        "specialElements": [
+          "Umbral",
+          "Ígnea"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [
+          "coramenta",
+          "coramaliz"
+        ],
+        "evolvesTo": "coramenta",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          },
+          {
+            "level": 1,
+            "moveId": "mordida-de-feras"
+          },
+          {
+            "level": 4,
+            "moveId": "chicoteada"
+          },
+          {
+            "level": 14,
+            "moveId": "fagulha-selvagem"
+          },
+          {
+            "level": 15,
+            "moveId": "veneno-asfixiante"
+          },
+          {
+            "level": 16,
+            "moveId": "fitas-flamejantes"
+          },
+          {
+            "level": 16,
+            "moveId": "explosao-raivosa"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 5,
+            "maxLevel": 14,
+            "weight": 25
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 5,
+            "maxLevel": 14,
+            "weight": 25
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "coramenta",
+        "catalogNumber": 22,
+        "catalogVariant": "A",
+        "name": "Coramenta ♂",
+        "description": "Apenas indivíduos masculinos da espécie são capazes de evoluir para esta forma, Coramentas costumam andar em grupos de 3 da espécie, seguindo a fêmea líder que é a Coramaliz. O trio de Coramenta costuma dividir tarefas para proteger a fêmea dominante de seu grupo.",
+        "class": "OFS",
+        "elements": [
+          "Vital",
+          "Ígnea"
+        ],
+        "specialElements": [
+          "Umbral",
+          "Ígnea"
+        ],
+        "stage": 2,
+        "baseEnergy": 70,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho"
+        ],
+        "sizes": [
+          "M"
+        ],
+        "evolvesFrom": "salamenta",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 20,
+            "maxLevel": 30,
+            "weight": 10
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "floresta",
+            "periods": [
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 20,
+            "maxLevel": 30,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "coramaliz",
+        "catalogNumber": 22,
+        "catalogVariant": "B",
+        "name": "Coramaliz ♀",
+        "description": "Apenas indivíduos fêmeas da espécie dos Salamentas são capazes de evoluir para esta forma, muitas vezes ao atingir sua maior idade, Coramaliz são como as lideres matriarcas do grupo, comandando de até 3 a 5 Coramentas em seu grupo, organizando os mesmo por funções distintas para manter o bem estar de seu grupo, deixando apenas um único macho do grupo como sendo o seu parceiro reprodutor.",
+        "class": "EFT",
+        "elements": [
+          "Vital",
+          "Ígnea"
+        ],
+        "specialElements": [
+          "Umbral",
+          "Ígnea"
+        ],
+        "stage": 2,
+        "baseEnergy": 85,
+        "rarity": "incomum",
+        "captureRate": 30,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Fêmea"
+        ],
+        "sizes": [
+          "G"
+        ],
+        "evolvesFrom": "salamenta",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "Nível 27",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "tarde",
+              "noite"
+            ],
+            "minLevel": 30,
+            "maxLevel": 35,
+            "weight": 5
+          },
+          {
+            "region": "vale-lumen",
+            "biome": "campo",
+            "periods": [
+              "tarde",
+              "noite",
+              "madrugada"
+            ],
+            "minLevel": 32,
+            "maxLevel": 37,
+            "weight": 5
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "chaderson",
+        "catalogNumber": 26,
+        "catalogVariant": "",
+        "name": "Chaderson",
+        "description": "",
+        "class": "OFS",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Colossal"
+        ],
+        "stage": 2,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 1,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "M"
+        ],
+        "evolvesFrom": "maderson",
+        "evolvesToMany": [
+          "gigaderson"
+        ],
+        "evolvesTo": "gigaderson",
+        "evolutionMethod": "Nível",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "vinelon",
+        "catalogNumber": 23,
+        "catalogVariant": "",
+        "name": "Vinelon",
+        "description": "",
+        "class": "",
+        "elements": [
+          "Vital"
+        ],
+        "specialElements": [
+          "Vital",
+          "Abissal"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [
+          "aquamelon"
+        ],
+        "evolvesTo": "aquamelon",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "aquamelon",
+        "catalogNumber": 24,
+        "catalogVariant": "",
+        "name": "Aquamelon",
+        "description": "",
+        "class": "HIB",
+        "elements": [
+          "Vital"
+        ],
+        "specialElements": [
+          "Vital",
+          "Abissal"
+        ],
+        "stage": 2,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "vinelon",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "maderson",
+        "catalogNumber": 25,
+        "catalogVariant": "",
+        "name": "Mãderson",
+        "description": "",
+        "class": "NET",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Colossal"
+        ],
+        "stage": 1,
+        "baseEnergy": 85,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 2,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M",
+          "G"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [
+          "chaderson"
+        ],
+        "evolvesTo": "chaderson",
+        "evolutionMethod": "",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "ruinas-azuis",
+            "biome": "campo",
+            "periods": [
+              "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "gigaderson",
+        "catalogNumber": 27,
+        "catalogVariant": "",
+        "name": "Gigaderson",
+        "description": "",
+        "class": "OFS",
+        "elements": [
+          "Éter"
+        ],
+        "specialElements": [
+          "Éter",
+          "Colossal"
+        ],
+        "stage": 3,
+        "baseEnergy": 80,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 1,
+        "images": {
+          "basic": "",
+          "shiny": "",
+          "special": ""
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "G"
+        ],
+        "evolvesFrom": "chaderson",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "Nível",
         "traitIds": [],
         "learnset": [
           {

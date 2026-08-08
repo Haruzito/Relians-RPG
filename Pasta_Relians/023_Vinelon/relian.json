@@ -1,0 +1,68 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "vinelon",
+  "catalogNumber": 23,
+  "numeroCatalogo": 23,
+  "reliInfo": 23,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "023",
+  "nome": "Vinelon",
+  "descricao": "",
+  "classe": "",
+  "elementos": [
+    "Vital"
+  ],
+  "elementosEspeciais": [
+    "Vital",
+    "Abissal"
+  ],
+  "estagio": 1,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "aquamelon",
+  "evoluiParaMultiplas": [
+    "aquamelon"
+  ],
+  "evolvesToMany": [
+    "aquamelon"
+  ],
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "aquamelon",
+  "catalogNumber": 24,
+  "numeroCatalogo": 24,
+  "reliInfo": 24,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "024",
+  "nome": "Aquamelon",
+  "descricao": "",
+  "classe": "HIB",
+  "elementos": [
+    "Vital"
+  ],
+  "elementosEspeciais": [
+    "Vital",
+    "Abissal"
+  ],
+  "estagio": 2,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "vinelon",
+  "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

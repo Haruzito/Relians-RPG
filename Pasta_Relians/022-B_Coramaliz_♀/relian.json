@@ -1,0 +1,75 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "coramaliz",
+  "catalogNumber": 22,
+  "numeroCatalogo": 22,
+  "reliInfo": 22,
+  "catalogVariant": "B",
+  "variacaoCatalogo": "B",
+  "codigoCatalogo": "022-B",
+  "nome": "Coramaliz ♀",
+  "descricao": "Apenas indivíduos fêmeas da espécie dos Salamentas são capazes de evoluir para esta forma, muitas vezes ao atingir sua maior idade, Coramaliz são como as lideres matriarcas do grupo, comandando de até 3 a 5 Coramentas em seu grupo, organizando os mesmo por funções distintas para manter o bem estar de seu grupo, deixando apenas um único macho do grupo como sendo o seu parceiro reprodutor.",
+  "classe": "EFT",
+  "elementos": [
+    "Vital",
+    "Ígnea"
+  ],
+  "elementosEspeciais": [
+    "Umbral",
+    "Ígnea"
+  ],
+  "estagio": 2,
+  "energiaBase": 85,
+  "raridade": "incomum",
+  "taxaCaptura": 30,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "G"
+  ],
+  "evoluiDe": "salamenta",
+  "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
+  "metodoEvolucao": "Nível 27",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "vale-lumen",
+      "bioma": "campo",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 30,
+      "nivelMaximo": 35,
+      "peso": 5
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "campo",
+      "periodos": [
+        "tarde",
+        "noite",
+        "madrugada"
+      ],
+      "nivelMinimo": 32,
+      "nivelMaximo": 37,
+      "peso": 5
+    }
+  ]
+}

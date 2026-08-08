@@ -361,59 +361,59 @@
   #catalog .catalog-info-card li { overflow-wrap: anywhere; }
 
   /* Banco de fichas: lista compacta e detalhe confortável */
-  #savedSheets .sheet-bank-layout { display: flex !important; flex-direction: column !important; }
-  #savedSheets .sheet-bank-sidebar { width: 100% !important; }
-  #savedSheets #savedSheetSearch { font-size: 16px !important; }
-  #savedSheets .saved-sheet-list {
+  #sheetbank .sheet-bank-layout { display: flex !important; flex-direction: column !important; }
+  #sheetbank .sheet-bank-sidebar { width: 100% !important; }
+  #sheetbank #savedSheetSearch { font-size: 16px !important; }
+  #sheetbank .saved-sheet-list {
     max-height: 36dvh !important;
     overscroll-behavior: contain;
     border-radius: 12px;
   }
-  #savedSheets .saved-sheet-row { padding: 9px !important; min-width: 0 !important; }
-  #savedSheets .entity-main-button { min-width: 0 !important; }
-  #savedSheets .entity-main-button b,
-  #savedSheets .entity-main-button small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  #savedSheets .sheet-bank-detail { min-height: 0 !important; width: 100% !important; padding: 0 !important; }
-  #savedSheets .saved-sheet-detail { width: 100% !important; max-width: 100% !important; }
+  #sheetbank .saved-sheet-row { padding: 9px !important; min-width: 0 !important; }
+  #sheetbank .entity-main-button { min-width: 0 !important; }
+  #sheetbank .entity-main-button b,
+  #sheetbank .entity-main-button small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #sheetbank .sheet-bank-detail { min-height: 0 !important; width: 100% !important; padding: 0 !important; }
+  #sheetbank .saved-sheet-detail { width: 100% !important; max-width: 100% !important; }
 
   /* Ficha de personagem no banco */
-  #savedSheets .bank-character-card .character-sheet-header {
+  #sheetbank .bank-character-card .character-sheet-header {
     display: grid !important;
     grid-template-columns: 1fr !important;
   }
-  #savedSheets .bank-character-card .character-portrait {
+  #sheetbank .bank-character-card .character-portrait {
     min-height: 210px !important;
     max-height: 320px !important;
   }
-  #savedSheets .bank-character-card .character-portrait > div { min-height: inherit !important; }
-  #savedSheets .bank-character-card .character-portrait img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
-  #savedSheets .bank-character-card .character-identity,
-  #savedSheets .bank-character-card .character-resources { padding: 14px !important; }
-  #savedSheets .bank-character-card .character-identity h2 { font-size: clamp(1.45rem, 7vw, 2rem) !important; overflow-wrap: anywhere; }
-  #savedSheets .bank-character-card .character-tags,
-  #savedSheets .bank-character-card .character-milestones { flex-wrap: wrap !important; }
-  #savedSheets .bank-character-card .character-resources > div { min-width: 0 !important; }
-  #savedSheets .bank-char-controls { display: grid !important; grid-template-columns: repeat(4,minmax(0,1fr)) !important; gap: 6px !important; }
-  #savedSheets .bank-char-controls button { width: 100% !important; min-width: 0 !important; padding-inline: 4px !important; }
-  #savedSheets .character-bank-actions { display: grid !important; grid-template-columns: 1fr !important; }
-  #savedSheets .character-bank-actions > * { width: 100% !important; }
-  #savedSheets .bank-character-card .character-sheet-grid { padding: 8px !important; }
+  #sheetbank .bank-character-card .character-portrait > div { min-height: inherit !important; }
+  #sheetbank .bank-character-card .character-portrait img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+  #sheetbank .bank-character-card .character-identity,
+  #sheetbank .bank-character-card .character-resources { padding: 14px !important; }
+  #sheetbank .bank-character-card .character-identity h2 { font-size: clamp(1.45rem, 7vw, 2rem) !important; overflow-wrap: anywhere; }
+  #sheetbank .bank-character-card .character-tags,
+  #sheetbank .bank-character-card .character-milestones { flex-wrap: wrap !important; }
+  #sheetbank .bank-character-card .character-resources > div { min-width: 0 !important; }
+  #sheetbank .bank-char-controls { display: grid !important; grid-template-columns: repeat(4,minmax(0,1fr)) !important; gap: 6px !important; }
+  #sheetbank .bank-char-controls button { width: 100% !important; min-width: 0 !important; padding-inline: 4px !important; }
+  #sheetbank .character-bank-actions { display: grid !important; grid-template-columns: 1fr !important; }
+  #sheetbank .character-bank-actions > * { width: 100% !important; }
+  #sheetbank .bank-character-card .character-sheet-grid { padding: 8px !important; }
 
   /* 7 slots: legíveis e fáceis de tocar */
-  #savedSheets .equipped-team-heading { align-items: flex-start !important; flex-wrap: wrap !important; padding: 12px !important; }
-  #savedSheets .equipped-team-heading > div { min-width: 0; flex: 1 1 220px; }
-  #savedSheets .equipped-team-heading > b { flex: 0 0 auto; }
-  #savedSheets .equipped-team-slots { grid-template-columns: 1fr !important; padding: 10px !important; }
-  #savedSheets .equipped-relian-slot { padding: 10px !important; }
-  #savedSheets .equipped-relian-slot select { width: 100% !important; font-size: 16px !important; }
+  #sheetbank .equipped-team-heading { align-items: flex-start !important; flex-wrap: wrap !important; padding: 12px !important; }
+  #sheetbank .equipped-team-heading > div { min-width: 0; flex: 1 1 220px; }
+  #sheetbank .equipped-team-heading > b { flex: 0 0 auto; }
+  #sheetbank .equipped-team-slots { grid-template-columns: 1fr !important; padding: 10px !important; }
+  #sheetbank .equipped-relian-slot { padding: 10px !important; }
+  #sheetbank .equipped-relian-slot select { width: 100% !important; font-size: 16px !important; }
 
   /* Mochila */
-  #savedSheets .bank-backpack-editor { padding: 10px !important; }
-  #savedSheets .bank-backpack-row { padding: 10px !important; gap: 8px !important; }
-  #savedSheets .bank-backpack-row input,
-  #savedSheets .bank-backpack-row textarea { width: 100% !important; font-size: 16px !important; }
-  #savedSheets .bank-backpack-actions { display: grid !important; grid-template-columns: 1fr 1fr !important; padding: 0 10px 10px !important; }
-  #savedSheets .bank-backpack-actions > * { width: 100% !important; }
+  #sheetbank .bank-backpack-editor { padding: 10px !important; }
+  #sheetbank .bank-backpack-row { padding: 10px !important; gap: 8px !important; }
+  #sheetbank .bank-backpack-row input,
+  #sheetbank .bank-backpack-row textarea { width: 100% !important; font-size: 16px !important; }
+  #sheetbank .bank-backpack-actions { display: grid !important; grid-template-columns: 1fr 1fr !important; padding: 0 10px 10px !important; }
+  #sheetbank .bank-backpack-actions > * { width: 100% !important; }
 
   /* Relians possuídos / ficha completa */
   .character-guide-overlay { align-items: stretch !important; }
@@ -465,12 +465,12 @@
   #catalog .catalog-profile-image { min-height: 190px !important; }
 
   /* Banco: foco em toque */
-  #savedSheets .saved-sheet-list { max-height: 34dvh !important; }
-  #savedSheets .saved-sheet-row { min-height: 58px; }
-  #savedSheets .saved-sheet-row .danger { min-width: 42px !important; min-height: 42px !important; }
-  #savedSheets .bank-char-controls { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
-  #savedSheets .bank-backpack-actions { grid-template-columns: 1fr !important; }
-  #savedSheets .equipped-team-heading > b { width: 100%; text-align: center; }
+  #sheetbank .saved-sheet-list { max-height: 34dvh !important; }
+  #sheetbank .saved-sheet-row { min-height: 58px; }
+  #sheetbank .saved-sheet-row .danger { min-width: 42px !important; min-height: 42px !important; }
+  #sheetbank .bank-char-controls { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #sheetbank .bank-backpack-actions { grid-template-columns: 1fr !important; }
+  #sheetbank .equipped-team-heading > b { width: 100%; text-align: center; }
 
   /* Ficha completa vira praticamente uma tela própria */
   .character-guide-overlay { padding: 0 !important; }
@@ -503,8 +503,8 @@
 
 @media (max-width: 380px) {
   #catalog .catalog-result { grid-template-columns: 50px minmax(0,1fr) 22px !important; }
-  #savedSheets .bank-character-card .character-identity,
-  #savedSheets .bank-character-card .character-resources { padding: 10px !important; }
+  #sheetbank .bank-character-card .character-identity,
+  #sheetbank .bank-character-card .character-resources { padding: 10px !important; }
   .owned-relian-card,
   .owned-relian-card.compact { grid-template-columns: 72px minmax(0,1fr) !important; }
   .owned-relian-image,
@@ -529,11 +529,18 @@
   }
   .dice-dialog,
   .sheet-capture-dialog { overflow-y: auto !important; }
-  .move-picker-dialog,
-  .evolution-picker-dialog,
-  .encounter-picker-dialog {
+  /* IMPORTANTE: dialogs fechados precisam continuar invisíveis no mobile.
+     O display:grid abaixo só pode valer enquanto o dialog estiver aberto. */
+  .move-picker-dialog:not([open]),
+  .evolution-picker-dialog:not([open]),
+  .encounter-picker-dialog:not([open]) {
+    display: none !important;
+  }
+  .move-picker-dialog[open],
+  .evolution-picker-dialog[open],
+  .encounter-picker-dialog[open] {
     height: calc(100dvh - 16px) !important;
-    display: grid;
+    display: grid !important;
     grid-template-rows: auto auto minmax(0, 1fr) auto;
     overflow: hidden !important;
   }
@@ -768,4 +775,74 @@
   .bank-char-controls { grid-template-columns: 1fr !important; }
   .bank-backpack-actions { grid-template-columns: 1fr !important; }
   .resource-controls { grid-template-columns: 1fr !important; }
+}
+
+/* === Navegação interna mobile por categorias === */
+@media (max-width: 900px) {
+  .mobile-collapsible {
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .mobile-collapsible > legend {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    padding: 14px 44px 14px 14px !important;
+    margin: 0 !important;
+    cursor: pointer;
+    position: relative;
+    font-size: .92rem;
+    line-height: 1.2;
+    user-select: none;
+    border-bottom: 1px solid rgba(75,144,155,.22);
+  }
+  .mobile-collapsible > legend::after {
+    content: '−';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: rgba(61,195,202,.12);
+    font-size: 1.15rem;
+  }
+  .mobile-collapsible.mobile-section-collapsed > legend::after { content: '+'; }
+  .mobile-collapsible.mobile-section-collapsed > :not(legend) { display: none !important; }
+  .mobile-collapsible:not(.mobile-section-collapsed) > :not(legend) {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .mobile-collapsible:not(.mobile-section-collapsed) > :nth-child(2) { margin-top: 12px; }
+  .mobile-collapsible:not(.mobile-section-collapsed) > :last-child { margin-bottom: 12px; }
+
+  /* Mais área útil e leitura confortável no telefone */
+  main { padding-inline: 8px !important; }
+  .card { padding: 12px !important; }
+  label { line-height: 1.35; }
+  input, select, textarea { font-size: 16px !important; }
+  .field-help { line-height: 1.45 !important; }
+  #story .form-card, #relians .entity-editor-card, #moves .entity-editor-card,
+  #rules .form-card { padding: 10px !important; }
+}
+
+/* Criadores / Comunidade */
+@media (max-width: 900px) {
+  .creators-shell { width: 100%; }
+  .creators-hero { padding: 18px !important; }
+  .creators-links { grid-template-columns: 1fr; gap: 12px; }
+  .creator-link-card { min-height: 92px; padding: 14px 15px; border-radius: 15px; }
+  .creator-link-icon, .creator-link-symbol { width: 46px; height: 46px; }
+  .creator-link-copy strong { font-size: 1rem; }
+  .creator-link-copy small { font-size: .8rem; }
+}
+@media (max-width: 420px) {
+  .creators-hero { padding: 14px !important; }
+  .creator-link-card { gap: 12px; padding: 13px; }
+  .creator-link-icon, .creator-link-symbol { width: 42px; height: 42px; }
+  .creator-link-arrow { font-size: 1.6rem; }
 }

@@ -1,0 +1,65 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "chaderson",
+  "catalogNumber": 26,
+  "numeroCatalogo": 26,
+  "reliInfo": 26,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "026",
+  "nome": "Chaderson",
+  "descricao": "",
+  "classe": "OFS",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [
+    "Colossal"
+  ],
+  "estagio": 2,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 1,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "M"
+  ],
+  "evoluiDe": "maderson",
+  "evoluiPara": "gigaderson",
+  "evoluiParaMultiplas": [
+    "gigaderson"
+  ],
+  "evolvesToMany": [
+    "gigaderson"
+  ],
+  "metodoEvolucao": "Nível",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

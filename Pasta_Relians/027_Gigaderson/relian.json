@@ -1,0 +1,62 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "gigaderson",
+  "catalogNumber": 27,
+  "numeroCatalogo": 27,
+  "reliInfo": 27,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "027",
+  "nome": "Gigaderson",
+  "descricao": "",
+  "classe": "OFS",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [
+    "Éter",
+    "Colossal"
+  ],
+  "estagio": 3,
+  "energiaBase": 80,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 1,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "G"
+  ],
+  "evoluiDe": "chaderson",
+  "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
+  "metodoEvolucao": "Nível",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

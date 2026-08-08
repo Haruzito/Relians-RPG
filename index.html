@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gerador de Relians v9.8.10</title>
+  <title>Gerador de Relians v9.9.0</title>
   <meta name="theme-color" content="#5946b2" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
@@ -15,7 +15,7 @@
 </head>
 <body>
 <header class="topbar app-header">
-  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v9.8.10</small></div></div>
+  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v9.9.0</small></div></div>
   <div class="top-actions toolbar-actions"><button id="newsBtn" class="toolbar-icon" title="Novidades"><span>🔔</span><b>Novidades</b></button>
     <button id="diceBtn" class="toolbar-icon dice-toolbar-button" title="Rolador de dados"><span>🎲</span><b>Dados</b></button>
     <button id="linkFolderBtn" class="primary toolbar-main"><span>◈</span> Vincular projeto</button>
@@ -34,6 +34,7 @@
   <button class="tab" data-tab="story">Criador de fichas</button>
   <button class="tab" data-tab="sheetbank">Banco de fichas</button>
   <button class="tab" data-tab="catalog">Catálogo</button>
+  <button class="tab" data-tab="creators">Criadores</button>
   <button class="tab" data-tab="rules">Regras</button>
 </nav>
 <main>
@@ -262,6 +263,29 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
   </div>
 </section>
 
+<section id="creators" class="tab-panel creators-panel">
+  <div class="creators-shell">
+    <div class="creators-hero card">
+      <div class="section-kicker">COMUNIDADE E CRIAÇÃO</div>
+      <h2>Criadores</h2>
+      <p class="creators-intro">Acesse os canais oficiais do universo Relians e acompanhe as novidades do projeto.</p>
+      <div class="creators-links">
+        <a id="reliansDiscordLink" class="creator-link-card discord-link-card" href="https://discord.gg/2HkmeKVXjM" target="_blank" rel="noopener noreferrer" aria-label="Abrir o servidor Relians World no Discord">
+          <img src="assets/icons/discord.png" alt="" class="creator-link-icon" />
+          <span class="creator-link-copy"><strong>Relians World</strong><small>Servidor oficial da comunidade no Discord</small></span>
+          <span class="creator-link-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="creator-link-card updates-link-card" href="updates.html" aria-label="Abrir novidades e blog oficial dos Relians">
+          <span class="creator-link-symbol" aria-hidden="true">✦</span>
+          <span class="creator-link-copy"><strong>Novidades e Blog</strong><small>Atualizações, diário de desenvolvimento e mundo de Relians</small></span>
+          <span class="creator-link-arrow" aria-hidden="true">›</span>
+        </a>
+      </div>
+      <p id="discordInviteHint" hidden class="creator-link-hint">O botão Relians World está pronto; basta configurar o link de convite oficial.</p>
+    </div>
+  </div>
+</section>
+
 <section id="rules" class="tab-panel">
   <div class="grid two">
     <form id="rulesForm" class="card form-card"><div class="section-kicker">CONFIGURAÇÃO GLOBAL</div><h2>Regras</h2>
@@ -399,4 +423,4 @@ config/
 </dialog>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="app.js"></script>
-<dialog id="newsDialog"><h2>📦 Novidades - v9.8.10</h2><ul><li>Novo sistema de versionamento e atualização de fichas antigas durante a importação</li><li>Relians agora suportam número de catálogo, variações evolutivas e múltiplas evoluções</li><li>Catálogo aprimorado com pesquisa, filtros e navegação entre evoluções</li><li>Regiões e biomas foram reorganizados, com seleção separada nas aparições dos Relians</li><li>Personagens agora possuem Mochila, até 7 Relians equipados e visualização completa da coleção</li><li>Nova raridade Único substitui Lendário Especial, com compatibilidade para dados antigos</li><li>Salvamento e sincronização local receberam correções importantes de estabilidade</li><li>Interface responsiva para celulares foi concluída, incluindo catálogo, banco de fichas, modais e seletores</li><li>Diversas correções de bugs e melhorias gerais de estabilidade e navegação</li></ul><button onclick="document.getElementById('newsDialog').close()">Fechar</button></dialog><script>document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("newsBtn");if(b)b.onclick=()=>document.getElementById("newsDialog").showModal();});</script></body></html>
+<dialog id="newsDialog"><h2>📦 Novidades - v9.9.0</h2><ul><li>Nova aba <b>Criadores</b>, com acesso direto ao servidor oficial Relians World no Discord</li><li>Nova página <b>Novidades e Blog</b> para notas de versão, diário de desenvolvimento e conteúdos do universo Relians</li><li>Banco de fichas corrigido: fichas de Relians agora podem ser abertas e visualizadas corretamente</li><li>Fichas completas de personagem receberam melhorias na visualização da equipe e dos Relians possuídos</li><li>Correção do botão <b>Salvar ficha</b> para Relians gerados</li><li>Interface mobile reorganizada em categorias recolhíveis para reduzir telas apertadas e melhorar a navegação</li><li>Biblioteca de movimentos corrigida no mobile, aparecendo somente quando solicitada</li><li>Projeto pode ser instalado como aplicativo em dispositivos compatíveis através do modo PWA</li><li>Importação, exportação, migração de fichas e save local continuam compatíveis com a nova versão</li><li>Diversas correções de estabilidade no Banco de fichas, sincronização local e navegação geral</li></ul><button onclick="document.getElementById('newsDialog').close()">Fechar</button></dialog><script>document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("newsBtn");if(b)b.onclick=()=>document.getElementById("newsDialog").showModal();});</script></body></html>

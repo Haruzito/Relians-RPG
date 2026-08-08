@@ -465,6 +465,58 @@ function affinityMood(v){if(v<=1)return{emoji:'😠',label:'Muito irritado'};if(
 function captureBreakdown(g){const hpPct=g.hp?g.currentHp/g.hp*100:100;let hpBonus=hpPct<=10?20:hpPct<=30?10:0;let cube=CUBES[g.captureCube]||CUBES.padrao;let cubeBonus=cube.bonus;if(g.captureCube==='dataprisma'&&(['lendario','mitico','unico'].includes(g.r.rarity)))cubeBonus=0;const statusBonus=g.negativeStatus?15:0,affinityBonus=g.affinity>=4.1?10:0,base=Number(g.r.captureRate??RARITY_BASE[g.r.rarity]??40);const automatic=g.captureCube==='dataprisma'&&!['lendario','mitico','unico'].includes(g.r.rarity);const total=automatic?100:Math.max(0,Math.min(100,base+cubeBonus+hpBonus+statusBonus+affinityBonus));return{base,cube,cubeBonus,hpBonus,statusBonus,affinityBonus,total,automatic,hpPct}}
 function capturePanel(g){const c=captureBreakdown(g),m=affinityMood(g.affinity);return `<section class="sheet-section"><div class="sheet-section-title">CAPTURA E AFINIDADE</div><div class="sheet-section-content capture-panel"><div class="capture-summary"><div class="capture-chance-card"><span class="capture-card-label">CHANCE FINAL</span><b class="capture-rate">${c.total.toFixed(1)}%</b><small>Resultado necessário no 1d100</small></div><div class="affinity-display"><div class="affinity-main"><span class="affinity-emoji">${m.emoji}</span><div><b>${g.affinity.toFixed(1)} / 5,0</b><small>${m.label}</small></div></div><div class="affinity-adjustments"><span>Ajustar afinidade</span><div><button type="button" data-affinity-delta="-0.5" data-uid="${g.uid}">−0,5</button><button type="button" data-affinity-delta="-0.1" data-uid="${g.uid}">−0,1</button><button type="button" data-affinity-delta="0.1" data-uid="${g.uid}">+0,1</button><button type="button" data-affinity-delta="0.5" data-uid="${g.uid}">+0,5</button></div></div></div></div><div class="capture-controls"><label>Datacubo<select data-capture-control="cube" data-uid="${g.uid}">${Object.entries(CUBES).map(([id,x])=>`<option value="${id}" ${g.captureCube===id?'selected':''}>${x.name}</option>`).join('')}</select></label><label class="check-control"><input type="checkbox" data-capture-control="status" data-uid="${g.uid}" ${g.negativeStatus?'checked':''}> Status negativo (+15%)</label></div><div class="capture-formula"><span>Base ${c.base}%</span><span>Cubo +${c.cubeBonus}%</span><span>Vida +${c.hpBonus}%</span><span>Status +${c.statusBonus}%</span><span>Afinidade +${c.affinityBonus}%</span></div><button type="button" class="primary capture-roll-btn" data-capture-roll="1" data-uid="${g.uid}">Rolar captura (1d100)</button>${g.captureRoll!=null?`<div class="capture-result ${g.captureResult==='Capturado!'?'success':'failure'}"><b>Resultado: ${g.captureRoll}</b><span>${g.captureResult}</span></div>`:''}</div></section>`}
 const generatedState=new Map();
+
+/* Banco de fichas — utilitários que haviam ficado ausentes após a reorganização
+   das versões mobile/banco. Sem estas funções, clicar numa ficha de Relian
+   interrompia renderSavedSheetDetail() com ReferenceError e o botão
+   "Salvar ficha" do Gerador também não executava. */
+function savedSheetParticles(colorId='basic'){
+  const color=normalizeColorId(colorId);
+  if(color!=='shiny'&&color!=='special')return '';
+  const xs=[8,74,31,56,17,88,43,65,24,79,51,12,93,37,69,21,60,84];
+  const sizes=[8,12,7,10,9,6,13,8,11,7,9,12,6,10,8,13,7,11];
+  const durations=[5.4,7.1,6.2,5.8,7.6,6.7,5.2,7.4,6.0,5.6,7.0,6.4,5.9,7.8,6.1,5.3,7.2,6.6];
+  const delays=[-1.1,-5.8,-3.2,-6.6,-2.4,-4.7,-0.5,-7.1,-3.9,-1.8,-5.1,-6.0,-2.9,-7.5,-4.3,-0.9,-5.5,-3.5];
+  const drifts=[-10,12,6,-7,14,-5,9,-12,5,11,-8,7,-14,10,-6,13,-9,4];
+  const particles=xs.map((x,i)=>`<span style="--x:${x}%;--size:${sizes[i]}px;--duration:${durations[i]}s;--delay:${delays[i]}s;--drift:${drifts[i]}px">${color==='shiny'?(i%3===0?'✦':'◆'):'✦'}</span>`).join('');
+  return `<div class="portrait-particles ${color}" aria-hidden="true">${particles}</div>`;
+}
+
+function saveGeneratedRelianSheet(g){
+  if(!g||!g.r)return;
+  const moveIds=(g.moves||[]).map(entry=>entry?.move?.id).filter(Boolean);
+  const attributes={};
+  for(const key of ATTR_KEYS)attributes[key]=Number(g.attrs?.[key]?.total??g.attrs?.[key]?.rolled??0)||0;
+  const now=Date.now();
+  const id=`relian-${now.toString(36)}-${Math.random().toString(36).slice(2,7)}`;
+  const sheet=migrateSavedRelianSheet({
+    id,
+    speciesId:String(g.r.id||''),
+    speciesName:String(g.r.name||''),
+    nickname:String(g.r.name||''),
+    level:Math.max(1,Number(g.level)||1),
+    color:normalizeColorId(g.color?.id||'basic'),
+    rarity:normalizeRarityId(g.r.rarity||'comum'),
+    gender:String(g.gender||''),
+    size:String(g.size||''),
+    hpCurrent:Math.max(0,Number(g.currentHp)||0),
+    hpMax:Math.max(1,Number(g.hp)||1),
+    engCurrent:Math.max(0,Number(g.currentEnergy)||0),
+    engMax:Math.max(1,Number(g.energy)||1),
+    affinity:Math.max(0,Math.min(5,Number(g.affinity??2)||0)),
+    attributes,
+    attributeReducers:{},
+    traitId:String(g.trait?.id||''),
+    moves:moveIds,
+    items:[],
+    notes:''
+  });
+  data.savedRelianSheets=Array.isArray(data.savedRelianSheets)?data.savedRelianSheets:[];
+  data.savedRelianSheets.push(sheet);
+  selectedSavedSheetId='relian:'+String(sheet.id);
+  saveData();
+  alert(`${sheet.nickname||sheet.speciesName||'Relian'} foi salvo no Banco de fichas.`);
+}
 function renderGenerated(g){
   generatedState.set(g.uid,g);
   const attrRows=ATTR_KEYS.map(k=>{const m=g.attrs[k].modifier;return `<tr><td><b>${ATTR_LABELS[k]}</b></td><td>${g.attrs[k].rolled}</td><td>${g.attrs[k].trait>=0?'+':''}${g.attrs[k].trait}</td><td>${g.attrs[k].total}</td><td class="${m>=0?'modifier-positive':'modifier-negative'}">${m>=0?'+':''}${m}</td></tr>`}).join('');
@@ -1307,11 +1359,11 @@ function bankSelectedEntry(){
   const raw=String(selectedSavedSheetId||'');
   if(raw.startsWith('character:')){
     const id=raw.slice(10);
-    const sheet=bankCharacterSheets().find(s=>s.id===id);
+    const sheet=bankCharacterSheets().find(s=>String(s.id)===id);
     return sheet?{kind:'character',sheet}:null;
   }
   const id=raw.startsWith('relian:')?raw.slice(7):raw;
-  const sheet=(data.savedRelianSheets||[]).find(s=>s.id===id);
+  const sheet=(data.savedRelianSheets||[]).find(s=>String(s.id)===id);
   return sheet?{kind:'relian',sheet}:null;
 }
 function renderSavedRelianSheets(){
@@ -1323,30 +1375,67 @@ function renderSavedRelianSheets(){
   const relianRows=relians.map(s=>{
     const sp=data.relians.find(r=>r.id===s.speciesId),rar=s.rarity||sp?.rarity||'comum';
     const key='relian:'+s.id;
-    return `<button type="button" class="saved-sheet-select ${selectedSavedSheetId===key||selectedSavedSheetId===s.id?'selected':''}" onclick="selectSavedRelianSheet('${esc(s.id)}')"><span class="saved-sheet-select-main"><b>${esc(s.nickname||s.speciesName)}</b><small>${esc(s.speciesName)} · Nv. ${s.level}</small><span class="saved-sheet-tags"><i class="color-tag ${esc(s.color||'basic')}">${esc(colorName(s.color))}</i><i class="rarity-tag rarity-${esc(rar)}">${esc(RARITY_NAMES[rar]||'Comum')}</i>${s.originalTrainer?`<i class="trainer-owner-tag">${esc(s.originalTrainer)}</i>`:''}</span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
+    return `<button type="button" class="saved-sheet-select ${selectedSavedSheetId===key||selectedSavedSheetId===s.id?'selected':''}" data-bank-kind="relian" data-bank-id="${esc(s.id)}" onclick="openBankSheet('relian','${esc(String(s.id))}')"><span class="saved-sheet-select-main"><b>${esc(s.nickname||s.speciesName)}</b><small>${esc(s.speciesName)} · Nv. ${s.level}</small><span class="saved-sheet-tags"><i class="color-tag ${esc(s.color||'basic')}">${esc(colorName(s.color))}</i><i class="rarity-tag rarity-${esc(rar)}">${esc(RARITY_NAMES[rar]||'Comum')}</i>${s.originalTrainer?`<i class="trainer-owner-tag">${esc(s.originalTrainer)}</i>`:''}</span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
   }).join('');
   const characterRows=characters.map(s=>{
     const c=s.character||s.trainer||{},key='character:'+s.id;
-    return `<button type="button" class="saved-sheet-select character-bank-row ${selectedSavedSheetId===key?'selected':''}" onclick="selectCharacterBankSheet('${esc(s.id)}')"><span class="saved-sheet-select-main"><b>${esc(c.name||'Personagem sem nome')}</b><small>${esc(c.player?('Jogador: '+c.player):(c.className||'Explorador de Astra'))}</small><span class="saved-sheet-tags"><i class="character-tag">PERSONAGEM</i>${c.className?`<i class="class-tag">${esc(c.className)}</i>`:''}<i class="level-tag">Nv. ${Number(c.level)||0}</i></span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
+    return `<button type="button" class="saved-sheet-select character-bank-row ${selectedSavedSheetId===key?'selected':''}" data-bank-kind="character" data-bank-id="${esc(s.id)}" onclick="openBankSheet('character','${esc(String(s.id))}')"><span class="saved-sheet-select-main"><b>${esc(c.name||'Personagem sem nome')}</b><small>${esc(c.player?('Jogador: '+c.player):(c.className||'Explorador de Astra'))}</small><span class="saved-sheet-tags"><i class="character-tag">PERSONAGEM</i>${c.className?`<i class="class-tag">${esc(c.className)}</i>`:''}<i class="level-tag">Nv. ${Number(c.level)||0}</i></span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
   }).join('');
   box.innerHTML=`<div class="bank-list-summary"><span>${relians.length} Relian${relians.length===1?'':'s'}</span><span>${characters.length} personagem${characters.length===1?'':'s'}</span></div>${relians.length?`<div class="bank-group-title">Relians gerados</div>${relianRows}`:''}${characters.length?`<div class="bank-group-title">Personagens</div>${characterRows}`:''}${!relians.length&&!characters.length?'<p class="empty">Nenhuma ficha encontrada.</p>':''}`;
+  /* O clique é tratado por delegação abaixo. Isso evita perder o evento quando
+     a lista é redesenhada depois de salvar, importar ou pesquisar fichas. */
 }
-window.selectSavedRelianSheet=id=>{
-  selectedSavedSheetId='relian:'+id;
-  renderSavedRelianSheets();
+function openBankSheet(kind,id,{scroll=true}={}){
+  id=String(id||'').trim();
+  if(!id)return;
+  const isCharacter=kind==='character';
+  const exists=isCharacter
+    ? bankCharacterSheets().some(sheet=>String(sheet.id)===id)
+    : (data.savedRelianSheets||[]).some(sheet=>String(sheet.id)===id);
+  if(!exists){
+    console.warn('Ficha do Banco não encontrada:',kind,id);
+    return;
+  }
+  selectedSavedSheetId=(isCharacter?'character:':'relian:')+id;
+  const bankTab=document.querySelector('[data-tab="sheetbank"]');
+  if(bankTab&&!bankTab.classList.contains('active'))bankTab.click();
   renderSavedSheetDetail();
-  document.querySelector('[data-tab="sheetbank"]')?.click();
-};
-window.selectCharacterBankSheet=id=>{
-  selectedSavedSheetId='character:'+id;
   renderSavedRelianSheets();
-  renderSavedSheetDetail();
-  document.querySelector('[data-tab="sheetbank"]')?.click();
-};
+  if(scroll){
+    requestAnimationFrame(()=>{
+      const detail=el('savedSheetDetail');
+      if(detail&&(window.matchMedia('(max-width: 900px)').matches||!isElementMostlyVisible(detail))){
+        detail.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  }
+}
+window.openBankSheet=openBankSheet;
+function isElementMostlyVisible(node){
+  if(!node)return false;
+  const rect=node.getBoundingClientRect();
+  const vh=window.innerHeight||document.documentElement.clientHeight||0;
+  return rect.top>=0&&rect.top<vh*.7&&rect.bottom>Math.min(vh,120);
+}
+window.selectSavedRelianSheet=id=>openBankSheet('relian',id);
+window.selectCharacterBankSheet=id=>openBankSheet('character',id);
+
+/* Delegação permanente: continua funcionando mesmo quando renderSavedRelianSheets()
+   substitui todo o HTML da lista. */
+const savedSheetsListNode=el('savedRelianSheetsList');
+if(savedSheetsListNode&&!savedSheetsListNode.dataset.bankClickReady){
+  savedSheetsListNode.dataset.bankClickReady='1';
+  savedSheetsListNode.addEventListener('click',event=>{
+    const button=event.target.closest('.saved-sheet-select[data-bank-id]');
+    if(!button||!savedSheetsListNode.contains(button))return;
+    event.preventDefault();
+    openBankSheet(button.dataset.bankKind==='character'?'character':'relian',button.dataset.bankId);
+  });
+}
 function characterOwnedRelians(character){
   const seen=new Set();
   return (character?.team||[]).map(member=>{
-    const saved=(data.savedRelianSheets||[]).find(sheet=>sheet.id===member.savedSheetId);
+    const saved=(data.savedRelianSheets||[]).find(sheet=>String(sheet.id)===String(member.savedSheetId));
     const id=String(member.savedSheetId||saved?.id||'');
     if(!id||seen.has(id))return null;
     seen.add(id);
@@ -1366,7 +1455,7 @@ function relianOwnedCard(entry,compact=false){
   const color=member.color||saved.color||'basic';
   const image=resolveRelianImage(species,normalizeColorId(color));
   const moves=(saved.moves||[]).map(id=>data.moves[id]).filter(Boolean);
-  return `<article class="owned-relian-card${compact?' compact':''}">
+  return `<article class="owned-relian-card${compact?' compact':''}" data-owned-relian-id="${esc(String(entry.id||''))}" role="button" tabindex="0" title="Abrir ficha completa deste Relian">
     <div class="owned-relian-image">${image?`<img src="${esc(image)}" alt="${esc(nickname)}">`:'<span>?</span>'}</div>
     <div class="owned-relian-main">
       <div class="owned-relian-title"><div><small>${species?`#${esc(catalogCode(species)||'—')}`:'FICHA SALVA'}</small><h4>${esc(nickname)}</h4></div><span>${esc(colorName(color))}</span></div>
@@ -1424,6 +1513,16 @@ function openCharacterGuide(sheetId,initialTab='summary'){
     overlay.querySelectorAll('[data-guide-panel]').forEach(panel=>panel.hidden=panel.dataset.guidePanel!==tab);
   };
   overlay.querySelectorAll('[data-guide-tab]').forEach(button=>button.onclick=()=>activate(button.dataset.guideTab));
+  const openOwnedRelian=card=>{
+    const id=String(card?.dataset?.ownedRelianId||'').trim();
+    if(!id)return;
+    closeCharacterGuide();
+    openBankSheet('relian',id,{scroll:true});
+  };
+  overlay.querySelectorAll('.owned-relian-card[data-owned-relian-id]').forEach(card=>{
+    card.addEventListener('click',event=>{event.preventDefault();openOwnedRelian(card)});
+    card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openOwnedRelian(card)}});
+  });
   overlay.onclick=event=>{if(event.target===overlay)closeCharacterGuide()};
   activate(initialTab);
 }
@@ -1467,6 +1566,13 @@ function renderBankCharacterDetail(sheet){
   box.querySelectorAll('.bank-remove-backpack').forEach(btn=>btn.onclick=()=>{const row=btn.closest('.bank-backpack-row'),index=Number(row?.dataset.index);c.backpack=readBankBackpack();if(Number.isInteger(index))c.backpack.splice(index,1);saveData();selectedSavedSheetId='character:'+sheet.id;renderSavedSheetDetail()});
   el('bankAddBackpackBtn').onclick=()=>addBankBackpackRow();
   el('bankSaveBackpackBtn').onclick=()=>{c.backpack=readBankBackpack();saveData();selectedSavedSheetId='character:'+sheet.id;renderSavedSheetDetail();alert('Mochila atualizada.')};
+  box.querySelectorAll('.owned-relian-card[data-owned-relian-id]').forEach(card=>{
+    card.addEventListener('click',event=>{
+      event.stopPropagation();
+      const id=String(card.dataset.ownedRelianId||'').trim();
+      if(id)openBankSheet('relian',id,{scroll:true});
+    });
+  });
   el('bankOpenFullCharacterBtn').onclick=event=>{event.stopPropagation();openCharacterGuide(sheet.id)};
   box.querySelector('.character-full-open').onclick=event=>{if(event.target.closest('button,input,select,textarea,label'))return;openCharacterGuide(sheet.id)};
   el('bankEditCharacterBtn').onclick=event=>{event.stopPropagation();editStorySheet(sheet.id)};
@@ -1834,3 +1940,55 @@ if(el('catalogResetFilters'))el('catalogResetFilters').addEventListener('click',
   };
 
 })();
+
+/* Mobile: transforma grupos grandes em categorias recolhíveis sem alterar o desktop. */
+(function setupMobileFormCategories(){
+  const mq=window.matchMedia('(max-width: 900px)');
+  function apply(){
+    const groups=document.querySelectorAll('#relians fieldset, #moves fieldset, #story fieldset, #rules fieldset, #biomes fieldset');
+    groups.forEach((fieldset,index)=>{
+      fieldset.classList.add('mobile-collapsible');
+      const legend=fieldset.querySelector(':scope > legend');
+      if(!legend || legend.dataset.mobileCategoryReady==='1') return;
+      legend.dataset.mobileCategoryReady='1';
+      legend.setAttribute('role','button');
+      legend.setAttribute('tabindex','0');
+      const toggle=()=>{
+        if(!mq.matches) return;
+        fieldset.classList.toggle('mobile-section-collapsed');
+        legend.setAttribute('aria-expanded',String(!fieldset.classList.contains('mobile-section-collapsed')));
+      };
+      legend.addEventListener('click',toggle);
+      legend.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+      if(mq.matches){
+        const form=fieldset.closest('form');
+        const siblings=form?[...form.querySelectorAll(':scope fieldset')]:[];
+        if(siblings.indexOf(fieldset)>0) fieldset.classList.add('mobile-section-collapsed');
+        legend.setAttribute('aria-expanded',String(!fieldset.classList.contains('mobile-section-collapsed')));
+      }
+    });
+    if(!mq.matches){
+      document.querySelectorAll('.mobile-collapsible').forEach(el=>el.classList.remove('mobile-section-collapsed'));
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',apply); else apply();
+  mq.addEventListener?.('change',apply);
+})();
+
+// ===== Criadores / links oficiais =====
+const RELIANS_DISCORD_INVITE = 'https://discord.gg/2HkmeKVXjM';
+document.addEventListener('DOMContentLoaded', () => {
+  const discordLink = document.getElementById('reliansDiscordLink');
+  const discordHint = document.getElementById('discordInviteHint');
+  if (!discordLink) return;
+  if (RELIANS_DISCORD_INVITE) {
+    discordLink.href = RELIANS_DISCORD_INVITE;
+    discordLink.target = '_blank';
+    if (discordHint) discordHint.hidden = true;
+  } else {
+    discordLink.addEventListener('click', event => {
+      event.preventDefault();
+      alert('O link oficial de convite do Relians World ainda não foi configurado.');
+    });
+  }
+});
