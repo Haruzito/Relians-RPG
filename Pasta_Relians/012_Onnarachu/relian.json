@@ -10,6 +10,8 @@
   "codigoCatalogo": "012",
   "nome": "Onnarachu",
   "descricao": "Após evoluir, deixa de ser a presa para se tornar o caçador. Onnarachu ganha garras e laminas potentes para cortar a casca rígida de suas presas, e defender seu território.\n\nIndivíduos da espécie costumam se juntar para duelar entre si. O mais forte costuma se tornar líder ancião da região em que vivem.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "OFS",
   "elementos": [
     "Éter",

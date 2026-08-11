@@ -846,3 +846,306 @@
   .creator-link-icon, .creator-link-symbol { width: 42px; height: 42px; }
   .creator-link-arrow { font-size: 1.6rem; }
 }
+
+
+/* Navegação principal v10 — mobile */
+@media (max-width: 760px){
+  .relians-main-nav{
+    min-height:auto;
+    gap:4px;
+    padding:6px 8px;
+    overflow-x:auto;
+    overflow-y:visible;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .relians-main-nav::-webkit-scrollbar{display:none}
+  .relians-main-nav .nav-main-link,
+  .relians-main-nav .nav-menu-trigger{
+    min-height:45px;
+    padding:0 11px;
+    gap:7px;
+    border-radius:10px;
+    font-size:.76rem;
+  }
+  .relians-main-nav .nav-main-link::after,
+  .relians-main-nav .nav-menu-trigger::after{
+    left:10px;
+    right:10px;
+  }
+  .nav-page-icon{
+    width:23px;
+    height:23px;
+    flex-basis:23px;
+    border-radius:7px;
+    font-size:.9rem;
+  }
+  .nav-menu{position:static}
+  .nav-dropdown,
+  .nav-dropdown-right{
+    position:fixed;
+    z-index:250;
+    top:auto;
+    left:10px;
+    right:10px;
+    width:auto;
+    max-height:min(68vh,520px);
+    overflow:auto;
+    margin-top:53px;
+    transform-origin:top center;
+  }
+  .nav-menu.open>.nav-dropdown{
+    transform:translateY(0) scale(1);
+  }
+  .nav-dropdown-item{
+    min-height:60px;
+  }
+}
+@media (max-width: 430px){
+  .relians-main-nav .nav-main-link,
+  .relians-main-nav .nav-menu-trigger{
+    min-width:max-content;
+  }
+  .nav-dropdown{
+    left:8px;
+    right:8px;
+  }
+}
+
+@media (max-width:760px){
+  .relians-main-nav .nav-dropdown-item{
+    min-height:60px !important;
+    padding:9px 11px !important;
+    border:0 !important;
+    border-radius:9px !important;
+    background:transparent !important;
+  }
+  .relians-main-nav .nav-dropdown-item:hover,
+  .relians-main-nav .nav-dropdown-item.active{
+    background:linear-gradient(90deg,rgba(44,144,152,.28),rgba(44,144,152,.08)) !important;
+    border:0 !important;
+  }
+}
+
+
+/* RELIANS v10 — Etapa 2 / navegação mobile */
+@media (max-width: 900px){
+  .app-header.topbar{
+    position:sticky!important;
+    top:0!important;
+    z-index:220!important;
+    display:grid!important;
+    grid-template-columns:1fr auto!important;
+    gap:8px!important;
+    padding:8px 10px!important;
+    min-height:auto!important;
+  }
+
+  .app-header .brand-block{
+    min-width:0!important;
+  }
+  .app-header .brand-block h1{
+    font-size:1rem!important;
+  }
+  .app-header .brand-block .version-label{
+    font-size:.62rem!important;
+  }
+
+  .header-navigation{
+    grid-column:1 / -1;
+    grid-row:2;
+    width:100%;
+    min-width:0;
+    overflow:visible;
+    justify-content:flex-start;
+  }
+
+  .header-navigation .relians-main-nav{
+    width:100%;
+    justify-content:flex-start;
+    overflow-x:auto;
+    overflow-y:visible;
+    scrollbar-width:none;
+    min-height:48px;
+    padding:2px 0 3px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .header-navigation .relians-main-nav::-webkit-scrollbar{display:none}
+
+  .header-navigation .relians-main-nav .nav-main-link,
+  .header-navigation .relians-main-nav .nav-menu-trigger{
+    flex:0 0 auto;
+    min-height:44px;
+    padding:0 11px;
+    font-size:.78rem;
+  }
+
+  .header-navigation .nav-page-icon{
+    width:27px;
+    height:27px;
+    flex-basis:27px;
+  }
+
+  .header-navigation .nav-dropdown{
+    position:fixed!important;
+    left:10px!important;
+    right:10px!important;
+    top:auto!important;
+    bottom:12px!important;
+    width:auto!important;
+    max-height:min(68vh,540px);
+    overflow:auto;
+    z-index:500!important;
+    border-radius:16px;
+    padding:8px;
+    box-shadow:0 -10px 40px rgba(0,0,0,.50);
+  }
+
+  .header-navigation .nav-dropdown-right{
+    right:10px!important;
+    left:10px!important;
+  }
+
+  .header-utilities{
+    grid-column:2;
+    grid-row:1;
+    justify-self:end;
+    display:flex!important;
+    gap:4px!important;
+    margin:0!important;
+  }
+  .header-utilities button,
+  .header-utilities .file-label{
+    width:34px!important;
+    min-width:34px!important;
+    height:34px!important;
+    padding:0!important;
+    justify-content:center!important;
+  }
+  .header-utilities .toolbar-main{
+    display:none!important;
+  }
+  .header-utilities b{
+    display:none!important;
+  }
+
+  .folder-status{
+    padding:4px 10px!important;
+    font-size:.66rem!important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}
+
+@media (max-width:520px){
+  .header-navigation .relians-main-nav .nav-main-link>span:last-child,
+  .header-navigation .relians-main-nav .nav-menu-trigger>span:nth-child(2){
+    display:none;
+  }
+  .header-navigation .relians-main-nav .nav-main-link,
+  .header-navigation .relians-main-nav .nav-menu-trigger{
+    width:45px;
+    padding:0;
+  }
+  .header-navigation .nav-chevron{
+    display:none;
+  }
+}
+
+@media(max-width:900px){
+ .page-context-bar{padding:5px 10px!important;min-height:30px;font-size:.64rem}.page-context-bar strong{font-size:.68rem}
+ #catalog .catalog-book-name h2,#catalog .catalog-profile h2{font-size:clamp(1.08rem,6.2vw,1.65rem)!important;line-height:1.05!important}
+}
+
+
+/* =========================================================
+   RELIANS v10 — Etapa 4/4: acabamento mobile
+   ========================================================= */
+@media(max-width:900px){
+  html,body{max-width:100%;overflow-x:hidden}
+
+  .app-header.topbar{
+    box-shadow:0 5px 20px rgba(0,0,0,.32)!important;
+  }
+
+  /* Barra de páginas: toque confortável e sem quebrar o topo. */
+  .header-navigation .relians-main-nav{
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;
+    gap:4px!important;
+  }
+  .header-navigation .nav-main-link,
+  .header-navigation .nav-menu{
+    scroll-snap-align:start;
+  }
+  .header-navigation .nav-main-link,
+  .header-navigation .nav-menu-trigger{
+    touch-action:manipulation;
+  }
+
+  /* Dropdown inferior com área segura em celulares com barra gestual. */
+  .header-navigation .nav-dropdown{
+    bottom:max(12px,env(safe-area-inset-bottom))!important;
+    max-height:min(70dvh,560px)!important;
+    padding-bottom:max(8px,env(safe-area-inset-bottom))!important;
+  }
+  .header-navigation .nav-dropdown-item{
+    min-height:58px!important;
+  }
+
+  .page-context-bar{
+    gap:6px!important;
+  }
+
+  /* Painéis e formulários respiram melhor em telas estreitas. */
+  main,.main,.content,.page{
+    min-width:0;
+  }
+  .page .grid,
+  .page .form-grid{
+    min-width:0;
+  }
+
+  #catalog .catalog-book-name h2,
+  #catalog .catalog-profile h2{
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    max-height:2.2em;
+  }
+}
+
+@media(max-width:520px){
+  /* Só ícones no topo pequeno; tooltip nativo continua via títulos/aria. */
+  .header-navigation .nav-page-icon{
+    margin:0!important;
+  }
+  .header-navigation .relians-main-nav{
+    justify-content:flex-start!important;
+  }
+
+  .page-context-bar{
+    padding-inline:9px!important;
+  }
+
+  /* Botões de ação ocupam a largura disponível quando apropriado. */
+  .page .actions,
+  .page .button-row{
+    max-width:100%;
+  }
+}
+
+@media(max-width:380px){
+  .app-header.topbar{
+    padding-inline:7px!important;
+  }
+  .header-navigation .relians-main-nav .nav-main-link,
+  .header-navigation .relians-main-nav .nav-menu-trigger{
+    width:42px!important;
+  }
+  .header-navigation .nav-page-icon{
+    width:25px!important;
+    height:25px!important;
+    flex-basis:25px!important;
+  }
+}

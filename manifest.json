@@ -1,7 +1,7 @@
 {
-  "name": "Gerador de Relians v9.9.0",
-  "short_name": "Relians v9.9.0",
-  "description": "Gerador, editor e catálogo de Relians.",
+  "name": "Gerador de Relians",
+  "short_name": "Relians",
+  "description": "Gerador, editor, catálogo e banco de fichas do universo Relians.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

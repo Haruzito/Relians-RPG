@@ -10,6 +10,8 @@
   "codigoCatalogo": "005",
   "nome": "Aqualoudo",
   "descricao": "",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "DEF",
   "elementos": [
     "Abissal"

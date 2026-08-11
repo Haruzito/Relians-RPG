@@ -10,6 +10,8 @@
   "codigoCatalogo": "024",
   "nome": "Aquamelon",
   "descricao": "",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "HIB",
   "elementos": [
     "Vital"

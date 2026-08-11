@@ -2,7 +2,7 @@
   "kind": "relians-save",
   "tipoArquivo": "banco-completo",
   "saveVersion": 2,
-  "updatedAt": "2026-08-10T22:10:24.405Z",
+  "updatedAt": "2026-08-11T20:30:50.015Z",
   "data": {
     "rules": {
       "baseHp": 50,
@@ -13,8 +13,8 @@
       "modMin": -7,
       "modMax": 7,
       "moveLimit": 6,
-      "shinyChance": 0,
-      "specialChance": 100
+      "shinyChance": 3,
+      "specialChance": 0.3
     },
     "regions": [
       {
@@ -4029,7 +4029,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "loppypor"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "catierbee",
@@ -4059,7 +4061,7 @@
         ],
         "traitIds": [],
         "evolvesFrom": "",
-        "evolvesTo": "gatabuss",
+        "evolvesTo": "catierai",
         "evolutionMethod": "",
         "learnset": [],
         "encounters": [
@@ -4079,8 +4081,11 @@
         "saveVersion": 2,
         "catalogVariant": "",
         "evolvesToMany": [
+          "catierai",
           "gatabuss"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "loppypor",
@@ -4144,7 +4149,9 @@
         "specialElements": [],
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "catierai",
@@ -4173,7 +4180,7 @@
         "sizes": [
           "G"
         ],
-        "evolvesFrom": "",
+        "evolvesFrom": "catierbee",
         "evolvesTo": "",
         "evolutionMethod": "Item",
         "traitIds": [],
@@ -4209,7 +4216,9 @@
         "specialElements": [],
         "saveVersion": 2,
         "catalogVariant": "A",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "lihtoffle",
@@ -4282,7 +4291,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "lihtobrux"
-        ]
+        ],
+        "habitatNotes": "Teste",
+        "evolutionNotes": "Evolui ao chegar em um lugar"
       },
       {
         "id": "lihtobrux",
@@ -4344,7 +4355,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "maginflora"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "maginflora",
@@ -4416,7 +4429,9 @@
         ],
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "aquecko",
@@ -4474,7 +4489,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "aqualoudo"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "aqualoudo",
@@ -4539,7 +4556,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "draquecko"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "draquecko",
@@ -4596,7 +4615,9 @@
         "specialElements": [],
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "chibom",
@@ -4654,7 +4675,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "incenderus"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "incenderus",
@@ -4712,7 +4735,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "nezhaspyro"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "nezhaspyro",
@@ -4769,7 +4794,9 @@
         "specialElements": [],
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "ernaldes",
@@ -4825,7 +4852,9 @@
         "specialElements": [],
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "lizbravos",
@@ -4885,7 +4914,9 @@
         ],
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "kokpid",
@@ -4964,7 +4995,9 @@
         "catalogVariant": "",
         "evolvesToMany": [
           "onnarachu"
-        ]
+        ],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "onnarachu",
@@ -5079,7 +5112,9 @@
         "imageDataByColor": {},
         "saveVersion": 2,
         "catalogVariant": "",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "gatabuss",
@@ -5150,7 +5185,9 @@
         "saveVersion": 2,
         "imageDataByColor": {},
         "catalogVariant": "B",
-        "evolvesToMany": []
+        "evolvesToMany": [],
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "seredige",
@@ -5209,7 +5246,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "bigsmoquil",
@@ -5266,7 +5305,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "dendelimp",
@@ -5324,7 +5365,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "dandetton",
@@ -5376,7 +5419,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "lizbaby",
@@ -5434,7 +5479,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "salamenta",
@@ -5531,7 +5578,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "coramenta",
@@ -5600,7 +5649,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "coramaliz",
@@ -5670,7 +5721,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "chaderson",
@@ -5728,7 +5781,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "vinelon",
@@ -5789,7 +5844,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "aquamelon",
@@ -5848,7 +5905,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "maderson",
@@ -5908,7 +5967,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "gigaderson",
@@ -5965,7 +6026,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       },
       {
         "id": "skellywag",
@@ -6023,7 +6086,9 @@
           }
         ],
         "saveVersion": 2,
-        "imageDataByColor": {}
+        "imageDataByColor": {},
+        "habitatNotes": "",
+        "evolutionNotes": ""
       }
     ],
     "saveVersion": 2

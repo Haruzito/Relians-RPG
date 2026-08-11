@@ -10,6 +10,8 @@
   "codigoCatalogo": "016",
   "nome": "Loppypor",
   "descricao": "Loppypors possuem hábitos noturnos, preferindo fazer a busca de seus alimentos durante o período da noite enquanto sua prole descansa em sua toca.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "NET",
   "elementos": [
     "Éter"

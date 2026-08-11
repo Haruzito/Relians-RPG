@@ -10,6 +10,8 @@
   "codigoCatalogo": "028",
   "nome": "Skellywag",
   "descricao": "Skellywag's passam o seu tempo buscando por ossadas no deserto para formar sua armadura cujo ele usa para se defender de seus predadores.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "OFS",
   "elementos": [
     "Umbral"

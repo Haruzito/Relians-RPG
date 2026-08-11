@@ -10,6 +10,8 @@
   "codigoCatalogo": "021",
   "nome": "Salamenta",
   "descricao": "Um lagartinho ardente, vivem pelas florestas em busca de presas para se alimentar. Costumam ser bem curiosos quando encontram outras espécies, muitas vezes dando mordidas de teste para saber se o que vê é comestível, algo que pode até ser confundido com a mordida apaixonada que eles dão, quando gostam de algo ou alguém.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "OFS",
   "elementos": [
     "Vital",

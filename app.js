@@ -393,7 +393,87 @@ function loadData(){
 function saveData({sync=true}={}){data=migrateData(data);localStorage.setItem(STORAGE_KEY,JSON.stringify(data));renderAll();if(sync)queueFullFolderSync('saveData')}
 function nameOf(list,id){return list.find(x=>x.id===id)?.name||id}
 function fillSelect(select,items){const old=select.value;select.innerHTML=items.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');if(items.some(x=>x.id===old))select.value=old}
-function setupTabs(){document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');el(b.dataset.tab).classList.add('active')})}
+const RELIANS_PAGE_CONTEXT={
+  generator:{category:'Fichas',title:'Gerar Relian'},story:{category:'Fichas',title:'Criar Ficha'},sheetbank:{category:'Fichas',title:'Banco de Fichas'},
+  catalog:{category:'Catálogo',title:'Catálogo de Relians'},relians:{category:'Criação',title:'Criar Relian'},moves:{category:'Criação',title:'Criar Movimento'},
+  biomes:{category:'Criação',title:'Mundo'},creators:{category:'Comunidade',title:'Criadores'},rules:{category:'Config',title:'Regras e Modificadores'}
+};
+function updatePageContext(tabId){const info=RELIANS_PAGE_CONTEXT[String(tabId)]||{category:'Relians',title:String(tabId||'')};const c=el('pageContextCategory'),t=el('pageContextTitle');if(c)c.textContent=info.category;if(t)t.textContent=info.title}
+function setupTabs(){
+  const nav=document.querySelector('.relians-main-nav');
+  const menus=[...document.querySelectorAll('.nav-menu')];
+  const groupTabs={
+    creation:['relians','moves','biomes'],
+    sheets:['generator','story','sheetbank'],
+    community:['creators'],
+    config:['rules']
+  };
+
+  const closeMenus=(except=null)=>{
+    menus.forEach(menu=>{
+      if(menu===except)return;
+      menu.classList.remove('open');
+      menu.querySelector('.nav-menu-trigger')?.setAttribute('aria-expanded','false');
+    });
+  };
+
+  const syncNavState=(tabId,clickedButton=null)=>{
+    updatePageContext(tabId);
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.nav-menu').forEach(x=>x.classList.remove('active-group'));
+
+    if(clickedButton)clickedButton.classList.add('active');
+    else document.querySelector(`.tab[data-tab="${CSS.escape(String(tabId))}"]`)?.classList.add('active');
+
+    const clickedMenu=clickedButton?.closest?.('.nav-menu');
+    if(clickedMenu){
+      clickedMenu.classList.add('active-group');
+    }else{
+      Object.entries(groupTabs).forEach(([group,tabs])=>{
+        if(tabs.includes(String(tabId))){
+          document.querySelector(`.nav-menu[data-nav-group="${group}"]`)?.classList.add('active-group');
+        }
+      });
+    }
+  };
+
+  const openTab=(button)=>{
+    const tabId=button?.dataset?.tab;
+    if(!tabId||!el(tabId))return;
+    document.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+    el(tabId).classList.add('active');
+    syncNavState(tabId,button);
+    closeMenus();
+    if(window.innerWidth<760)window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  document.querySelectorAll('.tab[data-tab]').forEach(button=>{
+    button.addEventListener('click',()=>openTab(button));
+  });
+
+  menus.forEach(menu=>{
+    const trigger=menu.querySelector('.nav-menu-trigger');
+    if(!trigger)return;
+    trigger.addEventListener('click',(event)=>{
+      event.stopPropagation();
+      const willOpen=!menu.classList.contains('open');
+      closeMenus(menu);
+      menu.classList.toggle('open',willOpen);
+      trigger.setAttribute('aria-expanded',willOpen?'true':'false');
+    });
+  });
+
+  document.addEventListener('click',event=>{
+    if(!event.target.closest('.nav-menu'))closeMenus();
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape')closeMenus();
+  });
+
+  // Mantém o grupo correto destacado quando a página inicia.
+  const current=document.querySelector('.tab-panel.active')?.id||'generator';
+  syncNavState(current,document.querySelector(`.nav-main-link[data-tab="${CSS.escape(current)}"]`));
+}
 function renderAll(){fillSelect(el('genRegion'),data.regions);fillSelect(el('genBiome'),data.biomes);fillSelect(el('biomeOverviewSelect'),data.biomes);renderEligible();renderRelians();renderCatalog();renderRegionBiomeLists();renderBiomeOverview();renderRules();renderMoves();refreshEncounterSelects();refreshLearnsetMoveOptions();renderStorySheets();renderSavedRelianSheets();renderSavedSheetDetail();refreshStoryOptions();refreshEvolutionOptions()}
 
 function eligibleEntries(){
@@ -569,7 +649,7 @@ function relianEvolutionTargets(r){
 function evolutionCatalogButton(id,label='Evolução'){
   const target=data.relians.find(r=>String(r.id)===String(id||''));
   if(!target)return '';
-  return `<button type="button" class="catalog-evolution-link" onclick="openCatalogRelian('${esc(String(target.id))}')"><small>${esc(label)}</small><b>#${catalogCode(target)||'—'} ${esc(target.name)}</b></button>`;
+  return `<button type="button" class="catalog-evolution-link" data-evolution-catalog-id="${esc(String(target.id))}"><small>${esc(label)}</small><b>#${catalogCode(target)||'—'} ${esc(target.name)}</b></button>`;
 }
 function catalogMoveRows(r){
   const rows=[...(r.learnset||[])].sort((a,b)=>Number(a.level)-Number(b.level));
@@ -617,12 +697,29 @@ function catalogFilteredItems(){
   else items.sort(sortReliansByCatalog);
   return items;
 }
+function catalogElementPills(elements,extraClass=''){
+  const values=[...new Set((elements||[]).filter(Boolean))];
+  return values.length?`<div class="catalog-element-pills ${esc(extraClass)}">${values.map(value=>{const info=elementInfo(value);return `<span class="catalog-element-pill element-${esc(info.key)}"><span class="catalog-element-symbol">◆</span>${esc(info.label)}</span>`}).join('')}</div>`:'<span class="catalog-none">Nenhum</span>';
+}
+function catalogRarityLabel(r){return RARITY_NAMES[r?.rarity]||'Comum'}
+function catalogOrderedAll(){return [...data.relians].sort(sortReliansByCatalog)}
+function catalogNeighborId(r,delta){const all=catalogOrderedAll();const index=all.findIndex(x=>String(x.id)===String(r?.id));if(index<0||!all.length)return'';const next=(index+delta+all.length)%all.length;return String(all[next]?.id||'')}
+function catalogTabButton(id,label,active=false){return `<button type="button" class="catalog-book-tab ${active?'active':''}" data-catalog-tab="${esc(id)}">${esc(label)}</button>`}
 function renderCatalog(){
   const list=el('catalogResults'),detail=el('catalogDetail');if(!list||!detail)return;
   fillCatalogFilters();
   const items=catalogFilteredItems();
-  const count=el('catalogResultCount');if(count)count.textContent=`${items.length} ${items.length===1?'Relian':'Relians'}`;
-  list.innerHTML=items.length?items.map(r=>`<button type="button" class="catalog-result rarity-card-${esc(r.rarity||'comum')} ${selectedCatalogRelianId===String(r.id)?'selected':''}" data-catalog-id="${esc(String(r.id))}"><span>#${catalogCode(r)||'—'}</span><b>${esc(r.name)}</b><small>${Array.isArray(r.elements)?r.elements.map(esc).join(' · '):'Sem elemento'}</small><em>${esc(RARITY_NAMES[r.rarity]||'Comum')}</em><i>›</i></button>`).join(''):'<div class="catalog-no-results"><b>Nenhum Relian encontrado</b><span>Tente remover algum filtro ou pesquisar por outro termo.</span></div>';
+  const count=el('catalogResultCount');if(count)count.textContent=`${items.length} ${items.length===1?'Relian catalogado':'Relians catalogados'}`;
+  list.innerHTML=items.length?items.map(r=>{
+    const thumb=resolveRelianImage(r,'basic');
+    const elements=Array.isArray(r.elements)?r.elements.filter(Boolean):[];
+    return `<button type="button" class="catalog-result catalog-index-card rarity-card-${esc(r.rarity||'comum')} ${selectedCatalogRelianId===String(r.id)?'selected':''}" data-catalog-id="${esc(String(r.id))}">
+      <span class="catalog-index-thumb">${thumb?`<img src="${esc(thumb)}" alt="">`:'<b>?</b>'}</span>
+      <span class="catalog-index-main"><strong>${esc(r.name)}</strong><small>${catalogElementPills(elements,'compact')}</small></span>
+      <span class="catalog-index-meta"><b>#${catalogCode(r)||'—'}</b><em>${esc(catalogRarityLabel(r))}</em></span>
+      <i aria-hidden="true">›</i>
+    </button>`
+  }).join(''):'<div class="catalog-no-results"><b>Nenhum Relian encontrado</b><span>Tente remover algum filtro ou pesquisar por outro termo.</span></div>';
   list.querySelectorAll('[data-catalog-id]').forEach(button=>{
     button.onclick=()=>{
       const id=String(button.dataset.catalogId||'');
@@ -634,6 +731,7 @@ function renderCatalog(){
     };
   });
   if(selectedCatalogRelianId&&!data.relians.some(r=>String(r.id)===String(selectedCatalogRelianId)))selectedCatalogRelianId='';
+  if(!selectedCatalogRelianId&&items.length){selectedCatalogRelianId=String(items[0].id)}
   if(!selectedCatalogRelianId){detail.innerHTML='<div class="catalog-empty"><b>Nenhum Relian selecionado</b><span>Pesquise e selecione uma espécie para consultar seus dados.</span></div>';return}
   renderCatalogDetail(selectedCatalogRelianId);
 }
@@ -659,41 +757,140 @@ function renderCatalogDetail(relianOrId){
     const basicImg=resolveRelianImage(r,'basic');
     const shinyImg=resolveRelianImage(r,'shiny')||basicImg;
     const specialImg=resolveRelianImage(r,'special')||basicImg;
+    const baseElements=getRelianElements(r,'basic');
+    const specialElements=getRelianElements(r,'special');
     const prevId=String(r.evolvesFrom||'');
     const nextIds=relianEvolutionTargets(r);
-    const encounters=(r.encounters||[]).map(e=>{const region=data.regions.find(x=>x.id===e.region)?.name||e.region;const biome=data.biomes.find(x=>x.id===e.biome)?.name||e.biome;return `<span>${esc(region)} · ${esc(biome)} · Nv. ${Number(e.minLevel)||1}–${Number(e.maxLevel)||1}</span>`}).join('');
+    const encounters=(r.encounters||[]).map(e=>{const region=data.regions.find(x=>x.id===e.region)?.name||e.region||'Região não definida';const biome=data.biomes.find(x=>x.id===e.biome)?.name||e.biome||'Bioma não definido';const periods=(e.periods||[]).map(p=>String(p).charAt(0).toUpperCase()+String(p).slice(1)).join(', ')||'Qualquer período';return `<article class="catalog-habitat-card"><div><b>${esc(region)}</b><strong>${esc(biome)}</strong></div><span>Níveis ${Number(e.minLevel)||1}–${Number(e.maxLevel)||1}</span><small>${esc(periods)}${Number(e.weight)>0?` · Peso ${Number(e.weight)}`:''}</small></article>`}).join('');
     const currentCard=`<span class="catalog-evolution-current"><small>Forma atual</small><b>#${catalogCode(r)||'—'} ${esc(r.name)}</b></span>`;
     const previousCard=prevId?evolutionCatalogButton(prevId,'Evolui de'):`<span><small>Evolui de</small><b>Não definido</b></span>`;
     const nextCards=nextIds.map(id=>evolutionCatalogButton(id,'Evolui para')).filter(Boolean).join('');
     const nextBlock=nextCards?`<span class="catalog-evo-arrow">→</span><div class="catalog-evolution-branches">${nextCards}</div>`:'';
-    const evolutionHtml=stage<=1
-      ? `<div class="catalog-evolution catalog-evolution-stage1">${currentCard}${nextBlock}</div>`
-      : `<div class="catalog-evolution">${previousCard}<span class="catalog-evo-arrow">→</span>${currentCard}${nextBlock}</div>`;
-    box.innerHTML=`<article class="catalog-profile rarity-theme-${esc(r.rarity||'comum')}">${rarityEffectHtml(r.rarity||'comum','catalog')}<header class="catalog-profile-header"><div class="catalog-profile-image"><div class="catalog-image-stage catalog-color-basic" data-color="basic">${basicImg?`<img id="catalogRelianImage" src="${esc(basicImg)}" alt="${esc(r.name)}">`:'<span id="catalogRelianImagePlaceholder">?</span>'}</div></div><div class="catalog-profile-identity"><div class="catalog-color-picker"><label for="catalogColorSelect">Coloração</label><select id="catalogColorSelect"><option value="basic">Basic Color</option><option value="shiny">Shiny Color</option><option value="special">Especial Color</option></select></div><div class="catalog-profile-number">RELI-INFO #${r.catalogNumber??'—'}</div><h2>${esc(r.name)}</h2><div id="catalogIdentityBadges">${identityBadges(r.class,getRelianElements(r,'basic'))}</div><p>${esc(RARITY_NAMES[r.rarity]||'Comum')} · Estágio ${stage}</p></div></header><div class="catalog-profile-grid"><section class="catalog-info-card wide"><h3>Descrição da espécie</h3><p>${esc(r.description||'Nenhuma descrição cadastrada.')}</p></section><section class="catalog-info-card"><h3>Dados da espécie</h3><dl><div><dt>Classe</dt><dd>${esc(CLASS_INFO[normalizeRelianClass(r.class)]?.name||'Nenhuma')}</dd></div><div><dt>Elementos</dt><dd id="catalogElementsValue">${getRelianElements(r,'basic').map(esc).join(', ')||'Nenhum'}</dd></div><div><dt>ENG base (Nv. 1)</dt><dd>${Number(data.rules?.baseEnergy??65)}</dd></div><div><dt>HP base (Nv. 1)</dt><dd>${Number(data.rules?.baseHp??100)}</dd></div><div><dt>Captura base</dt><dd>${Number(r.captureRate??RARITY_BASE[r.rarity]??40)}%</dd></div><div><dt>Afinidade inicial</dt><dd>${Number(r.baseAffinity??2).toFixed(1)}</dd></div><div><dt>Gêneros</dt><dd>${(r.genders||[]).map(esc).join(', ')||'—'}</dd></div><div><dt>Tamanhos</dt><dd>${(r.sizes||[]).map(esc).join(', ')||'—'}</dd></div></dl></section><section class="catalog-info-card"><h3>Evolução</h3>${evolutionHtml}<p class="catalog-method"><b>Método:</b> ${esc(r.evolutionMethod||'Não definido')}</p></section><section class="catalog-info-card wide"><h3>Movimentos aprendidos</h3>${catalogMoveRows(r)}</section><section class="catalog-info-card wide"><h3>Habitat e níveis de aparição</h3><div class="catalog-encounters">${encounters||'<p class="empty">Nenhuma aparição cadastrada.</p>'}</div></section></div></article>`;
+    const evolutionHtml=stage<=1?`<div class="catalog-evolution catalog-evolution-stage1">${currentCard}${nextBlock}</div>`:`<div class="catalog-evolution">${previousCard}<span class="catalog-evo-arrow">→</span>${currentCard}${nextBlock}</div>`;
+    const prevCatalog=catalogNeighborId(r,-1),nextCatalog=catalogNeighborId(r,1);
+    const total=data.relians.length;
+    const ordered=catalogOrderedAll();
+    const currentIndex=Math.max(0,ordered.findIndex(x=>String(x.id)===String(r.id)))+1;
+    const specialDifferent=JSON.stringify(baseElements)!==JSON.stringify(specialElements);
+    const catalogHpBase=Number(data.rules?.baseHp??100)+(Math.max(1,stage)-1)*Number(data.rules?.hpPerEvolution??20);
+    const catalogEngBase=Number(r.baseEnergy??data.rules?.baseEnergy??65);
+    const catalogGenders=(r.genders||[]).map(String).filter(Boolean);
+    const catalogSizes=(r.sizes||[]).map(String).filter(Boolean);
+
+    box.innerHTML=`<article class="catalog-profile catalog-book rarity-theme-${esc(r.rarity||'comum')}">
+      ${rarityEffectHtml(r.rarity||'comum','catalog')}
+      <div class="catalog-book-page">
+        <section class="catalog-book-hero">
+          <div class="catalog-book-art">
+            <div class="catalog-image-stage catalog-color-basic" data-color="basic">${basicImg?`<img id="catalogRelianImage" src="${esc(basicImg)}" alt="${esc(r.name)}">`:'<span id="catalogRelianImagePlaceholder">?</span>'}</div>
+            <div class="catalog-color-switch" role="group" aria-label="Coloração do Relian">
+              <button type="button" class="active" data-catalog-color="basic">Basic</button>
+              <button type="button" data-catalog-color="shiny">Shiny</button>
+              <button type="button" data-catalog-color="special">Special</button>
+            </div>
+          </div>
+          <div class="catalog-book-identity">
+            <div class="catalog-book-number">#${catalogCode(r)||'—'}</div>
+            <h2>${esc(r.name)}</h2>
+            <span class="catalog-book-rarity">✦ ${esc(catalogRarityLabel(r))}</span>
+            <div class="catalog-book-divider"></div>
+            <section class="catalog-book-elements"><h3>Elementos</h3><div id="catalogBaseElements">${catalogElementPills(baseElements)}</div></section>
+            <section class="catalog-book-elements special"><h3>Special Color</h3><div id="catalogSpecialElements">${catalogElementPills(specialElements)}</div>${specialDifferent?'':'<small>Usa os mesmos elementos da Basic Color.</small>'}</section>
+            <section class="catalog-book-facts catalog-book-facts-compact">
+              <span><b>Classe</b>${esc(CLASS_INFO[normalizeRelianClass(r.class)]?.name||'Nenhuma')}</span>
+              <span><b>Estágio</b>${stage}</span>
+            </section>
+          </div>
+        </section>
+
+        <nav class="catalog-book-tabs" aria-label="Seções do catálogo">
+          ${catalogTabButton('sobre','Sobre',true)}${catalogTabButton('habitat','Habitat')}${catalogTabButton('evolucao','Evolução')}${catalogTabButton('movimentos','Movimentos')}${catalogTabButton('dados','Dados')}
+        </nav>
+
+        <div class="catalog-book-content">
+          <section class="catalog-book-panel active" data-catalog-panel="sobre">
+            <div class="catalog-lore catalog-lore-wide"><h3>Descrição da espécie</h3><p>${esc(r.description||'Nenhuma descrição cadastrada.')}</p></div>
+          </section>
+          <section class="catalog-book-panel" data-catalog-panel="habitat"><h3>Habitat e níveis de aparição</h3>${r.habitatNotes?`<p class="catalog-section-notes">${esc(r.habitatNotes)}</p>`:''}<div class="catalog-encounters">${encounters||'<p class="empty">Nenhuma aparição cadastrada para esta espécie.</p>'}</div></section>
+          <section class="catalog-book-panel" data-catalog-panel="evolucao"><h3>Linha evolutiva</h3>${evolutionHtml}<div class="catalog-evolution-info"><p class="catalog-method"><b>Método:</b> ${esc(r.evolutionMethod||'Não definido')}</p>${r.evolutionNotes?`<p>${esc(r.evolutionNotes)}</p>`:''}</div></section>
+          <section class="catalog-book-panel" data-catalog-panel="movimentos"><h3>Movimentos aprendidos</h3><p class="catalog-section-notes">Movimentos cadastrados para esta espécie e o nível em que ficam disponíveis.</p>${catalogMoveRows(r)}</section>
+          <section class="catalog-book-panel" data-catalog-panel="dados">
+            <h3>Dados da espécie</h3>
+            <div class="catalog-data-layout">
+              <section class="catalog-data-group catalog-data-resources">
+                <h4>Recursos base</h4>
+                <div class="catalog-resource-cards">
+                  <article class="catalog-resource-card hp"><span>HP</span><b>${catalogHpBase}</b><small>Vida base no estágio ${stage}</small></article>
+                  <article class="catalog-resource-card eng"><span>ENG</span><b>${catalogEngBase}</b><small>Energia base da espécie</small></article>
+                </div>
+              </section>
+
+              <section class="catalog-data-group">
+                <h4>Biologia</h4>
+                <div class="catalog-data-grid catalog-data-grid-compact">
+                  <div><span>Gênero(s)</span><b>${catalogGenders.map(esc).join(', ')||'Não definido'}</b></div>
+                  <div><span>Tamanho(s)</span><b>${catalogSizes.map(esc).join(', ')||'Não definido'}</b></div>
+                </div>
+              </section>
+
+              <section class="catalog-data-group">
+                <h4>Classificação</h4>
+                <div class="catalog-data-grid">
+                  <div><span>Classe</span><b>${esc(CLASS_INFO[normalizeRelianClass(r.class)]?.name||'Nenhuma')}</b></div>
+                  <div><span>Estágio</span><b>${stage}</b></div>
+                  <div><span>Elementos</span><b>${baseElements.map(esc).join(', ')||'Nenhum'}</b></div>
+                  <div><span>Special Color</span><b>${specialElements.map(esc).join(', ')||'Nenhum'}</b></div>
+                </div>
+              </section>
+
+              <section class="catalog-data-group">
+                <h4>Captura e vínculo</h4>
+                <div class="catalog-data-grid catalog-data-grid-compact">
+                  <div><span>Captura base</span><b>${Number(r.captureRate??RARITY_BASE[r.rarity]??40)}%</b></div>
+                  <div><span>Afinidade inicial</span><b>${Number(r.baseAffinity??2).toFixed(1)}</b></div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+      <footer class="catalog-book-footer"><span><b>${currentIndex}</b> / ${total} no catálogo</span><div><button type="button" data-catalog-nav="${esc(prevCatalog)}">← Anterior</button><button type="button" data-catalog-nav="${esc(nextCatalog)}">Próximo →</button></div></footer>
+    </article>`;
+
     const colorImages={basic:basicImg,shiny:shinyImg,special:specialImg};
-    const colorSelect=el('catalogColorSelect');
     const imageStage=box.querySelector('.catalog-image-stage');
-    if(colorSelect&&imageStage){
-      colorSelect.addEventListener('change',()=>{
-        const color=normalizeColorId(colorSelect.value);
-        imageStage.dataset.color=color;
-        imageStage.className=`catalog-image-stage catalog-color-${color}`;
+    box.querySelectorAll('[data-catalog-color]').forEach(button=>button.addEventListener('click',()=>{
+      const color=normalizeColorId(button.dataset.catalogColor);
+      box.querySelectorAll('[data-catalog-color]').forEach(b=>b.classList.toggle('active',b===button));
+      if(imageStage){
+        imageStage.dataset.color=color;imageStage.className=`catalog-image-stage catalog-color-${color}`;
         const source=colorImages[color]||basicImg;
-        const particleSymbol=color==='shiny'?'◆':'✦';
-        const particles=color==='basic'?'':`<div class="catalog-color-particles ${color}" aria-hidden="true">${Array.from({length:16},(_,i)=>`<span style="--x:${[8,73,28,55,16,87,41,65,23,80,50,11,92,36,68,20][i]}%;--size:${[7,11,6,9,8,6,12,7,10,6,8,11,6,9,7,12][i]}px;--duration:${[5.6,7.2,6.4,5.9,7.7,6.8,5.3,7.5,6.1,5.7,7.1,6.5,6.0,7.9,6.2,5.4][i]}s;--delay:${[-1.2,-5.9,-3.3,-6.7,-2.5,-4.8,-.6,-7.2,-4.0,-1.9,-5.2,-6.1,-3.0,-7.6,-4.4,-1.0][i]}s;--drift:${[-10,12,6,-7,14,-5,9,-12,5,11,-8,7,-14,10,-6,13][i]}px">${particleSymbol}</span>`).join('')}</div>`;
-        imageStage.innerHTML=(source?`<img id="catalogRelianImage" src="${esc(source)}" alt="${esc(r.name)} — ${esc(colorSelect.options[colorSelect.selectedIndex].text)}">`:'<span id="catalogRelianImagePlaceholder">?</span>')+particles;
-        const activeElements=getRelianElements(r,color);
-        const badgeBox=el('catalogIdentityBadges');if(badgeBox)badgeBox.innerHTML=identityBadges(r.class,activeElements);
-        const elementsValue=el('catalogElementsValue');if(elementsValue)elementsValue.textContent=activeElements.join(', ')||'Nenhum';
-      });
-    }
+        // Reutiliza exatamente o sistema antigo de partículas das fichas.
+        // Ele já possui posições, velocidades, atrasos, deriva e símbolos
+        // próprios para Shiny e Especial, evitando o efeito simplificado
+        // que foi introduzido no novo Catálogo.
+        const particles=savedSheetParticles(color);
+        imageStage.innerHTML=(source?`<img id="catalogRelianImage" src="${esc(source)}" alt="${esc(r.name)} — ${esc(colorName(color))}">`:'<span id="catalogRelianImagePlaceholder">?</span>')+particles;
+      }
+    }));
+    box.querySelectorAll('[data-catalog-tab]').forEach(button=>button.addEventListener('click',()=>{
+      const tab=String(button.dataset.catalogTab||'sobre');
+      box.querySelectorAll('[data-catalog-tab]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-selected',active?'true':'false')});
+      box.querySelectorAll('[data-catalog-panel]').forEach(panel=>{const active=String(panel.dataset.catalogPanel)===tab;panel.classList.toggle('active',active);panel.hidden=!active});
+    }));
+    box.querySelectorAll('[data-catalog-panel]').forEach(panel=>panel.hidden=!panel.classList.contains('active'));
+    box.querySelectorAll('[data-evolution-catalog-id]').forEach(button=>button.addEventListener('click',()=>{
+      const id=String(button.dataset.evolutionCatalogId||'');
+      if(id)window.openCatalogRelian(id);
+    }));
+    box.querySelectorAll('[data-catalog-nav]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.catalogNav;if(id)window.openCatalogRelian(id)}));
   }catch(error){
     console.error('Erro ao abrir Relian no Catálogo:',error);
     box.innerHTML=`<div class="catalog-empty"><b>Não foi possível abrir esta entrada</b><span>${esc(error?.message||'Erro desconhecido no Catálogo.')}</span></div>`;
   }
 }
-window.editRelian=id=>{const r=data.relians.find(x=>x.id===id);if(!r)return;el('relianFormTitle').textContent='Editar Relian';el('relianId').value=r.id;el('relianCatalog').value=r.catalogNumber||'';el('relianCatalogVariant').value=normalizeCatalogVariant(r.catalogVariant);el('relianName').value=r.name;el('relianDescription').value=r.description||'';el('relianClass').value=normalizeRelianClass(r.class);[1,2,3].forEach((n,i)=>{el('element'+n).value=r.elements[i]||'';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value=(r.specialElements||[])[i]||'';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();el('relianStage').value=r.stage||1;el('relianEnergy').value=r.baseEnergy||0;el('relianRarity').value=r.rarity||'comum';el('relianCaptureRate').value=r.captureRate??RARITY_BASE[r.rarity||'comum'];el('relianAffinity').value=r.baseAffinity??2;el('relianImageBasic').value=r.images?.basic||r.image||'';el('relianImageShiny').value=r.images?.shiny||'';el('relianImageSpecial').value=r.images?.special||'';el('relianGenders').value=(r.genders||[]).join(',');el('relianSizes').value=(r.sizes||[]).join(',');refreshEvolutionOptions(r.id);el('relianEvolvesFrom').value=r.evolvesFrom||'';const evolutionTargets=relianEvolutionTargets(r);[...el('relianEvolvesTo').options].forEach(o=>o.selected=evolutionTargets.includes(o.value));renderEvolutionTargetsEditor();el('relianEvolutionMethod').value=r.evolutionMethod||'';clearLearnsetEditor();(r.learnset||[]).sort((a,b)=>a.level-b.level).forEach(addLearnsetRow);el('encountersEditor').innerHTML='';(r.encounters||[]).forEach(addEncounterRow);document.querySelector('[data-tab="relians"]').click()}
-function clearRelianForm(){el('relianForm').reset();el('relianId').value='';if(el('relianCatalogVariant'))el('relianCatalogVariant').value='';el('relianFormTitle').textContent='Cadastrar Relian';el('relianStage').value=1;el('relianEnergy').value=85;el('relianRarity').value='comum';el('relianCaptureRate').value=40;el('relianAffinity').value=2;el('relianGenders').value='Macho,Fêmea';el('relianSizes').value='P,M,G';if(el('relianEvolvesFrom'))el('relianEvolvesFrom').value='';if(el('relianEvolvesTo'))[...el('relianEvolvesTo').options].forEach(o=>o.selected=false);renderEvolutionTargetsEditor();if(el('relianEvolutionMethod'))el('relianEvolutionMethod').value='';[1,2,3].forEach(n=>{el('element'+n).value='';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value='';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();clearLearnsetEditor();addLearnsetRow({level:1,moveId:Object.keys(data.moves||{})[0]||''});el('encountersEditor').innerHTML='';addEncounterRow()}
+window.editRelian=id=>{const r=data.relians.find(x=>x.id===id);if(!r)return;el('relianFormTitle').textContent='Editar Relian';el('relianId').value=r.id;el('relianCatalog').value=r.catalogNumber||'';el('relianCatalogVariant').value=normalizeCatalogVariant(r.catalogVariant);el('relianName').value=r.name;el('relianDescription').value=r.description||'';if(el('relianHabitatNotes'))el('relianHabitatNotes').value=r.habitatNotes||'';if(el('relianEvolutionNotes'))el('relianEvolutionNotes').value=r.evolutionNotes||'';el('relianClass').value=normalizeRelianClass(r.class);[1,2,3].forEach((n,i)=>{el('element'+n).value=r.elements[i]||'';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value=(r.specialElements||[])[i]||'';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();el('relianStage').value=r.stage||1;el('relianEnergy').value=r.baseEnergy||0;el('relianRarity').value=r.rarity||'comum';el('relianCaptureRate').value=r.captureRate??RARITY_BASE[r.rarity||'comum'];el('relianAffinity').value=r.baseAffinity??2;el('relianImageBasic').value=r.images?.basic||r.image||'';el('relianImageShiny').value=r.images?.shiny||'';el('relianImageSpecial').value=r.images?.special||'';el('relianGenders').value=(r.genders||[]).join(',');el('relianSizes').value=(r.sizes||[]).join(',');refreshEvolutionOptions(r.id);el('relianEvolvesFrom').value=r.evolvesFrom||'';const evolutionTargets=relianEvolutionTargets(r);[...el('relianEvolvesTo').options].forEach(o=>o.selected=evolutionTargets.includes(o.value));renderEvolutionTargetsEditor();el('relianEvolutionMethod').value=r.evolutionMethod||'';clearLearnsetEditor();(r.learnset||[]).sort((a,b)=>a.level-b.level).forEach(addLearnsetRow);el('encountersEditor').innerHTML='';(r.encounters||[]).forEach(addEncounterRow);document.querySelector('[data-tab="relians"]').click()}
+function clearRelianForm(){el('relianForm').reset();el('relianId').value='';if(el('relianHabitatNotes'))el('relianHabitatNotes').value='';if(el('relianEvolutionNotes'))el('relianEvolutionNotes').value='';if(el('relianCatalogVariant'))el('relianCatalogVariant').value='';el('relianFormTitle').textContent='Cadastrar Relian';el('relianStage').value=1;el('relianEnergy').value=85;el('relianRarity').value='comum';el('relianCaptureRate').value=40;el('relianAffinity').value=2;el('relianGenders').value='Macho,Fêmea';el('relianSizes').value='P,M,G';if(el('relianEvolvesFrom'))el('relianEvolvesFrom').value='';if(el('relianEvolvesTo'))[...el('relianEvolvesTo').options].forEach(o=>o.selected=false);renderEvolutionTargetsEditor();if(el('relianEvolutionMethod'))el('relianEvolutionMethod').value='';[1,2,3].forEach(n=>{el('element'+n).value='';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value='';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();clearLearnsetEditor();addLearnsetRow({level:1,moveId:Object.keys(data.moves||{})[0]||''});el('encountersEditor').innerHTML='';addEncounterRow()}
 
 function movementElementInfo(move){
   const raw=String(move?.element||'').trim();
@@ -857,6 +1054,8 @@ el('relianForm').onsubmit=async e=>{
     const r={
       id,catalogNumber,catalogVariant,name,
       description:el('relianDescription').value.trim(),
+      habitatNotes:el('relianHabitatNotes')?.value.trim()||'',
+      evolutionNotes:el('relianEvolutionNotes')?.value.trim()||'',
       class:normalizeRelianClass(el('relianClass').value),
       elements:[1,2,3].map(n=>el('element'+n).value.trim()).filter(Boolean),
       specialElements:[1,2,3].map(n=>el('specialElement'+n).value.trim()).filter(Boolean),
@@ -964,7 +1163,7 @@ function relianFolderName(relian){
   const name=safeFolderName(relian?.name||'Relian').replace(/\s+/g,'_');
   return number?`${number}_${name}`:name;
 }
-function relianToFileData(r){return{kind:'relian',tipoArquivo:'relian',id:r.id,catalogNumber:normalizeCatalogNumber(r.catalogNumber),numeroCatalogo:normalizeCatalogNumber(r.catalogNumber),reliInfo:normalizeCatalogNumber(r.catalogNumber),catalogVariant:normalizeCatalogVariant(r.catalogVariant),variacaoCatalogo:normalizeCatalogVariant(r.catalogVariant),codigoCatalogo:catalogCode(r),nome:r.name,descricao:r.description||'',classe:r.class,elementos:r.elements,elementosEspeciais:r.specialElements||[],estagio:r.stage,energiaBase:r.baseEnergy,raridade:r.rarity,taxaCaptura:r.captureRate,afinidadeBase:r.baseAffinity,imagens:r.images,generos:r.genders,tamanhos:r.sizes,evoluiDe:r.evolvesFrom||'',evoluiPara:relianEvolutionTargets(r)[0]||'',evoluiParaMultiplas:relianEvolutionTargets(r),evolvesToMany:relianEvolutionTargets(r),metodoEvolucao:r.evolutionMethod||'',tracos:r.traitIds,movimentos:(r.learnset||[]).map(x=>({nivel:x.level,movimento:x.moveId})),aparicoes:(r.encounters||[]).map(e=>({regiao:e.region,bioma:e.biome,periodos:e.periods,nivelMinimo:e.minLevel,nivelMaximo:e.maxLevel,peso:e.weight}))}}
+function relianToFileData(r){return{kind:'relian',tipoArquivo:'relian',id:r.id,catalogNumber:normalizeCatalogNumber(r.catalogNumber),numeroCatalogo:normalizeCatalogNumber(r.catalogNumber),reliInfo:normalizeCatalogNumber(r.catalogNumber),catalogVariant:normalizeCatalogVariant(r.catalogVariant),variacaoCatalogo:normalizeCatalogVariant(r.catalogVariant),codigoCatalogo:catalogCode(r),nome:r.name,descricao:r.description||'',notasHabitat:r.habitatNotes||'',notasEvolucao:r.evolutionNotes||'',classe:r.class,elementos:r.elements,elementosEspeciais:r.specialElements||[],estagio:r.stage,energiaBase:r.baseEnergy,raridade:r.rarity,taxaCaptura:r.captureRate,afinidadeBase:r.baseAffinity,imagens:r.images,generos:r.genders,tamanhos:r.sizes,evoluiDe:r.evolvesFrom||'',evoluiPara:relianEvolutionTargets(r)[0]||'',evoluiParaMultiplas:relianEvolutionTargets(r),evolvesToMany:relianEvolutionTargets(r),metodoEvolucao:r.evolutionMethod||'',tracos:r.traitIds,movimentos:(r.learnset||[]).map(x=>({nivel:x.level,movimento:x.moveId})),aparicoes:(r.encounters||[]).map(e=>({regiao:e.region,bioma:e.biome,periodos:e.periods,nivelMinimo:e.minLevel,nivelMaximo:e.maxLevel,peso:e.weight}))}}
 async function writeJsonFile(dirName,fileName,payload){if(!linkedDirectory)return{saved:false,reason:'no-folder'};if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false,reason:'permission'};const dir=await linkedDirectory.getDirectoryHandle(dirName,{create:true});const file=await dir.getFileHandle(fileName,{create:true});const writable=await file.createWritable();await writable.write(JSON.stringify(payload,null,2));await writable.close();folderSignature='';return{saved:true}}
 async function writeRootJsonFile(fileName,payload){
   if(!linkedDirectory)return{saved:false,reason:'no-folder'};
@@ -1163,7 +1362,7 @@ function normalizeTrait(raw){
   }
 }
 function normalizeMove(raw){const name=String(raw.name||raw.nome||'').trim();const source=Array.isArray(raw.elements||raw.elementos)?(raw.elements||raw.elementos):String(raw.element||raw.elemento||'').split(/[\/,+]/);const elements=[...new Set(source.map(x=>String(x||'').trim()).filter(x=>MOVE_ELEMENT_COLORS[x]))].slice(0,2);return{id:String(raw.id||slug(name)),name,type:String(raw.type||raw.tipo||'NEH'),damage:Number(raw.damage??raw.dano??0),energy:Number(raw.energy??raw.energia??0),elements,element:elements.join(', '),accuracy:Number(raw.accuracy??raw.precisao??0),range:String(raw.range||raw.alcance||''),description:String(raw.description||raw.descricao||''),effects:raw.effects||raw.efeitos||[],tags:raw.tags||raw.etiquetas||[]}}
-function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
+function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),habitatNotes:String(raw.habitatNotes||raw.notasHabitat||''),evolutionNotes:String(raw.evolutionNotes||raw.notasEvolucao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
 async function fileToDataURL(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)})}
 async function importFileSet(files,{silent=false}={}){
   const list=[...files],jsonFiles=list.filter(f=>f.name.toLowerCase().endsWith('.json'));let added=0,updated=0,traits=0,moves=0,ignored=0;

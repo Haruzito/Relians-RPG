@@ -10,6 +10,8 @@
   "codigoCatalogo": "008",
   "nome": "Incenderus",
   "descricao": "",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "OFS",
   "elementos": [
     "Ígnea"

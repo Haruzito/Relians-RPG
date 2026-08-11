@@ -10,6 +10,8 @@
   "codigoCatalogo": "017",
   "nome": "Catierbee",
   "descricao": "",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "NET",
   "elementos": [
     "Éter"
@@ -33,11 +35,13 @@
     "P"
   ],
   "evoluiDe": "",
-  "evoluiPara": "gatabuss",
+  "evoluiPara": "catierai",
   "evoluiParaMultiplas": [
+    "catierai",
     "gatabuss"
   ],
   "evolvesToMany": [
+    "catierai",
     "gatabuss"
   ],
   "metodoEvolucao": "",

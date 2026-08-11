@@ -10,6 +10,8 @@
   "codigoCatalogo": "001",
   "nome": "Lihtoffle",
   "descricao": "Lihtoffle é a lagarta da folha, costumam passar grande parte de seu tempo comendo folhas para que possa passar para seu próximo estágio da vida.\n\nLihtoffles adoram comer as folhas mais verdes antes de subir para o topo das árvores que vivem e se esconderem, sendo vistos raramente no chão devido a temerem seus predadores.",
+  "notasHabitat": "Teste",
+  "notasEvolucao": "Evolui ao chegar em um lugar",
   "classe": "EFT",
   "elementos": [
     "Éter",

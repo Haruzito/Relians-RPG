@@ -10,6 +10,8 @@
   "codigoCatalogo": "010",
   "nome": "Ernaldes",
   "descricao": "Um Relian peculiar, não se sabe muito sobre está pequena criatura cujo esconde sua cabeça em algo metálico que lembra um balde.\n\nErnaldes costumam viver próximos a florestas de cogumelos gigantes, alguns teorizam que a coisa metálica em sua cabeça, seja um cogumelo de metal.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "HIB",
   "elementos": [
     "Éter"

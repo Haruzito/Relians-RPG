@@ -10,6 +10,8 @@
   "codigoCatalogo": "011",
   "nome": "Kokpid",
   "descricao": "Kokpids costumam viver em pastos comendo a grama verde, fugindo para dentro de suas tocas quando se sentem ameaçados.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "NET",
   "elementos": [
     "Éter"

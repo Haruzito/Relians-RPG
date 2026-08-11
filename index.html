@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gerador de Relians v9.9.0</title>
+  <title>Gerador de Relians v10.0.0</title>
   <meta name="theme-color" content="#5946b2" />
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
@@ -15,8 +15,42 @@
 </head>
 <body>
 <header class="topbar app-header">
-  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v9.9.0</small></div></div>
-  <div class="top-actions toolbar-actions"><button id="newsBtn" class="toolbar-icon" title="Novidades"><span>🔔</span><b>Novidades</b></button>
+  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v10.0.0</small></div></div>
+  <div class="header-navigation">
+<nav class="tabs relians-main-nav" aria-label="Navegação principal">
+    <button class="tab nav-main-link" data-tab="catalog" data-nav-icon="▤"><span class="nav-page-icon" aria-hidden="true">▤</span><span>Catálogo</span></button>
+    <div class="nav-menu" data-nav-group="creation">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">✦</span><span>Criação</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+      <div class="nav-dropdown" role="menu">
+        <button class="tab nav-dropdown-item" data-tab="relians" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">◆</span><span><b>Criar Relian</b><small>Espécies, cores e evolução</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="moves" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">⚔</span><span><b>Criar Movimento</b><small>Golpes, efeitos e requisitos</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="biomes" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">♣</span><span><b>Mundo</b><small>Regiões, biomas e aparições</small></span></button>
+      </div>
+    </div>
+    <div class="nav-menu" data-nav-group="sheets">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">▣</span><span>Fichas</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+      <div class="nav-dropdown" role="menu">
+        <button class="tab nav-dropdown-item" data-tab="generator" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">◈</span><span><b>Gerar Relian</b><small>Encontros e fichas sorteadas</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="story" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">♙</span><span><b>Criar Ficha</b><small>Personagens e Relians individuais</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="sheetbank" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">▤</span><span><b>Banco de Fichas</b><small>Visualizar e administrar fichas salvas</small></span></button>
+      </div>
+    </div>
+    <div class="nav-menu" data-nav-group="community">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">♟</span><span>Comunidade</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+      <div class="nav-dropdown nav-dropdown-right" role="menu">
+        <button class="tab nav-dropdown-item" data-tab="creators" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">☻</span><span><b>Criadores</b><small>Equipe e Relians World</small></span></button>
+        <a class="nav-dropdown-item nav-external-item" href="updates.html"><span class="nav-sub-icon" aria-hidden="true">✎</span><span><b>Novidades e Blog</b><small>Atualizações oficiais do projeto</small></span></a>
+      </div>
+    </div>
+    <div class="nav-menu" data-nav-group="config">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">⚙</span><span>Config</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+      <div class="nav-dropdown nav-dropdown-right" role="menu">
+        <button class="tab nav-dropdown-item" data-tab="rules" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">⚙</span><span><b>Regras e Modificadores</b><small>Parâmetros gerais do sistema</small></span></button>
+      </div>
+    </div>
+  </nav>
+  </div>
+  <div class="top-actions toolbar-actions header-utilities"><button id="newsBtn" class="toolbar-icon" title="Novidades"><span>🔔</span><b>Novidades</b></button>
     <button id="diceBtn" class="toolbar-icon dice-toolbar-button" title="Rolador de dados"><span>🎲</span><b>Dados</b></button>
     <button id="linkFolderBtn" class="primary toolbar-main"><span>◈</span> Vincular projeto</button>
     <button id="syncFolderBtn" class="toolbar-icon" title="Sincronizar pasta"><span>↻</span><b>Sincronizar</b></button>
@@ -25,18 +59,8 @@
   </div>
 </header>
 <input id="relianFolderInput" type="file" multiple webkitdirectory directory hidden /><button id="resetBtn" type="button" hidden></button>
-<div id="folderStatus" class="folder-status">Nenhuma pasta vinculada. Para sincronização automática, abra por localhost e vincule a pasta do projeto.</div>
-<nav class="tabs">
-  <button class="tab active" data-tab="generator">Gerador</button>
-  <button class="tab" data-tab="relians">Relians</button>
-  <button class="tab" data-tab="biomes">Biomas e regiões</button>
-  <button class="tab" data-tab="moves">Movimentos</button>
-  <button class="tab" data-tab="story">Criador de fichas</button>
-  <button class="tab" data-tab="sheetbank">Banco de fichas</button>
-  <button class="tab" data-tab="catalog">Catálogo</button>
-  <button class="tab" data-tab="creators">Criadores</button>
-  <button class="tab" data-tab="rules">Regras</button>
-</nav>
+<div id="folderStatus" class="folder-status">Nenhuma pasta vinculada. Para sincronização automática, abra por localhost e vincule a pasta do projeto.</div><div id="pageContextBar" class="page-context-bar" aria-live="polite"><span id="pageContextCategory">Fichas</span><b aria-hidden="true">›</b><strong id="pageContextTitle">Gerar Relian</strong></div>
+
 <main>
 <section id="generator" class="tab-panel active">
   <div class="grid generator-layout">
@@ -79,8 +103,15 @@
           </div>
           <div id="specialElementPreview" class="element-preview special-element-preview" aria-live="polite"></div>
         </div>
-        <label class="relian-description-field">Descrição de catálogo<textarea id="relianDescription" rows="5" placeholder="Descreva a aparência, comportamento, habitat, curiosidades e outras informações da espécie..."></textarea></label>
-        <p class="field-help">Esta descrição aparece nas fichas geradas e no Banco de fichas, funcionando como texto do catálogo do Relian.</p>
+        <div class="catalog-editor-block">
+          <div class="section-kicker">INFORMAÇÕES DO CATÁLOGO</div>
+          <p class="field-help">Estes textos alimentam diretamente as páginas Sobre, Habitat e Evolução do novo Catálogo.</p>
+          <label class="relian-description-field">Sobre / descrição da espécie<textarea id="relianDescription" rows="5" placeholder="Aparência, comportamento, história e informações gerais da espécie..."></textarea></label>
+          <div class="grid two catalog-notes-grid">
+            <label>Notas de habitat<textarea id="relianHabitatNotes" rows="4" placeholder="Hábitos, clima preferido, locais incomuns, comportamento no ambiente..."></textarea></label>
+            <label>Notas de evolução<textarea id="relianEvolutionNotes" rows="4" placeholder="Condições especiais, detalhes do processo evolutivo, diferenças entre ramificações..."></textarea></label>
+          </div>
+        </div>
       </fieldset>
       <fieldset><legend>Corpo e recursos</legend>
         <div class="grid four compact"><label>Estágio evolutivo<input id="relianStage" type="number" min="1" value="1" /></label><label>ENG base<input id="relianEnergy" type="number" min="0" value="85" /></label><label>Gêneros<input id="relianGenders" value="Macho,Fêmea" /></label><label>Tamanhos<input id="relianSizes" value="P,M,G" /></label></div>
@@ -423,4 +454,46 @@ config/
 </dialog>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="app.js"></script>
-<dialog id="newsDialog"><h2>📦 Novidades - v9.9.0</h2><ul><li>Nova aba <b>Criadores</b>, com acesso direto ao servidor oficial Relians World no Discord</li><li>Nova página <b>Novidades e Blog</b> para notas de versão, diário de desenvolvimento e conteúdos do universo Relians</li><li>Banco de fichas corrigido: fichas de Relians agora podem ser abertas e visualizadas corretamente</li><li>Fichas completas de personagem receberam melhorias na visualização da equipe e dos Relians possuídos</li><li>Correção do botão <b>Salvar ficha</b> para Relians gerados</li><li>Interface mobile reorganizada em categorias recolhíveis para reduzir telas apertadas e melhorar a navegação</li><li>Biblioteca de movimentos corrigida no mobile, aparecendo somente quando solicitada</li><li>Projeto pode ser instalado como aplicativo em dispositivos compatíveis através do modo PWA</li><li>Importação, exportação, migração de fichas e save local continuam compatíveis com a nova versão</li><li>Diversas correções de estabilidade no Banco de fichas, sincronização local e navegação geral</li></ul><button onclick="document.getElementById('newsDialog').close()">Fechar</button></dialog><script>document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById("newsBtn");if(b)b.onclick=()=>document.getElementById("newsDialog").showModal();});</script></body></html>
+<dialog id="newsDialog" class="news-dialog">
+  <h2>📦 Novidades — v10.0.0</h2>
+  <p><b>Atualização visual e de organização do Relians RPG.</b></p>
+  <ul>
+    <li><b>Novo Catálogo Bestiário:</b> imagem maior do Relian, visual de compêndio e navegação mais clara.</li>
+    <li><b>Basic, Shiny e Special Color</b> agora podem ser alternadas diretamente no Catálogo, mantendo os efeitos visuais próprios.</li>
+    <li>O Catálogo passou a exibir também os <b>elementos da Special Color</b>.</li>
+    <li>Novas páginas internas do Catálogo: <b>Sobre, Habitat, Evolução, Movimentos e Dados</b>.</li>
+    <li>Evoluções exibidas no Catálogo agora são <b>clicáveis</b> e levam diretamente à ficha da evolução correspondente.</li>
+    <li>A seção <b>Dados</b> foi reorganizada e agora reúne HP, ENG, gênero, tamanho, classe, estágio, elementos, captura e afinidade.</li>
+    <li>O <b>Criador de Relians</b> foi ampliado com informações específicas de habitat e evolução para alimentar o novo Catálogo.</li>
+    <li>Novo <b>menu superior com ícones e subcategorias</b>: Catálogo, Criação, Fichas, Comunidade e Config.</li>
+    <li>As páginas foram unificadas em categorias, com indicação de contexto como <b>Criação › Criar Relian</b>.</li>
+    <li>Interface mobile recebeu novo polimento, melhor navegação no topo, menus adaptados e proteção para telas pequenas.</li>
+    <li>Nomes longos de Relians no Catálogo agora se ajustam automaticamente sem ultrapassar a interface.</li>
+    <li>Melhorias gerais de acessibilidade, foco, responsividade e estabilidade visual.</li>
+  </ul>
+
+  <details class="news-archive">
+    <summary>Ver novidades preservadas da v9.9.0</summary>
+    <h3>v9.9.0 — Comunidade, mobile e Banco de Fichas</h3>
+    <ul>
+      <li>Nova aba <b>Criadores</b>, com acesso direto ao servidor oficial Relians World no Discord.</li>
+      <li>Nova página <b>Novidades e Blog</b> para notas de versão, diário de desenvolvimento e conteúdos do universo Relians.</li>
+      <li>Banco de fichas corrigido: fichas de Relians passaram a abrir e ser visualizadas corretamente.</li>
+      <li>Fichas completas de personagem receberam melhorias na visualização da equipe e dos Relians possuídos.</li>
+      <li>Correção do botão <b>Salvar ficha</b> para Relians gerados.</li>
+      <li>Interface mobile reorganizada em categorias recolhíveis.</li>
+      <li>Biblioteca de movimentos corrigida no mobile.</li>
+      <li>Projeto passou a poder ser instalado como aplicativo em dispositivos compatíveis através do modo PWA.</li>
+      <li>Importação, exportação, migração de fichas e save local continuaram compatíveis.</li>
+      <li>Diversas correções de estabilidade no Banco de fichas, sincronização local e navegação geral.</li>
+    </ul>
+  </details>
+
+  <button type="button" onclick="document.getElementById('newsDialog').close()">Fechar</button>
+</dialog>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const b=document.getElementById("newsBtn");
+  if(b)b.onclick=()=>document.getElementById("newsDialog").showModal();
+});
+</script></body></html>

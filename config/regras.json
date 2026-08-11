@@ -9,6 +9,6 @@
   "modMin": -7,
   "modMax": 7,
   "moveLimit": 6,
-  "shinyChance": 0,
-  "specialChance": 100
+  "shinyChance": 3,
+  "specialChance": 0.3
 }

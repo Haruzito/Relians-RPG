@@ -10,6 +10,8 @@
   "codigoCatalogo": "018-A",
   "nome": "Catierai",
   "descricao": "Após uma Catierbee entrar em contato com a rocha chamada \"Espada do Herói\", ele evolui para Catierai, sua forma ofensiva. Catierais costumam andar sozinhos por regiões montanhosas em busca de aprimorar sua resistência. Alguns dizem que o mesmo é um exímio caçador solitário, possuindo uma forte determinação e altruísmo, sempre salvando viajantes perdidos aos arredores.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "OFS",
   "elementos": [
     "Éter",
@@ -33,7 +35,7 @@
   "tamanhos": [
     "G"
   ],
-  "evoluiDe": "",
+  "evoluiDe": "catierbee",
   "evoluiPara": "",
   "evoluiParaMultiplas": [],
   "evolvesToMany": [],

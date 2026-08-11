@@ -10,6 +10,8 @@
   "codigoCatalogo": "018-B",
   "nome": "Gatabuss",
   "descricao": "Quando uma Catierbee entra em contato com uma Magic Orb, ela absorve toda aquela energia mágica que a Orb emana, assim se tornando Gatabuss.\n\nGatabuss costumam buscar por regiões que possuam uma alta concentração de Energia Relia para se tornar mais fortes.",
+  "notasHabitat": "",
+  "notasEvolucao": "",
   "classe": "EFT",
   "elementos": [
     "Éter",
