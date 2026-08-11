@@ -1,0 +1,63 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "skellywag",
+  "catalogNumber": 28,
+  "numeroCatalogo": 28,
+  "reliInfo": 28,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "028",
+  "nome": "Skellywag",
+  "descricao": "Skellywag's passam o seu tempo buscando por ossadas no deserto para formar sua armadura cujo ele usa para se defender de seus predadores.",
+  "classe": "OFS",
+  "elementos": [
+    "Umbral"
+  ],
+  "elementosEspeciais": [
+    "Umbral"
+  ],
+  "estagio": 1,
+  "energiaBase": 60,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 1,
+  "imagens": {
+    "basic": "skellywag-b.png",
+    "shiny": "skellywag-s.png",
+    "special": "skellywag-e.png"
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "",
+  "evoluiParaMultiplas": [],
+  "evolvesToMany": [],
+  "metodoEvolucao": "Item",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "deserto-de-karesh",
+      "bioma": "deserto-arenoso",
+      "periodos": [
+        "noite",
+        "madrugada"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

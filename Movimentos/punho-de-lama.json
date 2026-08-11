@@ -1,0 +1,23 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "punho-de-lama",
+  "nome": "Punho de lama",
+  "tipo": "OFS",
+  "elementos": [
+    "Colossal",
+    "Abissal"
+  ],
+  "elemento": "Colossal, Abissal",
+  "dano": 10,
+  "energia": 20,
+  "precisao": 95,
+  "alcance": "corpo a corpo",
+  "descricao": "Suja o punho com lama, desferindo um golpe no oponente que ao acertar, deixa seu oponente sujo e pesado, diminuindo -3 de velocidade. O efeito permanece até o Relian limpar.",
+  "efeitos": [
+    "Reduz -3 de velocidade"
+  ],
+  "tags": [
+    "contato"
+  ]
+}

@@ -25,9 +25,9 @@
   "taxaCaptura": 40,
   "afinidadeBase": 2,
   "imagens": {
-    "basic": "",
-    "shiny": "",
-    "special": ""
+    "basic": "salamenta-b.png",
+    "shiny": "salamenta-s.png",
+    "special": "salamenta-e.png"
   },
   "generos": [
     "Macho",

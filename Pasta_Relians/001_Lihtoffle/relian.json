@@ -25,9 +25,9 @@
   "taxaCaptura": 40,
   "afinidadeBase": 2,
   "imagens": {
-    "basic": "",
-    "shiny": "",
-    "special": ""
+    "basic": "lihtoffle-b.png",
+    "shiny": "lihtoffle-s.png",
+    "special": "lihtoffle-e.png"
   },
   "generos": [
     "Macho",

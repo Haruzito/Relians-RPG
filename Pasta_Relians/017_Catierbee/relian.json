@@ -17,13 +17,13 @@
   "elementosEspeciais": [],
   "estagio": 1,
   "energiaBase": 60,
-  "raridade": "comum",
-  "taxaCaptura": 40,
+  "raridade": "raro",
+  "taxaCaptura": 20,
   "afinidadeBase": 2,
   "imagens": {
-    "basic": "catierbee.png",
+    "basic": "catierbee-b.png",
     "shiny": "catierbee-s.png",
-    "special": "caiterbee-e.png"
+    "special": "catierbee-e.png"
   },
   "generos": [
     "Macho",

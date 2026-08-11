@@ -21,8 +21,8 @@
   ],
   "estagio": 2,
   "energiaBase": 70,
-  "raridade": "comum",
-  "taxaCaptura": 40,
+  "raridade": "raro",
+  "taxaCaptura": 20,
   "afinidadeBase": 2,
   "imagens": {
     "basic": "",

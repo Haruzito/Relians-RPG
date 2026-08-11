@@ -21,9 +21,9 @@
   "taxaCaptura": 40,
   "afinidadeBase": 2,
   "imagens": {
-    "basic": "",
-    "shiny": "",
-    "special": ""
+    "basic": "aquecko-b.png",
+    "shiny": "aquecko-s.png",
+    "special": "aquecko-e.png"
   },
   "generos": [
     "Macho",

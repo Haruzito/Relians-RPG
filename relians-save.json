@@ -2,7 +2,7 @@
   "kind": "relians-save",
   "tipoArquivo": "banco-completo",
   "saveVersion": 2,
-  "updatedAt": "2026-08-08T23:54:23.049Z",
+  "updatedAt": "2026-08-10T22:10:24.405Z",
   "data": {
     "rules": {
       "baseHp": 50,
@@ -13,8 +13,8 @@
       "modMin": -7,
       "modMax": 7,
       "moveLimit": 6,
-      "shinyChance": 3,
-      "specialChance": 0.5
+      "shinyChance": 0,
+      "specialChance": 100
     },
     "regions": [
       {
@@ -3939,123 +3939,31 @@
           "auditivo"
         ],
         "saveVersion": 2
-      }
-    },
-    "storySheets": [
-      {
-        "id": "character-helio-stevans-mskucm4o",
-        "type": "character",
-        "character": {
-          "player": "Hemmyr",
-          "name": "Hélio Stevans",
-          "age": 23,
-          "region": "Colonia de Lumén",
-          "className": "Desbravador",
-          "specialization": "",
-          "level": 0,
-          "rank": "E",
-          "stars": 0,
-          "rays": 0,
-          "reliInf": 1,
-          "credits": 0,
-          "money": 0,
-          "image": "",
-          "description": "",
-          "hpCurrent": 30,
-          "hpMax": 30,
-          "staCurrent": 40,
-          "staMax": 40,
-          "attributes": {
-            "forca": 1,
-            "agilidade": 1,
-            "vigor": 1,
-            "presenca": 1,
-            "intelecto": 1,
-            "sabedoria": 1
-          },
-          "skills": {
-            "Acrobacias": 0,
-            "Atletismo": 0,
-            "Arte": 0,
-            "História": 0,
-            "Herborismo": 0,
-            "Intimidação": 0,
-            "Adestramento": 0,
-            "Atualidade": 0,
-            "Atuação": 0,
-            "Iniciativa": 0,
-            "Investigação": 0,
-            "Luta": 0,
-            "Culinária": 0,
-            "Conhecimento": 0,
-            "Ciências": 0,
-            "Lábia": 0,
-            "Liderança": 0,
-            "Medicina": 0,
-            "Crime": 0,
-            "Carisma": 0,
-            "Cartografia": 0,
-            "Misticismo": 0,
-            "Montaria": 0,
-            "Navegação": 0,
-            "Diplomacia": 0,
-            "Direção": 0,
-            "Disfarce": 0,
-            "Psicologia": 0,
-            "Percepção": 0,
-            "Reflexos": 0,
-            "Engenharia": 0,
-            "Estratégia": 0,
-            "Enganação": 0,
-            "Religião": 0,
-            "Sobrevivência": 0,
-            "Tática": 0,
-            "Fortitude": 0,
-            "Furtividade": 0,
-            "Fabricação": 0,
-            "TI": 0,
-            "Vontade": 0,
-            "Zoologia": 0
-          },
-          "equipment": [
-            {
-              "name": "",
-              "description": ""
-            },
-            {
-              "name": "",
-              "description": ""
-            },
-            {
-              "name": "",
-              "description": ""
-            },
-            {
-              "name": "",
-              "description": ""
-            }
-          ],
-          "backpack": [],
-          "team": [
-            {
-              "speciesId": "nezhaspyro",
-              "savedSheetId": "ficha-mshnko5q-wjt7",
-              "nickname": "Nezhaspyro",
-              "level": 10,
-              "color": "shiny",
-              "notes": ""
-            }
-          ],
-          "equippedRelianIds": [
-            "ficha-mshnko5q-wjt7"
-          ],
-          "items": [],
-          "notes": ""
-        },
-        "updatedAt": "2026-08-08T20:43:36.072Z",
+      },
+      "punho-de-lama": {
+        "id": "punho-de-lama",
+        "name": "Punho de lama",
+        "type": "OFS",
+        "damage": 10,
+        "energy": 20,
+        "elements": [
+          "Colossal",
+          "Abissal"
+        ],
+        "element": "Colossal, Abissal",
+        "accuracy": 95,
+        "range": "corpo a corpo",
+        "description": "Suja o punho com lama, desferindo um golpe no oponente que ao acertar, deixa seu oponente sujo e pesado, diminuindo -3 de velocidade. O efeito permanece até o Relian limpar.",
+        "effects": [
+          "Reduz -3 de velocidade"
+        ],
+        "tags": [
+          "contato"
+        ],
         "saveVersion": 2
       }
-    ],
+    },
+    "storySheets": [],
     "savedRelianSheets": [],
     "relians": [
       {
@@ -4134,13 +4042,13 @@
         ],
         "stage": 1,
         "baseEnergy": 60,
-        "rarity": "comum",
-        "captureRate": 40,
+        "rarity": "raro",
+        "captureRate": 20,
         "baseAffinity": 2,
         "images": {
-          "basic": "catierbee.png",
+          "basic": "catierbee-b.png",
           "shiny": "catierbee-s.png",
-          "special": "caiterbee-e.png"
+          "special": "catierbee-e.png"
         },
         "genders": [
           "Macho",
@@ -4319,9 +4227,9 @@
         "captureRate": 40,
         "baseAffinity": 2,
         "images": {
-          "basic": "",
-          "shiny": "",
-          "special": ""
+          "basic": "lihtoffle-b.png",
+          "shiny": "lihtoffle-s.png",
+          "special": "lihtoffle-e.png"
         },
         "genders": [
           "Macho",
@@ -4525,9 +4433,9 @@
         "captureRate": 40,
         "baseAffinity": 2,
         "images": {
-          "basic": "",
-          "shiny": "",
-          "special": ""
+          "basic": "aquecko-b.png",
+          "shiny": "aquecko-s.png",
+          "special": "aquecko-e.png"
         },
         "genders": [
           "Macho",
@@ -4604,6 +4512,10 @@
           {
             "level": 1,
             "moveId": "golpear"
+          },
+          {
+            "level": 20,
+            "moveId": "punho-de-lama"
           }
         ],
         "encounters": [
@@ -4619,7 +4531,10 @@
           }
         ],
         "imageDataByColor": {},
-        "specialElements": [],
+        "specialElements": [
+          "Abissal",
+          "Colossal"
+        ],
         "saveVersion": 2,
         "catalogVariant": "",
         "evolvesToMany": [
@@ -5182,8 +5097,8 @@
         ],
         "stage": 2,
         "baseEnergy": 70,
-        "rarity": "comum",
-        "captureRate": 40,
+        "rarity": "raro",
+        "captureRate": 20,
         "baseAffinity": 2,
         "images": {
           "basic": "",
@@ -5542,9 +5457,9 @@
         "captureRate": 40,
         "baseAffinity": 2,
         "images": {
-          "basic": "",
-          "shiny": "",
-          "special": ""
+          "basic": "salamenta-b.png",
+          "shiny": "salamenta-s.png",
+          "special": "salamenta-e.png"
         },
         "genders": [
           "Macho",
@@ -6043,6 +5958,64 @@
             "biome": "campo",
             "periods": [
               "manha"
+            ],
+            "minLevel": 1,
+            "maxLevel": 10,
+            "weight": 10
+          }
+        ],
+        "saveVersion": 2,
+        "imageDataByColor": {}
+      },
+      {
+        "id": "skellywag",
+        "catalogNumber": 28,
+        "catalogVariant": "",
+        "name": "Skellywag",
+        "description": "Skellywag's passam o seu tempo buscando por ossadas no deserto para formar sua armadura cujo ele usa para se defender de seus predadores.",
+        "class": "OFS",
+        "elements": [
+          "Umbral"
+        ],
+        "specialElements": [
+          "Umbral"
+        ],
+        "stage": 1,
+        "baseEnergy": 60,
+        "rarity": "comum",
+        "captureRate": 40,
+        "baseAffinity": 1,
+        "images": {
+          "basic": "skellywag-b.png",
+          "shiny": "skellywag-s.png",
+          "special": "skellywag-e.png"
+        },
+        "genders": [
+          "Macho",
+          "Fêmea"
+        ],
+        "sizes": [
+          "P",
+          "M"
+        ],
+        "evolvesFrom": "",
+        "evolvesToMany": [],
+        "evolvesTo": "",
+        "evolutionMethod": "Item",
+        "traitIds": [],
+        "learnset": [
+          {
+            "level": 1,
+            "moveId": "golpear"
+          }
+        ],
+        "encounters": [
+          {
+            "region": "deserto-de-karesh",
+            "biome": "deserto-arenoso",
+            "periods": [
+              "noite",
+              "madrugada"
             ],
             "minLevel": 1,
             "maxLevel": 10,
