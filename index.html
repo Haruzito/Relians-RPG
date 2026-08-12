@@ -58,7 +58,7 @@
     <label class="file-label toolbar-icon" title="Importar banco"><span>⇧</span><b>Importar</b><input id="importInput" type="file" accept="application/json" /></label>
   </div>
 </header>
-<input id="relianFolderInput" type="file" multiple webkitdirectory directory hidden /><button id="resetBtn" type="button" hidden></button>
+<input id="relianFolderInput" type="file" multiple webkitdirectory directory hidden /><input id="officialDataFolderInput" type="file" multiple webkitdirectory directory hidden /><button id="resetBtn" type="button" hidden></button>
 <div id="folderStatus" class="folder-status">Nenhuma pasta vinculada. Para sincronização automática, abra por localhost e vincule a pasta do projeto.</div><div id="pageContextBar" class="page-context-bar" aria-live="polite"><span id="pageContextCategory">Fichas</span><b aria-hidden="true">›</b><strong id="pageContextTitle">Gerar Relian</strong></div>
 
 <main>
@@ -328,18 +328,23 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
       <div class="grid two compact"><label>Chance de Shiny Color (%)<input id="ruleShinyChance" type="number" min="0" max="100" step="0.01" /></label><label>Chance de Especial Color (%)<input id="ruleSpecialChance" type="number" min="0" max="100" step="0.01" /></label></div>
       <button class="primary">Salvar regras</button>
     </form>
-    <div class="card"><h2>Estrutura recomendada</h2><pre>Pasta_Relians/
-  Loppypor/
-    relian.json
-    basic.png
-    shiny.png
-    especial.png
-Tracos/
-  corpo-vigoroso.json
-Movimentos/
-  golpear.json
-config/
-  regioes_e_biomas.json</pre><p>A pasta vinculada é relida automaticamente enquanto a página estiver aberta.</p></div>
+    <div class="card official-data-card">
+      <div class="section-kicker">CONTEÚDO OFICIAL</div>
+      <h2>Dados offline dos Relians</h2>
+      <p>Baixe uma cópia do conteúdo oficial publicado e vincule a pasta extraída. Isso permite usar Relians, imagens, movimentos, biomas e regiões mesmo sem depender da conexão com o GitHub.</p>
+      <div class="official-data-actions">
+        <a id="downloadOfficialDataBtn" class="primary official-data-download" href="downloads/Relians_Data_v10.0.0.zip" download>⇩ Baixar dados oficiais</a>
+        <button id="linkOfficialDataBtn" type="button">◈ Vincular pasta de dados</button>
+        <button id="syncOfficialDataBtn" type="button" disabled>↻ Ler pasta vinculada</button>
+      </div>
+      <div class="official-data-version-row">
+        <span id="officialDataVersionBadge" class="official-data-version-badge">Versão local: não vinculada</span>
+        <button id="checkOfficialDataUpdateBtn" type="button">Verificar atualização</button>
+      </div>
+      <div id="officialDataUpdateNotice" class="official-data-update-notice" hidden></div>
+      <div id="officialDataStatus" class="official-data-status">Nenhuma pasta de dados vinculada. Online, o conteúdo oficial continua sendo carregado diretamente do GitHub.</div>
+      <small class="field-help">Depois de baixar, extraia o ZIP e selecione a pasta que contém <code>data-package.json</code>, <code>Pasta_Relians</code>, <code>Movimentos</code>, <code>Biomas</code> e <code>Regioes</code>.</small>
+    </div>
   </div>
 </section>
 </main>

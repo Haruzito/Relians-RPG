@@ -2121,3 +2121,78 @@ textarea{
 .news-dialog .news-archive h3{
   margin:14px 0 6px;
 }
+
+
+/* Pacote oficial offline — Etapa 3 */
+.official-data-card{
+  align-self:start;
+}
+.official-data-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 10px;
+}
+.official-data-actions>*{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.official-data-download{
+  text-decoration:none;
+}
+.official-data-status{
+  margin-top:8px;
+  padding:10px 12px;
+  border:1px solid rgba(94,165,174,.25);
+  border-radius:10px;
+  color:#a9c8cc;
+  background:rgba(3,32,39,.35);
+  font-size:.78rem;
+}
+.official-data-status.ok{
+  border-color:rgba(89,197,141,.42);
+  color:#a7e3c2;
+}
+.official-data-status.warn{
+  border-color:rgba(225,168,82,.48);
+  color:#f0cf9a;
+}
+
+
+/* Pacote oficial offline — Etapa 4 */
+.official-data-version-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  margin:10px 0 8px;
+}
+.official-data-version-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:6px 10px;
+  border:1px solid rgba(118,193,200,.28);
+  border-radius:999px;
+  background:rgba(7,42,48,.5);
+  color:#b5d5d8;
+  font-size:.74rem;
+  font-weight:800;
+}
+.official-data-update-notice{
+  margin:8px 0;
+  padding:10px 12px;
+  border:1px solid rgba(113,179,188,.26);
+  border-radius:10px;
+  background:rgba(5,34,40,.44);
+  color:#b7cfd2;
+  font-size:.78rem;
+}
+.official-data-update-notice.available{
+  border-color:rgba(223,175,90,.5);
+  background:rgba(90,62,18,.18);
+  color:#f2d59f;
+}

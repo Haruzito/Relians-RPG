@@ -390,6 +390,367 @@ function loadData(){
     return migrateData(clone(defaultData));
   }
 }
+
+/* =========================================================
+   CONTEÚDO OFICIAL — GITHUB / GITHUB PAGES
+   Etapa 1: Relians + imagens
+   ========================================================= */
+const OFFICIAL_RELIANS_INDEX='data/relians-index.json';
+let officialReliansLoaded=false;
+
+function canLoadOfficialWebContent(){
+  return location.protocol==='http:'||location.protocol==='https:';
+}
+
+function officialRelianKey(r){
+  return String(r?.id||'').trim().toLowerCase();
+}
+
+async function fetchOfficialJson(path){
+  const response=await fetch(path,{cache:'no-store'});
+  if(!response.ok)throw new Error(`${response.status} ${response.statusText} — ${path}`);
+  return response.json();
+}
+
+async function loadOfficialReliansFromWeb({silent=true}={}){
+  if(!canLoadOfficialWebContent())return{loaded:false,reason:'not-web'};
+
+  try{
+    const index=await fetchOfficialJson(OFFICIAL_RELIANS_INDEX);
+    const entries=Array.isArray(index?.relians)?index.relians:[];
+    if(!entries.length)throw new Error('O índice oficial não possui Relians.');
+
+    const results=await Promise.allSettled(entries.map(async entry=>{
+      const raw=await fetchOfficialJson(entry.json);
+      const r=migrateRelianRecord(raw);
+
+      // Guarda a pasta publicada no GitHub Pages para que resolveRelianImage()
+      // encontre Basic, Shiny e Special sem depender de File System Access API.
+      r._sourceFolder=String(entry.folder||'').replace(/^\/+|\/+$/g,'');
+      r.sourceFolder=r._sourceFolder;
+      r._officialSource='github';
+      r._officialJson=String(entry.json||'');
+      r._officialVersion=String(index.projectVersion||'');
+
+      return r;
+    }));
+
+    const official=results.filter(x=>x.status==='fulfilled').map(x=>x.value);
+    const failures=results.filter(x=>x.status==='rejected');
+
+    // O GitHub é a fonte oficial das espécies catalogadas.
+    // Relians locais com IDs que NÃO existem no índice continuam disponíveis,
+    // permitindo espécies pessoais/testes sem sobrescrever conteúdo oficial.
+    const officialIds=new Set(official.map(officialRelianKey).filter(Boolean));
+    const localOnly=(data.relians||[]).filter(r=>!officialIds.has(officialRelianKey(r)));
+    data.relians=[...official,...localOnly].sort(sortReliansByCatalog);
+
+    officialReliansLoaded=true;
+    renderAll();
+
+    const folderStatus=el('folderStatus');
+    if(folderStatus&&(!linkedDirectory||location.protocol==='https:')){
+      folderStatus.textContent=`Conteúdo oficial: ${official.length} Relians carregados do projeto publicado${failures.length?` · ${failures.length} falharam`:''}. Save do jogador continua local.`;
+      folderStatus.classList.toggle('ok',failures.length===0);
+    }
+
+    if(failures.length)console.warn('Relians oficiais que não puderam ser carregados:',failures);
+    if(!silent)alert(`${official.length} Relians oficiais carregados do projeto publicado.`);
+    return{loaded:true,count:official.length,failed:failures.length};
+  }catch(err){
+    console.warn('Conteúdo oficial do GitHub não pôde ser carregado:',err);
+    if(!silent)alert(`Não foi possível carregar os Relians oficiais: ${err.message||err}`);
+    return{loaded:false,reason:'fetch-failed',error:err};
+  }
+}
+
+
+/* =========================================================
+   CONTEÚDO OFICIAL — GITHUB / GITHUB PAGES
+   Etapa 2: Movimentos + Regiões + Biomas
+   ========================================================= */
+const OFFICIAL_WORLD_INDEX='data/world-index.json';
+
+async function loadOfficialWorldDataFromWeb({silent=true}={}){
+  if(!canLoadOfficialWebContent())return{loaded:false,reason:'not-web'};
+
+  try{
+    const index=await fetchOfficialJson(OFFICIAL_WORLD_INDEX);
+    const movePaths=Array.isArray(index?.moves)?index.moves:[];
+    const biomePaths=Array.isArray(index?.biomes)?index.biomes:[];
+    const regionPaths=Array.isArray(index?.regions)?index.regions:[];
+
+    const [moveResults,biomeResults,regionResults]=await Promise.all([
+      Promise.allSettled(movePaths.map(fetchOfficialJson)),
+      Promise.allSettled(biomePaths.map(fetchOfficialJson)),
+      Promise.allSettled(regionPaths.map(fetchOfficialJson))
+    ]);
+
+    const officialMoves=moveResults.filter(x=>x.status==='fulfilled').map(x=>normalizeMove(x.value)).filter(x=>x.name);
+    const officialBiomes=biomeResults.filter(x=>x.status==='fulfilled').map(x=>x.value);
+    const officialRegions=regionResults.filter(x=>x.status==='fulfilled').map(x=>x.value);
+
+    // Movimentos oficiais substituem somente IDs equivalentes.
+    // Movimentos pessoais continuam disponíveis.
+    const officialMoveIds=new Set(officialMoves.map(m=>String(m.id)));
+    const localMoves=Object.values(data.moves||{}).filter(m=>!officialMoveIds.has(String(m.id)));
+    data.moves={};
+    for(const m of [...officialMoves,...localMoves])data.moves[m.id]=m;
+
+    // Para regiões e biomas usamos o mesmo comportamento do importador local:
+    // mesclar por ID, preservando entradas pessoais que não existam no GitHub.
+    mergeNamedList(data.biomes,officialBiomes);
+    mergeNamedList(data.regions,officialRegions);
+
+    const failed=
+      moveResults.filter(x=>x.status==='rejected').length+
+      biomeResults.filter(x=>x.status==='rejected').length+
+      regionResults.filter(x=>x.status==='rejected').length;
+
+    renderAll();
+
+    const status=el('folderStatus');
+    if(status&&location.protocol==='https:'){
+      status.textContent=`Conteúdo oficial online: ${officialMoves.length} movimentos · ${officialBiomes.length} biomas · ${officialRegions.length} regiões${failed?` · ${failed} falharam`:''}.`;
+      status.classList.toggle('ok',failed===0);
+    }
+
+    if(!silent)alert(`Conteúdo oficial carregado: ${officialMoves.length} movimentos, ${officialBiomes.length} biomas e ${officialRegions.length} regiões.`);
+    return{
+      loaded:true,
+      moves:officialMoves.length,
+      biomes:officialBiomes.length,
+      regions:officialRegions.length,
+      failed
+    };
+  }catch(err){
+    console.warn('Movimentos/Regiões/Biomas oficiais não puderam ser carregados:',err);
+    if(!silent)alert(`Não foi possível carregar os dados oficiais do mundo: ${err.message||err}`);
+    return{loaded:false,reason:'fetch-failed',error:err};
+  }
+}
+
+
+/* =========================================================
+   PACOTE OFICIAL OFFLINE
+   Etapa 3: baixar + vincular pasta de dados
+   ========================================================= */
+let officialDataDirectory=null;
+let officialDataFilesFallback=null;
+
+function officialDataStatus(text,ok=false,warn=false){
+  const node=el('officialDataStatus');
+  if(!node)return;
+  node.textContent=text;
+  node.className='official-data-status'+(ok?' ok':'')+(warn?' warn':'');
+}
+
+function normalizeRelativeDataPath(path){
+  return String(path||'').replace(/\\/g,'/').replace(/^\.?\//,'');
+}
+
+async function collectDirectoryFiles(handle,prefix=''){
+  const files=[];
+  for await(const [name,entry] of handle.entries()){
+    const rel=prefix?`${prefix}/${name}`:name;
+    if(entry.kind==='directory')files.push(...await collectDirectoryFiles(entry,rel));
+    else files.push({path:rel,file:await entry.getFile()});
+  }
+  return files;
+}
+
+async function applyOfficialDataFiles(fileEntries,{silent=false}={}){
+  const byPath=new Map(fileEntries.map(x=>[normalizeRelativeDataPath(x.path).toLowerCase(),x.file]));
+  const manifestFile=byPath.get('data-package.json');
+  if(!manifestFile)throw new Error('Esta pasta não possui data-package.json. Selecione a pasta extraída do pacote oficial.');
+
+  const packageInfo=JSON.parse(await manifestFile.text());
+  if(packageInfo?.kind!=='relians-data-package')throw new Error('A pasta selecionada não é um pacote oficial de dados do Relians.');
+
+  const officialRelians=[];
+  const officialMoves=[];
+  const officialBiomes=[];
+  const officialRegions=[];
+  const imageFiles=new Map();
+
+  for(const [path,file] of byPath){
+    if(/\.(png|jpe?g|webp|gif)$/i.test(path))imageFiles.set(path,file);
+  }
+
+  for(const [path,file] of byPath){
+    if(!path.endsWith('.json')||path==='data-package.json')continue;
+    let raw;
+    try{raw=JSON.parse(await file.text())}catch{continue}
+
+    if(path.startsWith('pasta_relians/')&&path.endsWith('/relian.json')){
+      const r=migrateRelianRecord(raw);
+      const folder=path.split('/').slice(0,-1).join('/');
+      r._sourceFolder=folder;
+      r.sourceFolder=folder;
+      r._officialSource='data-folder';
+      r._officialVersion=String(packageInfo.version||'');
+
+      // Images selected through a directory picker cannot be referenced by normal
+      // relative URLs, so turn the matching files into object URLs for this session.
+      r.imageDataByColor=r.imageDataByColor||{};
+      for(const color of ['basic','shiny','special']){
+        const rawName=String(r.images?.[color]||'').trim();
+        if(!rawName)continue;
+        const imgPath=`${folder}/${rawName}`.toLowerCase();
+        const imgFile=imageFiles.get(imgPath);
+        if(imgFile)r.imageDataByColor[color]=URL.createObjectURL(imgFile);
+      }
+      if(r.imageDataByColor.basic)r.imageData=r.imageDataByColor.basic;
+      officialRelians.push(r);
+      continue;
+    }
+
+    if(path.startsWith('movimentos/')&&(raw.kind==='move'||raw.tipoArquivo==='movimento')){
+      const m=normalizeMove(raw);if(m.name)officialMoves.push(m);continue;
+    }
+    if(path.startsWith('biomas/')&&(raw.kind==='biome'||raw.tipoArquivo==='bioma')){
+      officialBiomes.push(raw);continue;
+    }
+    if(path.startsWith('regioes/')&&(raw.kind==='region'||raw.tipoArquivo==='regiao')){
+      officialRegions.push(raw);continue;
+    }
+  }
+
+  // Replace official IDs while preserving personal/local content with different IDs.
+  const relianIds=new Set(officialRelians.map(officialRelianKey).filter(Boolean));
+  data.relians=[
+    ...officialRelians,
+    ...(data.relians||[]).filter(r=>!relianIds.has(officialRelianKey(r)))
+  ].sort(sortReliansByCatalog);
+
+  const moveIds=new Set(officialMoves.map(m=>String(m.id)));
+  const localMoves=Object.values(data.moves||{}).filter(m=>!moveIds.has(String(m.id)));
+  data.moves={};
+  for(const m of [...officialMoves,...localMoves])data.moves[m.id]=m;
+
+  mergeNamedList(data.biomes,officialBiomes);
+  mergeNamedList(data.regions,officialRegions);
+
+  renderAll();
+
+  const summary=`Pacote ${packageInfo.version||'sem versão'} vinculado · ${officialRelians.length} Relians · ${officialMoves.length} movimentos · ${officialBiomes.length} biomas · ${officialRegions.length} regiões`;
+  setOfficialDataVersionBadge(packageInfo.version||'');
+  officialDataStatus(summary,true);
+  checkOfficialDataUpdate({silent:true});
+  const syncBtn=el('syncOfficialDataBtn');if(syncBtn)syncBtn.disabled=false;
+  if(!silent)alert(summary);
+  return{packageInfo,relians:officialRelians.length,moves:officialMoves.length,biomes:officialBiomes.length,regions:officialRegions.length};
+}
+
+async function syncOfficialDataDirectory({silent=false}={}){
+  if(officialDataDirectory){
+    if(!await ensurePermission(officialDataDirectory,true,'read'))throw new Error('Permissão de leitura da pasta negada.');
+    const files=await collectDirectoryFiles(officialDataDirectory);
+    return applyOfficialDataFiles(files,{silent});
+  }
+  if(officialDataFilesFallback){
+    return applyOfficialDataFiles(officialDataFilesFallback,{silent});
+  }
+  throw new Error('Nenhuma pasta de dados vinculada.');
+}
+
+async function linkOfficialDataFolder(){
+  try{
+    if(window.showDirectoryPicker&&window.isSecureContext){
+      officialDataDirectory=await window.showDirectoryPicker({mode:'read'});
+      if(!await ensurePermission(officialDataDirectory,true,'read'))throw new Error('Permissão de leitura negada.');
+      officialDataFilesFallback=null;
+      await syncOfficialDataDirectory({silent:true});
+      officialDataStatus(`Pasta de dados vinculada: ${officialDataDirectory.name}`,true);
+      const syncBtn=el('syncOfficialDataBtn');if(syncBtn)syncBtn.disabled=false;
+      await syncOfficialDataDirectory({silent:false});
+      return;
+    }
+    el('officialDataFolderInput')?.click();
+  }catch(err){
+    if(err?.name==='AbortError')return;
+    console.error('Falha ao vincular pasta de dados:',err);
+    officialDataStatus(`Falha ao vincular: ${err.message||err}`,false,true);
+    alert(`Não foi possível vincular a pasta de dados: ${err.message||err}`);
+  }
+}
+
+
+/* =========================================================
+   PACOTE OFICIAL OFFLINE
+   Etapa 4: versionamento + aviso de atualização
+   ========================================================= */
+const OFFICIAL_DATA_VERSION_URL='data/data-version.json';
+let linkedOfficialDataVersion='';
+
+function compareVersionParts(a,b){
+  const pa=String(a||'').split('.').map(n=>Number(n)||0);
+  const pb=String(b||'').split('.').map(n=>Number(n)||0);
+  const len=Math.max(pa.length,pb.length);
+  for(let i=0;i<len;i++){
+    const da=pa[i]||0,db=pb[i]||0;
+    if(da>db)return 1;
+    if(da<db)return -1;
+  }
+  return 0;
+}
+
+function setOfficialDataVersionBadge(version=''){
+  linkedOfficialDataVersion=String(version||'');
+  const badge=el('officialDataVersionBadge');
+  if(badge)badge.textContent=linkedOfficialDataVersion?`Versão local: ${linkedOfficialDataVersion}`:'Versão local: não vinculada';
+}
+
+function showOfficialDataUpdateNotice(message,{available=false}={}){
+  const box=el('officialDataUpdateNotice');
+  if(!box)return;
+  box.hidden=!message;
+  box.textContent=message||'';
+  box.classList.toggle('available',available);
+}
+
+async function checkOfficialDataUpdate({silent=false}={}){
+  if(!canLoadOfficialWebContent()){
+    const msg='A verificação automática precisa de acesso ao conteúdo publicado.';
+    showOfficialDataUpdateNotice(msg);
+    if(!silent)alert(msg);
+    return{checked:false,reason:'not-web'};
+  }
+  try{
+    const remote=await fetchOfficialJson(OFFICIAL_DATA_VERSION_URL);
+    const remoteVersion=String(remote?.version||'');
+    if(!remoteVersion)throw new Error('Versão oficial inválida.');
+
+    const localVersion=String(linkedOfficialDataVersion||'');
+    if(!localVersion){
+      const msg=`Dados oficiais ${remoteVersion} disponíveis para download.`;
+      showOfficialDataUpdateNotice(msg,{available:true});
+      if(!silent)alert(msg);
+      return{checked:true,available:true,remoteVersion,localVersion:''};
+    }
+
+    const cmp=compareVersionParts(remoteVersion,localVersion);
+    if(cmp>0){
+      const msg=`Atualização disponível: seus dados são ${localVersion} e a versão oficial é ${remoteVersion}.`;
+      showOfficialDataUpdateNotice(msg,{available:true});
+      if(!silent)alert(msg);
+      return{checked:true,available:true,remoteVersion,localVersion};
+    }
+
+    const msg=cmp===0
+      ?`Seus dados oficiais já estão atualizados (${localVersion}).`
+      :`Sua pasta local está em uma versão mais nova (${localVersion}) que a publicada (${remoteVersion}).`;
+    showOfficialDataUpdateNotice(msg,{available:false});
+    if(!silent)alert(msg);
+    return{checked:true,available:false,remoteVersion,localVersion};
+  }catch(err){
+    const msg=`Não foi possível verificar atualização: ${err.message||err}`;
+    showOfficialDataUpdateNotice(msg);
+    if(!silent)alert(msg);
+    return{checked:false,error:err};
+  }
+}
+
 function saveData({sync=true}={}){data=migrateData(data);localStorage.setItem(STORAGE_KEY,JSON.stringify(data));renderAll();if(sync)queueFullFolderSync('saveData')}
 function nameOf(list,id){return list.find(x=>x.id===id)?.name||id}
 function fillSelect(select,items){const old=select.value;select.innerHTML=items.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');if(items.some(x=>x.id===old))select.value=old}
@@ -1392,6 +1753,28 @@ async function syncLinkedFolder({request=false,silent=false,writeBack=true}={}){
   return true
 }
 function setFolderStatus(text,ok=false,warn=false){el('folderStatus').textContent=text;el('folderStatus').className='folder-status'+(ok?' ok':'')+(warn?' warn':'')}
+
+if(el('checkOfficialDataUpdateBtn'))el('checkOfficialDataUpdateBtn').onclick=()=>checkOfficialDataUpdate({silent:false});
+if(el('linkOfficialDataBtn'))el('linkOfficialDataBtn').onclick=linkOfficialDataFolder;
+if(el('syncOfficialDataBtn'))el('syncOfficialDataBtn').onclick=async()=>{
+  try{await syncOfficialDataDirectory({silent:false})}
+  catch(err){officialDataStatus(`Falha ao ler pasta: ${err.message||err}`,false,true);alert(err.message||err)}
+};
+if(el('officialDataFolderInput'))el('officialDataFolderInput').addEventListener('change',async event=>{
+  try{
+    const files=[...event.target.files].map(file=>({
+      path:String(file.webkitRelativePath||file.name).split('/').slice(1).join('/')||file.name,
+      file
+    }));
+    officialDataFilesFallback=files;
+    officialDataDirectory=null;
+    await applyOfficialDataFiles(files,{silent:false});
+  }catch(err){
+    officialDataStatus(`Falha ao importar pasta: ${err.message||err}`,false,true);
+    alert(`Não foi possível ler a pasta de dados: ${err.message||err}`);
+  }finally{event.target.value=''}
+});
+
 el('linkFolderBtn').onclick=async()=>{
   if(!window.isSecureContext||!window.showDirectoryPicker)return alert('Para gravar automaticamente na pasta, abra o Gerador por localhost no Chrome/Edge. Ex.: http://localhost:8000');
   try{
@@ -1567,7 +1950,11 @@ el('storySheetForm').onsubmit=async e=>{e.preventDefault();const payload=current
 el('deleteStorySheetBtn').onclick=async()=>{const id=el('storySheetId').value;if(!id||!confirm('Excluir esta ficha?'))return;data.storySheets=data.storySheets.filter(x=>x.id!==id);saveData();await deleteStorySheetFile(id);clearStorySheet()}
 el('newStorySheetBtn').onclick=clearStorySheet;el('addTrainerTeamBtn').onclick=()=>addTrainerTeamRow();el('addCharacterBackpackItemBtn').onclick=()=>addCharacterBackpackItem();el('storySearch').addEventListener('input',renderStorySheets);el('savedSheetSearch')?.addEventListener('input',renderSavedRelianSheets);document.querySelectorAll('input[name="storyType"]').forEach(x=>x.addEventListener('change',toggleStoryType));el('specialLevel')?.addEventListener('input',()=>{updateSpecialCalculatedResources();renderStoryPreview()});el('specialTrait')?.addEventListener('change',()=>{updateSpecialCalculatedResources();renderStoryPreview()});el('storySheetForm').addEventListener('input',renderStoryPreview);setupSpecialAttributes();setupSpecialRelianEditors();setupCharacterFields();clearStorySheet();
 
-setupTabs();setupElementSelectors();renderAll();clearRelianForm();clearMoveForm();restoreLinkedFolder();
+setupTabs();setupElementSelectors();renderAll();clearRelianForm();clearMoveForm();
+loadOfficialWorldDataFromWeb({silent:true})
+  .then(()=>loadOfficialReliansFromWeb({silent:true}))
+  .then(()=>checkOfficialDataUpdate({silent:true}))
+  .finally(()=>restoreLinkedFolder());
 
 /* V6.7 — banco unificado e layout corrigido */
 function bankCharacterSheets(){
