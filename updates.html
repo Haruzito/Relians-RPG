@@ -3,53 +3,288 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0b3742" />
-  <title>Relians World — Novidades e Blog</title>
+  <meta name="theme-color" content="#2f4936" />
+  <title>Relians World — Blog e Novidades</title>
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-  <style>
-    :root{color-scheme:dark;--bg:#041f27;--panel:#08333e;--panel2:#0c4350;--line:#276c79;--text:#f2fbfd;--muted:#a8cbd2;--accent:#5ed6e4;--accent2:#7c6ce8}
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 10% 0%,rgba(70,178,194,.13),transparent 30%),var(--bg);color:var(--text)}
-    a{color:inherit}.site-header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(16px,4vw,42px);background:rgba(4,31,39,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand img{width:44px;height:44px;border-radius:12px}.brand strong{display:block}.brand small{color:var(--muted)}
-    .back{padding:10px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:#0a3944}.wrap{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:36px 0 64px}.hero{padding:32px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,rgba(18,83,96,.94),rgba(9,47,58,.96));margin-bottom:24px}.eyebrow{font-size:.78rem;letter-spacing:.14em;font-weight:800;color:var(--accent)}h1{font-size:clamp(2rem,5vw,3.6rem);margin:6px 0 10px}.hero p{max-width:760px;color:var(--muted);font-size:1.05rem}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.section{border:1px solid var(--line);background:rgba(8,51,62,.88);border-radius:20px;padding:22px}.section h2{margin-top:0}.post{padding:18px 0;border-top:1px solid rgba(77,143,155,.45)}.post:first-of-type{border-top:0;padding-top:4px}.post-meta{font-size:.78rem;color:var(--accent);font-weight:700}.post h3{margin:5px 0 8px}.post p,.side-card p{color:var(--muted);line-height:1.55}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:rgba(94,214,228,.12);border:1px solid rgba(94,214,228,.35);font-size:.75rem}.side-stack{display:grid;gap:16px}.side-card{border:1px solid var(--line);border-radius:17px;background:rgba(12,67,80,.65);padding:18px}.side-card h3{margin:0 0 6px}.roadmap{display:grid;gap:10px;margin-top:12px}.roadmap div{padding:12px;border-radius:12px;background:rgba(1,29,36,.45);border:1px solid rgba(78,137,149,.4)}footer{text-align:center;color:var(--muted);padding:28px 16px 44px}@media(max-width:760px){.site-header{padding:12px 14px}.brand small{display:none}.wrap{padding-top:20px}.hero{padding:22px 18px;border-radius:18px}.grid{grid-template-columns:1fr}.section{padding:17px}.back{font-size:.85rem}}
-  </style>
+  <link rel="stylesheet" href="site-nav.css" />
+  <link rel="stylesheet" href="blog.css" />
+  <link rel="stylesheet" href="world-theme.css" />
+  <link rel="stylesheet" href="world-mobile.css" />
+  <link rel="stylesheet" href="theme-fixes.css" />
 </head>
-<body>
-<header class="site-header">
-  <a class="brand" href="index.html"><img src="assets/icons/icon-192.png" alt="Ícone Relians"><span><strong>Relians World</strong><small>Novidades e blog oficial</small></span></a>
-  <a class="back" href="index.html">← Voltar ao Gerador</a>
-</header>
-<main class="wrap">
-  <section class="hero"><div class="eyebrow">RELIANS WORLD</div><h1>Novidades e Blog</h1><p>Um espaço próprio para acompanhar atualizações do Gerador, novidades do universo de Relians e futuras publicações da equipe.</p></section>
-  <div class="grid">
-    <section class="section">
-      <div class="eyebrow">ÚLTIMA ATUALIZAÇÃO</div><h2>Gerador de Relians v10.0.0</h2>
-      <article class="post"><div class="post-meta">11 DE AGOSTO DE 2026 • ATUALIZAÇÃO VISUAL</div><h3>v10.0.0 — O Catálogo e a navegação ganharam uma nova identidade</h3><p>A v10 reorganiza a experiência do Gerador sem abandonar os sistemas anteriores. O Catálogo foi transformado em um bestiário visual, enquanto a navegação geral passou a usar categorias, ícones e submenus mais claros em PC e mobile.</p><span class="tag">v10.0.0</span> <span class="tag">Interface</span></article>
-      <article class="post"><div class="post-meta">CATÁLOGO</div><h3>Novo Catálogo Bestiário</h3><p>As entradas agora valorizam muito mais a arte do Relian e organizam suas informações nas páginas Sobre, Habitat, Evolução, Movimentos e Dados. Nomes extensos também se ajustam automaticamente ao espaço disponível.</p><span class="tag">Catálogo</span> <span class="tag">Visual</span></article>
-      <article class="post"><div class="post-meta">COLORAÇÕES</div><h3>Basic, Shiny e Special Color dentro do Catálogo</h3><p>As três colorações podem ser alternadas diretamente na ficha do Catálogo. Shiny e Special mantêm seus efeitos visuais, e a Special Color agora mostra também os elementos próprios daquela coloração.</p><span class="tag">Shiny</span> <span class="tag">Special Color</span></article>
-      <article class="post"><div class="post-meta">EVOLUÇÃO</div><h3>Linha evolutiva navegável</h3><p>As evoluções exibidas deixaram de ser apenas texto. Ao clicar em uma forma anterior ou seguinte, o Catálogo abre diretamente a entrada do Relian correspondente.</p><span class="tag">Evolução</span></article>
-      <article class="post"><div class="post-meta">DADOS</div><h3>Informações da espécie reorganizadas</h3><p>HP, ENG, gênero, tamanho, classe, estágio, elementos, elementos da Special Color, captura e afinidade foram reunidos em uma área de Dados mais clara e adequada à consulta.</p><span class="tag">Dados</span></article>
-      <article class="post"><div class="post-meta">CRIADOR</div><h3>Criador de Relians preparado para o novo Catálogo</h3><p>O editor recebeu campos complementares de habitat e evolução, permitindo que as novas páginas do Catálogo tenham informações próprias sem quebrar Relians antigos.</p><span class="tag">Criador</span></article>
-      <article class="post"><div class="post-meta">NAVEGAÇÃO</div><h3>Novo topo com ícones e categorias</h3><p>As páginas agora são agrupadas em Catálogo, Criação, Fichas, Comunidade e Config. Submenus reduzem a quantidade de botões soltos e uma barra de contexto indica onde o usuário está.</p><span class="tag">Navegação</span> <span class="tag">v10</span></article>
-      <article class="post"><div class="post-meta">MOBILE</div><h3>Polimento final para telas pequenas</h3><p>O menu superior ganhou rolagem adequada, dropdowns adaptados, áreas de toque mais confortáveis e ajustes para telas estreitas. A interface também respeita preferência por movimento reduzido.</p><span class="tag">Mobile</span> <span class="tag">Responsivo</span></article>
+<body class="blog-page relians-blog-page">
+  <header class="blog-topbar">
+    <a class="blog-brand" href="index.html">
+      <img src="assets/icons/icon-192.png" alt="" />
+      <span><strong>RELIANS</strong><small>Blog & World Journal</small></span>
+    </a>
 
-      <div class="eyebrow" style="margin-top:28px">ARQUIVO DE VERSÕES</div><h2>v9.9.0</h2>
-      <article class="post"><div class="post-meta">08 DE AGOSTO DE 2026 • ATUALIZAÇÃO GERAL</div><h3>v9.9.0 — Comunidade, mobile e Banco de Fichas</h3><p>A atualização ampliou a integração com a comunidade e reuniu correções importantes do Banco de Fichas, do mobile e do salvamento de Relians gerados.</p><span class="tag">v9.9.0</span> <span class="tag">Arquivo</span></article>
-      <article class="post"><div class="post-meta">BANCO DE FICHAS</div><h3>Relians voltaram a abrir corretamente</h3><p>Foi corrigido o fluxo de seleção e renderização das fichas de Relians no Banco. A visualização completa também foi ajustada para trabalhar melhor com Relians vinculados às fichas de personagem.</p><span class="tag">Correção</span> <span class="tag">Fichas</span></article>
-      <article class="post"><div class="post-meta">GERADOR</div><h3>Salvar Relians gerados foi corrigido</h3><p>O botão de salvar ficha dos Relians gerados voltou a funcionar e passou a integrar corretamente as novas fichas ao Banco de Fichas.</p><span class="tag">Correção</span></article>
-      <article class="post"><div class="post-meta">MOBILE</div><h3>Interface reorganizada por categorias</h3><p>As páginas com muitos campos passaram a usar categorias recolhíveis no celular. A Biblioteca de Movimentos também foi corrigida para permanecer fechada até ser chamada.</p><span class="tag">Mobile</span> <span class="tag">Interface</span></article>
-      <article class="post"><div class="post-meta">COMUNIDADE</div><h3>Relians World dentro do Gerador</h3><p>A aba Criadores passou a reunir os acessos oficiais do projeto, incluindo o servidor Relians World e a página de Novidades e Blog.</p><span class="tag">Comunidade</span></article>
-      <article class="post"><div class="post-meta">APLICATIVO</div><h3>O Gerador também pode ser instalado</h3><p>Em navegadores e dispositivos compatíveis, o Gerador passou a poder ser instalado como aplicativo e abrir em modo independente, mantendo save local, importação e exportação.</p><span class="tag">PWA</span> <span class="tag">Mobile</span></article>
-      <article class="post"><div class="post-meta">BASE DO PROJETO</div><h3>Recursos preservados</h3><p>Versionamento e migração de fichas, catálogo numerado com variações evolutivas, múltiplas evoluções, regiões e biomas separados, mochila de personagem, equipe de até sete Relians, filtros, importação e exportação continuam fazendo parte da base atual.</p><span class="tag">Sistema</span></article>
-      <article class="post"><div class="post-meta">BLOG DO MUNDO</div><h3>O espaço oficial do universo Relians</h3><p>Esta página permanece como espaço para publicações oficiais sobre criaturas, regiões, histórias, RPG e Card Game.</p><span class="tag">Blog</span></article>
+    <div class="blog-top-actions">
+      <a href="generator.html">🧬 Gerador</a>
+      <a href="tcg.html">🃏 Battle Card</a>
+    </div>
+  </header>
+
+  <main class="blog-shell">
+    <section class="blog-hero">
+      <div class="blog-hero-copy">
+        <span class="blog-eyebrow">RELIANS WORLD JOURNAL</span>
+        <h1>Bem-vindo ao Blog de Relians</h1>
+        <p>Atualizações do projeto, diário de desenvolvimento, registros do mundo, novidades do Gerador e tudo que está crescendo dentro do universo Relians.</p>
+        <div class="blog-hero-meta">
+          <span>📦 Versão atual: <b>v10.1.0</b></span>
+          <span>🌐 Conteúdo oficial conectado ao GitHub</span>
+        </div>
+      </div>
+      <div class="blog-hero-mark">
+        <img src="assets/icons/icon-512.png" alt="Símbolo de Relians" />
+      </div>
     </section>
-    <aside class="side-stack">
-      <section class="side-card"><div class="eyebrow">DIÁRIO DE DESENVOLVIMENTO</div><h3>Próximos passos</h3><p>Use este espaço para anunciar recursos em produção e mudanças planejadas.</p><div class="roadmap"><div>Salas online e fichas compartilhadas em tempo real</div><div>Novos Relians, formas e linhas evolutivas</div><div>Novas regiões, biomas e conteúdo do mundo</div><div>Expansões futuras do RPG e do Card Game</div></div></section>
-      <section class="side-card"><div class="eyebrow">ARQUIVO OFICIAL</div><h3>Notas de versão</h3><p>As notas importantes do Gerador podem ficar reunidas aqui, em vez de depender apenas da janela de “Novidades”.</p></section>
-    </aside>
-  </div>
-</main>
-<footer>Relians World • Página oficial de novidades do projeto</footer>
+
+    <section class="blog-dashboard">
+      <article class="dashboard-card feature-card">
+        <div class="card-heading">
+          <span class="blog-eyebrow">DESTAQUE</span>
+          <a href="#v10">Ver atualização</a>
+        </div>
+        <div class="feature-copy">
+          <span class="feature-date">11 AGO 2026</span>
+          <h2>Relians RPG v10.1.0</h2>
+          <p>O Catálogo ganhou identidade própria, a navegação foi reorganizada e o projeto recebeu uma nova base para conteúdo oficial online e offline.</p>
+          <div class="tag-row">
+            <span class="tag">v10</span>
+            <span class="tag">Interface</span>
+            <span class="tag">Catálogo</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="dashboard-card compact-card">
+        <div class="card-heading">
+          <span class="blog-eyebrow">PROJETO</span>
+        </div>
+        <div class="metric-big">4</div>
+        <strong>áreas principais</strong>
+        <p>Portal, Gerador, Blog e Relians Battle Card reunidos dentro do Relians World.</p>
+      </article>
+
+      <article class="dashboard-card compact-card">
+        <div class="card-heading">
+          <span class="blog-eyebrow">DADOS OFICIAIS</span>
+        </div>
+        <div class="mini-stats">
+          <div><b>32</b><span>Relians</span></div>
+          <div><b>126</b><span>Movimentos</span></div>
+          <div><b>55</b><span>Biomas</span></div>
+          <div><b>33</b><span>Regiões</span></div>
+        </div>
+      </article>
+
+      <article class="dashboard-card compact-card community-card">
+        <div class="card-heading">
+          <span class="blog-eyebrow">COMUNIDADE</span>
+        </div>
+        <img src="assets/icons/discord-white.png" data-discord-theme-icon alt="" class="community-icon" />
+        <h3>Relians World</h3>
+        <p>Entre no servidor oficial e acompanhe novidades, testes e desenvolvimento.</p>
+        <a class="soft-button" href="https://discord.gg/2HkmeKVXjM" target="_blank" rel="noopener noreferrer">Abrir Discord ↗</a>
+      </article>
+    </section>
+
+    <div class="blog-main-grid">
+      <section class="blog-column">
+        <div class="section-title">
+          <div><span class="blog-eyebrow">ÚLTIMAS PUBLICAÇÕES</span><h2>Novidades</h2></div>
+          <div class="blog-filter-tabs" role="tablist" aria-label="Filtrar posts">
+            <button class="active" type="button" data-blog-filter="all">Todos</button>
+            <button type="button" data-blog-filter="update">Atualizações</button>
+            <button type="button" data-blog-filter="world">Mundo</button>
+            <button type="button" data-blog-filter="dev">Dev</button>
+          </div>
+        </div>
+
+        <div class="post-grid" id="blogPostGrid">
+          <article class="blog-post major" id="v10-1" data-blog-kind="update">
+            <div class="post-art emblem-art">
+              <img src="assets/icons/icon-512.png" alt="" />
+            </div>
+            <div class="post-copy">
+              <div class="post-meta">17 DE AGOSTO DE 2026 • RELIANS BATTLE CARD</div>
+              <h3>v10.1.0 — O Battle Card agora é jogável</h3>
+              <p>A maior expansão do Relians World até agora adiciona criação completa de cartas, coleção, decks, batalha contra IA, Terrenos que geram EP, dano direto, seleção manual de alvos e Movimentos vinculados a Relians específicos.</p>
+              <div class="post-details">
+                <span>🃏 Criador e visual oficial de cartas</span>
+                <span>🧰 Biblioteca, coleção e Deck Builder</span>
+                <span>⚔️ Combate com alvo manual e dano direto</span>
+                <span>🌳 Terrenos gerando EP por turno</span>
+                <span>🔗 Movimentos vinculados a Relians</span>
+                <span>🤖 IA revisada e decks oficiais</span>
+              </div>
+              <div class="tag-row"><span class="tag">v10.1.0</span><span class="tag">Battle Card</span><span class="tag">Combate</span></div>
+            </div>
+          </article>
+
+          <article class="blog-post major" id="v10" data-blog-kind="update">
+            <div class="post-art emblem-art">
+              <img src="assets/icons/icon-512.png" alt="" />
+            </div>
+            <div class="post-copy">
+              <div class="post-meta">11 DE AGOSTO DE 2026 • ATUALIZAÇÃO GERAL</div>
+              <h3>v10.0.0 — Uma nova identidade para o Gerador</h3>
+              <p>A v10 transformou o Catálogo em um bestiário mais visual, reorganizou dados das espécies e introduziu uma navegação superior com ícones, categorias e submenus.</p>
+              <div class="post-details">
+                <span>📖 Novo Catálogo Bestiário</span>
+                <span>🎨 Basic, Shiny e Special Color</span>
+                <span>🔗 Evoluções navegáveis</span>
+                <span>📱 Melhorias de interface</span>
+              </div>
+              <div class="tag-row"><span class="tag">v10.0.0</span><span class="tag">Gerador</span></div>
+            </div>
+          </article>
+
+          <article class="blog-post" data-blog-kind="update">
+            <div class="post-icon">🌐</div>
+            <div class="post-copy">
+              <div class="post-meta">SISTEMA OFICIAL</div>
+              <h3>Conteúdo oficial agora pode vir do GitHub</h3>
+              <p>Relians, imagens, movimentos, biomas e regiões podem ser carregados diretamente do projeto publicado, sem exigir que o jogador tenha a pasta local vinculada.</p>
+              <div class="tag-row"><span class="tag">GitHub</span><span class="tag">Dados</span></div>
+            </div>
+          </article>
+
+          <article class="blog-post" data-blog-kind="update">
+            <div class="post-icon">💾</div>
+            <div class="post-copy">
+              <div class="post-meta">OFFLINE</div>
+              <h3>Pacote de dados oficial para uso local</h3>
+              <p>O conteúdo oficial também pode ser baixado, extraído e vinculado ao Gerador. O sistema identifica a versão da pasta e avisa quando há uma atualização disponível.</p>
+              <div class="tag-row"><span class="tag">Offline</span><span class="tag">Versionamento</span></div>
+            </div>
+          </article>
+
+          <article class="blog-post" data-blog-kind="dev">
+            <div class="post-icon">🧭</div>
+            <div class="post-copy">
+              <div class="post-meta">DESENVOLVIMENTO</div>
+              <h3>Relians World está se tornando um portal</h3>
+              <p>O projeto começa a deixar de ser somente um Gerador e passa a reunir Blog, ferramentas, comunidade e futuramente o Relians Battle Card em uma experiência compartilhada.</p>
+              <div class="tag-row"><span class="tag">Portal</span><span class="tag">Dev</span></div>
+            </div>
+          </article>
+
+          <article class="blog-post" data-blog-kind="world">
+            <div class="post-icon">🌿</div>
+            <div class="post-copy">
+              <div class="post-meta">MUNDO DE RELIANS</div>
+              <h3>Um espaço para histórias, regiões e criaturas</h3>
+              <p>O Blog também será usado para publicações oficiais sobre lore, Relians, regiões, histórias, RPG e conteúdos que expandem o mundo do projeto.</p>
+              <div class="tag-row"><span class="tag">Lore</span><span class="tag">Mundo</span></div>
+            </div>
+          </article>
+        </div>
+
+        <section class="version-archive">
+          <div class="section-title">
+            <div><span class="blog-eyebrow">ARQUIVO OFICIAL</span><h2>Histórico de versões</h2></div>
+          </div>
+
+          <details class="version-entry" open>
+            <summary>
+              <span><b>v10.1.0</b><small>17 de agosto de 2026</small></span>
+              <span>Relians Battle Card — primeira versão jogável</span>
+            </summary>
+            <div class="version-body">
+              <p>O Relians Battle Card deixou de ser apenas uma estrutura inicial e passou a reunir criação de cartas, coleção, decks e um sistema de batalha funcional dentro do Relians World.</p>
+              <ul>
+                <li>Novo <b>criador de cartas Relian</b> com HP, elementos, classe, ATK/DEF, custos de EP, habilidade, marcadores e imagem.</li>
+                <li>A <b>prévia do criador usa agora exatamente o mesmo visual da carta salva e exibida no jogo</b>.</li>
+                <li>Suporte a cartas de <b>Movimento, Item, Treinador e Terreno</b>.</li>
+                <li><b>Biblioteca e Coleção</b> com detalhes das cartas e visualização em tela cheia.</li>
+                <li><b>Deck Builder</b> e seleção independente do deck do jogador e do oponente.</li>
+                <li>Decks oficiais de teste <b>Plantorco — Vital/Colossal</b> e <b>Torrovino — Ígnea/Colossal</b>.</li>
+                <li>Terrenos geram <b>1 EP por turno</b> e a mão inicial garante um Terreno quando o deck possui esse tipo.</li>
+                <li>Jogador e oponente possuem HP de batalha; campos vazios permitem <b>dano direto</b>.</li>
+                <li>Ataques permitem escolher manualmente <b>qual Relian adversário será o alvo</b>.</li>
+                <li>Movimentos podem ser <b>vinculados a Relians específicos</b> ou permanecer genéricos.</li>
+                <li>A aba <b>Ações</b> mostra ataque básico e os Movimentos realmente disponíveis para cada Relian.</li>
+                <li>As abas <b>Terrenos, Relians e Info da Batalha</b> passaram a ter funções reais.</li>
+                <li>A IA foi revisada para ativar Terrenos, invocar Relians, usar Movimentos compatíveis e escolher alvos de forma mais estratégica.</li>
+                <li>A interface de combate recebeu layout compacto com <b>registro à esquerda, arena no centro e carta selecionada à direita</b>.</li>
+                <li>Cartas da mão podem ser abertas em <b>Ler mais</b> antes de serem jogadas.</li>
+                <li>Revisões de tema escuro, contraste e responsividade mobile.</li>
+                <li>O botão redundante <b>Comunidade</b> foi removido do Gerador, mantendo o acesso pela página principal.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="version-entry">
+            <summary>
+              <span><b>v10.0.0</b><small>11 de agosto de 2026</small></span>
+              <span>Atualização visual e infraestrutura</span>
+            </summary>
+            <div class="version-body">
+              <p>Novo Catálogo Bestiário, navegação reorganizada, melhorias de dados das espécies, suporte a conteúdo oficial pelo GitHub e pacote de dados offline com versionamento.</p>
+            </div>
+          </details>
+
+          <details class="version-entry">
+            <summary>
+              <span><b>v9.9.0</b><small>08 de agosto de 2026</small></span>
+              <span>Comunidade, mobile e Banco de Fichas</span>
+            </summary>
+            <div class="version-body">
+              <p>A v9.9.0 introduziu a área Criadores e Relians World, a página de Novidades e Blog, correções do Banco de Fichas, melhorias no salvamento de Relians, reorganização mobile e suporte à instalação como PWA.</p>
+              <ul>
+                <li>Banco de Fichas corrigido para Relians.</li>
+                <li>Melhorias em personagens, equipe e Relians possuídos.</li>
+                <li>Correção do botão Salvar ficha.</li>
+                <li>Biblioteca de Movimentos corrigida no mobile.</li>
+                <li>Importação, exportação e save local preservados.</li>
+              </ul>
+            </div>
+          </details>
+        </section>
+      </section>
+
+      <aside class="blog-sidebar">
+        <section class="side-panel">
+          <div class="panel-title"><span>🛠️</span><h3>Diário de desenvolvimento</h3></div>
+          <div class="timeline">
+            <div class="timeline-item done"><b>Portal Relians World</b><span>Base criada</span></div>
+            <div class="timeline-item current"><b>Novo Blog</b><span>Em implementação</span></div>
+            <div class="timeline-item"><b>Unificação visual</b><span>Próxima etapa</span></div>
+            <div class="timeline-item"><b>Mobile</b><span>Revisão profunda planejada</span></div>
+            <div class="timeline-item done"><b>Relians Battle Card</b><span>Primeira versão jogável concluída</span></div>
+          </div>
+        </section>
+
+        <section class="side-panel">
+          <div class="panel-title"><span>🗺️</span><h3>Próximos passos</h3></div>
+          <div class="roadmap-list">
+            <div>Unificar visual do Portal, Blog e Gerador</div>
+            <div>Revisar completamente a experiência mobile</div>
+            <div>Expandir cartas, decks, efeitos e balanceamento do Relians Battle Card</div>
+            <div>Continuar adicionando Relians e conteúdo do mundo</div>
+          </div>
+        </section>
+
+        <section class="side-panel quick-links">
+          <div class="panel-title"><span>🔗</span><h3>Acessos rápidos</h3></div>
+          <a href="index.html"><span>⌂</span><b>Relians World</b><small>Portal principal</small></a>
+          <a href="generator.html"><span>🧬</span><b>Gerador</b><small>Ferramentas e catálogo</small></a>
+          <a href="tcg.html"><span>🃏</span><b>Relians Battle Card</b><small>Card game</small></a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <strong>Relians World</strong>
+    <span>Blog oficial • Desenvolvimento • Mundo • Atualizações</span>
+  </footer>
+
+  <script src="blog.js"></script>
+  <script src="site-nav.js"></script>
 </body>
 </html>

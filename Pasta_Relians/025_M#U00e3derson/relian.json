@@ -1,0 +1,69 @@
+{
+  "kind": "relian",
+  "tipoArquivo": "relian",
+  "id": "maderson",
+  "catalogNumber": 25,
+  "numeroCatalogo": 25,
+  "reliInfo": 25,
+  "catalogVariant": "",
+  "variacaoCatalogo": "",
+  "codigoCatalogo": "025",
+  "nome": "Mãderson",
+  "descricao": "",
+  "notasHabitat": "",
+  "notasEvolucao": "",
+  "classe": "NET",
+  "elementos": [
+    "Éter"
+  ],
+  "elementosEspeciais": [
+    "Colossal"
+  ],
+  "estagio": 1,
+  "energiaBase": 85,
+  "raridade": "comum",
+  "taxaCaptura": 40,
+  "afinidadeBase": 2,
+  "imagens": {
+    "basic": "",
+    "shiny": "",
+    "special": ""
+  },
+  "generos": [
+    "Macho",
+    "Fêmea"
+  ],
+  "tamanhos": [
+    "P",
+    "M",
+    "G"
+  ],
+  "evoluiDe": "",
+  "evoluiPara": "chaderson",
+  "evoluiParaMultiplas": [
+    "chaderson"
+  ],
+  "evolvesToMany": [
+    "chaderson"
+  ],
+  "metodoEvolucao": "",
+  "tracos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "golpear"
+    }
+  ],
+  "aparicoes": [
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "campo",
+      "periodos": [
+        "manha"
+      ],
+      "nivelMinimo": 1,
+      "nivelMaximo": 10,
+      "peso": 10
+    }
+  ]
+}

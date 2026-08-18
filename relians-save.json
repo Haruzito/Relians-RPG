@@ -2,7 +2,7 @@
   "kind": "relians-save",
   "tipoArquivo": "banco-completo",
   "saveVersion": 2,
-  "updatedAt": "2026-08-12T07:45:29.112Z",
+  "updatedAt": "2026-08-14T03:21:29.904Z",
   "data": {
     "rules": {
       "baseHp": 50,

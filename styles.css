@@ -2196,3 +2196,19 @@ textarea{
   background:rgba(90,62,18,.18);
   color:#f2d59f;
 }
+
+
+/* v10.1.0 — Editor de fichas por etapas e Banco de Fichas reorganizado */
+.story-editor-toolbar{margin:0 0 20px;padding:12px;border:1px solid rgba(87,190,198,.26);border-radius:16px;background:rgba(4,27,35,.55)}
+.story-editor-step-buttons{display:flex;gap:8px;flex-wrap:wrap}.story-editor-step{display:flex;align-items:center;gap:7px;padding:9px 12px;border-radius:11px}.story-editor-step span{display:grid;place-items:center;min-width:24px;height:24px;border-radius:8px;font-size:.72rem;font-weight:900;background:rgba(255,255,255,.08)}.story-editor-step.active{transform:translateY(-1px)}
+.story-editor-step-nav{display:grid;grid-template-columns:auto minmax(180px,1fr) auto;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(100,190,196,.16)}.story-editor-step-nav>span{text-align:center;font-size:.8rem}
+.story-main-editor fieldset[hidden]{display:none!important}.story-main-editor fieldset[data-story-section]{animation:storySectionIn .18s ease-out}.story-main-editor fieldset[data-story-section] legend{display:flex;align-items:center;gap:8px}
+@keyframes storySectionIn{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+.bank-filter-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 14px}.bank-filter{padding:8px 6px;border-radius:10px;font-size:.75rem}.bank-filter.active{font-weight:900}
+.bank-detail-tabs{display:flex;gap:8px;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(80,160,150,.2);overflow-x:auto}.bank-detail-tabs button{white-space:nowrap;padding:9px 14px;border-radius:999px}.bank-detail-tabs button span{margin-left:5px;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.12)}
+.bank-tabbed-grid{display:block!important;padding:18px!important}.bank-character-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.bank-character-panel[hidden],.bank-relian-panel[hidden]{display:none!important}.bank-character-panel>.sheet-panel{min-width:0}.bank-character-panel[data-bank-character-panel="relians"]{grid-template-columns:1fr}.bank-character-panel[data-bank-character-panel="relians"] .equipped-team-panel{grid-column:auto}.bank-character-description{max-width:760px;margin:12px 0 0!important;padding:10px 12px;border-left:3px solid rgba(60,120,95,.45);line-height:1.5}
+.bank-relian-tabbed{display:block!important;padding:18px!important}.bank-relian-panel{width:100%;max-width:1100px;margin:0 auto}.bank-relian-panel .bank-moves{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sheet-bank-sidebar .saved-sheet-list{display:grid;gap:8px}.saved-sheet-select-main{min-width:0}.saved-sheet-select-main b,.saved-sheet-select-main small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+@media(min-width:1350px){#sheetbank{padding-inline:clamp(20px,3vw,46px)}.sheet-bank-layout{grid-template-columns:minmax(330px,390px) minmax(0,1fr);gap:26px}.sheet-bank-detail{padding:20px}.story-editor-layout{grid-template-columns:310px minmax(0,1fr)!important;gap:24px!important}.story-workspace{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(390px,.9fr)!important;align-items:start!important}.story-side-preview{position:sticky!important;top:150px!important;max-height:calc(100vh - 170px)!important;overflow:auto!important}}
+@media(max-width:1050px){.bank-character-panel{grid-template-columns:1fr}.bank-relian-panel .bank-moves{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.story-editor-step-buttons{display:grid;grid-template-columns:1fr 1fr}.story-editor-step{justify-content:flex-start}.story-editor-step-nav{grid-template-columns:1fr 1fr}.story-editor-step-nav>span{grid-column:1/-1;grid-row:1}.bank-filter-tabs{grid-template-columns:1fr}.bank-relian-panel .bank-moves{grid-template-columns:1fr}.bank-detail-tabs{padding-inline:10px}}

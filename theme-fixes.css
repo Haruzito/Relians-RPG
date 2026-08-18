@@ -1,0 +1,1203 @@
+/* =========================================================
+   RELIANS WORLD — THEME FIXES
+   Tema claro: superfícies claras + texto escuro
+   Tema escuro: superfícies escuras + texto claro
+   2026-08-18
+   ========================================================= */
+
+html[data-rw-theme="light"]{
+  --theme-bg:#f2f0e9;
+  --theme-bg-2:#e8e5dc;
+  --theme-card:#ffffff;
+  --theme-card-2:#f2f4ef;
+  --theme-text:#26372c;
+  --theme-muted:#657368;
+  --theme-line:rgba(47,72,53,.18);
+  --theme-input:#ffffff;
+  --theme-hover:#f0ecdf;
+  --theme-accent:#355a3d;
+  color-scheme:light;
+}
+html[data-rw-theme="dark"]{
+  --theme-bg:#0f2118;
+  --theme-bg-2:#14291d;
+  --theme-card:#1c3528;
+  --theme-card-2:#233f30;
+  --theme-text:#f2ead7;
+  --theme-muted:#a8b7aa;
+  --theme-line:rgba(222,190,125,.16);
+  --theme-input:#142b20;
+  --theme-hover:#294936;
+  --theme-accent:#e0bd76;
+  color-scheme:dark;
+}
+
+/* ---------- Estrutura geral ---------- */
+html[data-rw-theme="light"] body,
+html[data-rw-theme="dark"] body{
+  color:var(--theme-text)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page,
+html[data-rw-theme="light"] .relians-blog-page,
+html[data-rw-theme="light"] .relians-tcg-page,
+html[data-rw-theme="light"] .relians-generator-page{
+  background:linear-gradient(180deg,var(--theme-bg),var(--theme-bg-2))!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page,
+html[data-rw-theme="dark"] .relians-blog-page,
+html[data-rw-theme="dark"] .relians-tcg-page,
+html[data-rw-theme="dark"] .relians-generator-page{
+  background:linear-gradient(180deg,var(--theme-bg-2),var(--theme-bg))!important;
+}
+
+/* ---------- Portal ---------- */
+html[data-rw-theme="light"] .relians-portal-page .portal-card,
+html[data-rw-theme="dark"] .relians-portal-page .portal-card{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-card-icon,
+html[data-rw-theme="dark"] .relians-portal-page .portal-card-icon{
+  background:var(--theme-card-2)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-card h3,
+html[data-rw-theme="dark"] .relians-portal-page .portal-card h3{
+  color:var(--theme-text)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-card p,
+html[data-rw-theme="light"] .relians-portal-page .portal-card small,
+html[data-rw-theme="dark"] .relians-portal-page .portal-card p,
+html[data-rw-theme="dark"] .relians-portal-page .portal-card small{
+  color:var(--theme-muted)!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page .portal-card-arrow{color:#b8c8b9!important}
+html[data-rw-theme="light"] .relians-portal-page .portal-card-arrow{color:#647b68!important}
+
+/* Destaque inferior também acompanha o tema */
+html[data-rw-theme="light"] .relians-portal-page .portal-highlight{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-highlight h2{color:var(--theme-text)!important}
+html[data-rw-theme="light"] .relians-portal-page .portal-highlight p{color:var(--theme-muted)!important}
+
+/* ---------- Blog ---------- */
+html[data-rw-theme="light"] .relians-blog-page .blog-hero,
+html[data-rw-theme="light"] .relians-blog-page .dashboard-card,
+html[data-rw-theme="light"] .relians-blog-page .blog-post,
+html[data-rw-theme="light"] .relians-blog-page .side-panel,
+html[data-rw-theme="light"] .relians-blog-page .version-entry,
+html[data-rw-theme="dark"] .relians-blog-page .blog-hero,
+html[data-rw-theme="dark"] .relians-blog-page .dashboard-card,
+html[data-rw-theme="dark"] .relians-blog-page .blog-post,
+html[data-rw-theme="dark"] .relians-blog-page .side-panel,
+html[data-rw-theme="dark"] .relians-blog-page .version-entry{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-blog-page .feature-card,
+html[data-rw-theme="dark"] .relians-blog-page .feature-card{
+  background:linear-gradient(135deg,var(--theme-card),var(--theme-card-2))!important;
+}
+html[data-rw-theme="light"] .relians-blog-page .timeline-item.current,
+html[data-rw-theme="light"] .relians-blog-page .roadmap-list div,
+html[data-rw-theme="dark"] .relians-blog-page .timeline-item.current,
+html[data-rw-theme="dark"] .relians-blog-page .roadmap-list div{
+  background:var(--theme-card-2)!important;
+  color:var(--theme-text)!important;
+}
+html[data-rw-theme="light"] .relians-blog-page .quick-links a:hover,
+html[data-rw-theme="dark"] .relians-blog-page .quick-links a:hover,
+html[data-rw-theme="light"] .relians-blog-page .version-entry summary:hover,
+html[data-rw-theme="dark"] .relians-blog-page .version-entry summary:hover{
+  background:var(--theme-hover)!important;
+}
+html[data-rw-theme="light"] .relians-blog-page p,
+html[data-rw-theme="light"] .relians-blog-page small,
+html[data-rw-theme="light"] .relians-blog-page .post-meta,
+html[data-rw-theme="light"] .relians-blog-page .version-body,
+html[data-rw-theme="dark"] .relians-blog-page p,
+html[data-rw-theme="dark"] .relians-blog-page small,
+html[data-rw-theme="dark"] .relians-blog-page .post-meta,
+html[data-rw-theme="dark"] .relians-blog-page .version-body{
+  color:var(--theme-muted)!important;
+}
+html[data-rw-theme="light"] .relians-blog-page h1,
+html[data-rw-theme="light"] .relians-blog-page h2,
+html[data-rw-theme="light"] .relians-blog-page h3,
+html[data-rw-theme="dark"] .relians-blog-page h1,
+html[data-rw-theme="dark"] .relians-blog-page h2,
+html[data-rw-theme="dark"] .relians-blog-page h3{
+  color:var(--theme-text)!important;
+}
+
+/* ---------- Gerador ---------- */
+html[data-rw-theme="light"] .relians-generator-page{
+  --bg:var(--theme-bg);
+  --panel:var(--theme-card);
+  --panel2:var(--theme-card-2);
+  --panel3:#eeeadd;
+  --line:#9aaa9b;
+  --line2:#c7d0c7;
+  --text:var(--theme-text);
+  --muted:var(--theme-muted);
+  --accent:#45725a;
+  --accent2:#547d63;
+}
+html[data-rw-theme="dark"] .relians-generator-page{
+  --bg:var(--theme-bg);
+  --panel:var(--theme-card);
+  --panel2:var(--theme-card-2);
+  --panel3:#183125;
+  --line:#466653;
+  --line2:#334f3d;
+  --text:var(--theme-text);
+  --muted:var(--theme-muted);
+  --accent:#c8a862;
+  --accent2:#dfc17f;
+}
+html[data-rw-theme="light"] .relians-generator-page .card:not(.relian-sheet),
+html[data-rw-theme="light"] .relians-generator-page fieldset,
+html[data-rw-theme="light"] .relians-generator-page .entity-item,
+html[data-rw-theme="light"] .relians-generator-page .eligible-grid>div,
+html[data-rw-theme="light"] .relians-generator-page .encounter-row,
+html[data-rw-theme="light"] .relians-generator-page .catalog-profile,
+html[data-rw-theme="light"] .relians-generator-page .catalog-book-panel,
+html[data-rw-theme="dark"] .relians-generator-page .card:not(.relian-sheet),
+html[data-rw-theme="dark"] .relians-generator-page fieldset,
+html[data-rw-theme="dark"] .relians-generator-page .entity-item,
+html[data-rw-theme="dark"] .relians-generator-page .eligible-grid>div,
+html[data-rw-theme="dark"] .relians-generator-page .encounter-row,
+html[data-rw-theme="dark"] .relians-generator-page .catalog-profile,
+html[data-rw-theme="dark"] .relians-generator-page .catalog-book-panel{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page input,
+html[data-rw-theme="light"] .relians-generator-page select,
+html[data-rw-theme="light"] .relians-generator-page textarea,
+html[data-rw-theme="dark"] .relians-generator-page input,
+html[data-rw-theme="dark"] .relians-generator-page select,
+html[data-rw-theme="dark"] .relians-generator-page textarea{
+  background:var(--theme-input)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page label,
+html[data-rw-theme="light"] .relians-generator-page .hint,
+html[data-rw-theme="light"] .relians-generator-page .field-help,
+html[data-rw-theme="dark"] .relians-generator-page label,
+html[data-rw-theme="dark"] .relians-generator-page .hint,
+html[data-rw-theme="dark"] .relians-generator-page .field-help{
+  color:var(--theme-muted)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .card:not(.relian-sheet) h1,
+html[data-rw-theme="light"] .relians-generator-page .card:not(.relian-sheet) h2,
+html[data-rw-theme="light"] .relians-generator-page .card:not(.relian-sheet) h3,
+html[data-rw-theme="dark"] .relians-generator-page .card:not(.relian-sheet) h1,
+html[data-rw-theme="dark"] .relians-generator-page .card:not(.relian-sheet) h2,
+html[data-rw-theme="dark"] .relians-generator-page .card:not(.relian-sheet) h3{
+  color:var(--theme-text)!important;
+}
+
+/* Subcards comuns do gerador */
+html[data-rw-theme="light"] .relians-generator-page .editor-info-box,
+html[data-rw-theme="light"] .relians-generator-page .capture-summary>div,
+html[data-rw-theme="light"] .relians-generator-page .learnset-editor,
+html[data-rw-theme="dark"] .relians-generator-page .editor-info-box,
+html[data-rw-theme="dark"] .relians-generator-page .capture-summary>div,
+html[data-rw-theme="dark"] .relians-generator-page .learnset-editor{
+  background:var(--theme-card-2)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+
+/* ---------- Battle Card / TCG ---------- */
+html[data-rw-theme="light"] .relians-tcg-page{
+  --tcg-paper:var(--theme-card);
+  --tcg-paper-2:var(--theme-card-2);
+  --tcg-ink:var(--theme-text);
+  --tcg-muted:var(--theme-muted);
+  --tcg-line:var(--theme-line);
+}
+html[data-rw-theme="dark"] .relians-tcg-page{
+  --tcg-paper:var(--theme-card);
+  --tcg-paper-2:var(--theme-card-2);
+  --tcg-ink:var(--theme-text);
+  --tcg-muted:var(--theme-muted);
+  --tcg-line:var(--theme-line);
+}
+html[data-rw-theme="light"] .relians-tcg-page .tcg-summary-card,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-panel,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-feature-card,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-card-tile:not(.rbc-visual-card),
+html[data-rw-theme="light"] .relians-tcg-page .collection-card,
+html[data-rw-theme="light"] .relians-tcg-page .deck-editor,
+html[data-rw-theme="light"] .relians-tcg-page .deck-pool,
+html[data-rw-theme="light"] .relians-tcg-page .support-card-studio,
+html[data-rw-theme="light"] .relians-tcg-page .support-card-form,
+html[data-rw-theme="light"] .relians-tcg-page .relian-card-form,
+html[data-rw-theme="light"] .relians-tcg-page .relian-card-preview-column,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-library-preview,
+html[data-rw-theme="light"] .relians-tcg-page .battle-hand-section,
+html[data-rw-theme="light"] .relians-tcg-page .battle-log-section,
+html[data-rw-theme="light"] .relians-tcg-page .battle-card-inspector,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-summary-card,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-panel,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-feature-card,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-card-tile:not(.rbc-visual-card),
+html[data-rw-theme="dark"] .relians-tcg-page .collection-card,
+html[data-rw-theme="dark"] .relians-tcg-page .deck-editor,
+html[data-rw-theme="dark"] .relians-tcg-page .deck-pool,
+html[data-rw-theme="dark"] .relians-tcg-page .support-card-studio,
+html[data-rw-theme="dark"] .relians-tcg-page .support-card-form,
+html[data-rw-theme="dark"] .relians-tcg-page .relian-card-form,
+html[data-rw-theme="dark"] .relians-tcg-page .relian-card-preview-column,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-library-preview,
+html[data-rw-theme="dark"] .relians-tcg-page .battle-hand-section,
+html[data-rw-theme="dark"] .relians-tcg-page .battle-log-section,
+html[data-rw-theme="dark"] .relians-tcg-page .battle-card-inspector{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-tcg-page input,
+html[data-rw-theme="light"] .relians-tcg-page select,
+html[data-rw-theme="light"] .relians-tcg-page textarea,
+html[data-rw-theme="dark"] .relians-tcg-page input,
+html[data-rw-theme="dark"] .relians-tcg-page select,
+html[data-rw-theme="dark"] .relians-tcg-page textarea{
+  background:var(--theme-input)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-tcg-page .tcg-panel h1,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-panel h2,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-panel h3,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-panel h1,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-panel h2,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-panel h3{
+  color:var(--theme-text)!important;
+}
+html[data-rw-theme="light"] .relians-tcg-page .tcg-panel p,
+html[data-rw-theme="light"] .relians-tcg-page .tcg-panel small,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-panel p,
+html[data-rw-theme="dark"] .relians-tcg-page .tcg-panel small{
+  color:var(--theme-muted)!important;
+}
+
+/* ---------- Navegação lateral ---------- */
+html[data-rw-theme="light"] .rw-side-link-icon{background:#e5e1d5!important;border-color:var(--theme-line)!important}
+html[data-rw-theme="dark"] .rw-side-link-icon{background:#10271b!important;border-color:var(--theme-line)!important}
+
+/* ---------- Placeholders ---------- */
+html[data-rw-theme="light"] ::placeholder{color:#7b877d!important;opacity:1}
+html[data-rw-theme="dark"] ::placeholder{color:#7f9283!important;opacity:1}
+
+
+/* Ajustes finais do portal e ícones de tema */
+html[data-rw-theme="light"] .relians-portal-page .portal-card{
+  background:#ffffff!important;
+  color:#24342a!important;
+  border-color:rgba(36,52,42,.14)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-card-icon{
+  background:#eef1e9!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page .portal-card{
+  background:#1c3528!important;
+  color:#f2ead7!important;
+}
+[data-discord-theme-icon]{object-fit:contain;}
+
+/* =========================================================
+   PORTAL — HERO acompanha o tema
+   No tema claro, o grande card inicial deve ser uma superfície
+   clara como os demais cards, com contraste escuro.
+   ========================================================= */
+html[data-rw-theme="light"] .relians-portal-page .portal-hero{
+  background:#ffffff!important;
+  color:var(--theme-text)!important;
+  border-color:rgba(36,52,42,.14)!important;
+  box-shadow:0 18px 44px rgba(30,45,34,.14)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero h1{
+  color:#20372a!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero p{
+  color:var(--theme-muted)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero .portal-eyebrow{
+  color:#9b6f2f!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero .portal-button{
+  background:#f3f5f0!important;
+  color:#26372c!important;
+  border-color:rgba(36,52,42,.16)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero .portal-button:hover{
+  background:#e9eee7!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero .portal-button.primary{
+  background:#294c36!important;
+  color:#ffffff!important;
+  border-color:#294c36!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-hero .portal-button.primary:hover{
+  background:#213f2d!important;
+}
+
+/* =========================================================
+   AJUSTE 2026-08-18 — contraste consistente dos cards
+   Claro: bege suave, menos brilhante que branco puro.
+   Escuro: todas as superfícies de interface realmente escuras.
+   ========================================================= */
+html[data-rw-theme="light"]{
+  --theme-card:#e5decb;
+  --theme-card-2:#d9d1bc;
+  --theme-input:#eee8d9;
+  --theme-hover:#d8cfb8;
+  --theme-line:rgba(63,74,61,.20);
+}
+
+/* Portal: remove os últimos brancos fixos e garante o topo correto nos 2 temas. */
+html[data-rw-theme="light"] .relians-portal-page .portal-hero,
+html[data-rw-theme="light"] .relians-portal-page .portal-card,
+html[data-rw-theme="light"] .relians-portal-page .portal-highlight{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-card-icon{
+  background:var(--theme-card-2)!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page .portal-hero,
+html[data-rw-theme="dark"] .relians-portal-page .portal-card,
+html[data-rw-theme="dark"] .relians-portal-page .portal-highlight{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page .portal-card-icon{
+  background:var(--theme-card-2)!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page .portal-hero h1,
+html[data-rw-theme="dark"] .relians-portal-page .portal-highlight h2{
+  color:var(--theme-text)!important;
+}
+html[data-rw-theme="dark"] .relians-portal-page .portal-hero p,
+html[data-rw-theme="dark"] .relians-portal-page .portal-highlight p{
+  color:var(--theme-muted)!important;
+}
+
+/* Blog: inclui cards auxiliares que ainda podiam herdar fundo branco. */
+html[data-rw-theme="light"] .relians-blog-page :is(.creators-hero,.creators-panel,.creator-link-card,.discord-link-card,.updates-link-card,.community-card),
+html[data-rw-theme="dark"] .relians-blog-page :is(.creators-hero,.creators-panel,.creator-link-card,.discord-link-card,.updates-link-card,.community-card){
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+
+/* Gerador: containers de interface adicionais. Fichas/preview artísticos ficam intactos. */
+html[data-rw-theme="light"] .relians-generator-page :is(.generator-card,.editor-card,.form-card,.compact-card,.official-data-card,.catalog-search-box,.catalog-search-panel,.sheet-transfer-panel,.sheet-bank-sidebar,.sheet-bank-detail,.capture-format-card,.sticky-card),
+html[data-rw-theme="dark"] .relians-generator-page :is(.generator-card,.editor-card,.form-card,.compact-card,.official-data-card,.catalog-search-box,.catalog-search-panel,.sheet-transfer-panel,.sheet-bank-sidebar,.sheet-bank-detail,.capture-format-card,.sticky-card){
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(.item-panel,.terrain-panel,.trainer-panel,.battle-panel,.battle-utility-panel,.tab-panel),
+html[data-rw-theme="dark"] .relians-generator-page :is(.item-panel,.terrain-panel,.trainer-panel,.battle-panel,.battle-utility-panel,.tab-panel){
+  background:var(--theme-card-2)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+
+/* TCG: painéis estruturais adicionais; não altera a arte das cartas. */
+html[data-rw-theme="light"] .relians-tcg-page :is(.tcg-hero,.tcg-type-card,.support-panel,.battle-panel,.battle-utility-panel,.item-panel,.terrain-panel,.trainer-panel),
+html[data-rw-theme="dark"] .relians-tcg-page :is(.tcg-hero,.tcg-type-card,.support-panel,.battle-panel,.battle-utility-panel,.item-panel,.terrain-panel,.trainer-panel){
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+
+/* Evita branco puro em superfícies genéricas do modo claro. */
+html[data-rw-theme="light"] .relians-blog-page :is(input,select,textarea),
+html[data-rw-theme="light"] .relians-generator-page :is(input,select,textarea),
+html[data-rw-theme="light"] .relians-tcg-page :is(input,select,textarea){
+  background:var(--theme-input)!important;
+}
+
+/* =========================================================
+   Catálogo de Relians — o livro é um objeto "de papel".
+   Ele mantém a paleta de pergaminho nos dois temas para que
+   o dark mode não transforme a tinta do livro em branco.
+   ========================================================= */
+html[data-rw-theme="light"] .relians-generator-page #catalog,
+html[data-rw-theme="dark"] .relians-generator-page #catalog{
+  --book-paper:#e9dcc0;
+  --book-paper-2:#dfcfad;
+  --book-paper-soft:rgba(255,255,255,.20);
+  --book-ink:#382b1c;
+  --book-ink-strong:#2e2418;
+  --book-muted:#6d593e;
+  --book-line:#9f835d;
+}
+
+/* O invólucro acompanha o tema; somente as páginas internas continuam em papel. */
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-detail,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-detail{
+  background:var(--theme-card)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-line)!important;
+}
+
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book{
+  color:var(--book-ink)!important;
+  background:transparent!important;
+}
+
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-page,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-page{
+  color:var(--book-ink)!important;
+  border-color:#9b835d!important;
+  background:
+    linear-gradient(90deg,rgba(118,87,47,.08) 0 49.7%,rgba(101,76,43,.16) 50%,rgba(255,255,255,.02) 50.3%),
+    linear-gradient(180deg,#efe3c8,#e3d3b4)!important;
+}
+
+/* Não deixar a regra global de cards escurecer os painéis internos do livro. */
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-panel,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-panel{
+  background:transparent!important;
+  color:var(--book-ink)!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+}
+
+/* Tinta do livro: sempre escura, independente do tema do aplicativo. */
+html[data-rw-theme="light"] .relians-generator-page #catalog :is(
+  .catalog-book-identity h2,.catalog-book-number,.catalog-book-elements h3,
+  .catalog-book-facts span,.catalog-book-facts b,.catalog-book-panel,
+  .catalog-book-panel h3,.catalog-book-panel h4,.catalog-book-panel p,
+  .catalog-lore,.catalog-lore h3,.catalog-lore p,.catalog-section-notes,
+  .catalog-data-group,.catalog-data-group h4,.catalog-habitat-card,
+  .catalog-habitat-card b,.catalog-habitat-card strong,.catalog-habitat-card span,
+  .catalog-habitat-card small,.catalog-evolution-info,.catalog-evolution-info p
+),
+html[data-rw-theme="dark"] .relians-generator-page #catalog :is(
+  .catalog-book-identity h2,.catalog-book-number,.catalog-book-elements h3,
+  .catalog-book-facts span,.catalog-book-facts b,.catalog-book-panel,
+  .catalog-book-panel h3,.catalog-book-panel h4,.catalog-book-panel p,
+  .catalog-lore,.catalog-lore h3,.catalog-lore p,.catalog-section-notes,
+  .catalog-data-group,.catalog-data-group h4,.catalog-habitat-card,
+  .catalog-habitat-card b,.catalog-habitat-card strong,.catalog-habitat-card span,
+  .catalog-habitat-card small,.catalog-evolution-info,.catalog-evolution-info p
+){
+  color:var(--book-ink)!important;
+}
+
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-identity h2,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-identity h2,
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-lore h3,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-lore h3,
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-panel>h3,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-panel>h3{
+  color:var(--book-ink-strong)!important;
+}
+
+html[data-rw-theme="light"] .relians-generator-page #catalog :is(.catalog-book-elements.special small,.catalog-book-facts b,.catalog-data-grid span,.catalog-quick-data span,.catalog-move-head,.catalog-move-row small),
+html[data-rw-theme="dark"] .relians-generator-page #catalog :is(.catalog-book-elements.special small,.catalog-book-facts b,.catalog-data-grid span,.catalog-quick-data span,.catalog-move-head,.catalog-move-row small){
+  color:var(--book-muted)!important;
+}
+
+/* A descrição volta a parecer conteúdo impresso no livro, não um card verde. */
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-lore,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-lore{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-section-notes,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-section-notes{
+  background:rgba(255,255,255,.20)!important;
+  border-left-color:#8c7047!important;
+  color:#4d3d29!important;
+}
+
+/* Caixas e dados que fazem parte da própria página mantêm tons de papel. */
+html[data-rw-theme="light"] .relians-generator-page #catalog :is(.catalog-quick-data>div,.catalog-data-grid>div,.catalog-data-group,.catalog-habitat-card),
+html[data-rw-theme="dark"] .relians-generator-page #catalog :is(.catalog-quick-data>div,.catalog-data-grid>div,.catalog-data-group,.catalog-habitat-card){
+  background:var(--book-paper-soft)!important;
+  border-color:rgba(102,76,43,.32)!important;
+  color:var(--book-ink)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #catalog :is(.catalog-quick-data b,.catalog-data-grid b),
+html[data-rw-theme="dark"] .relians-generator-page #catalog :is(.catalog-quick-data b,.catalog-data-grid b){
+  color:#35291c!important;
+}
+
+/* Abas seguem a temática física do livro também no tema escuro. */
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-tabs,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-tabs{
+  background:rgba(164,132,82,.10)!important;
+  border-color:rgba(100,74,42,.36)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-tab,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-tab{
+  background:#d8c5a0!important;
+  color:#463624!important;
+  border-color:rgba(100,74,42,.26)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #catalog .catalog-book-tab.active,
+html[data-rw-theme="dark"] .relians-generator-page #catalog .catalog-book-tab.active{
+  background:#344432!important;
+  color:#f5e6c5!important;
+}
+
+/* Resultados laterais e ferramentas do catálogo continuam obedecendo ao tema do app. */
+html[data-rw-theme="light"] .relians-generator-page #catalog :is(.catalog-sidebar,.catalog-search-box,.catalog-search-panel,.catalog-index-card),
+html[data-rw-theme="dark"] .relians-generator-page #catalog :is(.catalog-sidebar,.catalog-search-box,.catalog-search-panel,.catalog-index-card){
+  color:var(--theme-text)!important;
+}
+
+
+/* =========================================================
+   2026-08-18 — Cabeçalho do Gerador no tema claro
+   Os controles principais usam texto escuro; os dropdowns
+   continuam escuros e usam texto claro para manter contraste.
+   ========================================================= */
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-main-link,
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-menu-trigger{
+  color:#314534!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-main-link:hover,
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-menu-trigger:hover,
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-menu.open>.nav-menu-trigger{
+  color:#26392b!important;
+  background:rgba(111,91,54,.10)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-main-link.active,
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-menu.active-group>.nav-menu-trigger{
+  color:#2d422f!important;
+  background:linear-gradient(180deg,rgba(190,151,82,.18),rgba(74,112,78,.10))!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-chevron{
+  color:#68766a!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-page-icon{
+  color:#8d6b2e!important;
+  border-color:rgba(113,91,50,.28)!important;
+  background:rgba(76,96,73,.16)!important;
+}
+
+/* Dropdowns são painéis escuros mesmo no tema claro. */
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-dropdown{
+  background:linear-gradient(180deg,rgba(24,50,37,.99),rgba(13,34,25,.99))!important;
+  border-color:rgba(195,154,88,.36)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-dropdown-item,
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-dropdown-item b{
+  color:#f1ead9!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-dropdown-item small{
+  color:#9fb0a1!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-dropdown-item:hover,
+html[data-rw-theme="light"] .relians-generator-page .header-navigation .nav-dropdown-item.active{
+  background:rgba(211,174,105,.12)!important;
+  color:#fff0c8!important;
+}
+
+/* =========================================================
+   2026-08-18 — Banco de Fichas + Criador de Fichas
+   Visual unificado e legível em tema claro e escuro.
+   ========================================================= */
+
+/* Paleta local das áreas de ficha. */
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank){
+  --sheet-surface:#e8e0cc;
+  --sheet-surface-2:#ded5bd;
+  --sheet-surface-3:#f0eadc;
+  --sheet-ink:#283a2d;
+  --sheet-muted:#657267;
+  --sheet-line:rgba(64,78,65,.26);
+  --sheet-accent:#2e7f82;
+  --sheet-accent-soft:rgba(46,127,130,.12);
+  --sheet-field:#f3eddf;
+  --sheet-field-line:rgba(58,77,62,.24);
+  --sheet-shadow:0 14px 34px rgba(55,48,35,.10);
+}
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank){
+  --sheet-surface:#173426;
+  --sheet-surface-2:#1e3d2e;
+  --sheet-surface-3:#122a20;
+  --sheet-ink:#eef5ec;
+  --sheet-muted:#afc2b4;
+  --sheet-line:rgba(188,213,194,.16);
+  --sheet-accent:#62d4d4;
+  --sheet-accent-soft:rgba(98,212,212,.12);
+  --sheet-field:#10271d;
+  --sheet-field-line:rgba(171,209,183,.18);
+  --sheet-shadow:0 18px 42px rgba(0,0,0,.24);
+}
+
+/* Estrutura principal: editor, barra lateral e banco. */
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(.story-sidebar,.story-main-editor,.story-side-preview,.sheet-bank-sidebar,.sheet-bank-detail,.sheet-transfer-panel),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(.story-sidebar,.story-main-editor,.story-side-preview,.sheet-bank-sidebar,.sheet-bank-detail,.sheet-transfer-panel){
+  background:var(--sheet-surface)!important;
+  color:var(--sheet-ink)!important;
+  border-color:var(--sheet-line)!important;
+  box-shadow:var(--sheet-shadow)!important;
+}
+
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(h1,h2,h3,h4,strong,b,label),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(h1,h2,h3,h4,strong,b,label){
+  color:var(--sheet-ink)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(p,small,.field-help,.hint,.story-sidebar-help),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(p,small,.field-help,.hint,.story-sidebar-help){
+  color:var(--sheet-muted)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(.section-kicker,.story-side-preview:before),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(.section-kicker,.story-side-preview:before){
+  color:var(--sheet-accent)!important;
+}
+
+/* Campos e grupos do criador. */
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor fieldset,
+html[data-rw-theme="dark"] .relians-generator-page #story .story-main-editor fieldset{
+  background:var(--sheet-surface-2)!important;
+  border-color:var(--sheet-line)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor legend,
+html[data-rw-theme="dark"] .relians-generator-page #story .story-main-editor legend{
+  color:var(--sheet-accent)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(input,select,textarea),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(input,select,textarea){
+  background:var(--sheet-field)!important;
+  color:var(--sheet-ink)!important;
+  border-color:var(--sheet-field-line)!important;
+  box-shadow:none!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(input,select,textarea)::placeholder,
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(input,select,textarea)::placeholder{
+  color:var(--sheet-muted)!important;
+  opacity:.78!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(input,select,textarea):focus,
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(input,select,textarea):focus{
+  border-color:var(--sheet-accent)!important;
+  box-shadow:0 0 0 3px var(--sheet-accent-soft)!important;
+  outline:none!important;
+}
+
+/* Seletores de tipo, atributos, perícias, equipe, mochila e equipamentos. */
+html[data-rw-theme="light"] .relians-generator-page #story :is(.story-type-switch label,.story-team-row,.character-skills-grid label,.equipment-editor-card,.backpack-editor-card),
+html[data-rw-theme="dark"] .relians-generator-page #story :is(.story-type-switch label,.story-team-row,.character-skills-grid label,.equipment-editor-card,.backpack-editor-card){
+  background:var(--sheet-surface-3)!important;
+  border-color:var(--sheet-line)!important;
+  color:var(--sheet-ink)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #story .story-type-switch label:has(input:checked),
+html[data-rw-theme="dark"] .relians-generator-page #story .story-type-switch label:has(input:checked){
+  background:var(--sheet-accent-soft)!important;
+  border-color:var(--sheet-accent)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #story :is(.backpack-editor-head b,.equipped-relian-slot span),
+html[data-rw-theme="dark"] .relians-generator-page #story :is(.backpack-editor-head b,.equipped-relian-slot span){
+  color:var(--sheet-accent)!important;
+}
+
+/* Barra de ações do editor: integrada ao tema, sem bloco verde fixo. */
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor .form-actions,
+html[data-rw-theme="dark"] .relians-generator-page #story .story-main-editor .form-actions{
+  background:color-mix(in srgb,var(--sheet-surface) 94%,transparent)!important;
+  border-color:var(--sheet-line)!important;
+}
+
+/* Listas laterais do Criador e do Banco. */
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(.story-list-row,.saved-sheet-row),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(.story-list-row,.saved-sheet-row){
+  background:var(--sheet-surface-3)!important;
+  color:var(--sheet-ink)!important;
+  border-color:var(--sheet-line)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(.story-list-row,.saved-sheet-row):hover,
+html[data-rw-theme="light"] .relians-generator-page #sheetbank .saved-sheet-row.selected,
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(.story-list-row,.saved-sheet-row):hover,
+html[data-rw-theme="dark"] .relians-generator-page #sheetbank .saved-sheet-row.selected{
+  background:var(--sheet-accent-soft)!important;
+  border-color:var(--sheet-accent)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) .entity-main-button b,
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) .entity-main-button b{
+  color:var(--sheet-ink)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) .entity-main-button small,
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) .entity-main-button small{
+  color:var(--sheet-muted)!important;
+}
+
+/* Estados vazios deixam de parecer um card escuro perdido no tema claro. */
+html[data-rw-theme="light"] .relians-generator-page :is(.story-preview-empty,.saved-sheet-detail-empty),
+html[data-rw-theme="dark"] .relians-generator-page :is(.story-preview-empty,.saved-sheet-detail-empty){
+  background:var(--sheet-surface-3)!important;
+  color:var(--sheet-muted)!important;
+  border-color:var(--sheet-line)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(.story-preview-empty,.saved-sheet-detail-empty) b,
+html[data-rw-theme="dark"] .relians-generator-page :is(.story-preview-empty,.saved-sheet-detail-empty) b{
+  color:var(--sheet-ink)!important;
+}
+
+/* Prévia de personagem — clara no light, escura no dark, mantendo identidade azul-petróleo. */
+html[data-rw-theme="light"] .relians-generator-page .character-sheet-preview{
+  background:#e9e1cc!important;
+  border-color:#8ea9a1!important;
+  color:#29392e!important;
+  box-shadow:0 18px 38px rgba(66,58,42,.14)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-sheet-header{
+  background:linear-gradient(115deg,#c8ddd5 0,#d8e4d8 42%,#eee7d6 100%)!important;
+  border-bottom-color:#9bb8af!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-portrait{
+  background:linear-gradient(160deg,#5baeb0,#407e82)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-identity :is(h2,b),
+html[data-rw-theme="light"] .relians-generator-page .character-resources b{
+  color:#26382d!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-identity small{
+  color:#236d70!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-identity p,
+html[data-rw-theme="light"] .relians-generator-page .character-resources p{
+  color:#617066!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-tags>* ,
+html[data-rw-theme="light"] .relians-generator-page .character-milestones span{
+  background:rgba(255,255,255,.34)!important;
+  color:#304238!important;
+  border-color:rgba(58,104,91,.28)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-tags b{
+  background:rgba(97,79,151,.15)!important;
+  border-color:rgba(97,79,151,.35)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .character-resources>div,
+html[data-rw-theme="light"] .relians-generator-page .sheet-panel{
+  background:rgba(255,255,255,.28)!important;
+  border-color:rgba(67,99,82,.22)!important;
+  color:#29392e!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .sheet-panel h3{
+  background:linear-gradient(90deg,#b9cdc3,#cdd9c9)!important;
+  color:#2b4033!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(.character-preview-equipment p,.character-backpack-preview p,.story-team-preview span,.story-team-preview small){
+  color:#617066!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .story-team-preview>div{
+  background:rgba(255,255,255,.25)!important;
+  border-color:rgba(66,103,88,.22)!important;
+}
+
+/* Dark: reforça legibilidade da ficha de personagem sem alterar sua linguagem visual. */
+html[data-rw-theme="dark"] .relians-generator-page .character-sheet-preview{
+  color:#eef7f3!important;
+}
+html[data-rw-theme="dark"] .relians-generator-page .character-sheet-preview :is(h2,h3,b,strong){
+  color:#f5fbf7!important;
+}
+html[data-rw-theme="dark"] .relians-generator-page .character-sheet-preview :is(p,small,span){
+  color:#b9d2c5;
+}
+
+/* Prévia de Relian individual no criador. */
+html[data-rw-theme="light"] .relians-generator-page .story-card.special-relian-card{
+  background:linear-gradient(145deg,#e7dfca,#d9d0b7)!important;
+  color:#2d3b30!important;
+  border-color:#8da49a!important;
+  box-shadow:0 16px 34px rgba(62,54,40,.13)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .story-card.special-relian-card .story-card-head{
+  background:linear-gradient(120deg,rgba(66,139,142,.18),rgba(100,83,145,.12))!important;
+  border-bottom-color:rgba(69,102,87,.22)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .story-card.special-relian-card .story-card-head>span{
+  color:#267b7e!important;
+}
+html[data-rw-theme="light"] .relians-generator-page .story-card.special-relian-card :is(h2,h3,b,strong){color:#2d3b30!important}
+html[data-rw-theme="light"] .relians-generator-page .story-card.special-relian-card :is(p,small){color:#657267!important}
+html[data-rw-theme="light"] .relians-generator-page .story-card.special-relian-card .story-resource-preview b{
+  background:rgba(255,255,255,.30)!important;
+  border-color:rgba(57,110,98,.25)!important;
+}
+
+/* Banco — ficha de Relian salva. Mantém cor/raridade, mas o corpo acompanha o tema. */
+html[data-rw-theme="light"] .relians-generator-page #sheetbank .saved-relian-card{
+  background:#e8e0cc!important;
+  color:#2b3b2f!important;
+  border-color:#7ea5a1!important;
+  box-shadow:0 18px 40px rgba(62,55,43,.14)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #sheetbank .saved-relian-header{
+  background:linear-gradient(120deg,#c5d8d0,#e8e0cc)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #sheetbank .saved-relian-identity :is(h2,b,strong,label){color:#293a2e!important}
+html[data-rw-theme="light"] .relians-generator-page #sheetbank .saved-relian-identity :is(p,small){color:#647268!important}
+html[data-rw-theme="light"] .relians-generator-page #sheetbank :is(.bank-resource,.bank-stat-card,.bank-move-row,.bank-trait-card,.bank-backpack-row){
+  background:rgba(255,255,255,.28)!important;
+  color:#2c3c31!important;
+  border-color:rgba(63,94,77,.24)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #sheetbank :is(.bank-resource,.bank-stat-card,.bank-move-row,.bank-trait-card,.bank-backpack-row) :is(b,strong){
+  color:#2b3b2f!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #sheetbank :is(.bank-resource,.bank-stat-card,.bank-move-row,.bank-trait-card,.bank-backpack-row) :is(p,small,span){
+  color:#657267;
+}
+
+html[data-rw-theme="dark"] .relians-generator-page #sheetbank .saved-relian-card{
+  background:#0e271d!important;
+  color:#edf6ef!important;
+  border-color:rgba(91,200,193,.56)!important;
+}
+html[data-rw-theme="dark"] .relians-generator-page #sheetbank .saved-relian-identity :is(h2,b,strong,label){color:#f1f8f3!important}
+html[data-rw-theme="dark"] .relians-generator-page #sheetbank .saved-relian-identity :is(p,small){color:#b5c9ba!important}
+html[data-rw-theme="dark"] .relians-generator-page #sheetbank :is(.bank-resource,.bank-stat-card,.bank-move-row,.bank-trait-card,.bank-backpack-row){
+  background:rgba(6,31,23,.72)!important;
+  color:#edf6ef!important;
+  border-color:rgba(169,209,183,.15)!important;
+}
+
+/* Painéis do banco e do criador de Relian gerado que ainda herdavam cores fixas. */
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) :is(.sheet-panel,.equipped-relian-slot,.guide-grid>section,.guide-summary-head,.guide-resources>*,.owned-relian-card),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) :is(.sheet-panel,.equipped-relian-slot,.guide-grid>section,.guide-summary-head,.guide-resources>*,.owned-relian-card){
+  border-color:var(--sheet-line)!important;
+}
+
+/* Tags básicas precisam manter contraste no tema claro. */
+html[data-rw-theme="light"] .relians-generator-page #sheetbank .color-tag.basic{
+  background:#d4e2dc!important;
+  color:#29443b!important;
+  border-color:rgba(52,91,78,.28)!important;
+}
+
+/* Botões secundários do fluxo de fichas ficam bem definidos nos dois temas. */
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) button:not(.primary):not(.danger),
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) button:not(.primary):not(.danger){
+  color:var(--sheet-ink)!important;
+  border-color:var(--sheet-line)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page :is(#story,#sheetbank) button:not(.primary):not(.danger){
+  background:#ddd4bd!important;
+}
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) button:not(.primary):not(.danger){
+  background:#17382a!important;
+}
+
+
+/* ==========================================================
+   FICHAS DE PERSONAGEM — visual inspirado no livro do Catálogo
+   Criador + visualização no Banco
+   ========================================================== */
+
+/* O editor ganha uma organização mais editorial, sem perder o tema da UI. */
+.relians-generator-page #story .story-main-editor{
+  border-radius:18px!important;
+  overflow:hidden;
+}
+.relians-generator-page #story .story-main-editor .editor-title{
+  padding-bottom:16px;
+  margin-bottom:14px;
+  border-bottom:1px solid var(--sheet-line)!important;
+}
+.relians-generator-page #story .story-editor-guide{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:10px 12px;
+  margin:0 0 16px;
+  border:1px solid var(--sheet-line)!important;
+  border-radius:12px;
+  background:var(--sheet-surface-3)!important;
+}
+.relians-generator-page #story .story-editor-guide span{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--sheet-muted)!important;
+}
+.relians-generator-page #story .story-editor-guide b{
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border-radius:999px;
+  background:var(--sheet-accent-soft)!important;
+  border:1px solid var(--sheet-accent)!important;
+  color:var(--sheet-ink)!important;
+}
+.relians-generator-page #story .story-main-editor fieldset{
+  position:relative;
+  margin:0 0 14px!important;
+  padding:18px 16px 16px!important;
+  border:1px solid var(--sheet-line)!important;
+  border-radius:14px!important;
+  background:var(--sheet-surface-3)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.03);
+}
+.relians-generator-page #story .story-main-editor fieldset legend{
+  padding:5px 10px!important;
+  border:1px solid var(--sheet-line)!important;
+  border-radius:8px!important;
+  background:var(--sheet-surface)!important;
+  color:var(--sheet-ink)!important;
+  font-family:Georgia,'Times New Roman',serif;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+
+/* Light: leve linguagem de papel/pergaminho no editor. */
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor fieldset{
+  background:linear-gradient(180deg,#e7ddc6,#ded2b8)!important;
+  border-color:#aa946e!important;
+  box-shadow:inset 0 0 24px rgba(113,83,44,.05)!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor fieldset legend{
+  background:#d4c19e!important;
+  border-color:#9e835a!important;
+  color:#473725!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor fieldset :is(label,.field-help,.special-section-label span){color:#66553e!important}
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor fieldset :is(input,select,textarea){
+  background:#f1e8d5!important;
+  color:#34291d!important;
+  border-color:#b39b73!important;
+}
+html[data-rw-theme="light"] .relians-generator-page #story .story-main-editor fieldset :is(input,textarea)::placeholder{color:#88765d!important}
+
+/* A ficha em si funciona como uma página de livro, como no Catálogo.
+   O papel permanece claro também no tema escuro; o entorno é que muda. */
+.relians-generator-page :is(#story,#sheetbank) .character-sheet-preview{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(118,87,47,.06) 0 49.72%,rgba(94,67,35,.14) 50%,rgba(255,255,255,.025) 50.28%),
+    linear-gradient(180deg,#efe3c8,#e2d1b0)!important;
+  color:#3a2d1e!important;
+  border:1px solid #9b835d!important;
+  border-radius:16px!important;
+  box-shadow:inset 0 0 42px rgba(96,66,31,.14),0 16px 38px rgba(0,0,0,.22)!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-sheet-preview:before{
+  content:'';
+  position:absolute;
+  inset:9px;
+  pointer-events:none;
+  border:1px solid rgba(99,73,40,.22);
+  border-radius:11px;
+  z-index:4;
+}
+
+/* Cabeçalho editorial da ficha. */
+.relians-generator-page :is(#story,#sheetbank) .character-sheet-header{
+  position:relative;
+  z-index:1;
+  grid-template-columns:220px minmax(0,1fr) minmax(250px,.78fr);
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.12),rgba(111,84,48,.05)),
+    linear-gradient(180deg,#e7d7b7,#dcc8a2)!important;
+  border-bottom:1px solid #9d8258!important;
+  min-height:250px;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-portrait{
+  padding:20px!important;
+  background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.52),rgba(255,255,255,0) 60%)!important;
+  border-right:1px solid rgba(103,76,42,.3)!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-portrait>div{
+  border:1px solid #a88d63!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.18)!important;
+  color:#6e5b40!important;
+  box-shadow:inset 0 0 24px rgba(96,66,31,.08)!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-portrait img{
+  filter:drop-shadow(0 14px 12px rgba(56,42,24,.2));
+}
+.relians-generator-page :is(#story,#sheetbank) .character-identity{
+  padding:28px 26px!important;
+  border-right:1px solid rgba(103,76,42,.24);
+}
+.relians-generator-page :is(#story,#sheetbank) .character-identity small{
+  color:#6f5938!important;
+  font-family:Georgia,'Times New Roman',serif;
+  letter-spacing:.14em;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-identity h2{
+  margin:8px 0 6px!important;
+  color:#2e2418!important;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:clamp(1.8rem,3vw,2.8rem)!important;
+  line-height:1!important;
+  text-transform:uppercase;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-identity p,
+.relians-generator-page :is(#story,#sheetbank) .character-resources p{
+  color:#66553d!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-tags>* ,
+.relians-generator-page :is(#story,#sheetbank) .character-milestones span{
+  background:#d8c5a0!important;
+  color:#493824!important;
+  border:1px solid #a88c62!important;
+  border-radius:7px!important;
+  font-family:Georgia,'Times New Roman',serif;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-tags b{
+  background:#344432!important;
+  color:#f5e6c5!important;
+  border-color:#344432!important;
+}
+
+/* Recursos como pequenos quadros de anotação do livro. */
+.relians-generator-page :is(#story,#sheetbank) .character-resources{
+  padding:24px 22px!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-resources>div{
+  background:rgba(255,255,255,.23)!important;
+  border:1px solid #aa916c!important;
+  border-radius:10px!important;
+  color:#3b2d1e!important;
+  box-shadow:none!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-resources :is(b,strong){color:#33271b!important}
+.relians-generator-page :is(#story,#sheetbank) .character-resources i{background:#c8b695!important}
+
+/* Corpo da ficha: seções como capítulos impressos. */
+.relians-generator-page :is(#story,#sheetbank) .character-sheet-grid{
+  position:relative;
+  z-index:1;
+  gap:12px!important;
+  padding:20px 22px 24px!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .sheet-panel{
+  overflow:hidden;
+  background:rgba(255,255,255,.20)!important;
+  color:#3a2d1e!important;
+  border:1px solid #aa916c!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .sheet-panel h3{
+  margin:0!important;
+  padding:10px 13px!important;
+  background:#d8c5a0!important;
+  color:#443421!important;
+  border-bottom:1px solid #aa916c!important;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:.8rem!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase;
+}
+.relians-generator-page :is(#story,#sheetbank) .sheet-panel :is(b,strong){color:#34281b!important}
+.relians-generator-page :is(#story,#sheetbank) .sheet-panel :is(p,small,span){color:#5f4e38}
+.relians-generator-page :is(#story,#sheetbank) .character-preview-attrs div{
+  border-bottom:1px solid rgba(117,88,52,.22)!important;
+  color:#443521!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-preview-skills span{
+  background:rgba(255,255,255,.18)!important;
+  border-color:#b29a75!important;
+  color:#473725!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-preview-equipment>div{
+  border-color:rgba(117,88,52,.22)!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .character-preview-equipment p{color:#6a5941!important}
+.relians-generator-page :is(#story,#sheetbank) .story-team-preview>div{
+  background:rgba(255,255,255,.18)!important;
+  border-color:#b39a74!important;
+  color:#3d3020!important;
+}
+.relians-generator-page :is(#story,#sheetbank) .story-team-preview :is(span,small){color:#685841!important}
+
+/* Banco: controles editáveis continuam legíveis sobre o papel. */
+.relians-generator-page #sheetbank .bank-character-card :is(input,select,textarea){
+  background:#f3ead8!important;
+  color:#33281d!important;
+  border-color:#aa916c!important;
+}
+.relians-generator-page #sheetbank .bank-backpack-row,
+.relians-generator-page #sheetbank .equipped-relian-slot{
+  background:rgba(255,255,255,.18)!important;
+  color:#3a2d1e!important;
+  border-color:#aa916c!important;
+}
+.relians-generator-page #sheetbank .equipped-team-heading :is(h3,b),
+.relians-generator-page #sheetbank .bank-backpack-row :is(label,b,strong){color:#3b2d1e!important}
+
+/* O papel precisa vencer as regras globais do dark mode. */
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) .character-sheet-preview,
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) .character-sheet-preview :is(h2,h3,b,strong,label){color:#3a2d1e!important}
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) .character-sheet-preview :is(p,small,span){color:#5f4e38}
+html[data-rw-theme="dark"] .relians-generator-page :is(#story,#sheetbank) .character-tags b{color:#f5e6c5!important}
+
+/* Mobile: mantém a leitura de livro sem apertar o cabeçalho. */
+@media(max-width:1150px){
+  .relians-generator-page :is(#story,#sheetbank) .character-sheet-header{grid-template-columns:190px 1fr!important}
+  .relians-generator-page :is(#story,#sheetbank) .character-resources{grid-column:1/-1;border-top:1px solid rgba(103,76,42,.25)}
+}
+@media(max-width:700px){
+  .relians-generator-page :is(#story,#sheetbank) .character-sheet-header{grid-template-columns:1fr!important}
+  .relians-generator-page :is(#story,#sheetbank) .character-portrait{border-right:0!important;border-bottom:1px solid rgba(103,76,42,.28)!important}
+  .relians-generator-page :is(#story,#sheetbank) .character-identity{border-right:0!important;padding:22px 18px!important}
+  .relians-generator-page :is(#story,#sheetbank) .character-resources{padding:18px!important}
+  .relians-generator-page :is(#story,#sheetbank) .character-sheet-grid{padding:14px!important}
+}
+
+
+/* v10.1.0 — Fichas como arquivo/livro: visual independente do tema externo */
+.relians-generator-page #story .story-editor-toolbar{background:color-mix(in srgb,var(--sheet-surface-2) 88%,transparent)!important;border-color:var(--sheet-line)!important;color:var(--sheet-ink)!important}
+.relians-generator-page #story .story-editor-step{background:var(--sheet-surface-3)!important;color:var(--sheet-muted)!important;border-color:var(--sheet-line)!important}
+.relians-generator-page #story .story-editor-step.active{background:var(--sheet-accent-soft)!important;color:var(--sheet-ink)!important;border-color:var(--sheet-accent)!important;box-shadow:0 5px 14px rgba(0,0,0,.08)!important}
+.relians-generator-page #story .story-editor-step span{color:inherit!important}.relians-generator-page #story .story-editor-step-nav>span{color:var(--sheet-muted)!important}
+.relians-generator-page #sheetbank .bank-filter{background:var(--sheet-surface-3)!important;color:var(--sheet-muted)!important;border-color:var(--sheet-line)!important}.relians-generator-page #sheetbank .bank-filter.active{background:var(--sheet-accent-soft)!important;color:var(--sheet-ink)!important;border-color:var(--sheet-accent)!important}
+
+/* A ficha lida como página impressa nos dois temas, como o Catálogo. */
+.relians-generator-page #sheetbank :is(.bank-book-sheet,.saved-relian-card){--paper:#e8dcc0;--paper-2:#f1e7cf;--paper-3:#d9c9a8;--ink:#30291f;--muted-ink:#6e6252;--book-line:rgba(88,68,43,.28);--book-accent:#315f55;background:linear-gradient(90deg,rgba(91,65,34,.08),transparent 3%,transparent 97%,rgba(91,65,34,.08)),linear-gradient(180deg,var(--paper-2),var(--paper))!important;color:var(--ink)!important;border:1px solid #aa9570!important;border-radius:18px!important;box-shadow:0 22px 45px rgba(48,35,20,.18)!important}
+.relians-generator-page #sheetbank .bank-book-sheet .character-sheet-header{background:linear-gradient(115deg,#d8c9a7,#efe4cb 45%,#d7e0cf)!important;border-bottom:1px solid var(--book-line)!important;color:var(--ink)!important}
+.relians-generator-page #sheetbank .bank-book-sheet .character-portrait{background:linear-gradient(145deg,#557d73,#315a54)!important;border-color:#9b8b6b!important}.relians-generator-page #sheetbank .bank-book-sheet .character-portrait span{color:#f0e7d1!important}
+.relians-generator-page #sheetbank .bank-book-sheet :is(h2,h3,h4,b,strong,label,.character-identity p,.character-resources p){color:var(--ink)!important}.relians-generator-page #sheetbank .bank-book-sheet :is(small,.bank-character-description,.character-preview-equipment p,.character-backpack-preview p){color:var(--muted-ink)!important}
+.relians-generator-page #sheetbank .bank-book-sheet .character-identity>small{color:var(--book-accent)!important;letter-spacing:.16em!important}.relians-generator-page #sheetbank .bank-book-sheet .character-tags>* , .relians-generator-page #sheetbank .bank-book-sheet .character-milestones span{background:rgba(255,250,235,.44)!important;border-color:var(--book-line)!important;color:var(--ink)!important}
+.relians-generator-page #sheetbank .bank-book-sheet .character-resources{background:rgba(244,234,211,.58)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .bank-book-sheet .character-resources i{background:#b9aa8d!important}.relians-generator-page #sheetbank .bank-book-sheet .character-resources i em{background:linear-gradient(90deg,#39755b,#6caf7d)!important}.relians-generator-page #sheetbank .bank-book-sheet .character-resources i.sta em{background:linear-gradient(90deg,#426d86,#70a3bd)!important}
+.relians-generator-page #sheetbank .bank-detail-tabs{background:rgba(216,201,169,.62)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .bank-detail-tabs button{background:rgba(248,239,217,.62)!important;color:var(--muted-ink)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .bank-detail-tabs button.active{background:var(--book-accent)!important;color:#f6f0df!important;border-color:var(--book-accent)!important}
+.relians-generator-page #sheetbank .bank-book-sheet .sheet-panel{background:rgba(246,237,216,.55)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .bank-book-sheet .sheet-panel>h3,.relians-generator-page #sheetbank .bank-book-sheet .equipped-team-heading{background:rgba(92,113,86,.16)!important;color:var(--ink)!important;border-bottom:1px solid var(--book-line)!important}.relians-generator-page #sheetbank .bank-book-sheet .equipped-team-heading p{color:var(--muted-ink)!important}.relians-generator-page #sheetbank .bank-book-sheet :is(.character-preview-attrs>div,.character-preview-skills span,.character-preview-equipment>div,.story-team-preview>div,.equipped-relian-slot,.bank-backpack-row){background:rgba(255,248,230,.46)!important;border-color:var(--book-line)!important;color:var(--ink)!important}.relians-generator-page #sheetbank .bank-book-sheet :is(input,select,textarea){background:#f6ecd4!important;color:var(--ink)!important;border-color:var(--book-line)!important}
+
+/* Relian salvo também usa composição de livro, mas conserva a cor da criatura no retrato. */
+.relians-generator-page #sheetbank .saved-relian-header{background:linear-gradient(115deg,#d9c9a7,#eee3ca 52%,#d9dfcb)!important;border-bottom:1px solid var(--book-line)!important}.relians-generator-page #sheetbank .saved-relian-identity :is(h2,b,strong,label,p){color:var(--ink)!important}.relians-generator-page #sheetbank .saved-relian-identity small{color:var(--muted-ink)!important}.relians-generator-page #sheetbank .saved-relian-identity input,.relians-generator-page #sheetbank .saved-relian-identity select{background:#f6ecd4!important;color:var(--ink)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-resource{background:rgba(246,237,216,.55)!important;border-color:var(--book-line)!important;color:var(--ink)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-resource strong,.relians-generator-page #sheetbank .saved-relian-card .bank-resource b{color:var(--ink)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-resource i{background:#baa98c!important}.relians-generator-page #sheetbank .saved-relian-card .bank-resource button{background:#eee1c7!important;color:var(--ink)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-detail-tabs{background:rgba(216,201,169,.66)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-relian-panel{background:rgba(247,238,217,.56)!important;border:1px solid var(--book-line)!important;border-radius:14px!important;overflow:hidden}.relians-generator-page #sheetbank .saved-relian-card .bank-relian-panel>h3{background:rgba(92,113,86,.16)!important;color:var(--ink)!important;border-bottom:1px solid var(--book-line)!important}.relians-generator-page #sheetbank .saved-relian-card :is(.bank-attrs-table th,.bank-attrs-table td,.bank-trait b,.bank-trait p,.bank-moves b,.bank-moves small){color:var(--ink)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-attrs-table input{background:#f6ecd4!important;color:var(--ink)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-moves>div{background:rgba(255,248,230,.48)!important;border-color:var(--book-line)!important}.relians-generator-page #sheetbank .saved-relian-card .bank-moves>div>span{background:var(--book-accent)!important;color:#f6f0df!important}
+
+/* O Banco em si continua acompanhando tema claro/escuro; só a folha interna é de papel. */
+.relians-generator-page #sheetbank .sheet-bank-layout{align-items:start!important}.relians-generator-page #sheetbank .sheet-bank-detail{border-radius:22px!important}.relians-generator-page #sheetbank .sheet-bank-sidebar{border-radius:22px!important}.relians-generator-page #sheetbank .saved-sheet-select{min-height:84px!important;padding:13px 14px!important}.relians-generator-page #sheetbank .saved-sheet-select.selected{box-shadow:inset 3px 0 0 var(--sheet-accent)!important}
+
+/* A prévia no Criador usa a mesma linguagem de papel do Banco/Catálogo. */
+.relians-generator-page #story .story-side-preview{background:color-mix(in srgb,var(--sheet-surface) 92%,transparent)!important;border-color:var(--sheet-line)!important}
+.relians-generator-page #story .character-sheet-preview{--preview-paper:#e8dcc0;--preview-paper-2:#f1e7cf;--preview-ink:#30291f;--preview-muted:#6e6252;--preview-line:rgba(88,68,43,.27);background:linear-gradient(90deg,rgba(91,65,34,.07),transparent 3%,transparent 97%,rgba(91,65,34,.07)),linear-gradient(180deg,var(--preview-paper-2),var(--preview-paper))!important;color:var(--preview-ink)!important;border:1px solid #aa9570!important;box-shadow:0 18px 38px rgba(48,35,20,.16)!important}
+.relians-generator-page #story .character-sheet-preview .character-sheet-header{background:linear-gradient(115deg,#d8c9a7,#efe4cb 45%,#d7e0cf)!important;border-bottom-color:var(--preview-line)!important}
+.relians-generator-page #story .character-sheet-preview :is(h2,h3,b,strong,.character-identity p,.character-resources p){color:var(--preview-ink)!important}
+.relians-generator-page #story .character-sheet-preview :is(small,.sheet-panel p,.story-team-preview small){color:var(--preview-muted)!important}
+.relians-generator-page #story .character-sheet-preview .character-identity>small{color:#315f55!important}
+.relians-generator-page #story .character-sheet-preview .character-tags>* , .relians-generator-page #story .character-sheet-preview .character-milestones span{background:rgba(255,250,235,.44)!important;color:var(--preview-ink)!important;border-color:var(--preview-line)!important}
+.relians-generator-page #story .character-sheet-preview .sheet-panel{background:rgba(246,237,216,.56)!important;border-color:var(--preview-line)!important}
+.relians-generator-page #story .character-sheet-preview .sheet-panel>h3{background:rgba(92,113,86,.15)!important;color:var(--preview-ink)!important}
+.relians-generator-page #story .character-sheet-preview :is(.character-preview-attrs>div,.character-preview-skills span,.character-preview-equipment>div,.character-backpack-preview>div,.story-team-preview>div){background:rgba(255,248,230,.46)!important;border-color:var(--preview-line)!important;color:var(--preview-ink)!important}

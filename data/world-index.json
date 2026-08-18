@@ -1,7 +1,7 @@
 {
   "kind": "relians-official-world-index",
   "schemaVersion": 1,
-  "projectVersion": "10.0.0",
+  "projectVersion": "10.1.0",
   "generatedAt": "2026-08-12T07:35:29.684575+00:00",
   "counts": {
     "moves": 126,

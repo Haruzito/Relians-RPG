@@ -1,0 +1,994 @@
+
+/* =========================================================
+   RELIANS WORLD — MOBILE SYSTEM
+   Etapa 5/6
+   Camada final compartilhada para Portal, Gerador, Blog e TCG.
+   Carregada por último para neutralizar conflitos mobile antigos.
+   ========================================================= */
+
+@media (max-width: 900px){
+
+  html{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden!important;
+  }
+
+  body.rw-nav-open{
+    overflow:hidden!important;
+    touch-action:none;
+  }
+
+  /* ---------- MENU LATERAL COMPARTILHADO ---------- */
+  .rw-nav-toggle{
+    position:fixed!important;
+    top:10px!important;
+    left:9px!important;
+    width:40px!important;
+    height:40px!important;
+    z-index:1600!important;
+  }
+
+  .rw-nav-backdrop{
+    z-index:1580!important;
+  }
+
+  .rw-side-nav{
+    z-index:1590!important;
+    width:min(306px,91vw)!important;
+    max-width:91vw!important;
+    padding:64px 10px max(14px,env(safe-area-inset-bottom))!important;
+    overscroll-behavior:contain;
+  }
+
+  .rw-side-link{
+    min-height:54px!important;
+    padding:9px 10px!important;
+  }
+
+  /* =======================================================
+     PORTAL / TCG
+     ======================================================= */
+  .relians-portal-page .portal-topbar,
+  .relians-tcg-page .portal-topbar{
+    position:relative!important;
+    top:auto!important;
+    z-index:70!important;
+    width:100%!important;
+    min-height:60px!important;
+    padding:8px 10px 8px 58px!important;
+    gap:8px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+  }
+
+  .relians-portal-page .portal-brand,
+  .relians-tcg-page .portal-brand{
+    min-width:0!important;
+  }
+
+  .relians-portal-page .portal-brand img,
+  .relians-tcg-page .portal-brand img{
+    width:36px!important;
+    height:36px!important;
+  }
+
+  .relians-portal-page .portal-brand strong,
+  .relians-tcg-page .portal-brand strong{
+    font-size:1rem!important;
+    white-space:nowrap;
+  }
+
+  .relians-portal-page .portal-quick-nav,
+  .relians-tcg-page .portal-quick-nav{
+    min-width:0!important;
+    max-width:58vw!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    gap:3px!important;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .relians-portal-page .portal-quick-nav::-webkit-scrollbar,
+  .relians-tcg-page .portal-quick-nav::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  .relians-portal-page .portal-quick-nav a,
+  .relians-tcg-page .portal-quick-nav a{
+    flex:0 0 auto!important;
+    padding:7px 8px!important;
+    font-size:.69rem!important;
+    white-space:nowrap!important;
+  }
+
+  .relians-portal-page .portal-shell,
+  .relians-tcg-page .portal-shell{
+    width:calc(100% - 16px)!important;
+    max-width:100%!important;
+    margin:0 auto!important;
+    padding:10px 0 34px!important;
+  }
+
+  .relians-portal-page .portal-hero,
+  .relians-tcg-page .portal-hero{
+    min-height:0!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:12px!important;
+    padding:22px 18px!important;
+    border-radius:18px!important;
+  }
+
+  .relians-portal-page .portal-hero-emblem,
+  .relians-tcg-page .portal-hero-emblem{
+    display:none!important;
+  }
+
+  .relians-portal-page .portal-hero h1,
+  .relians-tcg-page .portal-hero h1{
+    font-size:clamp(2.55rem,17vw,4.5rem)!important;
+    overflow-wrap:anywhere;
+  }
+
+  .relians-portal-page .portal-hero p,
+  .relians-tcg-page .portal-hero p{
+    font-size:.92rem!important;
+    line-height:1.55!important;
+  }
+
+  .portal-hero-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    width:100%!important;
+  }
+
+  .portal-hero-actions .portal-button{
+    width:100%!important;
+  }
+
+  .portal-section-heading{
+    display:grid!important;
+    gap:5px!important;
+    align-items:start!important;
+  }
+
+  .portal-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+
+  .portal-card{
+    min-width:0!important;
+    min-height:0!important;
+    grid-template-columns:45px minmax(0,1fr)!important;
+    gap:11px!important;
+    padding:16px!important;
+    border-radius:16px!important;
+  }
+
+  .portal-card-arrow{
+    display:none!important;
+  }
+
+  .portal-card h3{
+    font-size:1.15rem!important;
+    overflow-wrap:anywhere;
+  }
+
+  .portal-card p{
+    font-size:.8rem!important;
+  }
+
+  .portal-highlight{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    padding:18px!important;
+    border-radius:17px!important;
+  }
+
+  .portal-highlight .portal-button{
+    width:100%!important;
+  }
+
+  .portal-footer{
+    width:calc(100% - 20px)!important;
+    display:grid!important;
+    gap:3px!important;
+    padding-bottom:max(28px,env(safe-area-inset-bottom))!important;
+  }
+
+  /* =======================================================
+     BLOG
+     ======================================================= */
+  .relians-blog-page .blog-topbar{
+    position:relative!important;
+    top:auto!important;
+    z-index:70!important;
+    min-height:60px!important;
+    width:100%!important;
+    padding:8px 10px 8px 58px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    gap:8px!important;
+  }
+
+  .relians-blog-page .blog-brand{
+    min-width:0!important;
+  }
+
+  .relians-blog-page .blog-brand img{
+    width:36px!important;
+    height:36px!important;
+  }
+
+  .relians-blog-page .blog-brand strong{
+    font-size:.96rem!important;
+    white-space:nowrap;
+  }
+
+  .relians-blog-page .blog-top-actions{
+    display:flex!important;
+    gap:3px!important;
+  }
+
+  .relians-blog-page .blog-top-actions a{
+    padding:7px 8px!important;
+    font-size:.67rem!important;
+    white-space:nowrap;
+  }
+
+  .relians-blog-page .blog-shell{
+    width:calc(100% - 16px)!important;
+    max-width:100%!important;
+    padding:10px 0 34px!important;
+  }
+
+  .relians-blog-page .blog-hero{
+    min-height:0!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    padding:21px 17px!important;
+    border-radius:18px!important;
+  }
+
+  .relians-blog-page .blog-hero-mark{
+    display:none!important;
+  }
+
+  .relians-blog-page .blog-hero h1{
+    font-size:clamp(1.8rem,10vw,2.75rem)!important;
+    overflow-wrap:anywhere;
+  }
+
+  .relians-blog-page .blog-hero-meta{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+
+  .relians-blog-page .blog-hero-meta span{
+    width:100%!important;
+    border-radius:10px!important;
+  }
+
+  .relians-blog-page .blog-dashboard{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:9px!important;
+  }
+
+  .relians-blog-page .dashboard-card{
+    min-height:0!important;
+    padding:15px!important;
+  }
+
+  .relians-blog-page .blog-main-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:12px!important;
+  }
+
+  .relians-blog-page .section-title{
+    min-height:0!important;
+    display:grid!important;
+    gap:8px!important;
+    align-items:start!important;
+  }
+
+  .relians-blog-page .blog-filter-tabs{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:2px!important;
+  }
+
+  .relians-blog-page .blog-filter-tabs::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  .relians-blog-page .blog-filter-tabs button{
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+  }
+
+  .relians-blog-page .post-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-blog-page .blog-post,
+  .relians-blog-page .blog-post.major{
+    grid-column:auto!important;
+    min-width:0!important;
+  }
+
+  .relians-blog-page .blog-post.major{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-blog-page .post-art{
+    min-height:165px!important;
+  }
+
+  .relians-blog-page .blog-post.major .post-copy{
+    padding:17px!important;
+  }
+
+  .relians-blog-page .post-details{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-blog-page .blog-sidebar{
+    position:static!important;
+    top:auto!important;
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-blog-page .version-entry summary{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:4px!important;
+  }
+
+  .relians-blog-page .blog-footer{
+    width:calc(100% - 18px)!important;
+    display:grid!important;
+    gap:3px!important;
+    padding-bottom:max(28px,env(safe-area-inset-bottom))!important;
+  }
+
+  /* =======================================================
+     GERADOR
+     ======================================================= */
+  .relians-generator-page{
+    overflow-x:hidden!important;
+  }
+
+  .relians-generator-page .app-header.topbar{
+    position:relative!important;
+    top:auto!important;
+    z-index:70!important;
+    width:100%!important;
+    min-height:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-rows:auto auto!important;
+    gap:7px 8px!important;
+    padding:8px 8px 7px 58px!important;
+    margin:0!important;
+    box-shadow:none!important;
+  }
+
+  .relians-generator-page .brand-block{
+    grid-column:1!important;
+    grid-row:1!important;
+    min-width:0!important;
+    gap:7px!important;
+  }
+
+  .relians-generator-page .brand-mark{
+    width:34px!important;
+    height:34px!important;
+    flex:0 0 34px!important;
+  }
+
+  .relians-generator-page .brand-block h1{
+    margin:0!important;
+    font-size:.92rem!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  .relians-generator-page .brand-block p{
+    display:none!important;
+  }
+
+  .relians-generator-page .world-product-label{
+    display:block!important;
+    font-size:.51rem!important;
+    white-space:nowrap;
+  }
+
+  .relians-generator-page .version-label{
+    font-size:.53rem!important;
+  }
+
+  .relians-generator-page .header-utilities{
+    grid-column:2!important;
+    grid-row:1!important;
+    width:auto!important;
+    max-width:118px!important;
+    margin:0!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:3px!important;
+    overflow:visible!important;
+  }
+
+  .relians-generator-page .header-utilities button,
+  .relians-generator-page .header-utilities .file-label{
+    flex:0 0 32px!important;
+    width:32px!important;
+    min-width:32px!important;
+    max-width:32px!important;
+    height:32px!important;
+    min-height:32px!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:8px!important;
+  }
+
+  .relians-generator-page .header-utilities b,
+  .relians-generator-page .header-utilities .toolbar-main,
+  .relians-generator-page .header-utilities #syncFolderBtn,
+  .relians-generator-page .header-utilities #exportBtn,
+  .relians-generator-page .header-utilities .file-label{
+    display:none!important;
+  }
+
+  .relians-generator-page .header-navigation{
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+    width:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    display:block!important;
+  }
+
+  .relians-generator-page .relians-main-nav{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    z-index:75!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-height:44px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:4px!important;
+    margin:0!important;
+    padding:2px 0!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    background:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+
+  .relians-generator-page .relians-main-nav::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  .relians-generator-page .nav-main-link,
+  .relians-generator-page .nav-menu{
+    flex:0 0 auto!important;
+  }
+
+  .relians-generator-page .nav-main-link,
+  .relians-generator-page .nav-menu-trigger{
+    width:auto!important;
+    min-width:max-content!important;
+    min-height:40px!important;
+    height:40px!important;
+    padding:0 9px!important;
+    gap:5px!important;
+    border-radius:9px!important;
+    font-size:.7rem!important;
+  }
+
+  .relians-generator-page .nav-page-icon{
+    width:24px!important;
+    height:24px!important;
+    flex:0 0 24px!important;
+    margin:0!important;
+  }
+
+  .relians-generator-page .nav-dropdown,
+  .relians-generator-page .nav-dropdown-right{
+    position:fixed!important;
+    left:9px!important;
+    right:9px!important;
+    top:auto!important;
+    bottom:max(10px,env(safe-area-inset-bottom))!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    max-height:min(68dvh,540px)!important;
+    margin:0!important;
+    padding:8px!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    z-index:1500!important;
+    border-radius:15px!important;
+    transform:none!important;
+  }
+
+  .relians-generator-page .nav-menu:not(.open) > .nav-dropdown{
+    display:none!important;
+  }
+
+  .relians-generator-page .nav-menu.open > .nav-dropdown{
+    display:grid!important;
+  }
+
+  .relians-generator-page .nav-dropdown-item{
+    width:100%!important;
+    min-height:56px!important;
+    grid-template-columns:30px minmax(0,1fr)!important;
+    gap:8px!important;
+    padding:9px 10px!important;
+  }
+
+  .relians-generator-page .folder-status,
+  .relians-generator-page .page-context-bar{
+    position:relative!important;
+    top:auto!important;
+    width:100%!important;
+    margin:0!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  .relians-generator-page .folder-status{
+    min-height:25px!important;
+    padding:5px 9px!important;
+    font-size:.61rem!important;
+  }
+
+  .relians-generator-page .page-context-bar{
+    min-height:27px!important;
+    padding:5px 9px!important;
+    font-size:.6rem!important;
+  }
+
+  .relians-generator-page main{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:9px 7px 30px!important;
+    overflow:visible!important;
+  }
+
+  .relians-generator-page .tab-panel,
+  .relians-generator-page .tab-panel.active,
+  .relians-generator-page .card,
+  .relians-generator-page fieldset,
+  .relians-generator-page .sheet-section,
+  .relians-generator-page .catalog-profile,
+  .relians-generator-page .catalog-book-panel{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+
+  .relians-generator-page .generator-layout,
+  .relians-generator-page .editor-layout,
+  .relians-generator-page .catalog-layout,
+  .relians-generator-page .sheet-bank-layout,
+  .relians-generator-page .story-editor-layout,
+  .relians-generator-page .story-workspace,
+  .relians-generator-page .play-sheet-shell{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:9px!important;
+  }
+
+  .relians-generator-page .sticky-card,
+  .relians-generator-page .relian-sidebar,
+  .relians-generator-page .catalog-sidebar,
+  .relians-generator-page .story-sidebar,
+  .relians-generator-page .sheet-bank-sidebar,
+  .relians-generator-page .story-side-preview,
+  .relians-generator-page .play-sheet-loader{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    max-height:none!important;
+  }
+
+  .relians-generator-page .grid.two,
+  .relians-generator-page .grid.three,
+  .relians-generator-page .grid.four,
+  .relians-generator-page .resource-panel,
+  .relians-generator-page .moves-grid,
+  .relians-generator-page .bank-resource-grid,
+  .relians-generator-page .character-attributes-grid,
+  .relians-generator-page .character-skills-grid,
+  .relians-generator-page .character-equipment-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-generator-page input,
+  .relians-generator-page select,
+  .relians-generator-page textarea{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    font-size:16px!important;
+  }
+
+  .relians-generator-page .form-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:6px!important;
+  }
+
+  .relians-generator-page .form-actions > *{
+    width:100%!important;
+  }
+
+  /* Catálogo */
+  .relians-generator-page #catalog .catalog-layout{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:9px!important;
+  }
+
+  .relians-generator-page #catalog .catalog-sidebar{
+    order:0!important;
+  }
+
+  .relians-generator-page #catalog .catalog-detail{
+    order:1!important;
+    width:100%!important;
+    min-width:0!important;
+    overflow:visible!important;
+  }
+
+  .relians-generator-page #catalog .catalog-results{
+    width:100%!important;
+    max-height:34dvh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+  }
+
+  .relians-generator-page #catalog .catalog-profile,
+  .relians-generator-page #catalog .catalog-book{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+
+  .relians-generator-page #catalog .catalog-profile-header,
+  .relians-generator-page #catalog .catalog-book-heading{
+    grid-template-columns:minmax(0,1fr)!important;
+    min-width:0!important;
+  }
+
+  .relians-generator-page #catalog .catalog-profile-image,
+  .relians-generator-page #catalog .catalog-book-image{
+    width:100%!important;
+    min-width:0!important;
+    min-height:180px!important;
+    max-height:285px!important;
+  }
+
+  .relians-generator-page #catalog .catalog-profile-image img,
+  .relians-generator-page #catalog .catalog-book-image img{
+    width:100%!important;
+    max-width:100%!important;
+    height:100%!important;
+    max-height:265px!important;
+    object-fit:contain!important;
+  }
+
+  .relians-generator-page #catalog .catalog-book-name h2,
+  .relians-generator-page #catalog .catalog-profile h2{
+    max-width:100%!important;
+    font-size:clamp(1.05rem,6vw,1.55rem)!important;
+    line-height:1.06!important;
+    overflow-wrap:anywhere!important;
+    -webkit-line-clamp:2!important;
+    line-clamp:2!important;
+  }
+
+  .relians-generator-page #catalog .catalog-book-tabs{
+    width:100%!important;
+    max-width:100%!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    gap:4px!important;
+    overflow-x:auto!important;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .relians-generator-page #catalog .catalog-book-tabs::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  .relians-generator-page #catalog .catalog-book-tabs button{
+    flex:0 0 auto!important;
+    min-height:39px!important;
+    padding:7px 9px!important;
+    font-size:.69rem!important;
+  }
+
+  .relians-generator-page #catalog .catalog-data-grid,
+  .relians-generator-page #catalog .catalog-resource-cards,
+  .relians-generator-page #catalog .catalog-encounters{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  /* Banco e fichas */
+  .relians-generator-page .sheet-banner,
+  .relians-generator-page .saved-relian-header,
+  .relians-generator-page .bank-character-card .character-sheet-header,
+  .relians-generator-page .sheet-body,
+  .relians-generator-page .saved-relian-body,
+  .relians-generator-page .bank-character-card .character-sheet-grid,
+  .relians-generator-page .active-player-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-generator-page .portrait-panel,
+  .relians-generator-page .saved-relian-portrait{
+    min-height:170px!important;
+  }
+
+  .relians-generator-page .relian-portrait{
+    width:100%!important;
+    max-height:220px!important;
+    object-fit:contain!important;
+  }
+
+  /* Dialogs */
+  .relians-generator-page dialog{
+    width:calc(100vw - 16px)!important;
+    max-width:calc(100vw - 16px)!important;
+    max-height:84dvh!important;
+    margin:auto!important;
+    padding:13px!important;
+    overflow:auto!important;
+  }
+
+  .relians-generator-page dialog:not([open]){
+    display:none!important;
+  }
+
+  .relians-generator-page dialog[open]{
+    display:block!important;
+  }
+
+  /* Pacote de dados */
+  .relians-generator-page .official-data-actions,
+  .relians-generator-page .official-data-version-row{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .relians-generator-page .official-data-actions>*,
+  .relians-generator-page .official-data-version-row>*{
+    width:100%!important;
+  }
+}
+
+@media (max-width: 520px){
+
+  .relians-portal-page .portal-quick-nav a:nth-child(4),
+  .relians-blog-page .blog-top-actions a:nth-child(2){
+    display:none!important;
+  }
+
+  .relians-generator-page .nav-main-link,
+  .relians-generator-page .nav-menu-trigger{
+    padding:0 8px!important;
+  }
+
+  .relians-generator-page .card{
+    padding:11px!important;
+    border-radius:11px!important;
+  }
+
+  .relians-generator-page #catalog .catalog-results{
+    max-height:31dvh!important;
+  }
+
+  .relians-blog-page .mini-stats{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
+@media (max-width: 380px){
+  .rw-nav-toggle{
+    width:38px!important;
+    height:38px!important;
+  }
+
+  .relians-portal-page .portal-topbar,
+  .relians-tcg-page .portal-topbar,
+  .relians-blog-page .blog-topbar,
+  .relians-generator-page .app-header.topbar{
+    padding-left:54px!important;
+  }
+
+  .relians-generator-page .brand-mark{
+    width:31px!important;
+    height:31px!important;
+    flex-basis:31px!important;
+  }
+
+  .relians-generator-page .brand-block h1{
+    font-size:.84rem!important;
+  }
+
+  .relians-generator-page .nav-main-link,
+  .relians-generator-page .nav-menu-trigger{
+    min-height:38px!important;
+    height:38px!important;
+    font-size:.66rem!important;
+  }
+
+  .relians-generator-page .nav-page-icon{
+    width:22px!important;
+    height:22px!important;
+    flex-basis:22px!important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:520px) and (max-width:900px){
+  .rw-side-nav{
+    padding-top:56px!important;
+  }
+
+  .relians-generator-page .nav-dropdown,
+  .relians-generator-page .nav-dropdown-right{
+    max-height:78dvh!important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .relians-portal-page *,
+  .relians-blog-page *,
+  .relians-tcg-page *,
+  .relians-generator-page *{
+    scroll-behavior:auto!important;
+  }
+}
+
+
+/* Battle Card final — mobile */
+@media(max-width:900px){
+  .relians-tcg-page .tcg-library-layout,
+  .relians-tcg-page .battle-desktop-layout{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  .relians-tcg-page .tcg-library-preview,
+  .relians-tcg-page .battle-card-inspector{
+    position:relative!important;
+    top:auto!important;
+    width:100%!important;
+  }
+  .relians-tcg-page .relian-card-studio{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  .relians-tcg-page .relian-card-preview-column{
+    position:relative!important;
+    top:auto!important;
+  }
+  .relians-tcg-page .battle-field-row{
+    display:flex!important;
+    overflow-x:auto!important;
+    gap:7px!important;
+  }
+  .relians-tcg-page .battle-slot{
+    flex:0 0 132px!important;
+  }
+}
+@media(max-width:520px){
+  .relians-tcg-page .tcg-cards-grid{grid-template-columns:minmax(0,1fr)!important}
+  .relians-tcg-page .battle-statusbar{grid-template-columns:1fr 1fr!important}
+  .relians-tcg-page .battle-statusbar button{grid-column:1/-1!important}
+  .relians-tcg-page .relian-card-preview{width:min(100%,340px)!important}
+}
+
+
+/* Relians Battle Card — etapa 4/4
+   Garante que a navegação global não cubra o conteúdo em telas pequenas. */
+@media(max-width:820px){
+  .relians-tcg-page .tcg-shell,
+  .relians-tcg-page .tcg-main,
+  .relians-tcg-page .tcg-workspace{
+    max-width:100%;
+    min-width:0;
+  }
+  .relians-tcg-page .tcg-workspace{
+    overflow-x:hidden;
+  }
+}
+
+
+/* Battle Card — coleção e arena expandida */
+@media(max-width:1050px){
+  body.tcg-battle-mode .tcg-workspace{
+    display:block!important;
+  }
+}
+@media(max-width:640px){
+  .relians-tcg-page .tcg-collection-grid{
+    grid-template-columns:1fr!important;
+  }
+  .relians-tcg-page .collection-card-actions{
+    display:grid!important;
+    grid-template-columns:1fr auto!important;
+  }
+}
+
+
+/* =========================================================
+   Battle Card — modo compacto
+   No celular não trava a página inteira; mantém rolagem natural.
+   ========================================================= */
+@media(max-width:1050px){
+  body.tcg-battle-mode{
+    height:auto!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+  }
+
+  body.tcg-battle-mode .tcg-hero,
+  body.tcg-battle-mode .tcg-summary-grid{
+    display:none!important;
+  }
+
+  body.tcg-battle-mode .tcg-shell{
+    height:auto!important;
+    min-height:0!important;
+    padding-top:6px!important;
+  }
+
+  body.tcg-battle-mode .battle-panel,
+  body.tcg-battle-mode .battle-root,
+  body.tcg-battle-mode .battle-desktop-layout,
+  body.tcg-battle-mode .battle-main-column{
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+}

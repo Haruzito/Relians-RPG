@@ -1,0 +1,365 @@
+
+/* =========================================================
+   RELIANS WORLD — IDENTIDADE VISUAL COMPARTILHADA
+   Etapa 4/6
+   Portal • Gerador • Blog • TCG
+   ========================================================= */
+:root{
+  --rw-forest-950:#10261b;
+  --rw-forest-900:#183225;
+  --rw-forest-800:#274431;
+  --rw-forest-700:#3b5940;
+  --rw-moss:#788c6d;
+  --rw-paper:#efe9d8;
+  --rw-paper-deep:#e3dcc7;
+  --rw-gold:#c39a58;
+  --rw-gold-soft:#e7cf9a;
+  --rw-ink:#2b392d;
+  --rw-muted:#6e7c70;
+  --rw-radius-sm:10px;
+  --rw-radius-md:16px;
+  --rw-radius-lg:22px;
+  --rw-shadow:0 12px 32px rgba(27,43,31,.13);
+}
+
+/* Uma linguagem de marca comum em todas as páginas. */
+.relians-portal-page,
+.relians-generator-page,
+.relians-blog-page,
+.relians-tcg-page{
+  --rw-brand-font:Georgia,"Times New Roman",serif;
+}
+
+/* Cabeçalhos diferentes, mas claramente pertencentes ao mesmo site. */
+.relians-portal-page .portal-topbar,
+.relians-tcg-page .portal-topbar,
+.relians-blog-page .blog-topbar,
+.relians-generator-page .app-header.topbar{
+  border-bottom:1px solid rgba(195,154,88,.22)!important;
+}
+
+/* Portal / TCG */
+.relians-portal-page .portal-brand strong,
+.relians-tcg-page .portal-brand strong{
+  font-family:var(--rw-brand-font)!important;
+  color:#f0d9a7!important;
+}
+.relians-portal-page .portal-topbar,
+.relians-tcg-page .portal-topbar{
+  background:
+    linear-gradient(180deg,rgba(18,42,29,.96),rgba(16,36,26,.96))!important;
+}
+.relians-portal-page .portal-card,
+.relians-tcg-page .portal-card{
+  border-color:rgba(90,110,86,.20)!important;
+  box-shadow:var(--rw-shadow)!important;
+}
+.relians-portal-page .portal-card h3,
+.relians-tcg-page .portal-card h3,
+.relians-portal-page .portal-section-heading h2,
+.relians-tcg-page .portal-section-heading h2{
+  font-family:var(--rw-brand-font)!important;
+}
+
+/* Blog */
+.relians-blog-page .blog-topbar{
+  background:rgba(239,233,216,.94)!important;
+}
+.relians-blog-page .blog-brand strong,
+.relians-blog-page h1,
+.relians-blog-page h2,
+.relians-blog-page h3{
+  font-family:var(--rw-brand-font)!important;
+}
+.relians-blog-page .dashboard-card,
+.relians-blog-page .blog-post,
+.relians-blog-page .side-panel,
+.relians-blog-page .version-entry{
+  border-color:rgba(65,87,65,.20)!important;
+  box-shadow:0 8px 24px rgba(38,58,41,.08)!important;
+}
+
+/* Gerador: mantém a interface técnica, mas o "chrome" passa a falar
+   a mesma língua visual do Portal e do Blog. */
+.relians-generator-page{
+  --rw-generator-header:#183229;
+  --rw-generator-header-2:#10271f;
+}
+.relians-generator-page .app-header.topbar{
+  background:
+    radial-gradient(circle at 45% -40%,rgba(141,165,112,.13),transparent 42%),
+    linear-gradient(180deg,var(--rw-generator-header),var(--rw-generator-header-2))!important;
+  box-shadow:0 8px 28px rgba(4,17,11,.30)!important;
+}
+.relians-generator-page .brand-block h1{
+  font-family:var(--rw-brand-font)!important;
+  letter-spacing:.02em;
+  color:#f1dfb8!important;
+}
+.relians-generator-page .brand-block .version-label{
+  color:#99b09c!important;
+}
+.relians-generator-page .header-navigation .nav-page-icon{
+  color:#dfb86f!important;
+  border-color:rgba(210,172,104,.28)!important;
+  background:rgba(19,49,36,.68)!important;
+}
+.relians-generator-page .header-navigation .nav-main-link:hover,
+.relians-generator-page .header-navigation .nav-menu-trigger:hover,
+.relians-generator-page .header-navigation .nav-menu.open>.nav-menu-trigger{
+  color:#ffedc3!important;
+  background:rgba(195,154,88,.10)!important;
+}
+.relians-generator-page .header-navigation .nav-main-link.active,
+.relians-generator-page .header-navigation .nav-menu.active-group>.nav-menu-trigger{
+  color:#ffe5ad!important;
+  background:linear-gradient(180deg,rgba(190,151,82,.16),rgba(74,112,78,.08))!important;
+}
+.relians-generator-page .header-navigation .nav-main-link::after,
+.relians-generator-page .header-navigation .nav-menu-trigger::after{
+  background:var(--rw-gold)!important;
+}
+.relians-generator-page .header-navigation .nav-dropdown{
+  border-color:rgba(195,154,88,.36)!important;
+  background:linear-gradient(180deg,rgba(24,50,37,.99),rgba(13,34,25,.99))!important;
+}
+.relians-generator-page .header-navigation .nav-sub-icon{
+  color:#ddb76e!important;
+}
+.relians-generator-page .folder-status{
+  background:#17382f!important;
+  border-bottom-color:rgba(195,154,88,.15)!important;
+}
+.relians-generator-page .page-context-bar{
+  background:linear-gradient(90deg,rgba(20,48,36,.97),rgba(27,61,46,.92))!important;
+  border-bottom-color:rgba(195,154,88,.13)!important;
+}
+.relians-generator-page .page-context-bar b{
+  color:#cfa55f!important;
+}
+
+/* Cards e botões de destaque recebem cantos/ritmo compatíveis. */
+.relians-generator-page .card,
+.relians-generator-page fieldset,
+.relians-generator-page .catalog-profile,
+.relians-generator-page .catalog-book-panel{
+  border-radius:var(--rw-radius-md);
+}
+.relians-generator-page button.primary,
+.relians-generator-page a.primary,
+.relians-generator-page .toolbar-main{
+  border-radius:var(--rw-radius-sm);
+}
+
+/* Barra lateral compartilhada: fica idêntica em todos os projetos. */
+.rw-side-nav{
+  --rw-nav-bg:var(--rw-forest-900);
+  --rw-nav-bg-deep:var(--rw-forest-950);
+}
+.rw-side-brand strong{
+  font-family:var(--rw-brand-font)!important;
+  color:#f1ddb0!important;
+}
+.rw-side-link.active{
+  border-color:rgba(195,154,88,.38)!important;
+  background:linear-gradient(90deg,rgba(195,154,88,.18),rgba(80,117,78,.11))!important;
+}
+.rw-nav-toggle{
+  border-color:rgba(195,154,88,.31)!important;
+  color:#eed398!important;
+}
+
+/* Estados de interação iguais em todo o ecossistema. */
+.relians-portal-page a:focus-visible,
+.relians-blog-page a:focus-visible,
+.relians-tcg-page a:focus-visible,
+.relians-generator-page a:focus-visible,
+.relians-portal-page button:focus-visible,
+.relians-blog-page button:focus-visible,
+.relians-tcg-page button:focus-visible,
+.relians-generator-page button:focus-visible{
+  outline:2px solid var(--rw-gold)!important;
+  outline-offset:3px!important;
+}
+
+/* Pequeno tratamento consistente de seleção. */
+::selection{
+  background:#b99054;
+  color:#14251a;
+}
+
+/* Mobile leve aqui; a revisão profunda continua na Etapa 5. */
+@media(max-width:760px){
+  .relians-portal-page .portal-topbar,
+  .relians-tcg-page .portal-topbar,
+  .relians-blog-page .blog-topbar,
+  .relians-generator-page .app-header.topbar{
+    min-height:58px;
+  }
+}
+
+.relians-generator-page .world-product-label{
+  display:block;
+  margin-top:1px;
+  color:#9db19e;
+  font-size:.57rem;
+  font-weight:850;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   RELIANS WORLD — TEMA CLARO / ESCURO
+   Alternado pelo menu lateral compartilhado
+   ========================================================= */
+html[data-rw-theme="dark"]{color-scheme:dark}
+html[data-rw-theme="light"]{color-scheme:light}
+
+.rw-theme-toggle{
+  font:inherit;
+  cursor:pointer;
+  text-align:left;
+}
+
+/* Tema escuro — verde musgo */
+html[data-rw-theme="dark"] body{
+  --rw-surface:#173024;
+  --rw-surface-2:#203b2c;
+  --rw-text:#f2ead7;
+  --rw-muted-theme:#a7b7a8;
+}
+html[data-rw-theme="dark"] .rw-side-nav{background:linear-gradient(180deg,#183225,#10261b)!important}
+html[data-rw-theme="dark"] .relians-tcg-page,
+html[data-rw-theme="dark"] .relians-portal-page{background:linear-gradient(180deg,#14291d,#0f2118)!important}
+html[data-rw-theme="dark"] .relians-blog-page{background:linear-gradient(180deg,#183025,#10241b)!important;color:#f2ead7}
+html[data-rw-theme="dark"] .relians-blog-page .blog-hero,
+html[data-rw-theme="dark"] .relians-blog-page .dashboard-card,
+html[data-rw-theme="dark"] .relians-blog-page .blog-post,
+html[data-rw-theme="dark"] .relians-blog-page .side-panel,
+html[data-rw-theme="dark"] .relians-blog-page .version-entry{
+  background:#203a2c!important;color:#f1e8d5!important;border-color:rgba(221,189,123,.18)!important
+}
+html[data-rw-theme="dark"] .relians-blog-page p,
+html[data-rw-theme="dark"] .relians-blog-page small{color:#b2c0b2!important}
+
+/* Tema claro — bege quase branco */
+html[data-rw-theme="light"] body{
+  --rw-surface:#f2ecdd;
+  --rw-surface-2:#e5decb;
+  --rw-text:#29372d;
+  --rw-muted-theme:#68756b;
+}
+html[data-rw-theme="light"] .rw-side-nav{
+  background:linear-gradient(180deg,#eee8d8,#e1dac6)!important;
+  color:#28382d!important;
+  border-right-color:rgba(67,88,68,.2)!important;
+}
+html[data-rw-theme="light"] .rw-side-brand strong,
+html[data-rw-theme="light"] .rw-side-link,
+html[data-rw-theme="light"] .rw-side-label{color:#314434!important}
+html[data-rw-theme="light"] .rw-side-link-copy small{color:#6d7a6f!important}
+html[data-rw-theme="light"] .rw-side-link.active{background:#d9ddc8!important;color:#27402e!important}
+html[data-rw-theme="light"] .rw-nav-toggle{background:#eee7d5!important;color:#334736!important;border-color:rgba(72,94,72,.28)!important}
+html[data-rw-theme="light"] .relians-portal-page,
+html[data-rw-theme="light"] .relians-tcg-page,
+html[data-rw-theme="light"] .relians-blog-page{
+  background:linear-gradient(180deg,#e7e2d3,#d8d6c7)!important;color:#29372d!important
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-topbar,
+html[data-rw-theme="light"] .relians-tcg-page .portal-topbar{
+  background:rgba(239,233,216,.96)!important;color:#29372d!important
+}
+html[data-rw-theme="light"] .relians-portal-page .portal-brand strong,
+html[data-rw-theme="light"] .relians-tcg-page .portal-brand strong{color:#354b39!important}
+html[data-rw-theme="light"] .relians-portal-page .portal-quick-nav a,
+html[data-rw-theme="light"] .relians-tcg-page .portal-quick-nav a{color:#435346!important}
+html[data-rw-theme="light"] .relians-generator-page{
+  background:#e8e3d4!important;color:#29372d!important
+}
+html[data-rw-theme="light"] .relians-generator-page .app-header.topbar{
+  background:linear-gradient(180deg,#eee8d8,#ddd5c1)!important
+}
+html[data-rw-theme="light"] .relians-generator-page .brand-block h1{color:#314534!important}
+html[data-rw-theme="light"] .relians-generator-page .folder-status,
+html[data-rw-theme="light"] .relians-generator-page .page-context-bar{
+  background:#dedac9!important;color:#536456!important
+}
+
+
+/* =========================================================
+   RELIANS WORLD — CORREÇÃO DE CONTRASTE DO TEMA ESCURO
+   ========================================================= */
+html[data-rw-theme="dark"] body{
+  color:#f0e7d5;
+}
+html[data-rw-theme="dark"] .rw-side-link{
+  color:#dce6dc!important;
+}
+html[data-rw-theme="dark"] .rw-side-link-copy small{
+  color:#94a697!important;
+}
+html[data-rw-theme="dark"] .rw-side-label{
+  color:#93a795!important;
+}
+html[data-rw-theme="dark"] .rw-side-link.active{
+  color:#ffe8b3!important;
+}
+html[data-rw-theme="dark"] button,
+html[data-rw-theme="dark"] input,
+html[data-rw-theme="dark"] select,
+html[data-rw-theme="dark"] textarea{
+  color-scheme:dark;
+}
+html[data-rw-theme="dark"] ::placeholder{
+  color:#738779;
+  opacity:1;
+}
+
+/* =========================================================
+   2026-08-18 — REVISÃO FINAL DE CONTRASTE CLARO / ESCURO
+   ========================================================= */
+html[data-rw-theme="light"] body{color:#29372d!important}
+html[data-rw-theme="light"] .relians-blog-page,
+html[data-rw-theme="light"] .relians-portal-page,
+html[data-rw-theme="light"] .relians-tcg-page,
+html[data-rw-theme="light"] .relians-generator-page{color:#29372d!important}
+html[data-rw-theme="light"] .relians-blog-page h1,
+html[data-rw-theme="light"] .relians-blog-page h2,
+html[data-rw-theme="light"] .relians-blog-page h3,
+html[data-rw-theme="light"] .relians-portal-page h1,
+html[data-rw-theme="light"] .relians-portal-page h2,
+html[data-rw-theme="light"] .relians-portal-page h3,
+html[data-rw-theme="light"] .relians-generator-page h1,
+html[data-rw-theme="light"] .relians-generator-page h2,
+html[data-rw-theme="light"] .relians-generator-page h3{color:#26392d!important}
+html[data-rw-theme="light"] .relians-blog-page p,
+html[data-rw-theme="light"] .relians-blog-page small,
+html[data-rw-theme="light"] .relians-portal-page p,
+html[data-rw-theme="light"] .relians-portal-page small,
+html[data-rw-theme="light"] .relians-generator-page p,
+html[data-rw-theme="light"] .relians-generator-page small{color:#5d6d61!important}
+html[data-rw-theme="light"] .relians-blog-page button,
+html[data-rw-theme="light"] .relians-portal-page button,
+html[data-rw-theme="light"] .relians-generator-page button{color:#2c4032}
+html[data-rw-theme="light"] .relians-blog-page input,
+html[data-rw-theme="light"] .relians-blog-page select,
+html[data-rw-theme="light"] .relians-blog-page textarea,
+html[data-rw-theme="light"] .relians-generator-page input,
+html[data-rw-theme="light"] .relians-generator-page select,
+html[data-rw-theme="light"] .relians-generator-page textarea{background:#f7f2e5!important;color:#28392e!important;border-color:rgba(59,82,63,.25)!important;color-scheme:light}
+html[data-rw-theme="light"] ::placeholder{color:#78847b!important;opacity:1}
+
+html[data-rw-theme="dark"] .relians-blog-page h1,
+html[data-rw-theme="dark"] .relians-blog-page h2,
+html[data-rw-theme="dark"] .relians-blog-page h3,
+html[data-rw-theme="dark"] .relians-portal-page h1,
+html[data-rw-theme="dark"] .relians-portal-page h2,
+html[data-rw-theme="dark"] .relians-portal-page h3,
+html[data-rw-theme="dark"] .relians-generator-page h1,
+html[data-rw-theme="dark"] .relians-generator-page h2,
+html[data-rw-theme="dark"] .relians-generator-page h3{color:#f0dfb8!important}
+html[data-rw-theme="dark"] .relians-portal-page p,
+html[data-rw-theme="dark"] .relians-portal-page small,
+html[data-rw-theme="dark"] .relians-generator-page p,
+html[data-rw-theme="dark"] .relians-generator-page small{color:#adbdaf!important}

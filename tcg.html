@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#203b2d" />
+  <title>Relians Battle Card</title>
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="portal.css" />
+  <link rel="stylesheet" href="site-nav.css" />
+  <link rel="stylesheet" href="world-theme.css" />
+  <link rel="stylesheet" href="tcg.css" />
+  <link rel="stylesheet" href="world-mobile.css" />
+  <link rel="stylesheet" href="theme-fixes.css" />
+</head>
+<body class="relians-tcg-page">
+  <header class="portal-topbar">
+    <a class="portal-brand" href="index.html">
+      <img src="assets/icons/icon-192.png" alt="" />
+      <span><strong>RELIANS</strong><small>Battle Card</small></span>
+    </a>
+    <nav class="portal-quick-nav" aria-label="Acessos rápidos">
+      <a href="index.html">Início</a>
+      <a href="generator.html">Gerador</a>
+      <a href="updates.html">Blog</a>
+    </nav>
+  </header>
+
+  <main class="tcg-shell">
+    <section class="tcg-hero">
+      <div class="tcg-hero-copy">
+        <span class="tcg-eyebrow">RELIANS BATTLE CARD</span>
+        <h1>Construa seu deck.<br>Domine os elementos.</h1>
+        <p>Esta é a base oficial do jogo de cartas de Relians. A área foi preparada para crescer com coleção, cartas, decks, regras e partidas sem misturar os dados do Battle Card com o sistema do RPG.</p>
+        <div class="tcg-hero-actions">
+          <button class="tcg-button primary" type="button" data-tcg-section="cards">🃏 Explorar cartas</button>
+          <button class="tcg-button" type="button" data-tcg-section="decks">🧩 Montar deck</button>
+        </div>
+      </div>
+      <div class="tcg-hero-card-stack" aria-hidden="true">
+        <div class="mock-card mock-card-back"></div>
+        <div class="mock-card mock-card-mid"></div>
+        <div class="mock-card mock-card-front">
+          <span class="mock-badge">RELIAN</span>
+          <div class="mock-art">✦</div>
+          <strong>Relians Battle Card</strong>
+          <small>Card prototype</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="tcg-summary-grid">
+      <article class="tcg-summary-card">
+        <span class="summary-icon">🃏</span>
+        <div><small>COLEÇÃO</small><b id="tcgCardCount">0</b><span>cartas registradas</span></div>
+      </article>
+      <article class="tcg-summary-card">
+        <span class="summary-icon">🧩</span>
+        <div><small>DECKS</small><b id="tcgDeckCount">0</b><span>decks locais</span></div>
+      </article>
+      <article class="tcg-summary-card">
+        <span class="summary-icon">⚡</span>
+        <div><small>ELEMENTOS</small><b>10</b><span>afinidades principais</span></div>
+      </article>
+      <article class="tcg-summary-card">
+        <span class="summary-icon">🛠️</span>
+        <div><small>STATUS</small><b>Base</b><span>estrutura inicial</span></div>
+      </article>
+    </section>
+
+    <section class="tcg-workspace">
+      <aside class="tcg-sidebar">
+        <div class="tcg-sidebar-title">RELIANS BATTLE CARD</div>
+        <button class="tcg-side-tab active" type="button" data-tcg-section="home"><span>⌂</span><b>Visão geral</b></button>
+        <button class="tcg-side-tab" type="button" data-tcg-section="cards"><span>🃏</span><b>Cartas</b></button>
+        <button class="tcg-side-tab" type="button" data-tcg-section="collection"><span>▦</span><b>Coleção</b></button>
+        <button class="tcg-side-tab" type="button" data-tcg-section="decks"><span>🧩</span><b>Decks</b></button>
+        <button class="tcg-side-tab" type="button" data-tcg-section="rules"><span>📘</span><b>Regras</b></button>
+        <button class="tcg-side-tab" type="button" data-tcg-section="play"><span>⚔️</span><b>Jogar</b></button>
+      </aside>
+
+      <div class="tcg-content">
+        <section class="tcg-panel active" data-tcg-panel="home">
+          <div class="tcg-panel-heading">
+            <div><span class="tcg-eyebrow">INÍCIO</span><h2>Relians Battle Card</h2><p class="tcg-section-lead">O sistema oficial de cartas de Relians, organizado em cinco categorias fundamentais.</p></div>
+          </div>
+          <div class="tcg-card-type-grid" aria-label="Categorias do Relians Battle Card">
+            <article class="tcg-type-card type-relian"><span>🐾</span><h3>Relian</h3><p>As criaturas que entram em campo, possuem atributos, classe, elementos, marcadores e habilidades.</p></article>
+            <article class="tcg-type-card type-move"><span>⚔️</span><h3>Movimento</h3><p>Ataques, técnicas e outras ações usadas durante a batalha.</p></article>
+            <article class="tcg-type-card type-item"><span>🧪</span><h3>Item</h3><p>Cartas de suporte, consumíveis e equipamentos com efeitos próprios.</p></article>
+            <article class="tcg-type-card type-trainer"><span>✦</span><h3>Treinador</h3><p>Suporte permanente ou de uso único, conforme o efeito descrito na carta.</p></article>
+            <article class="tcg-type-card type-terrain"><span>🌳</span><h3>Terreno</h3><p>Uma das principais fontes de EP e espaço para efeitos contínuos, buffs e debuffs.</p></article>
+          </div>
+          <div class="tcg-system-strip">
+            <span><b>EP</b> Energy Points</span><span><b>Torpor</b> controla novas ações</span><span><b>5 Classes</b> OFS • EFT • DEF • HIB • NET</span>
+          </div>
+        </section>
+
+        <section class="tcg-panel" data-tcg-panel="cards">
+          <div class="tcg-panel-heading">
+            <div><span class="tcg-eyebrow">CRIADOR DE CARTAS</span><h2>Relian Card</h2><p class="tcg-section-lead">Monte uma carta de Relian usando o modelo oficial. Nesta etapa, o editor completo é dedicado às cartas de Relian.</p></div>
+            <button id="tcgAddCardBtn" class="tcg-button small" type="button">+ Carta simples</button>
+          </div>
+
+          <div class="relian-card-studio">
+            <form id="relianCardCreatorForm" class="relian-card-form" autocomplete="off">
+              <div class="creator-section-title"><span>🐾</span><div><b>Informações da carta</b><small>Até dois elementos por Relian.</small></div></div>
+              <div class="creator-grid two">
+                <label>Nome da carta<input id="rbcName" maxlength="34" placeholder="Ex.: Skellywag" required /></label>
+                <label>Tipo de Relian<input id="rbcRelianType" maxlength="30" placeholder="Ex.: Aquático, Predador..." /></label>
+              </div>
+
+              <div class="creator-grid three">
+                <label>Classe<select id="rbcClass"><option value="OFS">OFS — Ofensivo</option><option value="EFT">EFT — Efeito</option><option value="DEF">DEF — Defensivo</option><option value="HIB">HIB — Híbrido</option><option value="NET">NET — Neutro</option></select></label>
+                <label>HP<input id="rbcHp" type="number" min="0" max="999" value="10" /></label>
+                <label>EP NET<input id="rbcEpNet" type="number" min="0" max="99" value="0" /></label>
+              </div>
+
+              <div class="creator-section-title compact"><span>↗</span><div><b>Evolução</b><small>Defina a linha evolutiva usada durante as partidas.</small></div></div>
+              <div class="creator-grid two evolution-creator-grid">
+                <label>Evolui de
+                  <select id="rbcEvolvesFrom"><option value="">Forma base / nenhuma</option></select>
+                </label>
+                <label>Pode evoluir para
+                  <div class="evolution-add-row">
+                    <select id="rbcEvolutionCandidate"><option value="">Escolha uma evolução...</option></select>
+                    <button id="rbcAddEvolutionBtn" type="button">+ Adicionar</button>
+                  </div>
+                  <select id="rbcEvolvesTo" multiple hidden></select>
+                  <div id="rbcEvolutionChips" class="evolution-chip-list"><span class="evolution-empty">Nenhuma evolução adicionada.</span></div>
+                  <small class="evolution-field-help">Você pode adicionar quantas evoluções quiser e remover individualmente.</small>
+                </label>
+              </div>
+
+              <div class="creator-section-title compact"><span>◈</span><div><b>Elementos</b><small>O frame muda de cor automaticamente.</small></div></div>
+              <div class="creator-grid two">
+                <label>Elemento 1<select id="rbcElement1" class="element-choice"></select></label>
+                <label>Elemento 2<select id="rbcElement2" class="element-choice"></select></label>
+              </div>
+              <label>EP Elemental<input id="rbcEpElement" type="number" min="0" max="99" value="0" /></label>
+
+              <div class="creator-section-title compact"><span>📊</span><div><b>Combate</b><small>O Relian usa somente ATK e DEF. Ataques comuns e especiais usam ATK; defesas comuns e especiais usam DEF.</small></div></div>
+              <div class="creator-stats-grid simple-combat-stats">
+                <label>ATK<input id="rbcAtk" type="number" min="0" max="999" value="0" /></label>
+                <label>DEF<input id="rbcDef" type="number" min="0" max="999" value="0" /></label>
+              </div>
+
+              <div class="creator-section-title compact"><span>✦</span><div><b>Marcadores</b><small>Propriedades especiais já usadas no Battle Card.</small></div></div>
+              <div class="creator-marker-row">
+                <label><input id="rbcFlying" type="checkbox" /> [Voar]</label>
+                <label><input id="rbcRange" type="checkbox" /> [Alcance]</label>
+                <label><input id="rbcTranslucent" type="checkbox" /> [Translúcido]</label>
+              </div>
+
+              <div class="creator-section-title compact"><span>⚡</span><div><b>Habilidade</b><small>Nome, custo e texto principal da carta.</small></div></div>
+              <div class="creator-grid two">
+                <label>Nome da habilidade<input id="rbcAbilityName" maxlength="32" placeholder="Ex.: Fluxo" /></label>
+                <label>Custo da habilidade (EP)<input id="rbcAbilityCost" type="number" min="0" max="99" value="0" /></label>
+              </div>
+              <label>Descrição<textarea id="rbcDescription" rows="5" maxlength="420" placeholder="Descreva habilidade, efeitos e demais regras da carta..."></textarea></label>
+
+              <div class="creator-section-title compact"><span>🖼️</span><div><b>Imagem do Relian</b><small>A imagem ocupa somente a janela central do card.</small></div></div>
+              <label class="relian-art-drop" for="rbcImageInput">
+                <input id="rbcImageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden />
+                <span>⇧</span><b>Selecionar imagem</b><small>PNG, JPG ou WEBP. O restante do modelo não será alterado.</small>
+              </label>
+              <div id="rbcEditNotice" class="card-edit-notice" hidden>
+                <span>✎</span><div><b>Editando carta</b><small id="rbcEditNoticeText">As alterações substituirão a carta existente.</small></div>
+              </div>
+              <div class="creator-actions">
+                <button id="rbcClearBtn" type="button">Limpar</button>
+                <button id="rbcSaveBtn" class="tcg-button primary" type="submit">Salvar carta Relian</button>
+              </div>
+            </form>
+
+            <div class="relian-card-preview-column">
+              <div class="creator-section-title preview-title"><span>👁️</span><div><b>Prévia da carta</b><small>Atualização em tempo real.</small></div></div>
+              <div id="rbcCardPreview" class="creator-rich-card-preview">
+                <div id="rbcCreatorLivePreview" class="creator-rich-card-host"></div>
+              </div>
+              <p class="preview-help">A borda usa o Elemento 1. Se houver Elemento 2, o frame recebe uma combinação das duas cores.</p>
+            </div>
+          </div>
+
+
+          <section class="support-card-studio" id="supportCardStudio">
+            <div class="creator-section-title"><span>⚔️</span><div><b>Outros tipos de carta</b><small>Movimento, Item, Treinador e Terreno agora possuem regras e campos próprios.</small></div></div>
+            <div class="support-type-tabs" role="tablist">
+              <button type="button" class="active" data-support-type="movimento">⚔️ Movimento</button>
+              <button type="button" data-support-type="item">🧪 Item</button>
+              <button type="button" data-support-type="treinador">✦ Treinador</button>
+              <button type="button" data-support-type="terreno">🌳 Terreno</button>
+            </div>
+            <form id="supportCardForm" class="support-card-form">
+              <input id="supportCardType" type="hidden" value="movimento" />
+              <div class="creator-grid two">
+                <label>Nome da carta<input id="supportName" required placeholder="Nome" /></label>
+                <label>Elemento<select id="supportElement"></select></label>
+              </div>
+              <div id="supportMovementFields" class="support-fields active">
+                <div class="creator-grid three">
+                  <label>EP NET<input id="moveEpNet" type="number" min="0" value="0" /></label>
+                  <label>EP Elemental<input id="moveEpElement" type="number" min="0" value="0" /></label>
+                  <label>Precisão<input id="movePrecision" type="number" min="0" max="100" value="100" /></label>
+                </div>
+                <div class="creator-grid two">
+                  <label>Classe<select id="moveClass"><option>OFS</option><option>EFT</option><option>DEF</option><option>HIB</option><option>NET</option></select></label>
+                  <label>Dano / valor base<input id="movePower" type="number" min="0" value="0" /></label>
+                </div>
+                <label class="movement-link-field">
+                  <span>Relians vinculados <small>(Ctrl/Cmd + clique para selecionar vários)</small></span>
+                  <select id="moveRelianLinks" multiple size="6"></select>
+                  <small class="movement-link-help">Se nenhum Relian for selecionado, o Movimento será genérico e poderá ser usado por qualquer Relian.</small>
+                </label>
+                <div class="creator-grid two support-specific-row">
+                  <label>Alvo<select id="moveTarget"><option value="inimigo">Relian inimigo</option><option value="aliado">Relian aliado</option><option value="jogador">Jogador</option></select></label>
+                  <label>Categoria<select id="moveKind"><option value="ataque">Ataque</option><option value="suporte">Suporte</option><option value="controle">Controle</option></select></label>
+                </div>
+                <label class="support-check"><input id="moveTorpor" type="checkbox" checked /> Ao usar, o Relian recebe Torpor</label>
+              </div>
+              <div id="supportItemFields" class="support-fields support-panel item-panel">
+                <div class="support-type-banner"><span>🧪</span><div><b>Item</b><small>Consumíveis, equipamentos e recursos de suporte.</small></div></div>
+                <div class="creator-grid three">
+                  <label>Uso<select id="itemUse"><option value="unico">Uso único</option><option value="equipamento">Equipamento</option><option value="suporte">Suporte</option></select></label>
+                  <label>Custo EP<input id="itemEp" type="number" min="0" value="0" /></label>
+                  <label>Alvo<select id="itemTarget"><option value="relian-aliado">Relian aliado</option><option value="jogador">Jogador</option><option value="campo">Campo</option></select></label>
+                </div>
+                <div class="creator-grid two">
+                  <label>Efeito<select id="itemEffect"><option value="nenhum">Apenas texto</option><option value="cura">Curar HP</option><option value="atk">Aumentar ATK</option><option value="def">Aumentar DEF</option></select></label>
+                  <label>Valor do efeito<input id="itemEffectValue" type="number" min="0" value="0" /></label>
+                </div>
+              </div>
+              <div id="supportTrainerFields" class="support-fields support-panel trainer-panel">
+                <div class="support-type-banner"><span>✦</span><div><b>Treinador</b><small>Ordens e efeitos estratégicos que alteram o ritmo da partida.</small></div></div>
+                <div class="creator-grid three">
+                  <label>Duração<select id="trainerDuration"><option value="unico">Uso único</option><option value="permanente">Permanente</option></select></label>
+                  <label>Custo EP<input id="trainerEp" type="number" min="0" value="0" /></label>
+                  <label>Alvo<select id="trainerTarget"><option value="aliados">Relians aliados</option><option value="mao">Sua mão</option><option value="jogador">Jogador</option></select></label>
+                </div>
+                <div class="creator-grid two">
+                  <label>Efeito<select id="trainerEffect"><option value="nenhum">Apenas texto</option><option value="cura">Curar Relians</option><option value="comprar">Comprar cartas</option><option value="ep">Gerar EP NET</option></select></label>
+                  <label>Valor<input id="trainerEffectValue" type="number" min="0" value="0" /></label>
+                </div>
+              </div>
+              <div id="supportTerrainFields" class="support-fields support-panel terrain-panel">
+                <div class="support-type-banner"><span>🌳</span><div><b>Terreno</b><small>Permanece ativo, gera EP e pode disparar um efeito automático.</small></div></div>
+                <div class="terrain-rule-note">Todo Terreno ativo gera <b>+1 EP por turno</b>: 1 EP do elemento da carta ou 1 EP NET se não houver elemento.</div>
+                <div class="creator-grid three">
+                  <label>Quando ativa<select id="terrainTrigger"><option value="ativacao">Ao ativar</option><option value="turno">No início de cada turno</option><option value="ambos">Ao ativar + a cada turno</option><option value="nenhum">Sem efeito automático</option></select></label>
+                  <label>Efeito<select id="terrainEffect"><option value="nenhum">Apenas texto</option><option value="cura">Curar HP</option><option value="dano">Causar dano</option><option value="atk">Aumentar ATK</option><option value="def">Aumentar DEF</option></select></label>
+                  <label>Valor<input id="terrainEffectValue" type="number" min="0" value="0" /></label>
+                </div>
+                <div class="creator-grid">
+                  <label>Alvo do efeito<select id="terrainTarget"><option value="aliados">Relians aliados</option><option value="inimigos">Relians inimigos</option><option value="todos">Todos os Relians</option><option value="jogador">Jogador</option><option value="oponente">Oponente</option></select></label>
+                </div>
+              </div>
+              <label>Descrição / efeito<textarea id="supportDescription" rows="4" placeholder="Descreva exatamente o efeito da carta..."></textarea></label>
+              <div class="support-live-preview">
+                <div class="creator-section-title compact"><span>👁️</span><div><b>Prévia</b><small>Cada tipo possui identidade visual própria.</small></div></div>
+                <div id="supportCardLivePreview" class="support-card-preview-host"></div>
+              </div>
+              <div id="supportEditNotice" class="card-edit-notice" hidden>
+                <span>✎</span><div><b>Editando carta</b><small id="supportEditNoticeText">As alterações substituirão a carta existente.</small></div>
+              </div>
+              <div class="creator-actions"><button id="supportClearBtn" type="button">Limpar</button><button id="supportSaveBtn" class="tcg-button primary" type="submit">Salvar carta</button></div>
+            </form>
+          </section>
+
+          <div class="tcg-library-divider"><span>Biblioteca de Cartas</span></div>
+          <div class="tcg-category-tabs" role="group" aria-label="Filtrar categoria">
+            <button type="button" class="active" data-card-category="">Todas</button>
+            <button type="button" data-card-category="relian">🐾 Relian</button>
+            <button type="button" data-card-category="movimento">⚔️ Movimento</button>
+            <button type="button" data-card-category="item">🧪 Item</button>
+            <button type="button" data-card-category="treinador">✦ Treinador</button>
+            <button type="button" data-card-category="terreno">🌳 Terreno</button>
+          </div>
+          <div class="tcg-toolbar">
+            <input id="tcgCardSearch" type="search" placeholder="Pesquisar por nome, tipo ou elemento..." />
+            <select id="tcgCardTypeFilter"><option value="">Todos os tipos</option><option value="relian">Relian</option><option value="movimento">Movimento</option><option value="item">Item</option><option value="treinador">Treinador</option><option value="terreno">Terreno</option></select>
+          </div>
+          <div class="tcg-library-actions">
+            <button id="tcgExportCardsBtn" class="tcg-button small" type="button">⇩ Exportar biblioteca</button>
+            <label class="tcg-button small" for="tcgImportCardsInput">⇧ Importar biblioteca</label>
+            <input id="tcgImportCardsInput" type="file" accept="application/json,.json" />
+          </div>
+          <div class="tcg-library-layout">
+            <div id="tcgCardsGrid" class="tcg-cards-grid"></div>
+            <aside id="tcgLibraryPreview" class="tcg-library-preview">
+              <div class="library-preview-empty"><span>🃏</span><b>Selecione uma carta</b><small>Clique em uma carta da biblioteca para visualizar todos os seus dados.</small></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="tcg-panel" data-tcg-panel="collection">
+          <div class="tcg-panel-heading"><div><span class="tcg-eyebrow">MINHA COLEÇÃO LOCAL</span><h2>Coleção</h2></div></div>
+          <div class="tcg-collection-toolbar">
+            <input id="tcgCollectionSearch" type="search" placeholder="Pesquisar na coleção..." />
+            <span id="tcgCollectionTotal" class="tag">0 cartas possuídas</span>
+          </div>
+          <div id="tcgCollectionGrid" class="tcg-collection-grid"></div>
+        </section>
+
+        <section class="tcg-panel" data-tcg-panel="decks">
+          <div class="tcg-panel-heading">
+            <div><span class="tcg-eyebrow">DECK BUILDER</span><h2>Decks</h2></div>
+            <button id="tcgCreateDeckBtn" class="tcg-button small" type="button">+ Criar deck</button>
+          </div>
+          <div class="deck-toolbar"><select id="tcgDeckSelect" class="deck-select"><option value="">Selecione um deck</option></select><button id="tcgExportDeckBtn" class="tcg-button small" type="button">⇩ Exportar deck</button></div>
+          <div class="deck-builder-grid">
+            <section class="deck-editor"><h3>Deck atual</h3><div id="tcgDeckSummary" class="deck-summary"></div><div id="tcgDeckCards"></div></section>
+            <section class="deck-pool"><h3>Adicionar cartas</h3><input id="tcgDeckCardSearch" type="search" placeholder="Pesquisar carta..." /><div id="tcgDeckPool"></div></section>
+          </div>
+          <div class="tcg-library-divider"><span>Decks salvos</span></div><div id="tcgDeckList" class="tcg-deck-list"></div>
+        </section>
+
+        <section class="tcg-panel" data-tcg-panel="rules">
+          <div class="tcg-panel-heading"><div><span class="tcg-eyebrow">SISTEMA</span><h2>Regras do Battle Card</h2></div></div>
+          <div class="tcg-rules-grid expanded">
+            <article><b>EP — Energy Points</b><p>Os números de custo usam NET/Elemental. <b>NET não é uma cor de EP</b>: qualquer EP gerado por Terrenos pode pagar a parte NET. A parte Elemental continua exigindo a cor correspondente.</p></article>
+            <article><b>Torpor</b><p>Ao atacar ou usar efeitos que gerem Torpor, o Relian recebe um Token de Torpor e não pode atacar novamente, salvo quando uma carta permitir.</p></article>
+            <article><b>Terrenos</b><p>São uma das principais fontes de EP e também podem manter buffs, debuffs e outros efeitos próprios no campo.</p></article>
+            <article><b>Movimentos</b><p>Representam ataques, técnicas e ações. Podem ter custo de EP, elemento, classe, precisão, poder e aplicação de Torpor.</p></article>
+            <article><b>Itens</b><p>Cartas de suporte que podem ser de uso único, equipamento ou outro suporte conforme o texto da carta.</p></article>
+            <article><b>Treinadores</b><p>Podem funcionar como cartas de uso único ou permanecer ativos, conforme a regra escrita na própria carta.</p></article>
+          </div>
+        </section>
+
+        <section class="tcg-panel battle-panel" data-tcg-panel="play">
+          <div class="tcg-panel-heading battle-heading">
+            <div><span class="tcg-eyebrow">BATALHA</span><h2>Battle Card — Arena</h2><p class="tcg-section-lead">Motor inicial jogável usando as cartas e decks salvos. Efeitos escritos livremente continuam seguindo o texto da própria carta.</p></div>
+            <div class="battle-setup-actions battle-deck-setup">
+              <label class="battle-deck-picker"><span>SEU DECK</span><select id="battleDeckSelect"><option value="">Escolha seu deck</option></select></label>
+              <label class="battle-deck-picker"><span>DECK DO OPONENTE</span><select id="battleOpponentDeckSelect"><option value="">Escolha o deck do oponente</option></select></label>
+              <button id="battleStartBtn" class="tcg-button primary" type="button">⚔ Iniciar batalha</button>
+              <button id="battleResetBtn" class="tcg-button small" type="button">↻ Reiniciar</button>
+            </div>
+          </div>
+
+          <div id="battleRoot" class="battle-root">
+            <div class="battle-statusbar">
+              <div class="battle-life-box player"><small>SEU HP</small><b id="battlePlayerHp">30</b></div>
+              <div><small>TURNO</small><b id="battleTurnLabel">—</b></div>
+              <div class="battle-ep-box" title="NET aceita EP de qualquer elemento"><small>EP P/ NET</small><b id="battleEpNet">0</b></div>
+              <div class="battle-ep-box"><small>EP ELEMENTAL</small><b id="battleEpElement">0</b></div>
+              <div><small>TERRENO</small><b id="battleTerrainLabel">Nenhum</b></div>
+              <div class="battle-life-box enemy"><small>HP RIVAL</small><b id="battleEnemyHp">30</b></div>
+              <button id="battleEndTurnBtn" type="button" disabled>Finalizar turno →</button>
+            </div>
+
+            <div class="battle-desktop-layout">
+              <aside class="battle-log-left">
+                <div class="battle-log-heading"><b>Registro da batalha</b><button id="battleClearLogBtn" type="button">Limpar</button></div>
+                <div id="battleLog" class="battle-log"><p>Escolha um deck e inicie a batalha.</p></div>
+              </aside>
+
+              <div class="battle-main-column">
+                <section class="battle-arena">
+                  <div class="battle-side-label enemy">OPONENTE</div>
+                  <div id="battleEnemyField" class="battle-field-row"></div>
+
+                  <div class="battle-divider"><span>VS</span></div>
+
+                  <div class="battle-side-label player">VOCÊ</div>
+                  <div id="battlePlayerField" class="battle-field-row"></div>
+                </section>
+
+                <section class="battle-hand-section">
+                  <div class="battle-hand-heading"><div><span class="tcg-eyebrow">SUA MÃO</span><h3 id="battleHandLabel">0 cartas</h3></div><span id="battleDeckRemaining">Deck: 0</span></div>
+                  <div id="battleHand" class="battle-hand"></div>
+                </section>
+
+                <section id="battleUtilityPanel" class="battle-utility-panel"></section>
+                <nav class="battle-view-tabs" aria-label="Áreas da batalha">
+                  <button type="button" class="active" data-battle-view="actions">Ações</button>
+                  <button type="button" data-battle-view="terrains">Terrenos</button>
+                  <button type="button" data-battle-view="relians">Relians</button>
+                  <button type="button" data-battle-view="info">Info da Batalha</button>
+                </nav>
+              </div>
+
+              <aside class="battle-card-inspector">
+                <div class="creator-section-title preview-title"><span>👁️</span><div><b>Carta selecionada</b><small>Detalhes e estado atual.</small></div></div>
+                <div id="battleSelectedCard" class="battle-selected-card">
+                  <div class="library-preview-empty"><span>🃏</span><b>Nenhuma carta selecionada</b><small>Toque em uma carta da mão ou do campo.</small></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="tcgCardDialog" class="tcg-dialog">
+    <form method="dialog" id="tcgCardForm">
+      <h2>Carta simples</h2><p class="tcg-dialog-note">Movimento, Item, Treinador e Terreno receberão editores próprios na Etapa 3. Este formulário simples continua disponível por compatibilidade.</p>
+      <label>Nome<input id="tcgCardName" required /></label>
+      <label>Tipo<select id="tcgCardType"><option value="relian">Relian</option><option value="movimento">Movimento</option><option value="item">Item</option><option value="treinador">Treinador</option><option value="terreno">Terreno</option></select></label>
+      <label>Elemento<input id="tcgCardElement" placeholder="Éter, Vital, Astral..." /></label>
+      <label>Descrição<textarea id="tcgCardDescription" rows="4"></textarea></label>
+      <div class="tcg-dialog-actions"><button type="button" data-close-tcg-dialog>Cancelar</button><button class="tcg-button primary" value="save">Salvar</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="tcgDeckDialog" class="tcg-dialog">
+    <form method="dialog" id="tcgDeckForm">
+      <h2>Criar deck</h2>
+      <label>Nome do deck<input id="tcgDeckName" required /></label>
+      <label>Descrição<textarea id="tcgDeckDescription" rows="3"></textarea></label>
+      <div class="tcg-dialog-actions"><button type="button" data-close-tcg-dialog>Cancelar</button><button class="tcg-button primary" value="save">Salvar</button></div>
+    </form>
+  </dialog>
+
+
+  <dialog id="tcgFullscreenCardDialog" class="tcg-fullscreen-card-dialog">
+    <div class="tcg-fullscreen-shell">
+      <div class="tcg-fullscreen-toolbar">
+        <div>
+          <span class="tcg-eyebrow">VISUALIZAÇÃO DA CARTA</span>
+          <h2 id="tcgFullscreenTitle">Carta</h2>
+        </div>
+        <button id="tcgFullscreenCloseBtn" type="button" aria-label="Fechar visualização">✕</button>
+      </div>
+      <div class="tcg-fullscreen-body">
+        <div id="tcgFullscreenCardHost" class="tcg-fullscreen-card-host"></div>
+        <aside id="tcgFullscreenInfo" class="tcg-fullscreen-info"></aside>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="tcgToast" class="tcg-toast" role="status"></div>
+  <script src="tcg.js"></script>
+  <script src="site-nav.js"></script>
+</body>
+</html>

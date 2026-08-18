@@ -1,6 +1,6 @@
 # Relians RPG
 
-**Versão atual: v10.0.0**
+**Versão atual: v10.1.0**
 
 Gerador, editor, catálogo e banco de fichas do universo Relians.
 
@@ -36,3 +36,38 @@ A v9.9.0 introduziu a área Criadores/Relians World, página de Novidades e Blog
 Discord oficial: https://discord.gg/2HkmeKVXjM
 
 As novidades e notas da versão também estão disponíveis em `updates.html`.
+
+
+## Portal Relians World
+
+A página `index.html` agora funciona como portal principal do universo Relians.
+
+- `generator.html` — Gerador, catálogo e banco de fichas.
+- `updates.html` — Blog e novidades.
+- `tcg.html` — área inicial do Relians Battle Card.
+- Relians World — acesso à comunidade oficial no Discord.
+
+## Relians Battle Card
+
+A página `tcg.html` agora possui a estrutura inicial do card game:
+- biblioteca local de cartas;
+- cadastro de cartas por tipo;
+- coleção preparada;
+- registro local de decks;
+- área de regras;
+- entrada para futuras partidas.
+
+Os dados do Battle Card ficam separados dos dados do RPG e usam armazenamento local próprio.
+
+
+## Relians Battle Card — Etapa 1/5
+
+- Nome oficial atualizado de Relians TCG para **Relians Battle Card**.
+- Área de cartas reorganizada nas categorias **Relian, Movimento, Item, Treinador e Terreno**.
+- Filtros rápidos por categoria adicionados à biblioteca.
+- A página já apresenta a base de EP, Torpor e classes sem misturar os dados do RPG.
+- A próxima etapa implementará o criador visual de cartas Relian, imagem central e até dois elementos por carta.
+
+## Relians Battle Card — Etapa 3/5
+
+Movimentos, Itens, Treinadores e Terrenos agora possuem editores próprios no Battle Card. Movimentos suportam custo NET/elemental, classe, precisão, poder e Torpor; Itens distinguem uso único/equipamento/suporte; Treinadores podem ser de uso único ou permanentes; Terrenos registram geração de EP e alvo do efeito. A página de regras também documenta essas regras já estabelecidas.
