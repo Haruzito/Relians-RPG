@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "pulso-etereo",
+  "nome": "Pulso Etéreo",
+  "tipo": "EFT",
+  "elementos": [
+    "Éter"
+  ],
+  "elemento": "Éter",
+  "dano": 12,
+  "energia": 12,
+  "precisao": 95,
+  "alcance": "3",
+  "alcanceTatico": 3,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Uma descarga curta de energia etérea que alcança inimigos à distância.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

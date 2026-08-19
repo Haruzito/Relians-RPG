@@ -51,6 +51,22 @@
       "movimento": "golpear"
     },
     {
+      "nivel": 1,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pancada-sombria"
+    },
+    {
+      "nivel": 12,
+      "movimento": "mordida-de-feras"
+    },
+    {
+      "nivel": 18,
+      "movimento": "fagulha-selvagem"
+    },
+    {
       "nivel": 18,
       "movimento": "garras-de-aco"
     },
@@ -59,8 +75,8 @@
       "movimento": "golpe-metalico"
     },
     {
-      "nivel": 18,
-      "movimento": "fagulha-selvagem"
+      "nivel": 20,
+      "movimento": "cruz-do-guerreiro"
     },
     {
       "nivel": 20,
@@ -75,48 +91,54 @@
       "movimento": "golpe-de-gelo"
     },
     {
-      "nivel": 20,
-      "movimento": "cruz-do-guerreiro"
+      "nivel": 22,
+      "movimento": "chicote-de-laminas"
     },
     {
       "nivel": 22,
       "movimento": "furia-berseker"
+    },
+    {
+      "nivel": 26,
+      "movimento": "roubar-habilidade"
+    },
+    {
+      "nivel": 30,
+      "movimento": "manto-espectral"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "vale-lumen",
-      "bioma": "campo",
+      "regiao": "ruinas-de-arkhos",
+      "bioma": "ruinas-antigas",
       "periodos": [
-        "manha",
-        "tarde"
-      ],
-      "nivelMinimo": 20,
-      "nivelMaximo": 40,
-      "peso": 28
-    },
-    {
-      "regiao": "vale-lumen",
-      "bioma": "floresta",
-      "periodos": [
-        "manha",
-        "tarde"
-      ],
-      "nivelMinimo": 20,
-      "nivelMaximo": 40,
-      "peso": 28
-    },
-    {
-      "regiao": "vale-lumen",
-      "bioma": "ruinas",
-      "periodos": [
-        "manha",
         "tarde",
         "noite"
       ],
       "nivelMinimo": 20,
       "nivelMaximo": 40,
-      "peso": 28
+      "peso": 25
+    },
+    {
+      "regiao": "fenda-de-umbra",
+      "bioma": "mina-abandonada",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 42,
+      "peso": 20
+    },
+    {
+      "regiao": "fortaleza-colossal",
+      "bioma": "zona-industrial",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 24,
+      "nivelMaximo": 44,
+      "peso": 18
     }
   ]
 }

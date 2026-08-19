@@ -1,0 +1,31 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "pelagem-polida",
+  "nome": "Pelagem Polida",
+  "tipo": "DEF",
+  "elementos": [
+    "Éter"
+  ],
+  "elemento": "Éter",
+  "dano": 0,
+  "energia": 24,
+  "precisao": 100,
+  "alcance": "1",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Organiza e energiza a pelagem até ela formar uma camada protetora. Um movimento defensivo ligado ao cuidado corporal.",
+  "efeitos": [
+    {
+      "type": "defense_up",
+      "value": 2,
+      "chance": 100
+    }
+  ],
+  "tags": [
+    "defesa",
+    "pelagem",
+    "tatico"
+  ]
+}

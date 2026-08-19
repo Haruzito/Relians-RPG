@@ -10,6 +10,9 @@
   "energia": 8,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Reposiciona-se com auxílio do Éter.",
   "efeitos": [],
   "tags": []

@@ -13,6 +13,9 @@
   "energia": 50,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "O amor pelo néctar das plantas, bebendo o doce suco da vida.\nEfeito: O datamon drena 20% da força vital do oponente.",
   "efeitos": [],
   "tags": []

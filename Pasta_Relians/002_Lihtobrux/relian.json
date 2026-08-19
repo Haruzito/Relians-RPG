@@ -52,7 +52,39 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "chicote-de-seda"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 3,
+      "movimento": "casulo-de-seda"
+    },
+    {
+      "nivel": 7,
+      "movimento": "amarracao"
+    },
+    {
+      "nivel": 10,
+      "movimento": "torrente-de-ambar"
+    },
+    {
+      "nivel": 13,
+      "movimento": "po-lunar"
+    },
+    {
+      "nivel": 16,
+      "movimento": "polen-ilusorio"
+    },
+    {
+      "nivel": 20,
+      "movimento": "lustro-de-folhas"
+    },
+    {
+      "nivel": 24,
+      "movimento": "raizes-da-decadencia"
     }
   ],
   "aparicoes": [
@@ -65,7 +97,28 @@
       ],
       "nivelMinimo": 16,
       "nivelMaximo": 24,
-      "peso": 70
+      "peso": 35
+    },
+    {
+      "regiao": "bosque-luminescente",
+      "bioma": "floresta-cristalina",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 18,
+      "nivelMaximo": 28,
+      "peso": 30
+    },
+    {
+      "regiao": "floresta-de-nym",
+      "bioma": "floresta-nebulosa",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 30,
+      "peso": 25
     }
   ]
 }

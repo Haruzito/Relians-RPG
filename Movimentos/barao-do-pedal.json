@@ -12,6 +12,9 @@
   "energia": 25,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Dá uma pisada pesada com botas pesadas.",
   "efeitos": [],
   "tags": []

@@ -46,32 +46,77 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "brasas-saltantes"
+    },
+    {
+      "nivel": 1,
+      "movimento": "broto-impactante"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 8,
+      "movimento": "comando-da-matriarca"
+    },
+    {
+      "nivel": 12,
+      "movimento": "lustro-de-folhas"
+    },
+    {
+      "nivel": 15,
+      "movimento": "tornado-de-nectar"
+    },
+    {
+      "nivel": 20,
+      "movimento": "sugar-nectar"
+    },
+    {
+      "nivel": 23,
+      "movimento": "raiz-protetora"
+    },
+    {
+      "nivel": 31,
+      "movimento": "chamas-etereas"
+    },
+    {
+      "nivel": 36,
+      "movimento": "fogo-estelar"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "vale-lumen",
-      "bioma": "campo",
+      "regiao": "jardim-vital",
+      "bioma": "savana",
       "periodos": [
-        "tarde",
-        "noite"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 30,
-      "nivelMaximo": 35,
-      "peso": 5
+      "nivelMinimo": 28,
+      "nivelMaximo": 40,
+      "peso": 25
     },
     {
-      "regiao": "vale-lumen",
-      "bioma": "campo",
+      "regiao": "floresta-de-nym",
+      "bioma": "floresta-tropical",
       "periodos": [
-        "tarde",
-        "noite",
-        "madrugada"
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 30,
+      "nivelMaximo": 42,
+      "peso": 22
+    },
+    {
+      "regiao": "serra-rubra",
+      "bioma": "savana",
+      "periodos": [
+        "tarde"
       ],
       "nivelMinimo": 32,
-      "nivelMaximo": 37,
-      "peso": 5
+      "nivelMaximo": 44,
+      "peso": 18
     }
   ]
 }

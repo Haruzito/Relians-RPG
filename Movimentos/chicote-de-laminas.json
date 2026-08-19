@@ -13,6 +13,9 @@
   "energia": 25,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Cipós afiados atingem o adversário rapidamente.",
   "efeitos": [],
   "tags": []

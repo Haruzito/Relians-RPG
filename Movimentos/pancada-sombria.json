@@ -13,6 +13,9 @@
   "energia": 25,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um ataque rápido que deixa um rastro de sombras.",
   "efeitos": [],
   "tags": []

@@ -49,6 +49,14 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "broto-impactante"
+    },
+    {
+      "nivel": 1,
+      "movimento": "estilhaco-astral"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
     },
     {
@@ -56,24 +64,65 @@
       "movimento": "vento-cortante"
     },
     {
-      "nivel": 1,
-      "movimento": "golpear"
+      "nivel": 8,
+      "movimento": "polen-ilusorio"
     },
     {
-      "nivel": 1,
-      "movimento": "golpear"
+      "nivel": 15,
+      "movimento": "raiz-protetora"
+    },
+    {
+      "nivel": 18,
+      "movimento": "po-lunar"
+    },
+    {
+      "nivel": 23,
+      "movimento": "ilusao-cosmica"
+    },
+    {
+      "nivel": 28,
+      "movimento": "vibracao-harmonica"
+    },
+    {
+      "nivel": 34,
+      "movimento": "tempestade-psiquica"
+    },
+    {
+      "nivel": 40,
+      "movimento": "explosao-estelar"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "vale-lumen",
-      "bioma": "floresta",
+      "regiao": "vale-de-aster",
+      "bioma": "floresta-cristalina",
       "periodos": [
+        "tarde",
         "noite"
       ],
       "nivelMinimo": 33,
       "nivelMaximo": 45,
-      "peso": 68
+      "peso": 25
+    },
+    {
+      "regiao": "observatorio-astral",
+      "bioma": "campos-estelares",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 36,
+      "nivelMaximo": 50,
+      "peso": 20
+    },
+    {
+      "regiao": "campos-nebulosos",
+      "bioma": "floresta-nebulosa",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 38,
+      "nivelMaximo": 52,
+      "peso": 15
     }
   ]
 }

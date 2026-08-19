@@ -1,0 +1,33 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "comando-da-matriarca",
+  "nome": "Comando da Matriarca",
+  "tipo": "DEF",
+  "elementos": [
+    "Vital",
+    "Ígnea"
+  ],
+  "elemento": "Vital, Ígnea",
+  "dano": 0,
+  "energia": 32,
+  "precisao": 100,
+  "alcance": "2",
+  "alcanceTatico": 2,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Um chamado firme que organiza o ritmo de combate. Criado para Relians com comportamento protetor e liderança de grupo.",
+  "efeitos": [
+    {
+      "type": "defense_up",
+      "value": 2,
+      "chance": 100
+    }
+  ],
+  "tags": [
+    "lideranca",
+    "suporte",
+    "vital",
+    "ignea"
+  ]
+}

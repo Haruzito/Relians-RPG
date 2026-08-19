@@ -44,6 +44,38 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "nocturnal-migue"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 7,
+      "movimento": "passo-etereo"
+    },
+    {
+      "nivel": 10,
+      "movimento": "roubar-habilidade"
+    },
+    {
+      "nivel": 14,
+      "movimento": "pancada-sombria"
+    },
+    {
+      "nivel": 18,
+      "movimento": "manto-espectral"
+    },
+    {
+      "nivel": 22,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 26,
+      "movimento": "impacto-fantasmagorico"
     }
   ],
   "aparicoes": [
@@ -51,21 +83,33 @@
       "regiao": "vale-lumen",
       "bioma": "campo",
       "periodos": [
+        "tarde",
         "noite"
       ],
       "nivelMinimo": 22,
       "nivelMaximo": 35,
+      "peso": 30
+    },
+    {
+      "regiao": "ruinas-de-arkhos",
+      "bioma": "ruinas-antigas",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 24,
+      "nivelMaximo": 38,
       "peso": 25
     },
     {
-      "regiao": "vale-lumen",
-      "bioma": "floresta",
+      "regiao": "cavernas-de-eter",
+      "bioma": "caverna-de-eter",
       "periodos": [
         "noite"
       ],
-      "nivelMinimo": 22,
-      "nivelMaximo": 35,
-      "peso": 25
+      "nivelMinimo": 25,
+      "nivelMaximo": 40,
+      "peso": 20
     }
   ]
 }

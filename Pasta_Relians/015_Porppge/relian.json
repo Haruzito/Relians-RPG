@@ -47,15 +47,39 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "estapear"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 4,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 6,
+      "movimento": "grunhir"
     },
     {
       "nivel": 8,
       "movimento": "passo-etereo"
     },
     {
+      "nivel": 11,
+      "movimento": "achar-tesouro"
+    },
+    {
+      "nivel": 13,
+      "movimento": "investida-selvagem"
+    },
+    {
       "nivel": 15,
       "movimento": "choque-etereo"
+    },
+    {
+      "nivel": 18,
+      "movimento": "rajada-de-poeira"
     }
   ],
   "aparicoes": [
@@ -69,6 +93,28 @@
       "nivelMinimo": 10,
       "nivelMaximo": 18,
       "peso": 50
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "campo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 8,
+      "nivelMaximo": 20,
+      "peso": 40
+    },
+    {
+      "regiao": "bosque-de-elyr",
+      "bioma": "colinas-verdejantes",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 10,
+      "nivelMaximo": 22,
+      "peso": 30
     }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "raio-de-halo",
+  "nome": "Raio de Halo",
+  "tipo": "EFT",
+  "elementos": [
+    "Halo"
+  ],
+  "elemento": "Halo",
+  "dano": 14,
+  "energia": 13,
+  "precisao": 95,
+  "alcance": "3",
+  "alcanceTatico": 3,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Um feixe luminoso rápido e preciso.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

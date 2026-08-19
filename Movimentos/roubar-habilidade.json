@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Com astúcia e sombras, o DataMon imita os movimentos do inimigo e assume temporariamente uma de suas técnicas.\nEfeito: Você rouba uma habilidade do DataMon adversário e pode usá-la por 1 turno.",
   "efeitos": [],
   "tags": []

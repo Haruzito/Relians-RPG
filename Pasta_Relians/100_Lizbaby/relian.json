@@ -50,18 +50,69 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "raio-de-halo"
+    },
+    {
+      "nivel": 4,
+      "movimento": "grunhir"
+    },
+    {
+      "nivel": 6,
+      "movimento": "cantico-lunar"
+    },
+    {
+      "nivel": 8,
+      "movimento": "rajada-aerea"
+    },
+    {
+      "nivel": 10,
+      "movimento": "vento-cortante"
+    },
+    {
+      "nivel": 13,
+      "movimento": "rugido-de-vitoria"
+    },
+    {
+      "nivel": 18,
+      "movimento": "voo-determinado"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "planicies-de-solen",
+      "bioma": "campos-abertos",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 3,
+      "nivelMaximo": 16,
+      "peso": 45
+    },
+    {
+      "regiao": "cratera-de-halo",
+      "bioma": "campos-estelares",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 5,
+      "nivelMaximo": 18,
+      "peso": 30
+    },
+    {
+      "regiao": "arquipelago-celeste",
+      "bioma": "nuvens-densas",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 8,
+      "nivelMaximo": 20,
+      "peso": 25
     }
   ]
 }

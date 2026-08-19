@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "faisca-veloz",
+  "nome": "Faísca Veloz",
+  "tipo": "EFT",
+  "elementos": [
+    "Tempestade"
+  ],
+  "elemento": "Tempestade",
+  "dano": 12,
+  "energia": 10,
+  "precisao": 95,
+  "alcance": "3",
+  "alcanceTatico": 3,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Uma descarga veloz de baixo custo.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

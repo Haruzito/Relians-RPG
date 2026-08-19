@@ -48,20 +48,77 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "investida-rochosa"
+    },
+    {
+      "nivel": 1,
+      "movimento": "raio-de-halo"
+    },
+    {
+      "nivel": 8,
+      "movimento": "rugido-de-vitoria"
+    },
+    {
+      "nivel": 12,
+      "movimento": "mordida-de-feras"
+    },
+    {
+      "nivel": 16,
+      "movimento": "rugido-celestial"
+    },
+    {
+      "nivel": 20,
+      "movimento": "pele-rochosa"
+    },
+    {
+      "nivel": 25,
+      "movimento": "chuva-de-pedras"
+    },
+    {
+      "nivel": 30,
+      "movimento": "punho-da-gloria"
+    },
+    {
+      "nivel": 36,
+      "movimento": "martelo-geologico"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "ruinas",
+      "regiao": "montanhas-de-lumen",
+      "bioma": "picos-cristalinos",
       "periodos": [
         "manha",
-        "tarde",
-        "noite"
+        "tarde"
       ],
       "nivelMinimo": 70,
       "nivelMaximo": 100,
+      "peso": 12
+    },
+    {
+      "regiao": "cratera-de-halo",
+      "bioma": "caverna-cristalina",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 72,
+      "nivelMaximo": 100,
       "peso": 10
+    },
+    {
+      "regiao": "fortaleza-colossal",
+      "bioma": "cordilheira",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 75,
+      "nivelMaximo": 100,
+      "peso": 8
     }
   ]
 }

@@ -13,6 +13,9 @@
   "energia": 60,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um golpe explosivo carregado de fúria que pode aumentar o ataque do usuário.\nEfeito: 30% de chance de aumentar o Ataque (+1 estágio).",
   "efeitos": [],
   "tags": []

@@ -47,18 +47,75 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "jato-abissal"
+    },
+    {
+      "nivel": 1,
+      "movimento": "sombra-rasteira"
+    },
+    {
+      "nivel": 8,
+      "movimento": "bofetada-aquatica"
+    },
+    {
+      "nivel": 14,
+      "movimento": "presa-corrosiva"
+    },
+    {
+      "nivel": 18,
+      "movimento": "manto-espectral"
+    },
+    {
+      "nivel": 22,
+      "movimento": "garra-de-eclipse"
+    },
+    {
+      "nivel": 27,
+      "movimento": "explosao-venenosa"
+    },
+    {
+      "nivel": 32,
+      "movimento": "diluvio-lunar"
+    },
+    {
+      "nivel": 38,
+      "movimento": "vortice-espiritual"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "abismo-de-nox",
+      "bioma": "abismo-oceanico",
       "periodos": [
-        "manha"
+        "noite"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 35,
+      "nivelMaximo": 52,
+      "peso": 20
+    },
+    {
+      "regiao": "pantano-de-morgh",
+      "bioma": "pantano-sombrio",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 38,
+      "nivelMaximo": 55,
+      "peso": 18
+    },
+    {
+      "regiao": "fenda-de-umbra",
+      "bioma": "charco",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 40,
+      "nivelMaximo": 58,
+      "peso": 15
     }
   ]
 }

@@ -16,34 +16,50 @@
   <link rel="stylesheet" href="world-theme.css" />
   <link rel="stylesheet" href="world-mobile.css" />
   <link rel="stylesheet" href="theme-fixes.css" />
+  <link rel="stylesheet" href="battle-test.css" />
 </head>
 <body class="relians-generator-page">
 <header class="topbar app-header">
   <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><small class="world-product-label">Relians World • Ferramentas</small><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v10.1.0</small></div></div>
   <div class="header-navigation">
 <nav class="tabs relians-main-nav" aria-label="Navegação principal">
-    <button class="tab nav-main-link" data-tab="catalog" data-nav-icon="▤"><span class="nav-page-icon" aria-hidden="true">▤</span><span>Catálogo</span></button>
-    <div class="nav-menu" data-nav-group="creation">
-      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">✦</span><span>Criação</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+    <div class="nav-menu" data-nav-group="play">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon">🎮</span><span>Jogar</span><span class="nav-chevron">⌄</span></button>
       <div class="nav-dropdown" role="menu">
-        <button class="tab nav-dropdown-item" data-tab="relians" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">◆</span><span><b>Criar Relian</b><small>Espécies, cores e evolução</small></span></button>
-        <button class="tab nav-dropdown-item" data-tab="moves" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">⚔</span><span><b>Criar Movimento</b><small>Golpes, efeitos e requisitos</small></span></button>
-        <button class="tab nav-dropdown-item" data-tab="biomes" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">♣</span><span><b>Mundo</b><small>Regiões, biomas e aparições</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="gamesHub" role="menuitem"><span class="nav-sub-icon">🎮</span><span><b>Central de Jogos</b><small>Modos jogáveis do Relians</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="battleTest" role="menuitem"><span class="nav-sub-icon">⚔</span><span><b>Arena Tática</b><small>Combate, captura e treinadores</small></span></button>
+      </div>
+    </div>
+    <div class="nav-menu" data-nav-group="player">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon">♙</span><span>Jogador</span><span class="nav-chevron">⌄</span></button>
+      <div class="nav-dropdown" role="menu">
+        <button class="tab nav-dropdown-item" data-tab="playerPage" role="menuitem"><span class="nav-sub-icon">♙</span><span><b>Página do Jogador</b><small>Perfil, rank, equipe e estatísticas</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="recoveryPage" role="menuitem"><span class="nav-sub-icon">✚</span><span><b>Centro de Recuperação</b><small>Recupere HP e ENG gratuitamente</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="shopPage" role="menuitem"><span class="nav-sub-icon">¤</span><span><b>Loja</b><small>Use C$ em itens e DataCubos</small></span></button>
+      </div>
+    </div>
+    <div class="nav-menu" data-nav-group="content">
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon">▤</span><span>Conteúdo</span><span class="nav-chevron">⌄</span></button>
+      <div class="nav-dropdown" role="menu">
+        <button class="tab nav-dropdown-item" data-tab="catalog" role="menuitem"><span class="nav-sub-icon">▤</span><span><b>Catálogo</b><small>Relians cadastrados e informações</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="relians" role="menuitem"><span class="nav-sub-icon">◆</span><span><b>Criar Relian</b><small>Espécies, cores e evolução</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="moves" role="menuitem"><span class="nav-sub-icon">⚔</span><span><b>Criar Movimento</b><small>Golpes, efeitos e requisitos</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="battleItems" role="menuitem"><span class="nav-sub-icon">✚</span><span><b>Criar Item</b><small>Itens, efeitos e consumíveis</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="biomes" role="menuitem"><span class="nav-sub-icon">♣</span><span><b>Mundo</b><small>Regiões, biomas e aparições</small></span></button>
       </div>
     </div>
     <div class="nav-menu" data-nav-group="sheets">
-      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">▣</span><span>Fichas</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon">▣</span><span>Fichas</span><span class="nav-chevron">⌄</span></button>
       <div class="nav-dropdown" role="menu">
-        <button class="tab nav-dropdown-item" data-tab="generator" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">◈</span><span><b>Gerar Relian</b><small>Encontros e fichas sorteadas</small></span></button>
-        <button class="tab nav-dropdown-item" data-tab="story" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">♙</span><span><b>Criar Ficha</b><small>Personagens e Relians individuais</small></span></button>
-        <button class="tab nav-dropdown-item" data-tab="sheetbank" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">▤</span><span><b>Banco de Fichas</b><small>Visualizar e administrar fichas salvas</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="generator" role="menuitem"><span class="nav-sub-icon">◈</span><span><b>Gerar Relian</b><small>Encontros e fichas sorteadas</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="story" role="menuitem"><span class="nav-sub-icon">♙</span><span><b>Criar Ficha</b><small>Personagens e Relians individuais</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="sheetbank" role="menuitem"><span class="nav-sub-icon">▤</span><span><b>Banco de Fichas</b><small>Gerencie fichas salvas</small></span></button>
       </div>
     </div>
-    
     <div class="nav-menu" data-nav-group="config">
-      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon" aria-hidden="true">⚙</span><span>Config</span><span class="nav-chevron" aria-hidden="true">⌄</span></button>
+      <button class="nav-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true"><span class="nav-page-icon">⚙</span><span>Config</span><span class="nav-chevron">⌄</span></button>
       <div class="nav-dropdown nav-dropdown-right" role="menu">
-        <button class="tab nav-dropdown-item" data-tab="rules" role="menuitem"><span class="nav-sub-icon" aria-hidden="true">⚙</span><span><b>Regras e Modificadores</b><small>Parâmetros gerais do sistema</small></span></button>
+        <button class="tab nav-dropdown-item" data-tab="rules" role="menuitem"><span class="nav-sub-icon">⚙</span><span><b>Regras e Dados</b><small>Parâmetros, pasta vinculada e dados oficiais</small></span></button>
       </div>
     </div>
   </nav>
@@ -187,7 +203,13 @@
       </fieldset>
       <fieldset><legend>Valores da habilidade</legend>
         <div class="grid four compact"><label>Dano base<input id="moveDamage" type="number" value="0" /></label><label>Custo de ENG<input id="moveEnergy" type="number" min="0" value="0" /></label><label>Elemento 1<select id="moveElement1" class="move-element-editor-select"><option value="Nenhum">Nenhum</option><option value="Éter">Éter</option><option value="Vital">Vital</option><option value="Astral">Astral</option><option value="Halo">Halo</option><option value="Umbral">Umbral</option><option value="Tempestade">Tempestade</option><option value="Ígnea">Ígnea</option><option value="Abissal">Abissal</option><option value="Colossal">Colossal</option><option value="Geada">Geada</option></select></label><label>Elemento 2<select id="moveElement2" class="move-element-editor-select"><option value="Nenhum">Nenhum</option><option value="Éter">Éter</option><option value="Vital">Vital</option><option value="Astral">Astral</option><option value="Halo">Halo</option><option value="Umbral">Umbral</option><option value="Tempestade">Tempestade</option><option value="Ígnea">Ígnea</option><option value="Abissal">Abissal</option><option value="Colossal">Colossal</option><option value="Geada">Geada</option></select></label></div><p class="field-help move-element-help">Se os dois elementos estiverem como <b>Nenhum</b>, o movimento será tratado como Neutro.</p>
-        <div class="grid two compact"><label>Precisão<input id="moveAccuracy" type="number" min="0" value="0" /></label><label>Alcance<input id="moveRange" placeholder="Corpo a corpo, 5 m..." /></label></div>
+        <div class="grid two compact"><label>Precisão<input id="moveAccuracy" type="number" min="0" value="0" /></label><label>Alcance descritivo<input id="moveRange" placeholder="Corpo a corpo, 5 m..." /></label></div>
+        <div class="grid three compact tactical-move-fields">
+          <label>Alcance tático (casas)<input id="moveTacticalRange" type="number" min="1" max="12" value="1" /></label>
+          <label>Área (raio em casas)<input id="moveTacticalArea" type="number" min="0" max="4" value="0" /></label>
+          <label>Formato da área<select id="moveTacticalShape"><option value="alvo">Alvo único</option><option value="cruz">Cruz</option><option value="quadrado">Quadrado</option><option value="linha">Linha</option></select></label>
+        </div>
+        <p class="field-help">Os campos táticos são usados diretamente pela Arena. Alcance define quantas casas o golpe alcança; Área 0 significa alvo único.</p>
       </fieldset>
       <fieldset><legend>Descrição</legend><label>Descrição do movimento<textarea id="moveDescription" rows="6" required placeholder="Explique o efeito da habilidade..."></textarea></label></fieldset>
       <fieldset><legend>Informações opcionais</legend>
@@ -242,7 +264,21 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
           <div class="grid three compact"><label>Região<input id="characterRegion" placeholder="Região de origem" /></label><label>Classe<select id="characterClass"><option value="">Nenhuma</option><option>Desbravador</option><option>Naturalista</option><option>Artífice</option><option>Cuidador</option><option>Sentinela</option><option>Diplomata</option><option>Agente</option><option>Sobrevivencialista</option></select></label><label>Especialização<input id="characterSpecialization" placeholder="Escolhida futuramente" /></label></div>
           <div class="grid four compact"><label>Nível<input id="characterLevel" type="number" min="0" max="100" value="0" /></label><label>Battle Rank<input id="characterRank" placeholder="Ex.: E" /></label><label>Estrelas obtidas<input id="characterStars" type="number" min="0" value="0" /></label><label>Raios obtidos<input id="characterRays" type="number" min="0" value="0" /></label></div>
           <div class="grid three compact"><label>Reli-INF<input id="characterReliInf" type="number" min="0" value="1" /></label><label>Créditos<input id="characterCredits" type="number" min="0" step="0.01" value="0" /></label><label>Dinheiro<input id="characterMoney" type="number" min="0" step="0.01" value="0" /></label></div>
-          <label>Imagem / arquivo<input id="characterImage" placeholder="personagem.png" /></label>
+          <div class="character-image-import">
+            <input id="characterImage" type="hidden" />
+            <input id="characterImageFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
+            <div id="characterImageImportPreview" class="character-image-import-preview"><span>SEM IMAGEM</span></div>
+            <div class="character-image-import-copy">
+              <b>Imagem do treinador</b>
+              <p>Importe PNG, JPG, WEBP ou GIF. A imagem será usada na ficha e na Página do Jogador.</p>
+              <div class="character-image-import-actions">
+                <button type="button" id="characterImageImportBtn">⇧ Importar imagem</button>
+                <button type="button" id="characterImageRemoveBtn" class="danger small" disabled>Remover</button>
+              </div>
+              <small id="characterImageFileName">Nenhuma imagem selecionada.</small>
+              <small class="field-help">Com uma pasta vinculada, a ficha será salva em <code>Fichas_Jogadores/&lt;personagem&gt;/</code> junto da imagem.</small>
+            </div>
+          </div>
           <label>Descrição<textarea id="characterDescription" rows="3" placeholder="Personalidade, objetivos e informações importantes..."></textarea></label>
         </fieldset>
         <fieldset data-story-section="attributes"><legend>Status do personagem</legend>
@@ -252,7 +288,7 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
         <fieldset data-story-section="attributes"><legend>Atributos — 6D35</legend><div id="characterAttributes" class="character-attributes-grid"></div></fieldset>
         <fieldset data-story-section="attributes"><legend>Perícias</legend><p class="field-help">Pontos iniciais: 1D30 + INT + SAB. Durante a criação, nenhuma perícia pode ultrapassar 15.</p><div id="characterSkills" class="character-skills-grid"></div></fieldset>
         <fieldset data-story-section="inventory"><legend>Equipamentos do personagem</legend><div id="characterEquipment" class="character-equipment-grid"></div></fieldset>
-        <fieldset data-story-section="inventory"><legend>Mochila</legend><p class="field-help">Adicione quantos itens precisar. Cada item pode ter nome e descrição próprios.</p><div id="characterBackpack" class="character-backpack-editor"></div><button type="button" id="addCharacterBackpackItemBtn" class="small">+ Adicionar item</button></fieldset>
+        <fieldset data-story-section="inventory"><legend>Mochila</legend><p class="field-help">Escolha itens criados no Catálogo de Itens, defina a quantidade e use-os diretamente em batalha. Itens manuais continuam permitidos para anotações.</p><div id="characterBackpack" class="character-backpack-editor"></div><button type="button" id="addCharacterBackpackItemBtn" class="small">+ Adicionar item</button></fieldset>
         <fieldset data-story-section="team"><legend>Equipe de Relians</legend>
           <p class="field-help">Use uma espécie cadastrada ou carregue uma ficha pronta salva no Gerador.</p>
           <div id="trainerTeamEditor" class="story-team-editor"></div>
@@ -364,6 +400,351 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
     </div>
   </div>
 </section>
+
+
+<section id="battleItems" class="tab-panel">
+  <div class="card battle-item-creator">
+    <div class="section-kicker">CRIAÇÃO</div>
+    <div class="battle-item-head">
+      <div>
+        <h2>Criador de Itens</h2>
+        <p>Crie consumíveis, equipamentos e itens especiais. O catálogo também inclui os itens importados do Notion.</p>
+      </div>
+      <span class="battle-beta-badge">SISTEMA DE ITENS</span>
+    </div>
+    <div class="battle-item-form">
+      <label>Nome do item<input id="battleItemName" type="text" placeholder="Ex.: Spray Vital" /></label>
+      <label>Categoria
+        <select id="battleItemCategory">
+          <option value="recuperacao">Recuperação</option>
+          <option value="medicamento">Medicamento</option>
+          <option value="vitamina">Vitamina</option>
+          <option value="alimento">Alimento</option>
+          <option value="equipamento">Equipamento</option>
+          <option value="evolucao">Evolução</option>
+          <option value="especial">Especial</option>
+          <option value="energia">Energia</option>
+          <option value="status">Status</option>
+          <option value="suporte">Suporte</option>
+        </select>
+      </label>
+      <label>Efeito
+        <select id="battleItemEffect">
+          <option value="heal_hp">Recuperar HP</option>
+          <option value="heal_eng">Recuperar ENG</option>
+          <option value="heal_percent_hp">Recuperar % de HP</option>
+          <option value="heal_percent_eng">Recuperar % de ENG</option>
+          <option value="cure_burn">Remover Queimadura</option>
+          <option value="cure_slow">Remover Lentidão</option>
+          <option value="defense_up">Aumentar Defesa</option>
+          <option value="full_cure">Remover estados negativos</option>
+          <option value="revive_percent">Reviver (% de HP)</option>
+          <option value="passive_equipment">Efeito passivo / equipamento</option>
+          <option value="evolution_special">Evolução / transformação</option>
+          <option value="special">Efeito especial</option>
+        </select>
+      </label>
+      <label>Potência<input id="battleItemPower" type="number" min="0" max="999" value="20" /></label>
+      <label class="battle-item-description-field">Descrição<textarea id="battleItemDescription" rows="3" placeholder="Descrição do item..."></textarea></label>
+    </div>
+    <div class="battle-item-actions">
+      <button type="button" id="battleItemSaveBtn" class="primary">＋ Salvar item</button>
+      <button type="button" id="battleItemClearBtn">Limpar</button>
+    </div>
+  </div>
+  <div class="card battle-item-library-card">
+    <div class="section-kicker">CATÁLOGO DE ITENS</div>
+    <div id="battleItemLibrary" class="battle-item-library"></div>
+  </div>
+</section>
+
+
+
+<section id="playerPage" class="tab-panel player-page-panel">
+  <div class="player-dashboard-hero card">
+    <div>
+      <div class="section-kicker">PERFIL DE JOGADOR</div>
+      <h2>Página do Jogador</h2>
+      <p>Seu personagem ativo, progresso competitivo, equipe e recursos em um só lugar.</p>
+    </div>
+    <div class="player-dashboard-actions">
+      <button type="button" data-player-go="recoveryPage">✚ Centro de Recuperação</button>
+      <button type="button" data-player-go="shopPage">¤ Abrir Loja</button>
+    </div>
+  </div>
+
+  <div class="player-dashboard-layout">
+    <aside class="card player-picker-card player-picker-modern">
+      <div class="section-kicker">PERSONAGEM ATIVO</div>
+      <label>Jogador fixo
+        <select id="fixedPlayerSelect"><option value="">Selecione...</option></select>
+      </label>
+      <button type="button" id="setFixedPlayerBtn" class="primary">Definir personagem</button>
+      <button type="button" id="clearFixedPlayerBtn">Remover seleção</button>
+      <div class="player-fixed-pill" id="playerFixedPill">Nenhum jogador definido</div>
+      <div id="pendingBattleNotice" class="pending-battle-notice" hidden>
+        <b>Batalha aguardando</b>
+        <span>Defina um jogador para continuar o encontro.</span>
+      </div>
+    </aside>
+
+    <div class="player-dashboard-main">
+      <article id="playerProfileCard" class="card player-profile-card player-profile-modern">
+        <div class="player-profile-empty">
+          <b>Nenhum personagem definido</b>
+          <span>Escolha uma ficha ao lado para construir seu perfil.</span>
+        </div>
+      </article>
+
+      <div class="player-economy-strip">
+        <article class="card player-economy-card">
+          <span>Saldo</span><b id="playerEconomyCredits">0 C$</b><small>Ganho em batalhas de treinador</small>
+        </article>
+        <article class="card player-economy-card rank">
+          <span>Rank competitivo</span><b id="playerEconomyRank">—</b><small id="playerRankProgressText">0 vitórias de treinador</small>
+          <div class="player-rank-bar"><i id="playerRankProgressBar" style="width:0%"></i></div>
+        </article>
+        <article class="card player-economy-card">
+          <span>Equipe apta</span><b id="playerEconomyTeam">0/0</b><small>Relians com HP disponível</small>
+        </article>
+      </div>
+
+      <div class="player-stats-grid player-stats-modern">
+        <article class="card player-stat"><span>Batalhas</span><b id="playerStatBattles">0</b></article>
+        <article class="card player-stat win"><span>Vitórias</span><b id="playerStatWins">0</b></article>
+        <article class="card player-stat loss"><span>Derrotas</span><b id="playerStatLosses">0</b></article>
+        <article class="card player-stat"><span>Capturas</span><b id="playerStatCaptures">0</b></article>
+        <article class="card player-stat"><span>Fugas</span><b id="playerStatEscapes">0</b></article>
+        <article class="card player-stat"><span>Treinadores</span><b id="playerStatTrainerWins">0</b></article>
+        <article class="card player-stat"><span>Créditos</span><b id="playerStatCredits">0</b></article>
+        <article class="card player-stat rank"><span>Rank</span><b id="playerStatRank">—</b></article>
+      </div>
+
+      <section class="card player-team-section">
+        <div class="player-team-head">
+          <div><div class="section-kicker">EQUIPE</div><h3>Relians do personagem</h3></div>
+          <button type="button" data-player-go="recoveryPage">Recuperar equipe</button>
+        </div>
+        <div id="playerTeamOverview" class="player-team-overview"></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="recoveryPage" class="tab-panel recovery-page-panel">
+  <div class="card recovery-hero">
+    <div class="recovery-hero-copy">
+      <div class="section-kicker">CENTRO DE RECUPERAÇÃO</div>
+      <h2>Recuperação da Equipe</h2>
+      <p>Restaure gratuitamente o HP e a ENG dos seus Relians. O centro existe para garantir que você nunca fique impedido de continuar jogando por falta de recursos.</p>
+      <div class="recovery-free-pill">✚ Serviço gratuito</div>
+    </div>
+    <div class="recovery-summary">
+      <span>Equipe ativa</span>
+      <b id="recoveryTeamStatus">—</b>
+      <small id="recoveryTeamDetail">Defina um jogador para começar.</small>
+    </div>
+  </div>
+
+  <div class="recovery-layout">
+    <aside class="card recovery-actions-card">
+      <div class="section-kicker">ATENDIMENTO</div>
+      <h3>Centro Relians</h3>
+      <p>Você pode recuperar toda a equipe de uma vez ou cuidar de um Relian individualmente.</p>
+      <button type="button" id="recoverAllTeamBtn" class="primary recovery-main-action">✚ Recuperar equipe inteira</button>
+      <div class="recovery-rule">
+        <b>Sem custo</b>
+        <span>HP e ENG retornam ao máximo. Nenhum C$ é consumido.</span>
+      </div>
+      <div class="recovery-rule">
+        <b>Itens continuam úteis</b>
+        <span>Medicamentos servem para se recuperar durante batalhas e sequências de encontros sem voltar ao Centro.</span>
+      </div>
+      <button type="button" class="recovery-shortcut" data-recovery-go="shopPage">Ir para a Loja →</button>
+    </aside>
+
+    <div class="recovery-team-area">
+      <div class="recovery-team-head">
+        <div><div class="section-kicker">RELIANS DO JOGADOR</div><h3>Estado da equipe</h3></div>
+        <span id="recoveryPlayerName">Nenhum jogador</span>
+      </div>
+      <div id="recoveryTeamGrid" class="recovery-team-grid"></div>
+    </div>
+  </div>
+</section>
+
+<section id="shopPage" class="tab-panel shop-page-panel">
+  <div class="card shop-hero shop-hero-modern">
+    <div>
+      <div class="section-kicker">MERCADO RELIANS</div>
+      <h2>Loja do Jogador</h2>
+      <p>Use os C$ conquistados contra treinadores para comprar DataCubos, medicamentos, alimentos, equipamentos e outros recursos.</p>
+    </div>
+    <div class="shop-credit-box">
+      <span>Saldo disponível</span>
+      <b id="shopCredits">0 C$</b>
+      <small id="shopPlayerLabel">Nenhum jogador definido</small>
+    </div>
+  </div>
+
+  <div class="shop-layout">
+    <aside class="card shop-sidebar">
+      <div class="section-kicker">CATÁLOGO</div>
+      <label class="shop-search-label">Pesquisar
+        <input id="shopSearchInput" type="search" placeholder="Nome ou descrição..." />
+      </label>
+      <div id="shopCategoryList" class="shop-category-list"></div>
+      <div class="shop-sidebar-note">
+        <b>Compras</b>
+        <span>Os itens comprados entram diretamente na mochila do personagem ativo.</span>
+      </div>
+      <button type="button" data-shop-go="recoveryPage">✚ Centro de Recuperação</button>
+    </aside>
+
+    <div class="shop-main">
+      <div class="shop-section-header">
+        <div><div class="section-kicker">ITENS DISPONÍVEIS</div><h3 id="shopCurrentCategoryTitle">Todos os itens</h3></div>
+        <span id="shopResultCount">0 itens</span>
+      </div>
+      <div id="shopItemsGrid" class="shop-items-grid"></div>
+    </div>
+  </div>
+</section>
+
+<section id="gamesHub" class="tab-panel games-hub-panel">
+  <div class="games-hero card">
+    <div>
+      <div class="section-kicker">JOGOS RELIANS</div>
+      <h2>Central de Jogos</h2>
+      <p>Uma área separada para protótipos e modos jogáveis do universo Relians.</p>
+    </div>
+    <div class="games-hero-badge">TESTES JOGÁVEIS</div>
+  </div>
+
+  <div class="games-grid">
+    <article class="card game-card featured">
+      <div class="game-card-icon">⚔</div>
+      <div class="game-card-content">
+        <span class="game-card-tag">DISPONÍVEL</span>
+        <h3>Arena Tática</h3>
+        <p>Batalhas em grade com movimento, ENG, golpes por alcance, itens e captura com DataCubos.</p>
+        <div class="game-card-meta">
+          <span>Combate por turnos</span>
+          <span>14×9 casas</span>
+          <span>Captura</span>
+        </div>
+        <button type="button" class="primary" data-open-game="battleTest">Jogar Arena Tática</button>
+      </div>
+    </article>
+
+    <article class="card game-card">
+      <div class="game-card-icon">♙</div>
+      <div class="game-card-content">
+        <span class="game-card-tag">DISPONÍVEL</span><h3>Batalhas de Treinador</h3><p>Enfrente equipes controladas pela IA, ganhe C$, aumente seu Rank e compre recursos na Loja.</p><button type="button" data-open-game="battleTest">Ir para batalhas</button>
+      </div>
+    </article>
+
+    <article class="card game-card locked">
+      <div class="game-card-icon">▦</div>
+      <div class="game-card-content">
+        <span class="game-card-tag">EM BREVE</span>
+        <h3>Outros modos</h3>
+        <p>A central já está preparada para receber novos protótipos sem misturá-los ao gerador principal.</p>
+        <button type="button" disabled>Slot reservado</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="battleTest" class="tab-panel battle-test-panel">
+  <div class="battle-test-shell">
+    <div class="card battle-setup-card" id="battleSetupCard">
+      <div class="section-kicker">PROTÓTIPO DE COMBATE</div>
+      <div class="battle-setup-head">
+        <div><h2>Arena Tática</h2><p>Escolha um personagem e um Relian da equipe. Você também pode iniciar a luta direto por uma ficha gerada.</p></div>
+        <span class="battle-beta-badge">JOGOS · 3/3</span>
+      </div>
+      <div class="battle-setup-grid">
+        <label>Personagem<select id="battleCharacterSelect"><option value="">Selecione...</option></select></label>
+        <label>Relian da equipe<select id="battleTeamSelect"><option value="">Selecione...</option></select></label>
+        <label>Nível do inimigo<input id="battleRandomLevel" type="number" min="1" max="100" value="5" /></label>
+        <button type="button" id="battleRandomBtn" class="primary">Relian selvagem</button><button type="button" id="battleTrainerBtn">Treinador aleatório</button>
+      </div>
+      <p class="field-help">Movimentar custa <b>2 ENG por casa</b>. A quantidade máxima de casas por turno usa a Velocidade. <b>◆</b> bloqueia passagem; <b>✦</b> recupera ENG. HP, ENG, XP e nível são persistidos na ficha salva.</p>
+    </div>
+
+    <div id="battleEmpty" class="card battle-empty-state">
+      <b>Nenhuma batalha iniciada</b>
+      <span>Gere um Relian e clique em <strong>Batalhar</strong>, ou use a batalha aleatória acima.</span>
+    </div>
+
+    <div id="battleGame" class="battle-game" hidden>
+      <div class="battle-hud-row">
+        <article class="card battle-status-card player" id="battlePlayerCard"></article>
+        <div class="battle-turn-card card"><small>TURNO</small><b id="battleTurnLabel">—</b><span id="battleRoundLabel">Rodada 1</span></div>
+        <article class="card battle-status-card enemy" id="battleEnemyCard"></article>
+      </div>
+
+      <div class="battle-workspace">
+        <aside class="card battle-side-panel battle-moves-panel">
+          <div class="battle-side-head">
+            <div><div class="section-kicker">MOVIMENTOS</div><b>Golpes</b></div>
+          </div>
+          <div id="battleMoves" class="battle-move-list"></div>
+        </aside>
+
+        <main class="battle-center">
+          <div class="battle-arena-wrap card">
+            <div class="battle-arena-topbar">
+              <div><b id="battleArenaTitle">Arena de Teste</b><span id="battleHint">Selecione uma ação.</span></div>
+              <button type="button" id="battleFleeBtn" class="danger small">Fugir</button>
+            </div>
+            <div id="battleGrid" class="battle-grid" aria-label="Arena tática 14 por 9"></div>
+          </div>
+
+          <div class="card battle-command-card">
+            <div id="battleCommandHome" class="battle-command-bar">
+              <button type="button" id="battleMoveBtn" class="battle-command-btn"><b>◇</b><span>Mover</span><small>2 ENG/casa</small></button>
+              <button type="button" id="battleMovesBtn" class="battle-command-btn"><b>⚔</b><span>Foco em golpes</span><small>Destacar esquerda</small></button>
+              <button type="button" id="battleItemsBtn" class="battle-command-btn"><b>▣</b><span>Mochila</span><small>Abrir popup</small></button>
+              <button type="button" id="battleEndTurnBtn" class="battle-command-btn"><b>»</b><span>Passar</span><small>Encerrar turno</small></button>
+            </div>
+            <button type="button" id="battleActionBackBtn" class="battle-submenu-back" hidden>← Voltar</button>
+            <button type="button" id="battleCancelActionBtn" class="battle-cancel-inline" hidden disabled>Cancelar ação</button>
+          </div>
+        </main>
+
+        <aside class="card battle-side-panel battle-bag-panel">
+          <div class="battle-side-head">
+            <div><div class="section-kicker">MOCHILA</div><b>Itens & DataCubos</b></div>
+            <button type="button" id="battleBagOpenBtn" class="small">Abrir</button>
+          </div>
+          <div class="battle-bag-preview">
+            <span>Abra a mochila para usar itens no seu Relian ou tentar capturar o oponente.</span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="card battle-log-card compact-log"><div class="section-kicker">ÚLTIMAS AÇÕES</div><div id="battleLog" class="battle-log"></div></div>
+
+      <div id="battleBagModal" class="battle-bag-modal" hidden>
+        <div class="battle-bag-backdrop" data-close-bag="1"></div>
+        <div class="card battle-bag-dialog">
+          <div class="battle-bag-dialog-head">
+            <div><div class="section-kicker">MOCHILA</div><h3>Itens & DataCubos</h3><p>Escolha um item e depois o Relian alvo.</p></div>
+            <button type="button" class="battle-bag-close" data-close-bag="1">×</button>
+          </div>
+          <div id="battleItemsList" class="battle-item-battle-list"></div>
+        </div>
+      </div>
+
+      <div id="battleToast" class="battle-toast" hidden></div>
+    </div>
+  </div>
+</section>
+
 </main>
 <template id="encounterTemplate"><div class="encounter-row encounter-picker-row">
   <section class="encounter-setting encounter-location-setting">
@@ -476,6 +857,7 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
 </dialog>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="app.js"></script>
+<script src="battle-test.js"></script>
 <dialog id="newsDialog" class="news-dialog">
   <h2>📦 Novidades — v10.1.0</h2>
   <p><b>Atualização visual e de organização do Relians RPG.</b></p>

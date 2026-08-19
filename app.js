@@ -1,4 +1,5 @@
 const STORAGE_KEY='relians_generator_v4_4';
+const SHEETS_BACKUP_KEY='relians_saved_sheets_backup_v1';
 const SAVE_SCHEMA_VERSION=2; // Versão da estrutura dos dados salvos. Aumente ao mudar o formato das fichas.
 const HANDLE_DB='relians_folder_db';
 const ATTR_KEYS=['ataque','defesa','velocidade','ataqueEspecial','defesaEspecial','precisao'];
@@ -314,20 +315,39 @@ function migrateMoveRecord(raw={}){
   return {...raw,...normalized,saveVersion:SAVE_SCHEMA_VERSION,effects:Array.isArray(normalized.effects)?normalized.effects:[],tags:Array.isArray(normalized.tags)?normalized.tags:[]};
 }
 function migrateSavedRelianSheet(raw={}){
+  const attrsSource=(raw.attributes&&typeof raw.attributes==='object')?raw.attributes:(raw.attrs&&typeof raw.attrs==='object'?raw.attrs:{});
+  const attributes={};
+  for(const key of ATTR_KEYS){
+    const value=attrsSource?.[key];
+    attributes[key]=Number(value&&typeof value==='object'?(value.total??value.rolled??0):value)||0;
+  }
+  const hpMax=Math.max(1,Number(raw.hpMax??raw.hp??raw.vidaMax??100)||100);
+  const engMax=Math.max(1,Number(raw.engMax??raw.energyMax??raw.eng??raw.energiaMax??70)||70);
   return {
     ...raw,
     saveVersion:SAVE_SCHEMA_VERSION,
-    id:String(raw.id||raw.uid||`relian-${Date.now().toString(36)}`),
+    id:String(raw.id||raw.uid||`relian-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,6)}`),
     speciesId:String(raw.speciesId||raw.relianId||''),
     speciesName:String(raw.speciesName||raw.name||raw.nome||''),
-    nickname:String(raw.nickname||raw.apelido||''),
+    nickname:String(raw.nickname||raw.apelido||raw.speciesName||raw.name||raw.nome||''),
     level:Math.max(1,Number(raw.level??raw.nivel??1)||1),
+    xp:Math.max(0,Number(raw.xp??raw.experience??raw.experiencia??0)||0),
     color:normalizeColorId(raw.color||raw.coloracao||'basic'),
     rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),
+    gender:String(raw.gender||raw.genero||''),
+    size:String(raw.size||raw.tamanho||''),
+    hpMax,
+    hpCurrent:Math.max(0,Math.min(hpMax,Number(raw.hpCurrent??raw.currentHp??raw.vidaAtual??hpMax)||hpMax)),
+    engMax,
+    engCurrent:Math.max(0,Math.min(engMax,Number(raw.engCurrent??raw.currentEnergy??raw.energiaAtual??engMax)||engMax)),
+    affinity:Math.max(0,Math.min(5,Number(raw.affinity??raw.afinidade??2)||0)),
     originalTrainer:String(raw.originalTrainer||raw.treinadorOriginal||''),
     items:Array.isArray(raw.items)?raw.items:[],
     moves:Array.isArray(raw.moves)?raw.moves:[],
+    attributes,
     attrs:raw.attrs&&typeof raw.attrs==='object'?raw.attrs:{},
+    attributeReducers:raw.attributeReducers&&typeof raw.attributeReducers==='object'?raw.attributeReducers:{},
+    traitId:String(raw.traitId||raw.tracoId||''),
     notes:String(raw.notes||raw.anotacoes||'')
   };
 }
@@ -341,7 +361,7 @@ function migrateStorySheetRecord(raw={}){
     const validTeamIds=new Set(character.team.map(member=>String(member?.savedSheetId||'')).filter(Boolean));
     character.equippedRelianIds=(Array.isArray(character.equippedRelianIds)?character.equippedRelianIds:Array.isArray(character.equippedTeam)?character.equippedTeam:character.team.map(member=>member?.savedSheetId).filter(Boolean).slice(0,7)).map(String).filter((id,index,list)=>id&&validTeamIds.has(id)&&list.indexOf(id)===index).slice(0,7);
     character.items=Array.isArray(character.items)?character.items:[];
-    character.backpack=(Array.isArray(character.backpack)?character.backpack:Array.isArray(character.mochila)?character.mochila:[]).map(item=>({name:String(item?.name||item?.nome||''),description:String(item?.description||item?.descricao||'')}));
+    character.backpack=(Array.isArray(character.backpack)?character.backpack:Array.isArray(character.mochila)?character.mochila:[]).map(item=>({itemId:String(item?.itemId||''),name:String(item?.name||item?.nome||''),description:String(item?.description||item?.descricao||''),quantity:Math.max(1,Number(item?.quantity||item?.quantidade||1)||1)}));
     character.notes=String(character.notes||character.anotacoes||'');
     migrated.character=character;
     delete migrated.trainer;
@@ -379,15 +399,43 @@ function migrateData(raw){
   if(migrated?.moves&&typeof migrated.moves==='object')out.moves=Object.fromEntries(Object.entries(migrated.moves).map(([id,m])=>[id,migrateMoveRecord(m)]));
   return out;
 }
+function readJsonStorage(key){
+  try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):null}catch{return null}
+}
+function recoverLegacySave(){
+  const preferred=readJsonStorage(STORAGE_KEY);
+  if(preferred&&typeof preferred==='object')return preferred;
+  // Recupera automaticamente bancos gravados por builds antigas, mesmo que a chave tenha mudado.
+  const candidates=[];
+  for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i)||'';
+    if(!/^relians_generator_v/i.test(key)||key===STORAGE_KEY)continue;
+    const value=readJsonStorage(key);
+    if(value&&typeof value==='object')candidates.push({key,value,score:(value.savedRelianSheets?.length||0)*20+(value.storySheets?.length||0)*20+(value.relians?.length||0)});
+  }
+  candidates.sort((a,b)=>b.score-a.score);
+  return candidates[0]?.value||null;
+}
+function restoreSheetsBackup(target){
+  const backup=readJsonStorage(SHEETS_BACKUP_KEY);
+  if(!backup||typeof backup!=='object')return target;
+  if(!(target.savedRelianSheets||[]).length&&Array.isArray(backup.savedRelianSheets))target.savedRelianSheets=backup.savedRelianSheets.map(migrateSavedRelianSheet);
+  if(!(target.storySheets||[]).length&&Array.isArray(backup.storySheets))target.storySheets=backup.storySheets.map(migrateStorySheetRecord);
+  return target;
+}
+function writeSheetsBackup(source){
+  try{localStorage.setItem(SHEETS_BACKUP_KEY,JSON.stringify({savedAt:new Date().toISOString(),savedRelianSheets:source.savedRelianSheets||[],storySheets:source.storySheets||[]}))}catch(err){console.warn('Não foi possível atualizar o backup de fichas:',err)}
+}
 function loadData(){
   try{
-    const stored=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
-    const migrated=migrateData(stored);
-    // Grava imediatamente o formato novo para que a migração só seja necessária uma vez.
+    const stored=recoverLegacySave();
+    const migrated=restoreSheetsBackup(migrateData(stored));
     localStorage.setItem(STORAGE_KEY,JSON.stringify(migrated));
+    writeSheetsBackup(migrated);
     return migrated;
-  }catch{
-    return migrateData(clone(defaultData));
+  }catch(err){
+    console.error('Falha ao carregar banco local:',err);
+    return restoreSheetsBackup(migrateData(clone(defaultData)));
   }
 }
 
@@ -751,10 +799,21 @@ async function checkOfficialDataUpdate({silent=false}={}){
   }
 }
 
-function saveData({sync=true}={}){data=migrateData(data);localStorage.setItem(STORAGE_KEY,JSON.stringify(data));renderAll();if(sync)queueFullFolderSync('saveData')}
+function persistDataOnly({sync=true}={}){
+  data=migrateData(data);
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+  writeSheetsBackup(data);
+  if(sync)queueFullFolderSync('saveData');
+  return data;
+}
+function saveData({sync=true}={}){
+  persistDataOnly({sync});
+  try{renderAll()}catch(err){console.error('Os dados foram salvos, mas uma área da interface falhou ao atualizar:',err);try{renderSavedRelianSheets();renderSavedSheetDetail()}catch(bankErr){console.error('Falha ao atualizar Banco de Fichas:',bankErr)}}
+}
 function nameOf(list,id){return list.find(x=>x.id===id)?.name||id}
 function fillSelect(select,items){const old=select.value;select.innerHTML=items.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');if(items.some(x=>x.id===old))select.value=old}
 const RELIANS_PAGE_CONTEXT={
+  battleTest:{category:'Jogos',title:'Arena Tática'},gamesHub:{category:'Jogos',title:'Central de Jogos'},playerPage:{category:'Jogador',title:'Página do Jogador'},shopPage:{category:'Jogador',title:'Loja'},recoveryPage:{category:'Jogador',title:'Centro de Recuperação'},
   generator:{category:'Fichas',title:'Gerar Relian'},story:{category:'Fichas',title:'Criar Ficha'},sheetbank:{category:'Fichas',title:'Banco de Fichas'},
   catalog:{category:'Catálogo',title:'Catálogo de Relians'},relians:{category:'Criação',title:'Criar Relian'},moves:{category:'Criação',title:'Criar Movimento'},
   biomes:{category:'Criação',title:'Mundo'},creators:{category:'Comunidade',title:'Criadores'},rules:{category:'Config',title:'Regras e Modificadores'}
@@ -764,9 +823,10 @@ function setupTabs(){
   const nav=document.querySelector('.relians-main-nav');
   const menus=[...document.querySelectorAll('.nav-menu')];
   const groupTabs={
-    creation:['relians','moves','biomes'],
+    play:['gamesHub','battleTest'],
+    player:['playerPage','recoveryPage','shopPage'],
+    content:['catalog','relians','moves','battleItems','biomes'],
     sheets:['generator','story','sheetbank'],
-    community:['creators'],
     config:['rules']
   };
 
@@ -866,7 +926,7 @@ function makeGenerated(entry){
   const hp=calculatedResources.hp;
   const energy=calculatedResources.energy;
   const moves=(r.learnset||[]).filter(x=>x.level<=level).sort((a,b)=>b.level-a.level).slice(0,data.rules.moveLimit).map(x=>({unlock:x.level,move:data.moves[x.moveId],domain:domainFor(level,x.level)})).filter(x=>x.move);
-  return{uid:crypto.randomUUID?.()||String(Date.now()+Math.random()),r,level,trait,attrs,hp,energy,currentHp:hp,currentEnergy:energy,moves,gender:pick(r.genders),size:pick(r.sizes),color:rollColor(),affinity:Math.max(0,Math.min(5,Number(r.baseAffinity??2))),captureCube:'padrao',negativeStatus:false,captureRoll:null,captureResult:''};
+  return{uid:crypto.randomUUID?.()||String(Date.now()+Math.random()),r,level,trait,attrs,hp,energy,currentHp:hp,currentEnergy:energy,moves,gender:pick(r.genders),size:pick(r.sizes),color:rollColor(),affinity:Math.max(0,Math.min(5,Number(r.baseAffinity??2))),captureCube:'padrao',negativeStatus:false,captureRoll:null,captureResult:'',regionId:String(entry.e?.region||''),biomeId:String(entry.e?.biome||'')};
 }
 function isUsableDirectImageSource(value){return /^(?:data:|blob:|https?:|file:|\/)/i.test(String(value||'').trim())}
 function relianImageFolderPath(r){
@@ -925,6 +985,9 @@ function affinityMood(v){if(v<=1)return{emoji:'😠',label:'Muito irritado'};if(
 function captureBreakdown(g){const hpPct=g.hp?g.currentHp/g.hp*100:100;let hpBonus=hpPct<=10?20:hpPct<=30?10:0;let cube=CUBES[g.captureCube]||CUBES.padrao;let cubeBonus=cube.bonus;if(g.captureCube==='dataprisma'&&(['lendario','mitico','unico'].includes(g.r.rarity)))cubeBonus=0;const statusBonus=g.negativeStatus?15:0,affinityBonus=g.affinity>=4.1?10:0,base=Number(g.r.captureRate??RARITY_BASE[g.r.rarity]??40);const automatic=g.captureCube==='dataprisma'&&!['lendario','mitico','unico'].includes(g.r.rarity);const total=automatic?100:Math.max(0,Math.min(100,base+cubeBonus+hpBonus+statusBonus+affinityBonus));return{base,cube,cubeBonus,hpBonus,statusBonus,affinityBonus,total,automatic,hpPct}}
 function capturePanel(g){const c=captureBreakdown(g),m=affinityMood(g.affinity);return `<section class="sheet-section"><div class="sheet-section-title">CAPTURA E AFINIDADE</div><div class="sheet-section-content capture-panel"><div class="capture-summary"><div class="capture-chance-card"><span class="capture-card-label">CHANCE FINAL</span><b class="capture-rate">${c.total.toFixed(1)}%</b><small>Resultado necessário no 1d100</small></div><div class="affinity-display"><div class="affinity-main"><span class="affinity-emoji">${m.emoji}</span><div><b>${g.affinity.toFixed(1)} / 5,0</b><small>${m.label}</small></div></div><div class="affinity-adjustments"><span>Ajustar afinidade</span><div><button type="button" data-affinity-delta="-0.5" data-uid="${g.uid}">−0,5</button><button type="button" data-affinity-delta="-0.1" data-uid="${g.uid}">−0,1</button><button type="button" data-affinity-delta="0.1" data-uid="${g.uid}">+0,1</button><button type="button" data-affinity-delta="0.5" data-uid="${g.uid}">+0,5</button></div></div></div></div><div class="capture-controls"><label>Datacubo<select data-capture-control="cube" data-uid="${g.uid}">${Object.entries(CUBES).map(([id,x])=>`<option value="${id}" ${g.captureCube===id?'selected':''}>${x.name}</option>`).join('')}</select></label><label class="check-control"><input type="checkbox" data-capture-control="status" data-uid="${g.uid}" ${g.negativeStatus?'checked':''}> Status negativo (+15%)</label></div><div class="capture-formula"><span>Base ${c.base}%</span><span>Cubo +${c.cubeBonus}%</span><span>Vida +${c.hpBonus}%</span><span>Status +${c.statusBonus}%</span><span>Afinidade +${c.affinityBonus}%</span></div><button type="button" class="primary capture-roll-btn" data-capture-roll="1" data-uid="${g.uid}">Rolar captura (1d100)</button>${g.captureRoll!=null?`<div class="capture-result ${g.captureResult==='Capturado!'?'success':'failure'}"><b>Resultado: ${g.captureRoll}</b><span>${g.captureResult}</span></div>`:''}</div></section>`}
 const generatedState=new Map();
+window.reliansBattleGetGenerated=uid=>generatedState.get(String(uid))||null;
+window.reliansBattleData=()=>data;
+window.reliansBattleSave=()=>saveData();
 
 /* Banco de fichas — utilitários que haviam ficado ausentes após a reorganização
    das versões mobile/banco. Sem estas funções, clicar numa ficha de Relian
@@ -972,10 +1035,21 @@ function saveGeneratedRelianSheet(g){
     notes:''
   });
   data.savedRelianSheets=Array.isArray(data.savedRelianSheets)?data.savedRelianSheets:[];
+  if(!Array.isArray(data.savedRelianSheets))data.savedRelianSheets=[];
   data.savedRelianSheets.push(sheet);
   selectedSavedSheetId='relian:'+String(sheet.id);
-  saveData();
-  alert(`${sheet.nickname||sheet.speciesName||'Relian'} foi salvo no Banco de fichas.`);
+  try{
+    // Salva primeiro e só depois redesenha a interface. Assim um erro visual não impede o salvamento da ficha.
+    persistDataOnly();
+    renderSavedRelianSheets();
+    renderSavedSheetDetail();
+    const confirmed=(data.savedRelianSheets||[]).some(item=>String(item.id)===String(sheet.id));
+    if(!confirmed)throw new Error('A ficha não permaneceu no banco após o salvamento.');
+    alert(`${sheet.nickname||sheet.speciesName||'Relian'} foi salvo no Banco de fichas.`);
+  }catch(err){
+    console.error('Falha ao salvar ficha gerada:',err);
+    alert('Não foi possível salvar esta ficha: '+(err.message||err));
+  }
 }
 function renderGenerated(g){
   generatedState.set(g.uid,g);
@@ -984,10 +1058,21 @@ function renderGenerated(g){
   const img=resolveImage(g);
   const rarityName=RARITY_NAMES[g.r.rarity]||esc(g.r.rarity||'Comum');
   const traitMods=Object.entries(g.trait?.mods||{}).filter(([,v])=>Number(v)!==0).map(([k,v])=>`<span class="trait-mod ${Number(v)>0?'positive':'negative'}">${Number(v)>0?'+':''}${Number(v)} ${esc(ATTR_LABELS[k]||({hp:'HP',energia:'ENG'}[k]||k))}</span>`).join('');
-  return `<article class="card relian-sheet rarity-theme-${g.r.rarity||'comum'} color-theme-${g.color.id}" id="sheet-${g.uid}"><div class="coloration-effects" aria-hidden="true"></div>${rarityEffectHtml(g.r.rarity||'comum','sheet')}<div class="sheet-banner"><div class="portrait-panel"><span class="color-ribbon ${g.color.id}">${g.color.id==='shiny'?'◆ ':g.color.id==='special'?'✦ ':''}${g.color.name}</span>${img?`<img class="relian-portrait" src="${esc(img)}" alt="${esc(g.r.name)}">`:`<div class="portrait-placeholder">?</div>`}${g.color.id==='shiny'||g.color.id==='special'?`<div class="portrait-particles ${g.color.id}" aria-hidden="true">${Array.from({length:18},(_,i)=>{const x=[8,74,31,56,17,88,43,65,24,79,51,12,93,37,69,21,60,84][i];const size=[8,12,7,10,9,6,13,8,11,7,9,12,6,10,8,13,7,11][i];const duration=[5.4,7.1,6.2,5.8,7.6,6.7,5.2,7.4,6.0,5.6,7.0,6.4,5.9,7.8,6.1,5.3,7.2,6.6][i];const delay=[-1.1,-5.8,-3.2,-6.6,-2.4,-4.7,-0.5,-7.1,-3.9,-1.8,-5.1,-6.0,-2.9,-7.5,-4.3,-0.9,-5.5,-3.5][i];const drift=[-10,12,6,-7,14,-5,9,-12,5,11,-8,7,-14,10,-6,13,-9,4][i];return `<span style="--x:${x}%;--size:${size}px;--duration:${duration}s;--delay:${delay}s;--drift:${drift}px">${g.color.id==='shiny'?(i%3===0?'✦':'◆'):'✦'}</span>`}).join('')}</div>`:''}</div><div class="sheet-header-info"><div class="generated-sheet-actions"><button type="button" class="capture-sheet-btn" data-capture-sheet="1" data-uid="${g.uid}">Capturar ficha</button><button type="button" class="save-generated-btn" data-save-generated="1" data-uid="${g.uid}">＋ Salvar ficha</button></div><div class="catalog-line"><span class="catalog-badge">Reli-Info #${catalogCode(g.r)||'—'}</span><span class="mini-badge">Nível ${g.level}</span><span class="mini-badge">Estágio ${g.r.stage||1}</span></div><h2 class="sheet-name">${esc(g.r.name)}</h2>${identityBadges(g.r.class,getRelianElements(g.r,g.color.id))}<p class="identity-line identity-secondary">${esc(g.gender||'Indefinido')} · Tamanho ${esc(g.size||'—')}</p><div class="resource-panel">${resourceBox(g.uid,'hp','HP',g.currentHp,g.hp)}${resourceBox(g.uid,'energy','ENG',g.currentEnergy,g.energy)}</div></div></div><div class="sheet-body"><div><section class="sheet-section"><div class="sheet-section-title">STATUS</div><div class="sheet-section-content"><table class="stat-table"><tr><th>Atributo</th><th>Base</th><th>Traço</th><th>Total</th><th>Mod.</th></tr>${attrRows}</table></div></section><section class="sheet-section"><div class="sheet-section-title">MOVIMENTOS</div><div class="sheet-section-content moves-grid">${moves}</div></section>${g.r.description?`<section class="sheet-section catalog-description-section"><div class="sheet-section-title">DESCRIÇÃO DA ESPÉCIE</div><div class="sheet-section-content catalog-description"><p>${esc(g.r.description)}</p></div></section>`:''}</div><aside><section class="sheet-section"><div class="sheet-section-title">TRAÇO</div><div class="sheet-section-content trait-box"><div class="trait-title-row"><span class="trait-orb">◉</span><b>${esc(g.trait?.name||'Nenhum')}</b></div><p>${esc(g.trait?.description||'Sem descrição.')}</p>${g.trait?.palate?`<div class="trait-palate"><span>🍓 Paladar preferido</span><strong>${esc(g.trait.palate)}</strong></div>`:''}${traitMods?`<div class="trait-mods">${traitMods}</div>`:''}</div></section><section class="sheet-section"><div class="sheet-section-title">RESUMO DO ENCONTRO</div><div class="sheet-section-content encounter-summary"><p><b>Coloração:</b> ${g.color.name}</p><p class="rarity-summary-row"><b>Raridade:</b> <span class="rarity-summary-badge"><span class="rarity-star">✦</span>${rarityName}</span></p>${classInfo(g.r.class)?`<p><b>Classe:</b> ${esc(classInfo(g.r.class).name)}</p>`:''}<p><b>Elementos:</b> ${esc(getRelianElements(g.r,g.color.id).join(', ')||'Nenhum')}</p></div></section>${capturePanel(g)}</aside></div></article>`;
+  return `<article class="card relian-sheet rarity-theme-${g.r.rarity||'comum'} color-theme-${g.color.id}" id="sheet-${g.uid}"><div class="coloration-effects" aria-hidden="true"></div>${rarityEffectHtml(g.r.rarity||'comum','sheet')}<div class="sheet-banner"><div class="portrait-panel"><span class="color-ribbon ${g.color.id}">${g.color.id==='shiny'?'◆ ':g.color.id==='special'?'✦ ':''}${g.color.name}</span>${img?`<img class="relian-portrait" src="${esc(img)}" alt="${esc(g.r.name)}">`:`<div class="portrait-placeholder">?</div>`}${g.color.id==='shiny'||g.color.id==='special'?`<div class="portrait-particles ${g.color.id}" aria-hidden="true">${Array.from({length:18},(_,i)=>{const x=[8,74,31,56,17,88,43,65,24,79,51,12,93,37,69,21,60,84][i];const size=[8,12,7,10,9,6,13,8,11,7,9,12,6,10,8,13,7,11][i];const duration=[5.4,7.1,6.2,5.8,7.6,6.7,5.2,7.4,6.0,5.6,7.0,6.4,5.9,7.8,6.1,5.3,7.2,6.6][i];const delay=[-1.1,-5.8,-3.2,-6.6,-2.4,-4.7,-0.5,-7.1,-3.9,-1.8,-5.1,-6.0,-2.9,-7.5,-4.3,-0.9,-5.5,-3.5][i];const drift=[-10,12,6,-7,14,-5,9,-12,5,11,-8,7,-14,10,-6,13,-9,4][i];return `<span style="--x:${x}%;--size:${size}px;--duration:${duration}s;--delay:${delay}s;--drift:${drift}px">${g.color.id==='shiny'?(i%3===0?'✦':'◆'):'✦'}</span>`}).join('')}</div>`:''}</div><div class="sheet-header-info"><div class="generated-sheet-actions"><button type="button" class="capture-sheet-btn" data-capture-sheet="1" data-uid="${g.uid}">Capturar ficha</button><button type="button" class="save-generated-btn" data-save-generated="1" data-uid="${g.uid}">＋ Salvar ficha</button><button type="button" class="battle-generated-btn" data-battle-generated="1" data-uid="${g.uid}">⚔ Batalhar</button></div><div class="catalog-line"><span class="catalog-badge">Reli-Info #${catalogCode(g.r)||'—'}</span><span class="mini-badge">Nível ${g.level}</span><span class="mini-badge">Estágio ${g.r.stage||1}</span></div><h2 class="sheet-name">${esc(g.r.name)}</h2>${identityBadges(g.r.class,getRelianElements(g.r,g.color.id))}<p class="identity-line identity-secondary">${esc(g.gender||'Indefinido')} · Tamanho ${esc(g.size||'—')}</p><div class="resource-panel">${resourceBox(g.uid,'hp','HP',g.currentHp,g.hp)}${resourceBox(g.uid,'energy','ENG',g.currentEnergy,g.energy)}</div></div></div><div class="sheet-body"><div><section class="sheet-section"><div class="sheet-section-title">STATUS</div><div class="sheet-section-content"><table class="stat-table"><tr><th>Atributo</th><th>Base</th><th>Traço</th><th>Total</th><th>Mod.</th></tr>${attrRows}</table></div></section><section class="sheet-section"><div class="sheet-section-title">MOVIMENTOS</div><div class="sheet-section-content moves-grid">${moves}</div></section>${g.r.description?`<section class="sheet-section catalog-description-section"><div class="sheet-section-title">DESCRIÇÃO DA ESPÉCIE</div><div class="sheet-section-content catalog-description"><p>${esc(g.r.description)}</p></div></section>`:''}</div><aside><section class="sheet-section"><div class="sheet-section-title">TRAÇO</div><div class="sheet-section-content trait-box"><div class="trait-title-row"><span class="trait-orb">◉</span><b>${esc(g.trait?.name||'Nenhum')}</b></div><p>${esc(g.trait?.description||'Sem descrição.')}</p>${g.trait?.palate?`<div class="trait-palate"><span>🍓 Paladar preferido</span><strong>${esc(g.trait.palate)}</strong></div>`:''}${traitMods?`<div class="trait-mods">${traitMods}</div>`:''}</div></section><section class="sheet-section"><div class="sheet-section-title">RESUMO DO ENCONTRO</div><div class="sheet-section-content encounter-summary"><p><b>Coloração:</b> ${g.color.name}</p><p class="rarity-summary-row"><b>Raridade:</b> <span class="rarity-summary-badge"><span class="rarity-star">✦</span>${rarityName}</span></p>${classInfo(g.r.class)?`<p><b>Classe:</b> ${esc(classInfo(g.r.class).name)}</p>`:''}<p><b>Elementos:</b> ${esc(getRelianElements(g.r,g.color.id).join(', ')||'Nenhum')}</p></div></section>${capturePanel(g)}</aside></div></article>`;
 }
 el('generatorForm').onsubmit=e=>{e.preventDefault();const entries=eligibleEntries();if(!entries.length)return alert('Nenhum Relian disponível para estes filtros.');generatedState.clear();const amount=Math.max(1,+el('genAmount').value||1);el('generatedArea').innerHTML=Array.from({length:amount},()=>renderGenerated(makeGenerated(weightedPick(entries)))).join('')}
-el('generatedArea').addEventListener('click',e=>{const target=e.target.closest('[data-resource-action],[data-affinity-delta],[data-capture-roll],[data-save-generated],[data-capture-sheet]');if(!target)return;const g=generatedState.get(target.dataset.uid);if(!g)return;if(target.dataset.captureSheet){openSheetCapture(g.uid);return}if(target.dataset.saveGenerated){saveGeneratedRelianSheet(g);return}if(target.dataset.resourceAction){const type=target.dataset.resource,delta=Number(target.dataset.delta),maxKey=type==='hp'?'hp':'energy',currentKey=type==='hp'?'currentHp':'currentEnergy';if(target.dataset.resourceAction==='max'){g[maxKey]=Math.max(1,g[maxKey]+delta);g[currentKey]=Math.min(g[currentKey],g[maxKey])}else g[currentKey]=Math.max(0,Math.min(g[maxKey],g[currentKey]+delta))}else if(target.dataset.affinityDelta){g.affinity=Math.round(Math.max(0,Math.min(5,g.affinity+Number(target.dataset.affinityDelta)))*10)/10}else if(target.dataset.captureRoll){const c=captureBreakdown(g),roll=rand(1,100);g.captureRoll=roll;if(c.automatic)g.captureResult='Capturado!';else if(roll===100&&c.total<100)g.captureResult='Falha crítica!';else if(roll===1)g.captureResult='Capturado!';else g.captureResult=roll<=c.total?'Capturado!':'Falhou na captura.'}const old=el(`sheet-${g.uid}`);if(old)old.outerHTML=renderGenerated(g)});
+document.addEventListener('click',e=>{
+  const target=e.target.closest?.('#generatedArea [data-resource-action],#generatedArea [data-affinity-delta],#generatedArea [data-capture-roll],#generatedArea [data-save-generated],#generatedArea [data-capture-sheet]');
+  if(!target)return;
+  const g=generatedState.get(String(target.dataset.uid||''));
+  if(!g){console.warn('Ficha gerada não encontrada para a ação:',target.dataset.uid);return}
+  if(target.dataset.captureSheet){openSheetCapture(g.uid);return}
+  if(target.dataset.saveGenerated){e.preventDefault();saveGeneratedRelianSheet(g);return}
+  if(target.dataset.resourceAction){const type=target.dataset.resource,delta=Number(target.dataset.delta),maxKey=type==='hp'?'hp':'energy',currentKey=type==='hp'?'currentHp':'currentEnergy';if(target.dataset.resourceAction==='max'){g[maxKey]=Math.max(1,g[maxKey]+delta);g[currentKey]=Math.min(g[currentKey],g[maxKey])}else g[currentKey]=Math.max(0,Math.min(g[maxKey],g[currentKey]+delta))}
+  else if(target.dataset.affinityDelta){g.affinity=Math.round(Math.max(0,Math.min(5,g.affinity+Number(target.dataset.affinityDelta)))*10)/10}
+  else if(target.dataset.captureRoll){const c=captureBreakdown(g),roll=rand(1,100);g.captureRoll=roll;if(c.automatic)g.captureResult='Capturado!';else if(roll===100&&c.total<100)g.captureResult='Falha crítica!';else if(roll===1)g.captureResult='Capturado!';else g.captureResult=roll<=c.total?'Capturado!':'Falhou na captura.'}
+  const old=el(`sheet-${g.uid}`);if(old)old.outerHTML=renderGenerated(g);
+});
 el('generatedArea').addEventListener('change',e=>{const target=e.target.closest('[data-capture-control]');if(!target)return;const g=generatedState.get(target.dataset.uid);if(!g)return;if(target.dataset.captureControl==='cube')g.captureCube=target.value;if(target.dataset.captureControl==='status')g.negativeStatus=target.checked;g.captureRoll=null;g.captureResult='';const old=el(`sheet-${g.uid}`);if(old)old.outerHTML=renderGenerated(g)});
 
 function renderRelians(){el('reliansList').innerHTML=data.relians.length?[...data.relians].sort(sortReliansByCatalog).map(r=>`<button type="button" class="relian-editor-row" onclick="editRelian('${r.id}')"><span class="relian-editor-number">#${catalogCode(r)||'—'}</span><b>${esc(r.name)}</b><span aria-hidden="true">›</span></button>`).join(''):'<p class="empty">Nenhum Relian cadastrado.</p>'}
@@ -1646,6 +1731,9 @@ function moveToFileData(move){
     energia:move.energy||0,
     precisao:move.accuracy||0,
     alcance:move.range||'',
+    alcanceTatico:Number(move.tacticalRange)||1,
+    areaTatica:Math.max(0,Number(move.tacticalArea)||0),
+    formatoArea:move.tacticalShape||'alvo',
     descricao:move.description||'',
     efeitos:move.effects||[],
     tags:move.tags||[]
@@ -1654,13 +1742,13 @@ function moveToFileData(move){
 function clearMoveForm(){
   el('moveOriginalId').value='';el('moveName').value='';el('moveId').value='';el('moveType').value='NEH';
   el('moveDamage').value=0;el('moveEnergy').value=0;el('moveElement1').value='Nenhum';el('moveElement2').value='Nenhum';el('moveAccuracy').value=0;
-  el('moveRange').value='';el('moveDescription').value='';el('moveEffects').value='';el('moveTags').value='';
+  el('moveRange').value='';el('moveTacticalRange').value=1;el('moveTacticalArea').value=0;el('moveTacticalShape').value='alvo';el('moveDescription').value='';el('moveEffects').value='';el('moveTags').value='';
   el('moveFormTitle').textContent='Cadastrar movimento';el('deleteMoveBtn').disabled=true;
 }
 function editMove(id){
   const m=data.moves[id];if(!m)return;el('moveOriginalId').value=id;el('moveName').value=m.name||'';el('moveId').value=m.id||'';
   el('moveType').value=m.type||'NEH';el('moveDamage').value=m.damage??0;el('moveEnergy').value=m.energy??0;
-  {const moveEls=getMoveElements(m);el('moveElement1').value=moveEls[0]||'Nenhum';el('moveElement2').value=moveEls[1]||'Nenhum';}el('moveAccuracy').value=m.accuracy??0;el('moveRange').value=m.range||'';
+  {const moveEls=getMoveElements(m);el('moveElement1').value=moveEls[0]||'Nenhum';el('moveElement2').value=moveEls[1]||'Nenhum';}el('moveAccuracy').value=m.accuracy??0;el('moveRange').value=m.range||'';el('moveTacticalRange').value=m.tacticalRange??1;el('moveTacticalArea').value=m.tacticalArea??0;el('moveTacticalShape').value=m.tacticalShape||'alvo';
   el('moveDescription').value=m.description||'';el('moveEffects').value=(m.effects||[]).join('\n');el('moveTags').value=(m.tags||[]).join(', ');
   el('moveFormTitle').textContent=`Editar ${m.name}`;el('deleteMoveBtn').disabled=false;
 }
@@ -1668,7 +1756,7 @@ window.editMove=editMove;
 function renderMoves(){
   if(!el('movesList'))return;const q=(el('moveSearch')?.value||'').trim().toLowerCase();
   const list=Object.values(data.moves||{}).filter(m=>!q||[m.name,m.id,m.type,...getMoveElements(m),'Neutro'].some(v=>String(v||'').toLowerCase().includes(q))).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
-  el('movesList').innerHTML=list.length?list.map(m=>`<div class="entity-row move-list-row"><span><b>${esc(m.name)}</b><small>${esc(m.id)} · ${esc(m.type)}${` · ${esc(getMoveElements(m).join(', ')||'Neutro')}`}<br>Dano ${m.damage??0} · ENG ${m.energy??0}</small></span><button type="button" onclick="editMove('${esc(m.id)}')">Editar</button></div>`).join(''):'<p class="empty">Nenhum movimento encontrado.</p>';
+  el('movesList').innerHTML=list.length?list.map(m=>`<div class="entity-row move-list-row"><span><b>${esc(m.name)}</b><small>${esc(m.id)} · ${esc(m.type)}${` · ${esc(getMoveElements(m).join(', ')||'Neutro')}`}<br>Dano ${m.damage??0} · ENG ${m.energy??0} · Alc. ${Number(m.tacticalRange)||1}${Number(m.tacticalArea)>0?` · Área ${Number(m.tacticalArea)}`:''}</small></span><button type="button" onclick="editMove('${esc(m.id)}')">Editar</button></div>`).join(''):'<p class="empty">Nenhum movimento encontrado.</p>';
 }
 async function writeMoveFile(move){
   if(!linkedDirectory)return{saved:false,reason:'no-folder'};
@@ -1690,7 +1778,7 @@ el('moveForm').onsubmit=async e=>{
   e.preventDefault();const original=el('moveOriginalId').value;const id=slug(el('moveId').value||el('moveName').value);
   if(!id)return alert('Informe um nome ou ID válido.');
   if(original!==id&&data.moves[id])return alert('Já existe um movimento com esse ID.');
-  const chosenElements=[el('moveElement1').value,el('moveElement2').value].filter(x=>x&&x!=='Nenhum');const elements=[...new Set(chosenElements)].slice(0,2);const move={id,name:el('moveName').value.trim(),type:el('moveType').value.trim()||'NEH',damage:+el('moveDamage').value||0,energy:+el('moveEnergy').value||0,elements,element:elements.join(', '),accuracy:+el('moveAccuracy').value||0,range:el('moveRange').value.trim(),description:el('moveDescription').value.trim(),effects:el('moveEffects').value.split('\n').map(x=>x.trim()).filter(Boolean),tags:el('moveTags').value.split(',').map(x=>x.trim()).filter(Boolean)};
+  const chosenElements=[el('moveElement1').value,el('moveElement2').value].filter(x=>x&&x!=='Nenhum');const elements=[...new Set(chosenElements)].slice(0,2);const move={id,name:el('moveName').value.trim(),type:el('moveType').value.trim()||'NEH',damage:+el('moveDamage').value||0,energy:+el('moveEnergy').value||0,elements,element:elements.join(', '),accuracy:+el('moveAccuracy').value||0,range:el('moveRange').value.trim(),tacticalRange:Math.max(1,+el('moveTacticalRange').value||1),tacticalArea:Math.max(0,+el('moveTacticalArea').value||0),tacticalShape:el('moveTacticalShape').value||'alvo',description:el('moveDescription').value.trim(),effects:el('moveEffects').value.split('\n').map(x=>x.trim()).filter(Boolean),tags:el('moveTags').value.split(',').map(x=>x.trim()).filter(Boolean)};
   if(original&&original!==id){delete data.moves[original];for(const r of data.relians)for(const l of r.learnset||[])if(l.moveId===original)l.moveId=id;await deleteMoveFile(original)}
   data.moves[id]=move;saveData();editMove(id);
   try{const result=await writeMoveFile(move);if(result.saved){el('moveSaveStatus').textContent=`Arquivo salvo em Movimentos/${id}.json`;setFolderStatus(`Movimento salvo na pasta: Movimentos/${id}.json`,true);alert('Movimento salvo no banco e na pasta Movimentos.')}else alert('Movimento salvo no navegador. Vincule a pasta-base para criar o arquivo automaticamente.')}catch(err){console.error(err);alert('O movimento foi salvo no navegador, mas não foi possível escrever na pasta. Verifique a permissão de edição.')}
@@ -1722,13 +1810,24 @@ function normalizeTrait(raw){
     mods
   }
 }
-function normalizeMove(raw){const name=String(raw.name||raw.nome||'').trim();const source=Array.isArray(raw.elements||raw.elementos)?(raw.elements||raw.elementos):String(raw.element||raw.elemento||'').split(/[\/,+]/);const elements=[...new Set(source.map(x=>String(x||'').trim()).filter(x=>MOVE_ELEMENT_COLORS[x]))].slice(0,2);return{id:String(raw.id||slug(name)),name,type:String(raw.type||raw.tipo||'NEH'),damage:Number(raw.damage??raw.dano??0),energy:Number(raw.energy??raw.energia??0),elements,element:elements.join(', '),accuracy:Number(raw.accuracy??raw.precisao??0),range:String(raw.range||raw.alcance||''),description:String(raw.description||raw.descricao||''),effects:raw.effects||raw.efeitos||[],tags:raw.tags||raw.etiquetas||[]}}
+function normalizeMove(raw){const name=String(raw.name||raw.nome||'').trim();const source=Array.isArray(raw.elements||raw.elementos)?(raw.elements||raw.elementos):String(raw.element||raw.elemento||'').split(/[\/,+]/);const elements=[...new Set(source.map(x=>String(x||'').trim()).filter(x=>MOVE_ELEMENT_COLORS[x]))].slice(0,2);return{id:String(raw.id||slug(name)),name,type:String(raw.type||raw.tipo||'NEH'),damage:Number(raw.damage??raw.dano??0),energy:Number(raw.energy??raw.energia??0),elements,element:elements.join(', '),accuracy:Number(raw.accuracy??raw.precisao??0),range:String(raw.range||raw.alcance||''),tacticalRange:Math.max(1,Number(raw.tacticalRange??raw.alcanceTatico??1)||1),tacticalArea:Math.max(0,Number(raw.tacticalArea??raw.areaTatica??0)||0),tacticalShape:String(raw.tacticalShape||raw.formatoArea||'alvo'),description:String(raw.description||raw.descricao||''),effects:raw.effects||raw.efeitos||[],tags:raw.tags||raw.etiquetas||[]}}
 function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),habitatNotes:String(raw.habitatNotes||raw.notasHabitat||''),evolutionNotes:String(raw.evolutionNotes||raw.notasEvolucao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
 async function fileToDataURL(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)})}
 async function importFileSet(files,{silent=false}={}){
   const list=[...files],jsonFiles=list.filter(f=>f.name.toLowerCase().endsWith('.json'));let added=0,updated=0,traits=0,moves=0,ignored=0;
   const imageMap=new Map();for(const f of list)if(/\.(png|jpe?g|webp|gif)$/i.test(f.name)){const rel=(f.webkitRelativePath||f.name).replace(/\\/g,'/');imageMap.set(rel.toLowerCase(),f);imageMap.set(f.name.toLowerCase(),f)}
-  for(const file of jsonFiles){try{const raw=JSON.parse(await file.text()),path=(file.webkitRelativePath||file.name).replace(/\\/g,'/').toLowerCase();if(raw?.kind==='relians-save'&&raw?.data){data=migrateData(raw.data);continue}if(Array.isArray(raw.regions)||Array.isArray(raw.biomes)){mergeNamedList(data.regions,raw.regions);mergeNamedList(data.biomes,raw.biomes);continue}if(path.includes('/regioes/')||raw.kind==='region'||raw.tipoArquivo==='regiao'){mergeNamedList(data.regions,Array.isArray(raw)?raw:[raw]);continue}if(path.includes('/biomas/')||raw.kind==='biome'||raw.tipoArquivo==='bioma'){mergeNamedList(data.biomes,Array.isArray(raw)?raw:[raw]);continue}if(path.endsWith('/config/regras.json')||raw.kind==='rules'||raw.tipoArquivo==='regras'){data.rules={...data.rules,...raw};delete data.rules.kind;delete data.rules.tipoArquivo;continue}if(path.includes('/tracos/')||raw.kind==='trait'||raw.tipoArquivo==='traco'){for(const t of(Array.isArray(raw)?raw:[raw])){const n=normalizeTrait(t);if(n.name){data.traits[n.id]=n;traits++}}continue}if(path.includes('/fichas_especiais/')||raw.kind==='story-sheet'||raw.tipoArquivo==='ficha-especial'){for(const s of(Array.isArray(raw)?raw:[raw])){if(s.id){const i=(data.storySheets||[]).findIndex(x=>x.id===s.id);i>=0?data.storySheets[i]=s:data.storySheets.push(s)}}continue}if(path.includes('/movimentos/')||raw.kind==='move'||raw.tipoArquivo==='movimento'){for(const m of(Array.isArray(raw)?raw:[raw])){const n=normalizeMove(m);if(n.name){data.moves[n.id]=n;moves++}}continue}const candidates=Array.isArray(raw)?raw:Array.isArray(raw.relians)?raw.relians:[raw];for(const c of candidates){const r=normalizeRelian(c);const relativePath=(file.webkitRelativePath||'').replace(/\\/g,'/');const parentName=relativePath.split('/').slice(-2,-1)[0]||'';const folderMatch=parentName.match(/^(\d{1,6})(?:-([A-Z0-9]{1,3}))?_(.+)$/i);if(folderMatch){if(!r.catalogNumber)r.catalogNumber=Number(folderMatch[1])||null;if(!r.catalogVariant)r.catalogVariant=normalizeCatalogVariant(folderMatch[2]||'')}if(!r.name||!r.encounters.length){ignored++;continue}const folder=relativePath.split('/').slice(0,-1).join('/');r._sourceFolder=parentName||r._sourceFolder||'';r.imageDataByColor={};for(const color of['basic','shiny','special']){const filename=r.images[color];if(!filename)continue;const img=imageMap.get(`${folder}/${filename}`.toLowerCase())||imageMap.get(filename.toLowerCase());if(img)r.imageDataByColor[color]=await fileToDataURL(img)}const idx=data.relians.findIndex(x=>x.id===r.id);if(idx>=0){data.relians[idx]={...data.relians[idx],...r};updated++}else{data.relians.push(r);added++}}}catch(err){console.warn(file.name,err);ignored++}}
+  for(const file of jsonFiles){try{const raw=JSON.parse(await file.text()),path=(file.webkitRelativePath||file.name).replace(/\\/g,'/').toLowerCase();if(raw?.kind==='relians-save'&&raw?.data){data=migrateData(raw.data);continue}if(Array.isArray(raw.regions)||Array.isArray(raw.biomes)){mergeNamedList(data.regions,raw.regions);mergeNamedList(data.biomes,raw.biomes);continue}if(path.includes('/regioes/')||raw.kind==='region'||raw.tipoArquivo==='regiao'){mergeNamedList(data.regions,Array.isArray(raw)?raw:[raw]);continue}if(path.includes('/biomas/')||raw.kind==='biome'||raw.tipoArquivo==='bioma'){mergeNamedList(data.biomes,Array.isArray(raw)?raw:[raw]);continue}if(path.endsWith('/config/regras.json')||raw.kind==='rules'||raw.tipoArquivo==='regras'){data.rules={...data.rules,...raw};delete data.rules.kind;delete data.rules.tipoArquivo;continue}if(path.includes('/tracos/')||raw.kind==='trait'||raw.tipoArquivo==='traco'){for(const t of(Array.isArray(raw)?raw:[raw])){const n=normalizeTrait(t);if(n.name){data.traits[n.id]=n;traits++}}continue}if(path.includes('/fichas_jogadores/')||raw.kind==='player-sheet'||raw.tipoArquivo==='ficha-jogador'){
+  for(const source of(Array.isArray(raw)?raw:[raw])){
+    const s={...source};if(!s.id)continue;s.type='character';s.character=s.character||s.trainer||{};
+    const relativePath=(file.webkitRelativePath||'').replace(/\\/g,'/'),folder=relativePath.split('/').slice(0,-1).join('/');
+    const imageName=String(s.character.imageFileName||s.character.image||'');
+    if(imageName&&!imageName.startsWith('data:')){
+      const img=imageMap.get(`${folder}/${imageName}`.toLowerCase())||imageMap.get(imageName.toLowerCase());
+      if(img){s.character.image=await fileToDataURL(img);s.character.imageFileName=img.name;s.character.imageMime=img.type||''}
+    }
+    const i=(data.storySheets||[]).findIndex(x=>x.id===s.id);if(i>=0)data.storySheets[i]=s;else data.storySheets.push(s);
+  }continue;
+}if(path.includes('/fichas_especiais/')||raw.kind==='story-sheet'||raw.tipoArquivo==='ficha-especial'){for(const s of(Array.isArray(raw)?raw:[raw])){if(s.id){const i=(data.storySheets||[]).findIndex(x=>x.id===s.id);i>=0?data.storySheets[i]=s:data.storySheets.push(s)}}continue}if(path.includes('/movimentos/')||raw.kind==='move'||raw.tipoArquivo==='movimento'){for(const m of(Array.isArray(raw)?raw:[raw])){const n=normalizeMove(m);if(n.name){data.moves[n.id]=n;moves++}}continue}const candidates=Array.isArray(raw)?raw:Array.isArray(raw.relians)?raw.relians:[raw];for(const c of candidates){const r=normalizeRelian(c);const relativePath=(file.webkitRelativePath||'').replace(/\\/g,'/');const parentName=relativePath.split('/').slice(-2,-1)[0]||'';const folderMatch=parentName.match(/^(\d{1,6})(?:-([A-Z0-9]{1,3}))?_(.+)$/i);if(folderMatch){if(!r.catalogNumber)r.catalogNumber=Number(folderMatch[1])||null;if(!r.catalogVariant)r.catalogVariant=normalizeCatalogVariant(folderMatch[2]||'')}if(!r.name||!r.encounters.length){ignored++;continue}const folder=relativePath.split('/').slice(0,-1).join('/');r._sourceFolder=parentName||r._sourceFolder||'';r.imageDataByColor={};for(const color of['basic','shiny','special']){const filename=r.images[color];if(!filename)continue;const img=imageMap.get(`${folder}/${filename}`.toLowerCase())||imageMap.get(filename.toLowerCase());if(img)r.imageDataByColor[color]=await fileToDataURL(img)}const idx=data.relians.findIndex(x=>x.id===r.id);if(idx>=0){data.relians[idx]={...data.relians[idx],...r};updated++}else{data.relians.push(r);added++}}}catch(err){console.warn(file.name,err);ignored++}}
   saveData();if(!silent)alert(`Importação concluída: ${added} novo(s), ${updated} atualizado(s), ${traits} traço(s), ${moves} movimento(s), ${ignored} ignorado(s).`);return{added,updated,traits,moves,ignored};
 }
 el('relianFolderInput').onchange=async e=>{if(e.target.files.length)await importFileSet(e.target.files);e.target.value=''}
@@ -1909,16 +2008,34 @@ function setupCharacterFields(){
  el('characterSkills').innerHTML=CHARACTER_SKILLS.map(n=>`<label><span>${n}</span><input class="character-skill" data-skill="${n}" type="number" min="0" max="15" value="0" /></label>`).join('');
  el('characterEquipment').innerHTML=[1,2,3,4].map(i=>`<div class="equipment-editor-card"><label>Item ${i}<input class="character-item-name" data-index="${i-1}" placeholder="Nome do item" /></label><label>Descrição<textarea class="character-item-description" data-index="${i-1}" rows="3"></textarea></label></div>`).join('');
 }
+
+const BATTLE_ITEM_STORAGE_KEY='relians-battle-items-v1';
+function getBattleItemCatalog(){
+ try{const list=JSON.parse(localStorage.getItem(BATTLE_ITEM_STORAGE_KEY)||'[]');return Array.isArray(list)?list:[]}catch{return []}
+}
+function battleItemCatalogOptions(selected=''){
+ const items=getBattleItemCatalog();
+ return '<option value="">Item manual / personalizado</option>'+items.map(item=>`<option value="${esc(item.id)}" ${String(item.id)===String(selected)?'selected':''}>${esc(item.name)} · ${esc(item.category||'item')}</option>`).join('');
+}
+function battleItemByCatalogId(id){return getBattleItemCatalog().find(item=>String(item.id)===String(id))||null}
+
 function addCharacterBackpackItem(value={}){
  const box=el('characterBackpack');if(!box)return;
  const row=document.createElement('div');row.className='backpack-editor-card';
- row.innerHTML=`<div class="backpack-editor-head"><b>Item da mochila</b><button type="button" class="danger small remove-backpack-item" title="Remover item">×</button></div><label>Nome<input class="character-backpack-name" value="${esc(value.name||value.nome||'')}" placeholder="Nome do item" /></label><label>Descrição<textarea class="character-backpack-description" rows="3" placeholder="Uso, efeito ou observações...">${esc(value.description||value.descricao||'')}</textarea></label>`;
+ const quantity=Math.max(1,Number(value.quantity||value.quantidade||1)||1);
+ row.innerHTML=`<div class="backpack-editor-head"><b>Item da mochila</b><button type="button" class="danger small remove-backpack-item" title="Remover item">×</button></div>
+ <label>Item do catálogo<select class="character-backpack-catalog">${battleItemCatalogOptions(value.itemId||'')}</select></label>
+ <div class="character-backpack-inline"><label>Nome<input class="character-backpack-name" value="${esc(value.name||value.nome||'')}" placeholder="Nome do item" /></label><label>Quantidade<input class="character-backpack-quantity" type="number" min="1" max="999" value="${quantity}" /></label></div>
+ <label>Descrição<textarea class="character-backpack-description" rows="2" placeholder="Uso, efeito ou observações...">${esc(value.description||value.descricao||'')}</textarea></label>`;
+ const catalog=row.querySelector('.character-backpack-catalog');
+ catalog.onchange=()=>{const item=battleItemByCatalogId(catalog.value);if(item){row.querySelector('.character-backpack-name').value=item.name||'';row.querySelector('.character-backpack-description').value=item.description||''}renderStoryPreview()};
  row.querySelector('.remove-backpack-item').onclick=()=>{row.remove();renderStoryPreview()};
- row.querySelectorAll('input,textarea').forEach(input=>input.addEventListener('input',renderStoryPreview));
+ row.querySelectorAll('input,textarea,select').forEach(input=>input.addEventListener('input',renderStoryPreview));
  box.appendChild(row);
 }
 function setupCharacterBackpack(items=[]){const box=el('characterBackpack');if(!box)return;box.innerHTML='';(Array.isArray(items)?items:[]).forEach(addCharacterBackpackItem)}
-function readCharacterBackpack(){return [...document.querySelectorAll('#characterBackpack .backpack-editor-card')].map(row=>({name:row.querySelector('.character-backpack-name')?.value.trim()||'',description:row.querySelector('.character-backpack-description')?.value.trim()||''})).filter(item=>item.name||item.description)}
+function readCharacterBackpack(){return [...document.querySelectorAll('#characterBackpack .backpack-editor-card')].map(row=>({itemId:row.querySelector('.character-backpack-catalog')?.value||'',name:row.querySelector('.character-backpack-name')?.value.trim()||'',description:row.querySelector('.character-backpack-description')?.value.trim()||'',quantity:Math.max(1,+row.querySelector('.character-backpack-quantity')?.value||1)})).filter(item=>item.name||item.itemId||item.description)}
+
 function toggleStoryType(){const character=storyType()==='character';el('characterFields').hidden=!character;el('specialRelianFields').hidden=character;el('storySheetTitle').textContent=el('storySheetId').value?'Editar ficha':character?'Nova ficha de personagem':'Novo Relian específico';renderStoryPreview()}
 function addTrainerTeamRow(value={}){const row=document.createElement('div');row.className='story-team-row';row.innerHTML=`<label>Ficha de Relian salva<select class="team-species"></select></label><label>Apelido<input class="team-nickname" value="${esc(value.nickname||'')}" /></label><label>Nível<input class="team-level" type="number" min="1" max="100" value="${Number(value.level)||1}" /></label><label>Coloração<select class="team-color"><option value="basic">Basic</option><option value="shiny">Shiny</option><option value="special">Especial</option></select></label><label class="team-notes-label">Observações<input class="team-notes" value="${esc(value.notes||'')}" /></label><button type="button" class="danger remove-team">×</button>`;el('trainerTeamEditor').appendChild(row);refreshStoryOptions();row.querySelector('.team-species').value=value.savedSheetId?'sheet:'+value.savedSheetId:'';row.querySelector('.team-color').value=value.color||'basic';row.querySelector('.team-species').onchange=()=>{const v=row.querySelector('.team-species').value;const saved=v.startsWith('sheet:')?(data.savedRelianSheets||[]).find(x=>x.id===v.slice(6)):null;if(saved){row.querySelector('.team-nickname').value=saved.nickname||saved.speciesName;row.querySelector('.team-level').value=saved.level;row.querySelector('.team-color').value=saved.color||'basic'}renderStoryPreview()};row.querySelector('.remove-team').onclick=()=>{row.remove();renderStoryPreview()};row.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',renderStoryPreview))}
 function readTrainerTeam(){return [...document.querySelectorAll('.story-team-row')].map(row=>{const ref=row.querySelector('.team-species').value;const saved=ref.startsWith('sheet:')?(data.savedRelianSheets||[]).find(x=>x.id===ref.slice(6)):null;if(!saved)return null;return{speciesId:saved.speciesId,savedSheetId:saved.id,nickname:row.querySelector('.team-nickname').value.trim()||saved.nickname||saved.speciesName,level:+row.querySelector('.team-level').value||Number(saved.level)||1,color:row.querySelector('.team-color').value||saved.color||'basic',notes:row.querySelector('.team-notes').value.trim()}}).filter(Boolean)}
@@ -1936,18 +2053,102 @@ function updateSpecialCalculatedResources(forceCurrent=false){
   if(hpCurrentInput&&(forceCurrent||previousHpCurrent===previousHpMax||previousHpCurrent>resources.hp))hpCurrentInput.value=resources.hp;
   if(engCurrentInput&&(forceCurrent||previousEngCurrent===previousEngMax||previousEngCurrent>resources.energy))engCurrentInput.value=resources.energy;
 }
-function clearStorySheet(){el('storySheetForm').reset();el('storySheetId').value='';if(el('characterEquippedTeam'))el('characterEquippedTeam').value='[]';document.querySelector('input[name="storyType"][value="character"]').checked=true;el('trainerTeamEditor').innerHTML='';addTrainerTeamRow();setupSpecialAttributes();setupSpecialRelianEditors();setupCharacterFields();setupCharacterBackpack();el('specialHpCurrent').value=100;el('specialHpMax').value=100;el('specialEngCurrent').value=65;el('specialEngMax').value=65;el('specialAffinity').value=2;toggleStoryType()}
+
+let characterImportedImage={dataUrl:'',fileName:'',mime:''};
+function extensionForMime(mime=''){
+  const m=String(mime).toLowerCase();
+  if(m.includes('png'))return 'png';
+  if(m.includes('webp'))return 'webp';
+  if(m.includes('gif'))return 'gif';
+  return 'jpg';
+}
+function updateCharacterImageImportUI(){
+  const dataUrl=el('characterImage')?.value||characterImportedImage.dataUrl||'';
+  const preview=el('characterImageImportPreview'),name=el('characterImageFileName'),remove=el('characterImageRemoveBtn');
+  if(preview)preview.innerHTML=dataUrl?`<img src="${esc(dataUrl)}" alt="Imagem do treinador">`:'<span>SEM IMAGEM</span>';
+  if(name)name.textContent=characterImportedImage.fileName||((dataUrl&&dataUrl.startsWith('data:'))?'Imagem incorporada na ficha.':dataUrl||'Nenhuma imagem selecionada.');
+  if(remove)remove.disabled=!dataUrl;
+}
+async function setCharacterImageFromFile(file){
+  if(!file)return;
+  if(!/^image\/(png|jpeg|webp|gif)$/i.test(file.type||''))return alert('Escolha uma imagem PNG, JPG, WEBP ou GIF.');
+  const dataUrl=await fileToDataURL(file);
+  characterImportedImage={dataUrl,fileName:file.name||`treinador.${extensionForMime(file.type)}`,mime:file.type||''};
+  if(el('characterImage'))el('characterImage').value=dataUrl;
+  updateCharacterImageImportUI();renderStoryPreview();
+}
+function clearCharacterImportedImage(){
+  characterImportedImage={dataUrl:'',fileName:'',mime:''};
+  if(el('characterImage'))el('characterImage').value='';
+  if(el('characterImageFile'))el('characterImageFile').value='';
+  updateCharacterImageImportUI();renderStoryPreview();
+}
+
+function clearStorySheet(){el('storySheetForm').reset();characterImportedImage={dataUrl:'',fileName:'',mime:''};el('storySheetId').value='';if(el('characterEquippedTeam'))el('characterEquippedTeam').value='[]';document.querySelector('input[name="storyType"][value="character"]').checked=true;el('trainerTeamEditor').innerHTML='';addTrainerTeamRow();setupSpecialAttributes();setupSpecialRelianEditors();setupCharacterFields();setupCharacterBackpack();el('specialHpCurrent').value=100;el('specialHpMax').value=100;el('specialEngCurrent').value=65;el('specialEngMax').value=65;el('specialAffinity').value=2;updateCharacterImageImportUI();toggleStoryType()}
 function storySheetLabel(s){return s.type==='character'?(s.character?.name||'Personagem sem nome'):(s.relian?.nickname||data.relians.find(r=>r.id===s.relian?.speciesId)?.name||'Relian específico')}
 function renderStorySheets(){const list=el('storySheetsList');if(!list)return;const q=(el('storySearch')?.value||'').toLowerCase();const rows=(data.storySheets||[]).filter(s=>JSON.stringify(s).toLowerCase().includes(q));list.innerHTML=rows.length?rows.map(s=>`<div class="entity-row story-list-row"><button type="button" class="entity-main-button" onclick="viewStorySheet('${esc(s.id)}')"><b>${esc(storySheetLabel(s))}</b><small>${s.type==='character'?'Personagem':'Relian específico'}${s.type==='relian'&&s.relian?.scene?' · '+esc(s.relian.scene):''}</small></button><button type="button" class="small" onclick="editStorySheet('${esc(s.id)}')">Editar</button></div>`).join(''):'<p class="empty">Nenhuma ficha cadastrada.</p>'}
 window.viewStorySheet=id=>{editStorySheet(id);document.querySelector('.story-side-preview')?.scrollIntoView({behavior:'smooth',block:'start'})}
-window.editStorySheet=id=>{const s=(data.storySheets||[]).find(x=>x.id===id);if(!s)return;clearStorySheet();el('storySheetId').value=s.id;const type=s.type==='trainer'?'character':s.type;document.querySelector(`input[name="storyType"][value="${type}"]`).checked=true;if(type==='character'){const c=s.character||s.trainer||{};[['characterPlayer','player'],['characterName','name'],['characterAge','age'],['characterRegion','region'],['characterClass','className'],['characterSpecialization','specialization'],['characterLevel','level'],['characterRank','rank'],['characterStars','stars'],['characterRays','rays'],['characterReliInf','reliInf'],['characterCredits','credits'],['characterMoney','money'],['characterImage','image'],['characterDescription','description'],['characterHpCurrent','hpCurrent'],['characterHpMax','hpMax'],['characterStaCurrent','staCurrent'],['characterStaMax','staMax']].forEach(([eid,k])=>{if(el(eid))el(eid).value=c[k]??''});document.querySelectorAll('.character-attr').forEach(x=>x.value=c.attributes?.[x.dataset.attr]??1);document.querySelectorAll('.character-skill').forEach(x=>x.value=c.skills?.[x.dataset.skill]??0);document.querySelectorAll('.character-item-name').forEach(x=>x.value=c.equipment?.[+x.dataset.index]?.name||'');document.querySelectorAll('.character-item-description').forEach(x=>x.value=c.equipment?.[+x.dataset.index]?.description||'');setupCharacterBackpack(c.backpack||c.mochila||[]);if(el('characterEquippedTeam'))el('characterEquippedTeam').value=JSON.stringify((c.equippedRelianIds||c.equippedTeam||[]).slice(0,7));el('trainerTeamEditor').innerHTML='';(c.team||[]).forEach(addTrainerTeamRow);if(!(c.team||[]).length)addTrainerTeamRow()}else{const r=s.relian||{};el('specialSpecies').value=r.speciesId||'';el('specialNickname').value=r.nickname||'';el('specialLevel').value=r.level||1;el('specialColor').value=r.color||'basic';el('specialGender').value=r.gender||'';el('specialSize').value=r.size||'';el('specialHpCurrent').value=r.hpCurrent??50;el('specialHpMax').value=r.hpMax??50;el('specialEngCurrent').value=r.engCurrent??85;el('specialEngMax').value=r.engMax??85;el('specialAffinity').value=r.affinity??2;el('specialTrait').value=r.traitId||'';el('specialScene').value=r.scene||'';document.querySelectorAll('.special-move-select').forEach((select,i)=>select.value=(r.moves||[])[i]||'');document.querySelectorAll('.special-item-name').forEach((input,i)=>input.value=(r.items||[])[i]?.name||'');document.querySelectorAll('.special-item-description').forEach((input,i)=>input.value=(r.items||[])[i]?.description||'');updateSpecialMoveInfo();el('specialNotes').value=r.notes||'';document.querySelectorAll('.special-attr').forEach(inp=>inp.value=r.attributes?.[inp.dataset.attr]??1)}toggleStoryType();document.querySelector('[data-tab="story"]').click();renderStoryPreview()}
-function currentStoryPayload(){const type=storyType();if(type==='character'){const attributes={},skills={},equipment=[];document.querySelectorAll('.character-attr').forEach(x=>attributes[x.dataset.attr]=+x.value||0);document.querySelectorAll('.character-skill').forEach(x=>skills[x.dataset.skill]=+x.value||0);for(let i=0;i<4;i++)equipment.push({name:document.querySelector(`.character-item-name[data-index="${i}"]`).value.trim(),description:document.querySelector(`.character-item-description[data-index="${i}"]`).value.trim()});return{type,character:{player:el('characterPlayer').value.trim(),name:el('characterName').value.trim(),age:+el('characterAge').value||null,region:el('characterRegion').value.trim(),className:el('characterClass').value,specialization:el('characterSpecialization').value.trim(),level:+el('characterLevel').value||0,rank:el('characterRank').value.trim(),stars:+el('characterStars').value||0,rays:+el('characterRays').value||0,reliInf:+el('characterReliInf').value||0,credits:+el('characterCredits').value||0,money:+el('characterMoney').value||0,image:el('characterImage').value.trim(),description:el('characterDescription').value.trim(),hpCurrent:+el('characterHpCurrent').value||0,hpMax:+el('characterHpMax').value||1,staCurrent:+el('characterStaCurrent').value||0,staMax:+el('characterStaMax').value||1,attributes,skills,equipment,backpack:readCharacterBackpack(),team:readTrainerTeam(),equippedRelianIds:(()=>{try{return JSON.parse(el('characterEquippedTeam')?.value||'[]').slice(0,7)}catch(e){return[]}})()}}}const attrs={};document.querySelectorAll('.special-attr').forEach(inp=>attrs[inp.dataset.attr]=+inp.value||0);return{type,relian:{speciesId:el('specialSpecies').value,nickname:el('specialNickname').value.trim(),level:+el('specialLevel').value||1,color:normalizeColorId(el('specialColor').value),gender:el('specialGender').value.trim(),size:el('specialSize').value.trim(),hpCurrent:+el('specialHpCurrent').value||0,hpMax:+el('specialHpMax').value||1,engCurrent:+el('specialEngCurrent').value||0,engMax:+el('specialEngMax').value||1,affinity:+el('specialAffinity').value||0,attributes:attrs,traitId:el('specialTrait').value,moves:readSpecialMoves(),items:readSpecialItems(),scene:el('specialScene').value.trim(),notes:el('specialNotes').value.trim()}}}
+window.editStorySheet=id=>{const s=(data.storySheets||[]).find(x=>x.id===id);if(!s)return;clearStorySheet();el('storySheetId').value=s.id;const type=s.type==='trainer'?'character':s.type;document.querySelector(`input[name="storyType"][value="${type}"]`).checked=true;if(type==='character'){const c=s.character||s.trainer||{};[['characterPlayer','player'],['characterName','name'],['characterAge','age'],['characterRegion','region'],['characterClass','className'],['characterSpecialization','specialization'],['characterLevel','level'],['characterRank','rank'],['characterStars','stars'],['characterRays','rays'],['characterReliInf','reliInf'],['characterCredits','credits'],['characterMoney','money'],['characterImage','image'],['characterDescription','description'],['characterHpCurrent','hpCurrent'],['characterHpMax','hpMax'],['characterStaCurrent','staCurrent'],['characterStaMax','staMax']].forEach(([eid,k])=>{if(el(eid))el(eid).value=c[k]??''});characterImportedImage={dataUrl:String(c.image||''),fileName:String(c.imageFileName||c.imageFile||''),mime:String(c.imageMime||'')};updateCharacterImageImportUI();document.querySelectorAll('.character-attr').forEach(x=>x.value=c.attributes?.[x.dataset.attr]??1);document.querySelectorAll('.character-skill').forEach(x=>x.value=c.skills?.[x.dataset.skill]??0);document.querySelectorAll('.character-item-name').forEach(x=>x.value=c.equipment?.[+x.dataset.index]?.name||'');document.querySelectorAll('.character-item-description').forEach(x=>x.value=c.equipment?.[+x.dataset.index]?.description||'');setupCharacterBackpack(c.backpack||c.mochila||[]);if(el('characterEquippedTeam'))el('characterEquippedTeam').value=JSON.stringify((c.equippedRelianIds||c.equippedTeam||[]).slice(0,7));el('trainerTeamEditor').innerHTML='';(c.team||[]).forEach(addTrainerTeamRow);if(!(c.team||[]).length)addTrainerTeamRow()}else{const r=s.relian||{};el('specialSpecies').value=r.speciesId||'';el('specialNickname').value=r.nickname||'';el('specialLevel').value=r.level||1;el('specialColor').value=r.color||'basic';el('specialGender').value=r.gender||'';el('specialSize').value=r.size||'';el('specialHpCurrent').value=r.hpCurrent??50;el('specialHpMax').value=r.hpMax??50;el('specialEngCurrent').value=r.engCurrent??85;el('specialEngMax').value=r.engMax??85;el('specialAffinity').value=r.affinity??2;el('specialTrait').value=r.traitId||'';el('specialScene').value=r.scene||'';document.querySelectorAll('.special-move-select').forEach((select,i)=>select.value=(r.moves||[])[i]||'');document.querySelectorAll('.special-item-name').forEach((input,i)=>input.value=(r.items||[])[i]?.name||'');document.querySelectorAll('.special-item-description').forEach((input,i)=>input.value=(r.items||[])[i]?.description||'');updateSpecialMoveInfo();el('specialNotes').value=r.notes||'';document.querySelectorAll('.special-attr').forEach(inp=>inp.value=r.attributes?.[inp.dataset.attr]??1)}toggleStoryType();document.querySelector('[data-tab="story"]').click();renderStoryPreview()}
+function currentStoryPayload(){const type=storyType();if(type==='character'){const attributes={},skills={},equipment=[];document.querySelectorAll('.character-attr').forEach(x=>attributes[x.dataset.attr]=+x.value||0);document.querySelectorAll('.character-skill').forEach(x=>skills[x.dataset.skill]=+x.value||0);for(let i=0;i<4;i++)equipment.push({name:document.querySelector(`.character-item-name[data-index="${i}"]`).value.trim(),description:document.querySelector(`.character-item-description[data-index="${i}"]`).value.trim()});return{type,character:{player:el('characterPlayer').value.trim(),name:el('characterName').value.trim(),age:+el('characterAge').value||null,region:el('characterRegion').value.trim(),className:el('characterClass').value,specialization:el('characterSpecialization').value.trim(),level:+el('characterLevel').value||0,rank:el('characterRank').value.trim(),stars:+el('characterStars').value||0,rays:+el('characterRays').value||0,reliInf:+el('characterReliInf').value||0,credits:+el('characterCredits').value||0,money:+el('characterMoney').value||0,image:el('characterImage').value.trim(),imageFileName:characterImportedImage.fileName||'',imageMime:characterImportedImage.mime||'',description:el('characterDescription').value.trim(),hpCurrent:+el('characterHpCurrent').value||0,hpMax:+el('characterHpMax').value||1,staCurrent:+el('characterStaCurrent').value||0,staMax:+el('characterStaMax').value||1,attributes,skills,equipment,backpack:readCharacterBackpack(),team:readTrainerTeam(),equippedRelianIds:(()=>{try{return JSON.parse(el('characterEquippedTeam')?.value||'[]').slice(0,7)}catch(e){return[]}})()}}}const attrs={};document.querySelectorAll('.special-attr').forEach(inp=>attrs[inp.dataset.attr]=+inp.value||0);return{type,relian:{speciesId:el('specialSpecies').value,nickname:el('specialNickname').value.trim(),level:+el('specialLevel').value||1,color:normalizeColorId(el('specialColor').value),gender:el('specialGender').value.trim(),size:el('specialSize').value.trim(),hpCurrent:+el('specialHpCurrent').value||0,hpMax:+el('specialHpMax').value||1,engCurrent:+el('specialEngCurrent').value||0,engMax:+el('specialEngMax').value||1,affinity:+el('specialAffinity').value||0,attributes:attrs,traitId:el('specialTrait').value,moves:readSpecialMoves(),items:readSpecialItems(),scene:el('specialScene').value.trim(),notes:el('specialNotes').value.trim()}}}
 function barPct(a,b){return Math.max(0,Math.min(100,b?Math.round(a/b*100):0))}
 function renderStoryPreview(){const box=el('storyPreview');if(!box)return;const s=currentStoryPayload();if(s.type==='character'){const c=s.character,attrs=CHARACTER_ATTRS.map(([id,n])=>`<div><span>${n}</span><b>${c.attributes[id]||0}</b></div>`).join(''),skillRows=Object.entries(c.skills).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).map(([n,v])=>`<span>${esc(n)} <b>${v}</b></span>`).join('');box.innerHTML=`<article class="character-sheet-preview"><header class="character-sheet-header"><div class="character-portrait"><div>${c.image?`<img src="${esc(c.image)}" alt="${esc(c.name)}">`:'<span>SEM IMAGEM</span>'}</div></div><div class="character-identity"><small>FICHA DE PERSONAGEM</small><h2>${esc(c.name||'Novo personagem')}</h2><p>${esc(c.player?'Jogador: '+c.player:'Explorador de Astra')}</p><div class="character-tags"><b>${esc(c.className||'Sem classe')}</b><span>${esc(c.region||'Região não definida')}</span><span>Nível ${c.level}</span></div><div class="character-milestones"><span>Rank ${esc(c.rank||'—')}</span><span>★ ${c.stars}</span><span>⚡ ${c.rays}</span><span>Reli-INF ${c.reliInf}</span></div></div><div class="character-resources"><div><b>PV ${c.hpCurrent}/${c.hpMax}</b><i><em style="width:${barPct(c.hpCurrent,c.hpMax)}%"></em></i></div><div><b>STAMINA ${c.staCurrent}/${c.staMax}</b><i class="sta"><em style="width:${barPct(c.staCurrent,c.staMax)}%"></em></i></div><p>Créditos: ${c.credits.toFixed(2)} · Dinheiro: ${c.money.toFixed(2)}</p></div></header><div class="character-sheet-grid"><section class="sheet-panel"><h3>Atributos</h3><div class="character-preview-attrs">${attrs}</div></section><section class="sheet-panel"><h3>Perícias treinadas</h3><div class="character-preview-skills">${skillRows||'<span>Nenhuma perícia pontuada.</span>'}</div></section><section class="sheet-panel wide"><h3>Equipamentos</h3><div class="character-preview-equipment">${c.equipment.map((x,i)=>`<div><b>Item ${i+1}: ${esc(x.name||'Vazio')}</b><p>${esc(x.description||'Sem descrição.')}</p></div>`).join('')}</div></section><section class="sheet-panel wide"><h3>Mochila</h3><div class="character-backpack-preview">${c.backpack.length?c.backpack.map((x,i)=>`<div><b>${i+1}. ${esc(x.name||'Item sem nome')}</b><p>${esc(x.description||'Sem descrição.')}</p></div>`).join(''):'<p class="empty">A mochila está vazia.</p>'}</div></section><section class="sheet-panel wide"><h3>Equipe de Relians</h3><div class="story-team-preview">${c.team.length?c.team.map(m=>{const r=data.relians.find(x=>x.id===m.speciesId);return `<div><b>${esc(m.nickname||r?.name||'Relian')}</b><span>${esc(r?.name||'')} · Nv. ${m.level} · ${esc(colorName(m.color))}</span><small>${esc(relianElementText(r,m.color))}${m.notes?' · '+esc(m.notes):''}</small></div>`}).join(''):'<p class="empty">Nenhum Relian na equipe.</p>'}</div></section></div></article>`}else{const r=s.relian,sp=data.relians.find(x=>x.id===r.speciesId),trait=data.traits[r.traitId];box.innerHTML=`<article class="story-card special-relian-card"><div class="story-card-head"><span>Relian específico</span><h2>${esc(r.nickname||sp?.name||'Nova ficha')}</h2><p>${esc(sp?.name||'Espécie não selecionada')} · Nv. ${r.level}${r.scene?' · '+esc(r.scene):''}</p></div><div class="story-card-body"><div class="story-resource-preview"><b>HP ${r.hpCurrent}/${r.hpMax}</b><b>ENG ${r.engCurrent}/${r.engMax}</b><b>Afinidade ${r.affinity}/5</b></div>${identityBadges(sp?.class,getRelianElements(sp,r.color||'basic'))}<p><b>Traço:</b> ${esc(trait?.name||'Nenhum')}</p><div class="special-preview-grid"><section><h3>Movimentos</h3><div class="special-preview-moves">${r.moves.length?r.moves.map((id,i)=>{const m=data.moves[id],visual=moveCardVisual(m);return `<div class="move-card-elemental" style="${visual.style}"><span>${i+1}</span><b>${esc(m?.name||id)}</b><small>${esc(visual.label)} · ${esc(m?.type||'MOV')} · Dano ${Number(m?.damage)||0} · ENG ${Number(m?.energy)||0}</small>${moveInfoButton(m?.description||'Movimento não encontrado no banco.')}</div>`}).join(''):'<p class="empty">Nenhum movimento.</p>'}</div></section><section><h3>Itens segurados</h3><div class="special-preview-items">${r.items.length?r.items.map((item,i)=>`<div><b>Item ${i+1}: ${esc(item.name||'Sem nome')}</b><p>${esc(item.description||'Sem descrição.')}</p></div>`).join(''):'<p class="empty">Nenhum item equipado.</p>'}</div></section></div>${sp?.description?`<div class="story-species-description"><h3>Descrição da espécie</h3><p>${esc(sp.description)}</p></div>`:''}<p>${esc(r.notes||'Sem anotações.')}</p></div></article>`}}
-async function writeStorySheetFile(sheet,oldId=''){if(!linkedDirectory)return{saved:false};if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false};const dir=await linkedDirectory.getDirectoryHandle('Fichas_Especiais',{create:true});const file=await dir.getFileHandle(`${sheet.id}.json`,{create:true});const writable=await file.createWritable();await writable.write(JSON.stringify({kind:'story-sheet',tipoArquivo:'ficha-especial',...sheet},null,2));await writable.close();if(oldId&&oldId!==sheet.id){try{await dir.removeEntry(`${oldId}.json`)}catch(e){}}folderSignature='';return{saved:true}}
-async function deleteStorySheetFile(id){if(!linkedDirectory||!await ensurePermission(linkedDirectory,true,'readwrite'))return false;try{const dir=await linkedDirectory.getDirectoryHandle('Fichas_Especiais');await dir.removeEntry(`${id}.json`);folderSignature='';return true}catch(e){return false}}
-el('storySheetForm').onsubmit=async e=>{e.preventDefault();const payload=currentStoryPayload();if(payload.type==='character'&&!payload.character.name)return alert('Informe o nome do personagem.');if(payload.type==='relian'&&!payload.relian.speciesId)return alert('Escolha a espécie do Relian.');const oldId=el('storySheetId').value;const baseName=payload.type==='character'?payload.character.name:(payload.relian.nickname||data.relians.find(r=>r.id===payload.relian.speciesId)?.name||'relian-especial');const id=oldId||`${payload.type}-${slug(baseName)}-${Date.now().toString(36)}`;if(payload.type==='character')linkOriginalTrainerToTeam(payload.character);const sheet={id,...payload,updatedAt:new Date().toISOString()};const idx=(data.storySheets||[]).findIndex(x=>x.id===oldId||x.id===id);if(idx>=0)data.storySheets[idx]=sheet;else data.storySheets.push(sheet);saveData();el('storySheetId').value=id;await writeStorySheetFile(sheet,oldId);renderStoryPreview();alert(linkedDirectory?'Ficha salva no banco e em Fichas_Especiais.':'Ficha salva no navegador.')}
+async function writeCharacterSheetFolder(sheet,oldId=''){
+  if(!linkedDirectory)return{saved:false};
+  if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false};
+  const rootDir=await linkedDirectory.getDirectoryHandle('Fichas_Jogadores',{create:true});
+  const folderName=slug(sheet.character?.name||sheet.id)||sheet.id;
+  const folder=await rootDir.getDirectoryHandle(folderName,{create:true});
+  let imageFile='';
+  const imageData=String(sheet.character?.image||'');
+  if(imageData.startsWith('data:image/')){
+    const mime=(imageData.match(/^data:([^;,]+)/)||[])[1]||sheet.character?.imageMime||'image/png';
+    imageFile=`treinador.${extensionForMime(mime)}`;
+    try{
+      const blob=await (await fetch(imageData)).blob();
+      const imageHandle=await folder.getFileHandle(imageFile,{create:true});
+      const iw=await imageHandle.createWritable();await iw.write(blob);await iw.close();
+    }catch(err){console.warn('Falha ao salvar imagem do jogador',err)}
+  }else if(sheet.character?.imageFileName){imageFile=sheet.character.imageFileName}
+  const diskSheet=JSON.parse(JSON.stringify(sheet));
+  diskSheet.kind='player-sheet';diskSheet.tipoArquivo='ficha-jogador';
+  diskSheet.character.image=imageFile||diskSheet.character.image||'';
+  diskSheet.character.imageFileName=imageFile||diskSheet.character.imageFileName||'';
+  const file=await folder.getFileHandle('ficha.json',{create:true});
+  const writable=await file.createWritable();await writable.write(JSON.stringify(diskSheet,null,2));await writable.close();
+  if(oldId){try{const legacy=await linkedDirectory.getDirectoryHandle('Fichas_Especiais');await legacy.removeEntry(`${oldId}.json`)}catch(e){}}
+  folderSignature='';return{saved:true,folder:`Fichas_Jogadores/${folderName}`};
+}
+async function writeStorySheetFile(sheet,oldId=''){
+  if(sheet?.type==='character'||sheet?.type==='trainer')return writeCharacterSheetFolder(sheet,oldId);
+  if(!linkedDirectory)return{saved:false};
+  if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false};
+  const dir=await linkedDirectory.getDirectoryHandle('Fichas_Especiais',{create:true});
+  const file=await dir.getFileHandle(`${sheet.id}.json`,{create:true});
+  const writable=await file.createWritable();
+  await writable.write(JSON.stringify({kind:'story-sheet',tipoArquivo:'ficha-especial',...sheet},null,2));
+  await writable.close();
+  if(oldId&&oldId!==sheet.id){try{await dir.removeEntry(`${oldId}.json`)}catch(e){}}
+  folderSignature='';return{saved:true};
+}
+async function deleteStorySheetFile(id){
+  if(!linkedDirectory||!await ensurePermission(linkedDirectory,true,'readwrite'))return false;
+  const sheet=(data.storySheets||[]).find(s=>String(s.id)===String(id));
+  let removed=false;
+  if(sheet&&(sheet.type==='character'||sheet.type==='trainer')){
+    try{
+      const rootDir=await linkedDirectory.getDirectoryHandle('Fichas_Jogadores');
+      const folderName=slug(sheet.character?.name||sheet.trainer?.name||sheet.id)||sheet.id;
+      await rootDir.removeEntry(folderName,{recursive:true});removed=true;
+    }catch(e){}
+  }
+  try{const legacy=await linkedDirectory.getDirectoryHandle('Fichas_Especiais');await legacy.removeEntry(`${id}.json`);removed=true}catch(e){}
+  if(removed)folderSignature='';return removed;
+}
+el('storySheetForm').onsubmit=async e=>{e.preventDefault();const payload=currentStoryPayload();if(payload.type==='character'&&!payload.character.name)return alert('Informe o nome do personagem.');if(payload.type==='relian'&&!payload.relian.speciesId)return alert('Escolha a espécie do Relian.');const oldId=el('storySheetId').value;const baseName=payload.type==='character'?payload.character.name:(payload.relian.nickname||data.relians.find(r=>r.id===payload.relian.speciesId)?.name||'relian-especial');const id=oldId||`${payload.type}-${slug(baseName)}-${Date.now().toString(36)}`;if(payload.type==='character')linkOriginalTrainerToTeam(payload.character);const sheet={id,...payload,updatedAt:new Date().toISOString()};const idx=(data.storySheets||[]).findIndex(x=>x.id===oldId||x.id===id);if(idx>=0)data.storySheets[idx]=sheet;else data.storySheets.push(sheet);saveData();el('storySheetId').value=id;await writeStorySheetFile(sheet,oldId);renderStoryPreview();alert(linkedDirectory?(payload.type==='character'?'Ficha salva no banco e em Fichas_Jogadores, junto da imagem.':'Ficha salva no banco e em Fichas_Especiais.'):'Ficha salva no navegador. Vincule uma pasta de dados para também criar os arquivos no projeto.')}
 el('deleteStorySheetBtn').onclick=async()=>{const id=el('storySheetId').value;if(!id||!confirm('Excluir esta ficha?'))return;data.storySheets=data.storySheets.filter(x=>x.id!==id);saveData();await deleteStorySheetFile(id);clearStorySheet()}
+el('characterImageImportBtn')?.addEventListener('click',()=>el('characterImageFile')?.click());
+el('characterImageFile')?.addEventListener('change',async e=>{const file=e.target.files?.[0];if(file)await setCharacterImageFromFile(file)});
+el('characterImageRemoveBtn')?.addEventListener('click',clearCharacterImportedImage);
 el('newStorySheetBtn').onclick=clearStorySheet;el('addTrainerTeamBtn').onclick=()=>addTrainerTeamRow();el('addCharacterBackpackItemBtn').onclick=()=>addCharacterBackpackItem();el('storySearch').addEventListener('input',renderStorySheets);el('savedSheetSearch')?.addEventListener('input',renderSavedRelianSheets);document.querySelectorAll('input[name="storyType"]').forEach(x=>x.addEventListener('change',toggleStoryType));el('specialLevel')?.addEventListener('input',()=>{updateSpecialCalculatedResources();renderStoryPreview()});el('specialTrait')?.addEventListener('change',()=>{updateSpecialCalculatedResources();renderStoryPreview()});el('storySheetForm').addEventListener('input',renderStoryPreview);setupSpecialAttributes();setupSpecialRelianEditors();setupCharacterFields();clearStorySheet();
 
 setupTabs();setupElementSelectors();renderAll();clearRelianForm();clearMoveForm();
@@ -1971,21 +2172,23 @@ function bankSelectedEntry(){
   const sheet=(data.savedRelianSheets||[]).find(s=>String(s.id)===id);
   return sheet?{kind:'relian',sheet}:null;
 }
-let bankKindFilter='all';
+var bankKindFilter='all';
 function renderSavedRelianSheets(){
   const box=el('savedRelianSheetsList');
   if(!box)return;
+  if(typeof bankKindFilter==='undefined'||!bankKindFilter)bankKindFilter='all';
+  if(!Array.isArray(data.savedRelianSheets))data.savedRelianSheets=[];
   const q=(el('savedSheetSearch')?.value||'').trim().toLowerCase();
   const relians=(data.savedRelianSheets||[]).filter(s=>bankKindFilter!=='character'&&JSON.stringify(s).toLowerCase().includes(q));
   const characters=bankCharacterSheets().filter(s=>bankKindFilter!=='relian'&&JSON.stringify(s).toLowerCase().includes(q));
   const relianRows=relians.map(s=>{
     const sp=data.relians.find(r=>r.id===s.speciesId),rar=s.rarity||sp?.rarity||'comum';
     const key='relian:'+s.id;
-    return `<button type="button" class="saved-sheet-select ${selectedSavedSheetId===key||selectedSavedSheetId===s.id?'selected':''}" data-bank-kind="relian" data-bank-id="${esc(s.id)}" onclick="openBankSheet('relian','${esc(String(s.id))}')"><span class="saved-sheet-select-main"><b>${esc(s.nickname||s.speciesName)}</b><small>${esc(s.speciesName)} · Nv. ${s.level}</small><span class="saved-sheet-tags"><i class="color-tag ${esc(s.color||'basic')}">${esc(colorName(s.color))}</i><i class="rarity-tag rarity-${esc(rar)}">${esc(RARITY_NAMES[rar]||'Comum')}</i>${s.originalTrainer?`<i class="trainer-owner-tag">${esc(s.originalTrainer)}</i>`:''}</span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
+    return `<button type="button" class="saved-sheet-select ${selectedSavedSheetId===key||selectedSavedSheetId===s.id?'selected':''}" data-bank-kind="relian" data-bank-id="${esc(s.id)}"><span class="saved-sheet-select-main"><b>${esc(s.nickname||s.speciesName)}</b><small>${esc(s.speciesName)} · Nv. ${s.level}</small><span class="saved-sheet-tags"><i class="color-tag ${esc(s.color||'basic')}">${esc(colorName(s.color))}</i><i class="rarity-tag rarity-${esc(rar)}">${esc(RARITY_NAMES[rar]||'Comum')}</i>${s.originalTrainer?`<i class="trainer-owner-tag">${esc(s.originalTrainer)}</i>`:''}</span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
   }).join('');
   const characterRows=characters.map(s=>{
     const c=s.character||s.trainer||{},key='character:'+s.id;
-    return `<button type="button" class="saved-sheet-select character-bank-row ${selectedSavedSheetId===key?'selected':''}" data-bank-kind="character" data-bank-id="${esc(s.id)}" onclick="openBankSheet('character','${esc(String(s.id))}')"><span class="saved-sheet-select-main"><b>${esc(c.name||'Personagem sem nome')}</b><small>${esc(c.player?('Jogador: '+c.player):(c.className||'Explorador de Astra'))}</small><span class="saved-sheet-tags"><i class="character-tag">PERSONAGEM</i>${c.className?`<i class="class-tag">${esc(c.className)}</i>`:''}<i class="level-tag">Nv. ${Number(c.level)||0}</i></span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
+    return `<button type="button" class="saved-sheet-select character-bank-row ${selectedSavedSheetId===key?'selected':''}" data-bank-kind="character" data-bank-id="${esc(s.id)}"><span class="saved-sheet-select-main"><b>${esc(c.name||'Personagem sem nome')}</b><small>${esc(c.player?('Jogador: '+c.player):(c.className||'Explorador de Astra'))}</small><span class="saved-sheet-tags"><i class="character-tag">PERSONAGEM</i>${c.className?`<i class="class-tag">${esc(c.className)}</i>`:''}<i class="level-tag">Nv. ${Number(c.level)||0}</i></span></span><span class="saved-sheet-open-icon" aria-hidden="true">›</span></button>`;
   }).join('');
   box.innerHTML=`<div class="bank-list-summary"><span>${relians.length} Relian${relians.length===1?'':'s'}</span><span>${characters.length} personagem${characters.length===1?'':'s'}</span></div>${relians.length?`<div class="bank-group-title">Relians gerados</div>${relianRows}`:''}${characters.length?`<div class="bank-group-title">Personagens</div>${characterRows}`:''}${!relians.length&&!characters.length?'<p class="empty">Nenhuma ficha encontrada.</p>':''}`;
   /* O clique é tratado por delegação abaixo. Isso evita perder o evento quando
@@ -2175,8 +2378,10 @@ function renderBankCharacterDetail(sheet){
     if(text)text.textContent=`${c[currentKey]}/${max}`;
     if(bar)bar.style.width=barPct(c[currentKey],max)+'%';
   });
-  const readBankBackpack=()=>[...box.querySelectorAll('.bank-backpack-row')].map(row=>({name:row.querySelector('.bank-backpack-name')?.value.trim()||'',description:row.querySelector('.bank-backpack-description')?.value.trim()||''})).filter(item=>item.name||item.description);
-  const addBankBackpackRow=(item={})=>{c.backpack=readBankBackpack();c.backpack.push({name:item.name||'',description:item.description||''});saveData();selectedSavedSheetId='character:'+sheet.id;renderSavedSheetDetail()};
+  const readBankBackpack=()=>[...box.querySelectorAll('.bank-backpack-row')].map(row=>({itemId:row.querySelector('.bank-backpack-catalog')?.value||'',name:row.querySelector('.bank-backpack-name')?.value.trim()||'',description:row.querySelector('.bank-backpack-description')?.value.trim()||'',quantity:Math.max(1,+row.querySelector('.bank-backpack-quantity')?.value||1)})).filter(item=>item.name||item.itemId||item.description);
+  const addBankBackpackRow=(item={})=>{c.backpack=readBankBackpack();c.backpack.push({itemId:item.itemId||'',name:item.name||'',description:item.description||'',quantity:Math.max(1,Number(item.quantity)||1)});saveData();selectedSavedSheetId='character:'+sheet.id;renderSavedSheetDetail()};
+  box.querySelectorAll('.bank-backpack-catalog').forEach(select=>select.onchange=()=>{const row=select.closest('.bank-backpack-row'),item=battleItemByCatalogId(select.value);if(item&&row){row.querySelector('.bank-backpack-name').value=item.name||'';row.querySelector('.bank-backpack-description').value=item.description||''}});
+
   box.querySelectorAll('.bank-remove-backpack').forEach(btn=>btn.onclick=()=>{const row=btn.closest('.bank-backpack-row'),index=Number(row?.dataset.index);c.backpack=readBankBackpack();if(Number.isInteger(index))c.backpack.splice(index,1);saveData();selectedSavedSheetId='character:'+sheet.id;renderSavedSheetDetail()});
   el('bankAddBackpackBtn').onclick=()=>addBankBackpackRow();
   el('bankSaveBackpackBtn').onclick=()=>{c.backpack=readBankBackpack();saveData();selectedSavedSheetId='character:'+sheet.id;renderSavedSheetDetail();alert('Mochila atualizada.')};
@@ -2208,7 +2413,7 @@ function renderSavedSheetDetail(){
   if(entry.kind==='character'){renderBankCharacterDetail(entry.sheet);return}
   const s=entry.sheet,sp=data.relians.find(r=>r.id===s.speciesId),trait=data.traits[s.traitId],rar=s.rarity||sp?.rarity||'comum',img=resolveRelianImage(sp,normalizeColorId(s.color)),attrs=ATTR_KEYS.map(k=>{const base=Number(s.attributes?.[k])||0,red=Number(s.attributeReducers?.[k])||0,total=base+red;return `<tr><th>${esc(ATTR_LABELS[k])}</th><td>${base}</td><td><input class="bank-attr-reducer" data-attr="${esc(k)}" type="number" step="1" value="${red}"></td><td><strong class="bank-attr-total" data-total-attr="${esc(k)}">${total}</strong></td></tr>`}).join(''),moves=(s.moves||[]).map((id,i)=>{const m=data.moves[id];return `<div><span>${i+1}</span><b>${esc(m?.name||id)}</b><small>${esc(m?.type||'MOV')} · Dano ${Number(m?.damage)||0} · ENG ${Number(m?.energy)||0}</small></div>`}).join('');
   box.className=`saved-sheet-detail color-theme-${s.color||'basic'} rarity-theme-${rar}`;
-  box.innerHTML=`<article class="saved-relian-card"><header class="saved-relian-header"><div class="saved-relian-portrait"><span class="color-ribbon ${esc(s.color||'basic')}">${s.color==='shiny'?'◆ ':s.color==='special'?'✦ ':''}${esc(colorName(s.color))}</span>${img?`<img src="${esc(img)}" alt="${esc(s.nickname||s.speciesName)}">`:'<div class="portrait-placeholder"><span>?</span><small>Sem imagem</small></div>'}${savedSheetParticles(s.color)}</div><div class="saved-relian-identity"><div class="catalog-line"><span class="catalog-badge">Reli-Info #${sp?catalogCode(sp):'—'}</span><span class="mini-badge">Nível ${s.level}</span><span class="rarity-summary-badge rarity-${esc(rar)}"><span class="rarity-star">✦</span>${esc(RARITY_NAMES[rar]||'Comum')}</span></div><label>Nome da ficha<input id="bankNickname" value="${esc(s.nickname||s.speciesName)}"></label><h2>${esc(s.nickname||s.speciesName)}</h2>${identityBadges(sp?.class,getRelianElements(sp,normalizeColorId(s.color)))}<p>${esc(s.gender||'Indefinido')} · Tamanho ${esc(s.size||'—')}</p><div class="bank-resource-grid"><div class="bank-resource hp"><b>♥ HP</b><div><button data-bank-resource="hp" data-delta="-5">−5</button><button data-bank-resource="hp" data-delta="-1">−1</button><strong>${s.hpCurrent} / ${s.hpMax}</strong><button data-bank-resource="hp" data-delta="1">+1</button><button data-bank-resource="hp" data-delta="5">+5</button></div><i><em style="width:${barPct(s.hpCurrent,s.hpMax)}%"></em></i><label>Máximo<input id="bankHpMax" type="number" min="1" value="${s.hpMax}"></label></div><div class="bank-resource eng"><b>⚡ ENG</b><div><button data-bank-resource="eng" data-delta="-5">−5</button><button data-bank-resource="eng" data-delta="-1">−1</button><strong>${s.engCurrent} / ${s.engMax}</strong><button data-bank-resource="eng" data-delta="1">+1</button><button data-bank-resource="eng" data-delta="5">+5</button></div><i><em style="width:${barPct(s.engCurrent,s.engMax)}%"></em></i><label>Máximo<input id="bankEngMax" type="number" min="1" value="${s.engMax}"></label></div></div><div class="bank-affinity"><label>Afinidade<input id="bankAffinity" type="number" min="0" max="5" step="0.1" value="${Number(s.affinity??2)}"></label></div><div class="bank-actions"><button type="button" class="primary" id="saveBankSheetBtn">Salvar alterações</button><button type="button" id="editBankAsStoryBtn">Criar ficha de história a partir desta</button><button type="button" class="danger bank-delete-button" id="deleteBankSheetBtn">Excluir ficha</button></div></div></header><nav class="bank-detail-tabs relian-bank-tabs" aria-label="Seções da ficha"><button type="button" class="active" data-bank-relian-tab="attributes">Atributos</button><button type="button" data-bank-relian-tab="trait">Traço</button><button type="button" data-bank-relian-tab="moves">Movimentos <span>${(s.moves||[]).length}</span></button></nav><div class="saved-relian-body bank-relian-tabbed"><section class="bank-relian-panel active" data-bank-relian-panel="attributes"><h3>Atributos</h3><div class="bank-attrs-table-wrap"><table class="bank-attrs-table"><thead><tr><th>Atributo</th><th>Base</th><th>Redutor</th><th>Total</th></tr></thead><tbody>${attrs}</tbody></table></div></section><section class="bank-relian-panel" data-bank-relian-panel="trait" hidden><h3>Traço</h3><div class="bank-trait"><b>${esc(trait?.name||'Nenhum')}</b><p>${esc(trait?.description||'Sem descrição.')}</p>${trait?.palate?`<small>Paladar: ${esc(trait.palate)}</small>`:''}</div></section><section class="bank-relian-panel" data-bank-relian-panel="moves" hidden><h3>Movimentos</h3><div class="bank-moves">${moves||'<p class="empty">Nenhum movimento equipado.</p>'}</div></section></div></article>`;
+  box.innerHTML=`<article class="saved-relian-card"><header class="saved-relian-header"><div class="saved-relian-portrait"><span class="color-ribbon ${esc(s.color||'basic')}">${s.color==='shiny'?'◆ ':s.color==='special'?'✦ ':''}${esc(colorName(s.color))}</span>${img?`<img src="${esc(img)}" alt="${esc(s.nickname||s.speciesName)}">`:'<div class="portrait-placeholder"><span>?</span><small>Sem imagem</small></div>'}${savedSheetParticles(s.color)}</div><div class="saved-relian-identity"><div class="catalog-line"><span class="catalog-badge">Reli-Info #${sp?catalogCode(sp):'—'}</span><span class="mini-badge">Nível ${s.level}</span><span class="mini-badge">XP ${Number(s.xp)||0} / ${70+(Number(s.level)||1)*30}</span><span class="rarity-summary-badge rarity-${esc(rar)}"><span class="rarity-star">✦</span>${esc(RARITY_NAMES[rar]||'Comum')}</span></div><label>Nome da ficha<input id="bankNickname" value="${esc(s.nickname||s.speciesName)}"></label><h2>${esc(s.nickname||s.speciesName)}</h2>${identityBadges(sp?.class,getRelianElements(sp,normalizeColorId(s.color)))}<p>${esc(s.gender||'Indefinido')} · Tamanho ${esc(s.size||'—')}</p><div class="bank-resource-grid"><div class="bank-resource hp"><b>♥ HP</b><div><button data-bank-resource="hp" data-delta="-5">−5</button><button data-bank-resource="hp" data-delta="-1">−1</button><strong>${s.hpCurrent} / ${s.hpMax}</strong><button data-bank-resource="hp" data-delta="1">+1</button><button data-bank-resource="hp" data-delta="5">+5</button></div><i><em style="width:${barPct(s.hpCurrent,s.hpMax)}%"></em></i><label>Máximo<input id="bankHpMax" type="number" min="1" value="${s.hpMax}"></label></div><div class="bank-resource eng"><b>⚡ ENG</b><div><button data-bank-resource="eng" data-delta="-5">−5</button><button data-bank-resource="eng" data-delta="-1">−1</button><strong>${s.engCurrent} / ${s.engMax}</strong><button data-bank-resource="eng" data-delta="1">+1</button><button data-bank-resource="eng" data-delta="5">+5</button></div><i><em style="width:${barPct(s.engCurrent,s.engMax)}%"></em></i><label>Máximo<input id="bankEngMax" type="number" min="1" value="${s.engMax}"></label></div></div><div class="bank-affinity"><label>Afinidade<input id="bankAffinity" type="number" min="0" max="5" step="0.1" value="${Number(s.affinity??2)}"></label></div><div class="bank-actions"><button type="button" class="primary" id="saveBankSheetBtn">Salvar alterações</button><button type="button" id="editBankAsStoryBtn">Criar ficha de história a partir desta</button><button type="button" class="danger bank-delete-button" id="deleteBankSheetBtn">Excluir ficha</button></div></div></header><nav class="bank-detail-tabs relian-bank-tabs" aria-label="Seções da ficha"><button type="button" class="active" data-bank-relian-tab="attributes">Atributos</button><button type="button" data-bank-relian-tab="trait">Traço</button><button type="button" data-bank-relian-tab="moves">Movimentos <span>${(s.moves||[]).length}</span></button></nav><div class="saved-relian-body bank-relian-tabbed"><section class="bank-relian-panel active" data-bank-relian-panel="attributes"><h3>Atributos</h3><div class="bank-attrs-table-wrap"><table class="bank-attrs-table"><thead><tr><th>Atributo</th><th>Base</th><th>Redutor</th><th>Total</th></tr></thead><tbody>${attrs}</tbody></table></div></section><section class="bank-relian-panel" data-bank-relian-panel="trait" hidden><h3>Traço</h3><div class="bank-trait"><b>${esc(trait?.name||'Nenhum')}</b><p>${esc(trait?.description||'Sem descrição.')}</p>${trait?.palate?`<small>Paladar: ${esc(trait.palate)}</small>`:''}</div></section><section class="bank-relian-panel" data-bank-relian-panel="moves" hidden><h3>Movimentos</h3><div class="bank-moves">${moves||'<p class="empty">Nenhum movimento equipado.</p>'}</div></section></div></article>`;
   box.querySelectorAll('[data-bank-relian-tab]').forEach(button=>button.onclick=()=>{
     const tab=button.dataset.bankRelianTab;
     box.querySelectorAll('[data-bank-relian-tab]').forEach(item=>item.classList.toggle('active',item===button));

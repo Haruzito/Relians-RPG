@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "investida-rochosa",
+  "nome": "Investida Rochosa",
+  "tipo": "OFS",
+  "elementos": [
+    "Colossal"
+  ],
+  "elemento": "Colossal",
+  "dano": 16,
+  "energia": 13,
+  "precisao": 95,
+  "alcance": "1",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Uma investida pesada que usa massa e impulso.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

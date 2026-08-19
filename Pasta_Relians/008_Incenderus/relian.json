@@ -49,19 +49,78 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "brasas-saltantes"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "mordida-ardente"
+    },
+    {
+      "nivel": 7,
+      "movimento": "lanca-de-chamas"
+    },
+    {
+      "nivel": 13,
+      "movimento": "fitas-flamejantes"
+    },
+    {
+      "nivel": 16,
+      "movimento": "chamas-guerreiras"
+    },
+    {
+      "nivel": 20,
+      "movimento": "salto-ardente"
+    },
+    {
+      "nivel": 24,
+      "movimento": "furia-berseker"
+    },
+    {
+      "nivel": 28,
+      "movimento": "tempo-quente"
+    },
+    {
+      "nivel": 32,
+      "movimento": "explosao-raivosa"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "vulcao-ignivar",
+      "bioma": "vulcoes",
       "periodos": [
-        "manha"
+        "tarde",
+        "noite"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 18,
+      "nivelMaximo": 32,
+      "peso": 35
+    },
+    {
+      "regiao": "serra-rubra",
+      "bioma": "desfiladeiros-vulcanicos",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 34,
+      "peso": 30
+    },
+    {
+      "regiao": "deserto-de-karesh",
+      "bioma": "deserto-rochoso",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 36,
+      "peso": 20
     }
   ]
 }

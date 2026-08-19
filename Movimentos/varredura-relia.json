@@ -1,0 +1,25 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "varredura-relia",
+  "nome": "Varredura Relia",
+  "tipo": "EFT",
+  "elementos": [
+    "Éter"
+  ],
+  "elemento": "Éter",
+  "dano": 18,
+  "energia": 15,
+  "precisao": 100,
+  "alcance": "2",
+  "alcanceTatico": 2,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Uma onda curta de energia varre impurezas e atinge o alvo. Inspirado nos hábitos obsessivos de limpeza de alguns Relians.",
+  "efeitos": [],
+  "tags": [
+    "eter",
+    "limpeza",
+    "tatico"
+  ]
+}

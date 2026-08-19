@@ -1,0 +1,32 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "mordida-ardente",
+  "nome": "Mordida Ardente",
+  "tipo": "OFS",
+  "elementos": [
+    "Ígnea",
+    "Vital"
+  ],
+  "elemento": "Ígnea, Vital",
+  "dano": 34,
+  "energia": 20,
+  "precisao": 95,
+  "alcance": "1",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "O Relian aquece as presas com sua energia vital antes de morder. É comum entre pequenos predadores de florestas quentes.",
+  "efeitos": [
+    {
+      "type": "burn",
+      "value": 1,
+      "chance": 20
+    }
+  ],
+  "tags": [
+    "mordida",
+    "fogo",
+    "tatico"
+  ]
+}

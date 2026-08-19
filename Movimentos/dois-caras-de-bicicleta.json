@@ -13,6 +13,9 @@
   "energia": 60,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Uma abordagem inesperada e sorrateira, inspirada em histórias urbanas de roubo misterioso. O DataMon surpreende o alvo com uma ação rápida e oportunista.\nEfeito: Rouba um item pertencente ao adversário ou ao DataMon inimigo.\n\nRole D100:\n\n1-80 = Nada acontece.\n\n81-100 = Rouba o item. 1D2 para item.",
   "efeitos": [],
   "tags": []

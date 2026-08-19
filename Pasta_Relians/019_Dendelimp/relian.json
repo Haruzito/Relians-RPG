@@ -49,7 +49,35 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "estapear"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 4,
+      "movimento": "varredura-relia"
+    },
+    {
+      "nivel": 6,
+      "movimento": "passo-etereo"
+    },
+    {
+      "nivel": 9,
+      "movimento": "rajada-de-poeira"
+    },
+    {
+      "nivel": 11,
+      "movimento": "choque-etereo"
+    },
+    {
+      "nivel": 14,
+      "movimento": "pelagem-polida"
+    },
+    {
+      "nivel": 18,
+      "movimento": "onda-sonora"
     }
   ],
   "aparicoes": [
@@ -57,10 +85,33 @@
       "regiao": "ruinas-azuis",
       "bioma": "campo",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 1,
       "nivelMaximo": 10,
+      "peso": 50
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "vilarejo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 2,
+      "nivelMaximo": 12,
+      "peso": 35
+    },
+    {
+      "regiao": "bosque-de-elyr",
+      "bioma": "colinas-verdejantes",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 3,
+      "nivelMaximo": 14,
       "peso": 25
     }
   ]

@@ -47,6 +47,38 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pancada-sombria"
+    },
+    {
+      "nivel": 4,
+      "movimento": "armadura-ossea"
+    },
+    {
+      "nivel": 8,
+      "movimento": "mordida-de-feras"
+    },
+    {
+      "nivel": 9,
+      "movimento": "manto-espectral"
+    },
+    {
+      "nivel": 14,
+      "movimento": "visao-infernal"
+    },
+    {
+      "nivel": 15,
+      "movimento": "toque-de-ferrugem"
+    },
+    {
+      "nivel": 22,
+      "movimento": "garra-de-eclipse"
+    },
+    {
+      "nivel": 28,
+      "movimento": "impacto-fantasmagorico"
     }
   ],
   "aparicoes": [
@@ -54,12 +86,32 @@
       "regiao": "deserto-de-karesh",
       "bioma": "deserto-arenoso",
       "periodos": [
-        "noite",
-        "madrugada"
+        "tarde",
+        "noite"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 5,
+      "nivelMaximo": 16,
+      "peso": 40
+    },
+    {
+      "regiao": "fenda-de-umbra",
+      "bioma": "mina-abandonada",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 8,
+      "nivelMaximo": 20,
+      "peso": 30
+    },
+    {
+      "regiao": "ruinas-de-arkhos",
+      "bioma": "cavernas",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 10,
+      "nivelMaximo": 22,
+      "peso": 25
     }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "agulha-de-geada",
+  "nome": "Agulha de Geada",
+  "tipo": "EFT",
+  "elementos": [
+    "Geada"
+  ],
+  "elemento": "Geada",
+  "dano": 14,
+  "energia": 12,
+  "precisao": 95,
+  "alcance": "3",
+  "alcanceTatico": 3,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Projeta uma agulha de gelo concentrado.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

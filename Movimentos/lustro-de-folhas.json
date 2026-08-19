@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "O Datamon convoca folhas próximas e as entrelaça ao redor do próprio corpo, formando um manto natural que reflete energia elemental e amortece impactos mágicos.\nEfeito: Aumenta a Defesa Especial do Usuário por 3 turnos. Enquanto o efeito estiver ativo, qualquer ataque físico bem-sucedido destrói o manto, encerrando o efeito imediatamente.",
   "efeitos": [],
   "tags": []

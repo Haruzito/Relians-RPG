@@ -47,18 +47,77 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "impacto-solido"
+    },
+    {
+      "nivel": 1,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 8,
+      "movimento": "soco-rochoso"
+    },
+    {
+      "nivel": 16,
+      "movimento": "pisoteio-bravador"
+    },
+    {
+      "nivel": 20,
+      "movimento": "furia-berseker"
+    },
+    {
+      "nivel": 24,
+      "movimento": "impacto-martelante"
+    },
+    {
+      "nivel": 30,
+      "movimento": "punho-da-gloria"
+    },
+    {
+      "nivel": 34,
+      "movimento": "rugido-elemental"
+    },
+    {
+      "nivel": 42,
+      "movimento": "martelo-terrestre"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "fortaleza-colossal",
+      "bioma": "zona-industrial",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 36,
+      "nivelMaximo": 56,
+      "peso": 20
+    },
+    {
+      "regiao": "montanhas-cinzentas",
+      "bioma": "cordilheira",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 38,
+      "nivelMaximo": 58,
+      "peso": 18
+    },
+    {
+      "regiao": "ruinas-de-arkhos",
+      "bioma": "cavernas",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 40,
+      "nivelMaximo": 60,
+      "peso": 15
     }
   ]
 }

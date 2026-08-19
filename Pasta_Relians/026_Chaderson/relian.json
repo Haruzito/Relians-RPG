@@ -49,19 +49,74 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "barao-do-pedal"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 7,
+      "movimento": "impacto-solido"
+    },
+    {
+      "nivel": 10,
+      "movimento": "soco-rochoso"
+    },
+    {
+      "nivel": 14,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 18,
+      "movimento": "chute-triunfal"
+    },
+    {
+      "nivel": 21,
+      "movimento": "pisoteio-bravador"
+    },
+    {
+      "nivel": 26,
+      "movimento": "rugido-elemental"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "fortaleza-colossal",
+      "bioma": "cidade",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 20,
+      "nivelMaximo": 36,
+      "peso": 30
+    },
+    {
+      "regiao": "ruinas-de-arkhos",
+      "bioma": "ruinas-antigas",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 38,
+      "peso": 25
+    },
+    {
+      "regiao": "montanhas-cinzentas",
+      "bioma": "cordilheira",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 24,
+      "nivelMaximo": 40,
+      "peso": 20
     }
   ]
 }

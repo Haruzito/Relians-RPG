@@ -12,6 +12,9 @@
   "energia": 55,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Uma rajada de vento eletrificado envolve o oponente e pode paralisá-lo.\nEfeito: 20% de chance de paralisar o alvo.",
   "efeitos": [],
   "tags": []

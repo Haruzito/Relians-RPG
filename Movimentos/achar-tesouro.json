@@ -12,6 +12,9 @@
   "energia": 30,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "O DataMon cava o chão gastando seu turno para achar um item no chão, podendo usar o item para atirar em seu inimigo.\n\nEfeito: Ao cavar o chão, obtém um item aleatório.\nRole D100:\n\n1-70= Nada | 71-90= Berry | 91 - 100 = Pedra.\nBerry = Efeito da fruta encontrada.\n\nPedra = Causa 30 de dano.\nSe o DataMon estiver com um item em mãos e tentar usar o movimento novamente, ele automaticamente arremessará o item atual no adversário.",
   "efeitos": [],
   "tags": []

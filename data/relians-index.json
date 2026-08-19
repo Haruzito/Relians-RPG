@@ -1,0 +1,198 @@
+{
+  "kind": "relians-index",
+  "projectVersion": "10.1.0",
+  "relians": [
+    {
+      "id": "lihtoffle",
+      "name": "Lihtoffle",
+      "json": "Pasta_Relians/001_Lihtoffle/relian.json",
+      "folder": "Pasta_Relians/001_Lihtoffle"
+    },
+    {
+      "id": "lihtobrux",
+      "name": "Lihtobrux",
+      "json": "Pasta_Relians/002_Lihtobrux/relian.json",
+      "folder": "Pasta_Relians/002_Lihtobrux"
+    },
+    {
+      "id": "maginflora",
+      "name": "Maginflora",
+      "json": "Pasta_Relians/003_Maginflora/relian.json",
+      "folder": "Pasta_Relians/003_Maginflora"
+    },
+    {
+      "id": "aquecko",
+      "name": "Aquecko",
+      "json": "Pasta_Relians/004_Aquecko/relian.json",
+      "folder": "Pasta_Relians/004_Aquecko"
+    },
+    {
+      "id": "aqualoudo",
+      "name": "Aqualoudo",
+      "json": "Pasta_Relians/005_Aqualoudo/relian.json",
+      "folder": "Pasta_Relians/005_Aqualoudo"
+    },
+    {
+      "id": "draquecko",
+      "name": "Draquecko",
+      "json": "Pasta_Relians/006_Draquecko/relian.json",
+      "folder": "Pasta_Relians/006_Draquecko"
+    },
+    {
+      "id": "chibom",
+      "name": "Chibom",
+      "json": "Pasta_Relians/007_Chibom/relian.json",
+      "folder": "Pasta_Relians/007_Chibom"
+    },
+    {
+      "id": "incenderus",
+      "name": "Incenderus",
+      "json": "Pasta_Relians/008_Incenderus/relian.json",
+      "folder": "Pasta_Relians/008_Incenderus"
+    },
+    {
+      "id": "nezhaspyro",
+      "name": "Nezhaspyro",
+      "json": "Pasta_Relians/009_Nezhaspyro/relian.json",
+      "folder": "Pasta_Relians/009_Nezhaspyro"
+    },
+    {
+      "id": "ernaldes",
+      "name": "Ernaldes",
+      "json": "Pasta_Relians/010_Ernaldes/relian.json",
+      "folder": "Pasta_Relians/010_Ernaldes"
+    },
+    {
+      "id": "kokpid",
+      "name": "Kokpid",
+      "json": "Pasta_Relians/011_Kokpid/relian.json",
+      "folder": "Pasta_Relians/011_Kokpid"
+    },
+    {
+      "id": "onnarachu",
+      "name": "Onnarachu",
+      "json": "Pasta_Relians/012_Onnarachu/relian.json",
+      "folder": "Pasta_Relians/012_Onnarachu"
+    },
+    {
+      "id": "seredige",
+      "name": "Seredige",
+      "json": "Pasta_Relians/013_Seredige/relian.json",
+      "folder": "Pasta_Relians/013_Seredige"
+    },
+    {
+      "id": "bigsmoquil",
+      "name": "Bigsmoquil",
+      "json": "Pasta_Relians/014_Bigsmoquil/relian.json",
+      "folder": "Pasta_Relians/014_Bigsmoquil"
+    },
+    {
+      "id": "porppge",
+      "name": "Porppge",
+      "json": "Pasta_Relians/015_Porppge/relian.json",
+      "folder": "Pasta_Relians/015_Porppge"
+    },
+    {
+      "id": "loppypor",
+      "name": "Loppypor",
+      "json": "Pasta_Relians/016_Loppypor/relian.json",
+      "folder": "Pasta_Relians/016_Loppypor"
+    },
+    {
+      "id": "catierbee",
+      "name": "Catierbee",
+      "json": "Pasta_Relians/017_Catierbee/relian.json",
+      "folder": "Pasta_Relians/017_Catierbee"
+    },
+    {
+      "id": "catierai",
+      "name": "Catierai",
+      "json": "Pasta_Relians/018-A_Catierai/relian.json",
+      "folder": "Pasta_Relians/018-A_Catierai"
+    },
+    {
+      "id": "gatabuss",
+      "name": "Gatabuss",
+      "json": "Pasta_Relians/018-B_Gatabuss/relian.json",
+      "folder": "Pasta_Relians/018-B_Gatabuss"
+    },
+    {
+      "id": "dendelimp",
+      "name": "Dendelimp",
+      "json": "Pasta_Relians/019_Dendelimp/relian.json",
+      "folder": "Pasta_Relians/019_Dendelimp"
+    },
+    {
+      "id": "dandetton",
+      "name": "Dandetton",
+      "json": "Pasta_Relians/020_Dandetton/relian.json",
+      "folder": "Pasta_Relians/020_Dandetton"
+    },
+    {
+      "id": "salamenta",
+      "name": "Salamenta",
+      "json": "Pasta_Relians/021_Salamenta/relian.json",
+      "folder": "Pasta_Relians/021_Salamenta"
+    },
+    {
+      "id": "coramenta",
+      "name": "Coramenta ♂",
+      "json": "Pasta_Relians/022-A_Coramenta_♂/relian.json",
+      "folder": "Pasta_Relians/022-A_Coramenta_♂"
+    },
+    {
+      "id": "coramaliz",
+      "name": "Coramaliz ♀",
+      "json": "Pasta_Relians/022-B_Coramaliz_♀/relian.json",
+      "folder": "Pasta_Relians/022-B_Coramaliz_♀"
+    },
+    {
+      "id": "vinelon",
+      "name": "Vinelon",
+      "json": "Pasta_Relians/023_Vinelon/relian.json",
+      "folder": "Pasta_Relians/023_Vinelon"
+    },
+    {
+      "id": "aquamelon",
+      "name": "Aquamelon",
+      "json": "Pasta_Relians/024_Aquamelon/relian.json",
+      "folder": "Pasta_Relians/024_Aquamelon"
+    },
+    {
+      "id": "maderson",
+      "name": "Mãderson",
+      "json": "Pasta_Relians/025_Mãderson/relian.json",
+      "folder": "Pasta_Relians/025_Mãderson"
+    },
+    {
+      "id": "chaderson",
+      "name": "Chaderson",
+      "json": "Pasta_Relians/026_Chaderson/relian.json",
+      "folder": "Pasta_Relians/026_Chaderson"
+    },
+    {
+      "id": "gigaderson",
+      "name": "Gigaderson",
+      "json": "Pasta_Relians/027_Gigaderson/relian.json",
+      "folder": "Pasta_Relians/027_Gigaderson"
+    },
+    {
+      "id": "skellywag",
+      "name": "Skellywag",
+      "json": "Pasta_Relians/028_Skellywag/relian.json",
+      "folder": "Pasta_Relians/028_Skellywag"
+    },
+    {
+      "id": "lizbaby",
+      "name": "Lizbaby",
+      "json": "Pasta_Relians/100_Lizbaby/relian.json",
+      "folder": "Pasta_Relians/100_Lizbaby"
+    },
+    {
+      "id": "lizbravos",
+      "name": "Lizbravos",
+      "json": "Pasta_Relians/101_Lizbravos/relian.json",
+      "folder": "Pasta_Relians/101_Lizbravos"
+    }
+  ]
+}

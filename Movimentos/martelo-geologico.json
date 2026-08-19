@@ -12,6 +12,9 @@
   "energia": 65,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um soco brutal carregado de força tectônica que pode diminuir a velocidade do oponente.\nEfeito: 30% de chance de reduzir a Velocidade (-1 estágio).",
   "efeitos": [],
   "tags": []

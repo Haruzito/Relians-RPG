@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "broto-impactante",
+  "nome": "Broto Impactante",
+  "tipo": "OFS",
+  "elementos": [
+    "Vital"
+  ],
+  "elemento": "Vital",
+  "dano": 14,
+  "energia": 12,
+  "precisao": 95,
+  "alcance": "2",
+  "alcanceTatico": 2,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Um broto endurecido é lançado contra o alvo.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

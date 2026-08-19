@@ -13,6 +13,9 @@
   "energia": 50,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um aroma adocicado que faz o datamon ficar perdido.\nEfeito: O oponente rola 1d2, se cair 1, perderá o turno, se cair 2, não perderá.",
   "efeitos": [],
   "tags": []

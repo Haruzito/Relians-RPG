@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "estilhaco-astral",
+  "nome": "Estilhaço Astral",
+  "tipo": "EFT",
+  "elementos": [
+    "Astral"
+  ],
+  "elemento": "Astral",
+  "dano": 15,
+  "energia": 14,
+  "precisao": 95,
+  "alcance": "3",
+  "alcanceTatico": 3,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Condensa brilho astral em um projétil cortante.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

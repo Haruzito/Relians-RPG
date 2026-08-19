@@ -45,19 +45,74 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "estapear"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 4,
+      "movimento": "manto-metalico"
+    },
+    {
+      "nivel": 7,
+      "movimento": "rajada-de-poeira"
+    },
+    {
+      "nivel": 9,
+      "movimento": "golpe-metalico"
+    },
+    {
+      "nivel": 13,
+      "movimento": "tiros-disparados"
+    },
+    {
+      "nivel": 15,
+      "movimento": "toque-de-ferrugem"
+    },
+    {
+      "nivel": 18,
+      "movimento": "chute-triunfal"
+    },
+    {
+      "nivel": 22,
+      "movimento": "impacto-solido"
     }
   ],
   "aparicoes": [
     {
       "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "bioma": "ruinas-antigas",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 3,
+      "nivelMaximo": 15,
+      "peso": 45
+    },
+    {
+      "regiao": "fortaleza-colossal",
+      "bioma": "cidade",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 5,
+      "nivelMaximo": 18,
+      "peso": 30
+    },
+    {
+      "regiao": "cavernas-de-eter",
+      "bioma": "caverna-de-eter",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 6,
+      "nivelMaximo": 20,
+      "peso": 25
     }
   ]
 }

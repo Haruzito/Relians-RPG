@@ -46,17 +46,69 @@
   ],
   "metodoEvolucao": "",
   "tracos": [],
-  "movimentos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 4,
+      "movimento": "bicada-voraz"
+    },
+    {
+      "nivel": 6,
+      "movimento": "vento-cortante"
+    },
+    {
+      "nivel": 8,
+      "movimento": "rajada-aerea"
+    },
+    {
+      "nivel": 10,
+      "movimento": "investida-aerea"
+    },
+    {
+      "nivel": 13,
+      "movimento": "ressonancia-ancia"
+    },
+    {
+      "nivel": 16,
+      "movimento": "voo-determinado"
+    }
+  ],
   "aparicoes": [
     {
       "regiao": "vale-lumen",
       "bioma": "floresta",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 14,
       "nivelMaximo": 20,
-      "peso": 13
+      "peso": 40
+    },
+    {
+      "regiao": "bosque-de-elyr",
+      "bioma": "floresta-ancestral",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 12,
+      "nivelMaximo": 22,
+      "peso": 35
+    },
+    {
+      "regiao": "penhascos-de-zephyr",
+      "bioma": "penhascos-aereos",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 16,
+      "nivelMaximo": 24,
+      "peso": 25
     }
   ]
 }

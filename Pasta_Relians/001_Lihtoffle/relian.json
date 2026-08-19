@@ -52,19 +52,39 @@
   "movimentos": [
     {
       "nivel": 1,
-      "movimento": "golpear"
+      "movimento": "broto-impactante"
     },
     {
       "nivel": 1,
       "movimento": "golpear"
     },
     {
+      "nivel": 4,
+      "movimento": "cuspe-de-nectar"
+    },
+    {
       "nivel": 5,
       "movimento": "chicote-de-seda"
     },
     {
+      "nivel": 7,
+      "movimento": "casulo-de-seda"
+    },
+    {
+      "nivel": 9,
+      "movimento": "lustro-de-folhas"
+    },
+    {
       "nivel": 10,
       "movimento": "aroma-doce"
+    },
+    {
+      "nivel": 11,
+      "movimento": "grande-semente"
+    },
+    {
+      "nivel": 13,
+      "movimento": "amarracao"
     }
   ],
   "aparicoes": [
@@ -72,11 +92,34 @@
       "regiao": "vale-lumen",
       "bioma": "floresta",
       "periodos": [
-        "noite"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 1,
       "nivelMaximo": 10,
-      "peso": 10
+      "peso": 55
+    },
+    {
+      "regiao": "bosque-de-elyr",
+      "bioma": "floresta-temperada",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 2,
+      "nivelMaximo": 12,
+      "peso": 40
+    },
+    {
+      "regiao": "jardim-vital",
+      "bioma": "colinas-verdejantes",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 3,
+      "nivelMaximo": 13,
+      "peso": 30
     }
   ]
 }

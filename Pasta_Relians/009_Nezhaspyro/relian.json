@@ -47,18 +47,77 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "investida-rochosa"
+    },
+    {
+      "nivel": 1,
+      "movimento": "lanca-de-chamas"
+    },
+    {
+      "nivel": 8,
+      "movimento": "chamas-guerreiras"
+    },
+    {
+      "nivel": 12,
+      "movimento": "soco-rochoso"
+    },
+    {
+      "nivel": 16,
+      "movimento": "explosao-raivosa"
+    },
+    {
+      "nivel": 20,
+      "movimento": "pisoteio-bravador"
+    },
+    {
+      "nivel": 25,
+      "movimento": "martelo-geologico"
+    },
+    {
+      "nivel": 36,
+      "movimento": "furia-berseker"
+    },
+    {
+      "nivel": 42,
+      "movimento": "martelo-terrestre"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "vulcao-ignivar",
+      "bioma": "campos-de-lava",
       "periodos": [
-        "manha"
+        "tarde",
+        "noite"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 36,
+      "nivelMaximo": 55,
+      "peso": 20
+    },
+    {
+      "regiao": "serra-rubra",
+      "bioma": "desfiladeiros-vulcanicos",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 38,
+      "nivelMaximo": 58,
+      "peso": 18
+    },
+    {
+      "regiao": "montanhas-cinzentas",
+      "bioma": "cordilheira",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 40,
+      "nivelMaximo": 60,
+      "peso": 15
     }
   ]
 }

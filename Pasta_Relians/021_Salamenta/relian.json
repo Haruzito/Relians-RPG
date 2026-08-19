@@ -53,6 +53,10 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "broto-impactante"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
     },
     {
@@ -60,8 +64,24 @@
       "movimento": "mordida-de-feras"
     },
     {
+      "nivel": 3,
+      "movimento": "brasas-saltantes"
+    },
+    {
       "nivel": 4,
       "movimento": "chicoteada"
+    },
+    {
+      "nivel": 7,
+      "movimento": "mordida-ardente"
+    },
+    {
+      "nivel": 10,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 12,
+      "movimento": "grande-semente"
     },
     {
       "nivel": 14,
@@ -73,11 +93,19 @@
     },
     {
       "nivel": 16,
-      "movimento": "fitas-flamejantes"
+      "movimento": "explosao-raivosa"
     },
     {
       "nivel": 16,
-      "movimento": "explosao-raivosa"
+      "movimento": "fitas-flamejantes"
+    },
+    {
+      "nivel": 18,
+      "movimento": "chamas-guerreiras"
+    },
+    {
+      "nivel": 24,
+      "movimento": "chicote-de-laminas"
     }
   ],
   "aparicoes": [
@@ -85,22 +113,33 @@
       "regiao": "vale-lumen",
       "bioma": "campo",
       "periodos": [
-        "tarde",
-        "noite"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 5,
       "nivelMaximo": 14,
-      "peso": 25
+      "peso": 50
     },
     {
-      "regiao": "vale-lumen",
-      "bioma": "floresta",
+      "regiao": "jardim-vital",
+      "bioma": "savana",
       "periodos": [
-        "tarde",
-        "noite"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 5,
-      "nivelMaximo": 14,
+      "nivelMinimo": 6,
+      "nivelMaximo": 16,
+      "peso": 40
+    },
+    {
+      "regiao": "serra-rubra",
+      "bioma": "savana",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 8,
+      "nivelMaximo": 18,
       "peso": 25
     }
   ]

@@ -50,18 +50,70 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "tapa-molhado"
+    },
+    {
+      "nivel": 3,
+      "movimento": "jato-abissal"
+    },
+    {
+      "nivel": 7,
+      "movimento": "bofetada-aquatica"
+    },
+    {
+      "nivel": 9,
+      "movimento": "punho-de-lama"
+    },
+    {
+      "nivel": 12,
+      "movimento": "veu-do-pantano"
+    },
+    {
+      "nivel": 14,
+      "movimento": "mare-de-lama"
+    },
+    {
+      "nivel": 18,
+      "movimento": "jato-gasoso"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "pantano-de-morgh",
+      "bioma": "brejo",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde",
+        "noite"
       ],
       "nivelMinimo": 1,
       "nivelMaximo": 10,
-      "peso": 10
+      "peso": 55
+    },
+    {
+      "regiao": "costa-de-maris",
+      "bioma": "manguezal",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 2,
+      "nivelMaximo": 12,
+      "peso": 40
+    },
+    {
+      "regiao": "lago-espelhado",
+      "bioma": "lagos",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 4,
+      "nivelMaximo": 14,
+      "peso": 25
     }
   ]
 }

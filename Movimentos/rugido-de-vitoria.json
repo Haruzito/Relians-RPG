@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "O datamon solta um uivo poderoso que inspira aliados e intimida inimigos.\nEfeito: Aumenta o Ataque e a Defesa de aliados em 1 estágio e reduz o Ataque dos inimigos próximos.",
   "efeitos": [],
   "tags": []

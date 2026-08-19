@@ -1,0 +1,134 @@
+{
+  "id": "character-marugi-mszmed9q",
+  "type": "character",
+  "character": {
+    "player": "Hemmyr",
+    "name": "Marugi",
+    "age": 23,
+    "region": "",
+    "className": "",
+    "specialization": "",
+    "level": 0,
+    "rank": "",
+    "stars": 0,
+    "rays": 0,
+    "reliInf": 1,
+    "credits": 0,
+    "money": 0,
+    "image": "treinador.png",
+    "imageFileName": "treinador.png",
+    "imageMime": "image/png",
+    "description": "",
+    "hpCurrent": 30,
+    "hpMax": 30,
+    "staCurrent": 40,
+    "staMax": 40,
+    "attributes": {
+      "forca": 1,
+      "agilidade": 1,
+      "vigor": 1,
+      "presenca": 1,
+      "intelecto": 1,
+      "sabedoria": 1
+    },
+    "skills": {
+      "Acrobacias": 0,
+      "Atletismo": 0,
+      "Arte": 0,
+      "História": 0,
+      "Herborismo": 0,
+      "Intimidação": 0,
+      "Adestramento": 0,
+      "Atualidade": 0,
+      "Atuação": 0,
+      "Iniciativa": 0,
+      "Investigação": 0,
+      "Luta": 0,
+      "Culinária": 0,
+      "Conhecimento": 0,
+      "Ciências": 0,
+      "Lábia": 0,
+      "Liderança": 0,
+      "Medicina": 0,
+      "Crime": 0,
+      "Carisma": 0,
+      "Cartografia": 0,
+      "Misticismo": 0,
+      "Montaria": 0,
+      "Navegação": 0,
+      "Diplomacia": 0,
+      "Direção": 0,
+      "Disfarce": 0,
+      "Psicologia": 0,
+      "Percepção": 0,
+      "Reflexos": 0,
+      "Engenharia": 0,
+      "Estratégia": 0,
+      "Enganação": 0,
+      "Religião": 0,
+      "Sobrevivência": 0,
+      "Tática": 0,
+      "Fortitude": 0,
+      "Furtividade": 0,
+      "Fabricação": 0,
+      "TI": 0,
+      "Vontade": 0,
+      "Zoologia": 0
+    },
+    "equipment": [
+      {
+        "name": "",
+        "description": ""
+      },
+      {
+        "name": "",
+        "description": ""
+      },
+      {
+        "name": "",
+        "description": ""
+      },
+      {
+        "name": "",
+        "description": ""
+      }
+    ],
+    "backpack": [],
+    "team": [
+      {
+        "speciesId": "seredige",
+        "savedSheetId": "relian-mszmdd5c-4o2c6",
+        "nickname": "Seredige",
+        "level": 10,
+        "color": "basic",
+        "notes": ""
+      },
+      {
+        "speciesId": "aquecko",
+        "savedSheetId": "relian-mszmnli1-ncf9f",
+        "nickname": "Aquecko",
+        "level": 10,
+        "color": "basic",
+        "notes": ""
+      },
+      {
+        "speciesId": "lihtoffle",
+        "savedSheetId": "relian-mszx3l4e-ihjfj",
+        "nickname": "Lihtoffle",
+        "level": 10,
+        "color": "basic",
+        "notes": ""
+      }
+    ],
+    "equippedRelianIds": [
+      "relian-mszmdd5c-4o2c6",
+      "relian-mszmnli1-ncf9f"
+    ],
+    "items": [],
+    "notes": ""
+  },
+  "updatedAt": "2026-08-19T09:57:57.295Z",
+  "saveVersion": 2,
+  "kind": "player-sheet",
+  "tipoArquivo": "ficha-jogador"
+}

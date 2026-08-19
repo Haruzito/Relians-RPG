@@ -48,31 +48,76 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "estilhaco-astral"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 7,
+      "movimento": "ressonancia-ancia"
+    },
+    {
+      "nivel": 10,
+      "movimento": "po-lunar"
+    },
+    {
+      "nivel": 14,
+      "movimento": "ilusao-cosmica"
+    },
+    {
+      "nivel": 18,
+      "movimento": "distorcao-temporal"
+    },
+    {
+      "nivel": 22,
+      "movimento": "tempestade-psiquica"
+    },
+    {
+      "nivel": 32,
+      "movimento": "ataque-meteorico"
+    },
+    {
+      "nivel": 38,
+      "movimento": "explosao-estelar"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "abismo-de-nox",
+      "regiao": "observatorio-astral",
       "bioma": "ruinas-astrais",
       "periodos": [
-        "noite",
-        "madrugada"
+        "noite"
       ],
       "nivelMinimo": 30,
       "nivelMaximo": 50,
-      "peso": 10
+      "peso": 25
+    },
+    {
+      "regiao": "campos-nebulosos",
+      "bioma": "fenda-astral",
+      "periodos": [
+        "noite"
+      ],
+      "nivelMinimo": 32,
+      "nivelMaximo": 52,
+      "peso": 20
     },
     {
       "regiao": "bosque-luminescente",
       "bioma": "caverna-de-eter",
       "periodos": [
         "tarde",
-        "madrugada"
+        "noite"
       ],
       "nivelMinimo": 30,
       "nivelMaximo": 50,
-      "peso": 10
+      "peso": 20
     }
   ]
 }

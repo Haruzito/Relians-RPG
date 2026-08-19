@@ -46,17 +46,18 @@
       <article class="dashboard-card feature-card">
         <div class="card-heading">
           <span class="blog-eyebrow">DESTAQUE</span>
-          <a href="#v10">Ver atualização</a>
+          <a href="#battle-update">Ver atualização</a>
         </div>
         <div class="feature-copy">
-          <span class="feature-date">18 AGO 2026</span>
-          <h2>Relians v10.1.0 — Grande atualização</h2>
-          <p>Battle Card, Criador de Personagens, Banco de Fichas, Catálogo e temas receberam uma grande rodada de melhorias mecânicas, visuais e de organização.</p>
+          <span class="feature-date">19 AGO 2026</span>
+          <h2>Relians v10.2.0 — Combate tático, Treinadores e Progressão</h2>
+          <p>O Gerador evoluiu para uma experiência jogável: batalhas em arena, captura de Relians, treinadores, Rank, créditos, Loja, Centro de Recuperação e arenas temáticas por região.</p>
           <div class="tag-row">
-            <span class="tag">v10.1.0</span>
-            <span class="tag">Battle Card</span>
-            <span class="tag">Fichas</span>
-            <span class="tag">Interface</span>
+            <span class="tag">v10.2.0</span>
+            <span class="tag">Combate</span>
+            <span class="tag">Treinadores</span>
+            <span class="tag">Captura</span>
+            <span class="tag">Progressão</span>
           </div>
         </div>
       </article>
@@ -76,7 +77,7 @@
         </div>
         <div class="mini-stats">
           <div><b>32</b><span>Relians</span></div>
-          <div><b>126</b><span>Movimentos</span></div>
+          <div><b>142</b><span>Movimentos</span></div>
           <div><b>55</b><span>Biomas</span></div>
           <div><b>33</b><span>Regiões</span></div>
         </div>
@@ -106,6 +107,40 @@
         </div>
 
         <div class="post-grid" id="blogPostGrid">
+          <article class="blog-post major" id="battle-update" data-blog-kind="update">
+            <div class="post-art emblem-art">
+              <img src="assets/icons/icon-512.png" alt="" />
+            </div>
+            <div class="post-copy">
+              <div class="post-meta">19 DE AGOSTO DE 2026 • v10.2.0</div>
+              <h3>Relians v10.2.0 — Combate tático, captura, treinadores e progressão</h3>
+              <p>O Relians World ganhou uma nova camada jogável integrada ao próprio Gerador. As fichas salvas agora alimentam batalhas táticas em arena, encontros selvagens, combates contra treinadores e um ciclo de progressão com Rank, créditos, Loja e recuperação da equipe.</p>
+              <div class="post-details">
+                <span>⚔️ Arena tática com movimentação por casas, alcance de golpes e gasto de ENG ao se mover</span>
+                <span>🧭 Combates selvagens e contra treinadores com equipes de Relians</span>
+                <span>◈ Captura de Relians selvagens usando DataCubos presentes na mochila</span>
+                <span>💰 Vitórias contra treinadores concedem C$ e aumentam o Rank do jogador</span>
+                <span>🛒 Nova Loja com categorias, pesquisa e compra direta para a mochila do personagem</span>
+                <span>✚ Centro de Recuperação gratuito para restaurar HP e ENG da equipe</span>
+                <span>♙ Página do Jogador reformulada com perfil, saldo, Rank, estatísticas e visão da equipe</span>
+                <span>🗺️ Arenas temáticas e parcialmente aleatórias de acordo com a região do encontro</span>
+                <span>🎨 Suporte preparado para sprites próprios de chão, obstáculos, detalhes e cristais das arenas</span>
+                <span>🧬 Criador de Personagens agora permite importar imagem do treinador e salvar ficha + imagem em pasta própria</span>
+                <span>📚 Relians catalogados receberam uma gama maior de movimentos aprendíveis e aparições por região/nível configuradas nas próprias fichas</span>
+                <span>🎯 Catálogo de movimentos expandido para 142 movimentos oficiais</span>
+                <span>🧰 Catálogo de itens ampliado com itens do projeto e DataCubos para captura</span>
+                <span>🧭 Navegação superior reorganizada em Jogar, Jogador, Conteúdo, Fichas e Config</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Combate Tático</span>
+                <span class="tag">Captura</span>
+                <span class="tag">Treinadores</span>
+                <span class="tag">Loja</span>
+                <span class="tag">Arenas</span>
+              </div>
+            </div>
+          </article>
+
           <article class="blog-post major" id="v10-1" data-blog-kind="update">
             <div class="post-art emblem-art">
               <img src="assets/icons/icon-512.png" alt="" />
@@ -192,6 +227,81 @@
           </div>
 
           <details class="version-entry" open>
+            <summary>
+              <span><b>v10.2.0</b><small>19 de agosto de 2026</small></span>
+              <span>Combate tático, progressão, captura, Loja e arenas regionais</span>
+            </summary>
+            <div class="version-body">
+              <p>A <b>v10.2.0</b> expande o Gerador para além da criação de fichas, conectando os dados dos Relians a uma experiência de batalha, captura e progressão de jogador.</p>
+
+              <h4>⚔️ Combate de Relians</h4>
+              <ul>
+                <li>Nova <b>arena tática em grade</b>, com movimentação por casas e alcance próprio para os movimentos.</li>
+                <li>A movimentação utiliza <b>ENG</b>, criando uma camada de posicionamento e administração de energia.</li>
+                <li>Interface de combate reorganizada com movimentos na lateral, arena central e mochila em popup.</li>
+                <li>Fluxo de turnos, dano, derrota, troca de Relian e encerramento de batalha integrados às fichas salvas.</li>
+                <li>Relians utilizam a <b>imagem correspondente à sua coloração</b> Basic, Shiny ou Special.</li>
+              </ul>
+
+              <h4>◈ Captura e DataCubos</h4>
+              <ul>
+                <li>Relians selvagens podem ser <b>capturados durante o combate</b>.</li>
+                <li>A captura exige um <b>DataCubo na mochila</b> e consome a unidade utilizada.</li>
+                <li>Foram adicionados DataCubos de diferentes níveis, com bônus distintos de captura.</li>
+                <li>Relians pertencentes a treinadores não podem ser capturados.</li>
+              </ul>
+
+              <h4>♙ Treinadores, Rank e Créditos</h4>
+              <ul>
+                <li>Novo modo de <b>batalha contra treinadores</b> com equipes controladas pela IA.</li>
+                <li>Vitórias contra treinadores concedem <b>C$</b> e contam para o progresso competitivo do personagem.</li>
+                <li>O jogador pode subir pelos Ranks <b>Iniciante, Bronze, Prata, Ouro, Platina e Mestre</b>.</li>
+                <li>A Página do Jogador agora mostra Rank, saldo, histórico de batalhas, capturas, derrotas e equipe ativa.</li>
+              </ul>
+
+              <h4>🛒 Loja e itens</h4>
+              <ul>
+                <li>Nova <b>Loja do Jogador</b>, usando os créditos obtidos em batalhas contra treinadores.</li>
+                <li>Itens separados por categorias, com busca, descrição, efeito e preço.</li>
+                <li>Compras entram diretamente na mochila do personagem ativo.</li>
+                <li>O catálogo de itens foi ampliado com os itens do projeto e com os novos DataCubos.</li>
+              </ul>
+
+              <h4>✚ Centro de Recuperação</h4>
+              <ul>
+                <li>Nova página exclusiva para recuperar Relians fora de batalha.</li>
+                <li>Recuperação de <b>HP e ENG é gratuita</b>, evitando que o jogador fique impedido de continuar por falta de C$.</li>
+                <li>É possível recuperar um Relian individualmente ou restaurar a equipe inteira.</li>
+              </ul>
+
+              <h4>🗺️ Arenas regionais</h4>
+              <ul>
+                <li>A arena pode assumir temas como água, fogo, terra, floresta, gelo, deserto, Astral, Halo, Umbral, Tempestade, Éter, pântano e celeste.</li>
+                <li>O tema é escolhido com base na <b>região do encontro</b>.</li>
+                <li>Obstáculos, cristais de ENG e detalhes do cenário são distribuídos de forma parcialmente aleatória a cada batalha.</li>
+                <li>Foi preparada a pasta <b>assets/arena_tiles</b> para receber sprites personalizados das casas da arena.</li>
+              </ul>
+
+              <h4>🧬 Fichas, treinador e conteúdo</h4>
+              <ul>
+                <li>O Criador de Personagens recebeu importação de <b>imagem do treinador</b>, com prévia e salvamento junto da ficha.</li>
+                <li>Fichas de jogadores podem ser organizadas em <b>Fichas_Jogadores/&lt;personagem&gt;/</b>.</li>
+                <li>Os Relians catalogados receberam <b>mais movimentos aprendíveis diretamente em suas fichas oficiais</b>.</li>
+                <li>Regiões, biomas e faixas de nível de aparição foram revisados para dar mais coerência aos encontros.</li>
+                <li>O projeto agora conta com <b>142 movimentos</b> cadastrados.</li>
+              </ul>
+
+              <h4>🧭 Interface e navegação</h4>
+              <ul>
+                <li>Menu superior reorganizado em <b>Jogar, Jogador, Conteúdo, Fichas e Config</b>.</li>
+                <li>Página do Jogador reformulada como dashboard.</li>
+                <li>Loja e Centro de Recuperação ganharam interfaces próprias e atalhos entre si.</li>
+                <li>Diversos ajustes de layout foram feitos para reduzir rolagem e melhorar o uso em telas menores.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="version-entry">
             <summary>
               <span><b>v10.1.0</b><small>18 de agosto de 2026</small></span>
               <span>Battle Card, Fichas, Criadores, Catálogo e Interface</span>
@@ -310,8 +420,9 @@
           <div class="panel-title"><span>🛠️</span><h3>Diário de desenvolvimento</h3></div>
           <div class="timeline">
             <div class="timeline-item done"><b>Portal Relians World</b><span>Base criada</span></div>
-            <div class="timeline-item current"><b>Novo Blog</b><span>Em implementação</span></div>
-            <div class="timeline-item"><b>Unificação visual</b><span>Próxima etapa</span></div>
+            <div class="timeline-item done"><b>Novo Blog</b><span>Base publicada e atualizada</span></div>
+            <div class="timeline-item done"><b>Combate tático</b><span>Primeira versão jogável integrada ao Gerador</span></div>
+            <div class="timeline-item current"><b>Progressão e balanceamento</b><span>Em expansão</span></div>
             <div class="timeline-item"><b>Mobile</b><span>Revisão profunda planejada</span></div>
             <div class="timeline-item done"><b>Relians Battle Card</b><span>Primeira versão jogável concluída</span></div>
           </div>
@@ -320,10 +431,10 @@
         <section class="side-panel">
           <div class="panel-title"><span>🗺️</span><h3>Próximos passos</h3></div>
           <div class="roadmap-list">
-            <div>Unificar visual do Portal, Blog e Gerador</div>
+            <div>Balancear movimentos, custos de ENG, captura e recompensas de treinador</div>
+            <div>Expandir arenas regionais e adicionar os sprites definitivos dos terrenos</div>
             <div>Revisar completamente a experiência mobile</div>
-            <div>Expandir cartas, decks, efeitos e balanceamento do Relians Battle Card</div>
-            <div>Continuar adicionando Relians e conteúdo do mundo</div>
+            <div>Continuar adicionando Relians, movimentos, itens e conteúdo do mundo</div>
           </div>
         </section>
 

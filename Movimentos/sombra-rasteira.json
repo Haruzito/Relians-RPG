@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "sombra-rasteira",
+  "nome": "Sombra Rasteira",
+  "tipo": "OFS",
+  "elementos": [
+    "Umbral"
+  ],
+  "elemento": "Umbral",
+  "dano": 13,
+  "energia": 11,
+  "precisao": 95,
+  "alcance": "2",
+  "alcanceTatico": 2,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "A sombra do Relian avança pelo chão e golpeia o oponente.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

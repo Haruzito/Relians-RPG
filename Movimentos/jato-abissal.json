@@ -1,0 +1,24 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "jato-abissal",
+  "nome": "Jato Abissal",
+  "tipo": "EFT",
+  "elementos": [
+    "Abissal"
+  ],
+  "elemento": "Abissal",
+  "dano": 14,
+  "energia": 12,
+  "precisao": 95,
+  "alcance": "3",
+  "alcanceTatico": 3,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Um jato pressurizado de energia abissal.",
+  "efeitos": [],
+  "tags": [
+    "base",
+    "tatico"
+  ]
+}

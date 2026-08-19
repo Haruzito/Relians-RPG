@@ -12,6 +12,9 @@
   "energia": 50,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Garras etéreas atacam o inimigo, drenando um pouco do seu HP.\nEfeito: Recupera 30% do dano causado como HP.",
   "efeitos": [],
   "tags": []

@@ -48,19 +48,78 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "bola-de-nectar"
+    },
+    {
+      "nivel": 1,
+      "movimento": "broto-impactante"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 7,
+      "movimento": "sugar-nectar"
+    },
+    {
+      "nivel": 10,
+      "movimento": "torrente-de-ambar"
+    },
+    {
+      "nivel": 14,
+      "movimento": "batido-de-abacate"
+    },
+    {
+      "nivel": 18,
+      "movimento": "lustro-de-folhas"
+    },
+    {
+      "nivel": 22,
+      "movimento": "tornado-de-nectar"
+    },
+    {
+      "nivel": 26,
+      "movimento": "raiz-protetora"
+    },
+    {
+      "nivel": 30,
+      "movimento": "poco-de-nectar"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "jardim-vital",
+      "bioma": "floresta-tropical",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 18,
+      "nivelMaximo": 32,
+      "peso": 30
+    },
+    {
+      "regiao": "oasis-lumen",
+      "bioma": "oasis",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 34,
+      "peso": 25
+    },
+    {
+      "regiao": "baia-coralina",
+      "bioma": "manguezal",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 36,
+      "peso": 20
     }
   ]
 }

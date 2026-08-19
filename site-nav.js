@@ -128,3 +128,19 @@
     mount();
   }
 })();
+
+
+// Central de Jogos Relians
+document.addEventListener('click', (ev) => {
+  const btn = ev.target.closest('[data-open-game]');
+  if (!btn) return;
+  const tabId = btn.dataset.openGame;
+  const targetTab = document.querySelector(`.tab[data-tab="${tabId}"]`);
+  if (targetTab) {
+    targetTab.click();
+    requestAnimationFrame(() => {
+      const panel = document.getElementById(tabId);
+      if (panel) panel.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+});

@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Lança um pólen psíquico no inimigo, podendo deixá-lo confuso.\nEfeito: 40% de chance de causar Confusão.",
   "efeitos": [],
   "tags": []

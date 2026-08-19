@@ -13,6 +13,9 @@
   "energia": 50,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Rajadas de vento velozes e afiadas atingem o inimigo, reduzindo sua precisão.\nEfeito: Tem 30% de chance de reduzir a Precisão do alvo em 1 estágio.",
   "efeitos": [],
   "tags": []

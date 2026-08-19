@@ -49,19 +49,66 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "brasas-saltantes"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 4,
+      "movimento": "fagulha-selvagem"
+    },
+    {
+      "nivel": 8,
+      "movimento": "lanca-de-chamas"
+    },
+    {
+      "nivel": 11,
+      "movimento": "mordida-ardente"
+    },
+    {
+      "nivel": 14,
+      "movimento": "tempo-quente"
+    },
+    {
+      "nivel": 18,
+      "movimento": "salto-ardente"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "serra-rubra",
+      "bioma": "rochas-igneas",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMaximo": 12,
+      "peso": 50
+    },
+    {
+      "regiao": "vulcao-ignivar",
+      "bioma": "campos-de-lava",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 4,
+      "nivelMaximo": 15,
+      "peso": 35
+    },
+    {
+      "regiao": "deserto-de-karesh",
+      "bioma": "deserto-rochoso",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 5,
+      "nivelMaximo": 16,
+      "peso": 25
     }
   ]
 }

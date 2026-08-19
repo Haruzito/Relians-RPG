@@ -13,6 +13,9 @@
   "energia": 45,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Ele pula com agilidade, girando no ar e liberando chamas em volta antes de aterrissar com um chute poderoso.\nEfeito: Aumenta a Velocidade em 1 estágio após o ataque.",
   "efeitos": [],
   "tags": []

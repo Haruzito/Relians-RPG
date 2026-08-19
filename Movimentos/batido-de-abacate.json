@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Rouba a energia do datamon oponente, preenchendo sua própria energia.\nEfeito: Rouba 40% da energia do oponente, revitalizando sua energia própria.",
   "efeitos": [],
   "tags": []

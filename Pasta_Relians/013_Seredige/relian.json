@@ -50,18 +50,68 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 4,
+      "movimento": "achar-tesouro"
+    },
+    {
+      "nivel": 8,
+      "movimento": "rajada-de-poeira"
+    },
+    {
+      "nivel": 10,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 13,
+      "movimento": "grunhir"
+    },
+    {
+      "nivel": 16,
+      "movimento": "impacto-solido"
+    },
+    {
+      "nivel": 22,
+      "movimento": "pisoteio-bravador"
     }
   ],
   "aparicoes": [
     {
       "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "bioma": "ruinas-antigas",
       "periodos": [
         "manha",
         "tarde"
       ],
       "nivelMinimo": 5,
-      "nivelMaximo": 10,
+      "nivelMaximo": 14,
+      "peso": 45
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "campo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 6,
+      "nivelMaximo": 16,
+      "peso": 35
+    },
+    {
+      "regiao": "fortaleza-colossal",
+      "bioma": "cidade",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 8,
+      "nivelMaximo": 18,
       "peso": 25
     }
   ]

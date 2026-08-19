@@ -53,12 +53,40 @@
       "movimento": "golpear"
     },
     {
+      "nivel": 1,
+      "movimento": "grunhir"
+    },
+    {
       "nivel": 4,
       "movimento": "amarracao"
     },
     {
+      "nivel": 4,
+      "movimento": "estapear"
+    },
+    {
       "nivel": 8,
       "movimento": "casulo-de-seda"
+    },
+    {
+      "nivel": 8,
+      "movimento": "rajada-de-poeira"
+    },
+    {
+      "nivel": 10,
+      "movimento": "achar-tesouro"
+    },
+    {
+      "nivel": 13,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 16,
+      "movimento": "impacto-solido"
+    },
+    {
+      "nivel": 22,
+      "movimento": "pisoteio-bravador"
     }
   ],
   "aparicoes": [
@@ -70,8 +98,8 @@
         "tarde"
       ],
       "nivelMinimo": 1,
-      "nivelMaximo": 5,
-      "peso": 10
+      "nivelMaximo": 8,
+      "peso": 50
     },
     {
       "regiao": "vale-lumen",
@@ -81,8 +109,19 @@
         "tarde"
       ],
       "nivelMinimo": 1,
-      "nivelMaximo": 5,
-      "peso": 10
+      "nivelMaximo": 8,
+      "peso": 45
+    },
+    {
+      "regiao": "bosque-de-elyr",
+      "bioma": "floresta-temperada",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 3,
+      "nivelMaximo": 12,
+      "peso": 30
     }
   ]
 }

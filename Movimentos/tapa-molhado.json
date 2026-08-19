@@ -13,6 +13,9 @@
   "energia": 5,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Desfere um golpe úmido contra o alvo.\nEfeito: O oponente fica com status de MOLHADO por 4 turnos.",
   "efeitos": [],
   "tags": []

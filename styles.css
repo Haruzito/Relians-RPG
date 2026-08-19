@@ -2212,3 +2212,310 @@ textarea{
 @media(min-width:1350px){#sheetbank{padding-inline:clamp(20px,3vw,46px)}.sheet-bank-layout{grid-template-columns:minmax(330px,390px) minmax(0,1fr);gap:26px}.sheet-bank-detail{padding:20px}.story-editor-layout{grid-template-columns:310px minmax(0,1fr)!important;gap:24px!important}.story-workspace{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(390px,.9fr)!important;align-items:start!important}.story-side-preview{position:sticky!important;top:150px!important;max-height:calc(100vh - 170px)!important;overflow:auto!important}}
 @media(max-width:1050px){.bank-character-panel{grid-template-columns:1fr}.bank-relian-panel .bank-moves{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.story-editor-step-buttons{display:grid;grid-template-columns:1fr 1fr}.story-editor-step{justify-content:flex-start}.story-editor-step-nav{grid-template-columns:1fr 1fr}.story-editor-step-nav>span{grid-column:1/-1;grid-row:1}.bank-filter-tabs{grid-template-columns:1fr}.bank-relian-panel .bank-moves{grid-template-columns:1fr}.bank-detail-tabs{padding-inline:10px}}
+
+
+/* =========================================================
+   FIX — Prévia do Criador de Fichas
+   Evita que a ficha seja esmagada na coluna lateral.
+   ========================================================= */
+.story-side-preview{
+  min-width:0!important;
+}
+
+.story-side-preview .character-sheet-preview,
+.story-side-preview .special-relian-card{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+
+/* Personagem: retrato + identidade na primeira linha,
+   recursos ocupando toda a largura na segunda. */
+.story-side-preview .character-sheet-header{
+  display:grid!important;
+  grid-template-columns:minmax(130px, 38%) minmax(0, 1fr)!important;
+  min-height:0!important;
+}
+
+.story-side-preview .character-portrait{
+  min-width:0!important;
+  padding:12px!important;
+}
+
+.story-side-preview .character-portrait > div{
+  min-height:190px!important;
+}
+
+.story-side-preview .character-identity{
+  min-width:0!important;
+  padding:16px!important;
+}
+
+.story-side-preview .character-identity h2{
+  font-size:clamp(1.55rem, 3vw, 2rem)!important;
+  overflow-wrap:anywhere;
+}
+
+.story-side-preview .character-identity p,
+.story-side-preview .character-tags,
+.story-side-preview .character-milestones{
+  min-width:0!important;
+}
+
+.story-side-preview .character-tags,
+.story-side-preview .character-milestones{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:6px!important;
+}
+
+.story-side-preview .character-resources{
+  grid-column:1 / -1!important;
+  display:grid!important;
+  grid-template-columns:repeat(2, minmax(0,1fr))!important;
+  gap:10px!important;
+  padding:12px 16px 16px!important;
+  border-top:1px solid rgba(83,191,198,.25);
+}
+
+.story-side-preview .character-resources > div{
+  min-width:0!important;
+  padding:11px!important;
+}
+
+.story-side-preview .character-resources > p{
+  grid-column:1 / -1!important;
+  margin:0!important;
+  overflow-wrap:anywhere;
+}
+
+/* Corpo da ficha também não deve ficar espremido. */
+.story-side-preview .character-sheet-grid{
+  grid-template-columns:1fr!important;
+  gap:10px!important;
+  padding:12px!important;
+}
+
+.story-side-preview .sheet-panel.wide{
+  grid-column:auto!important;
+}
+
+.story-side-preview .character-preview-attrs{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+.story-side-preview .character-preview-equipment,
+.story-side-preview .character-backpack-preview{
+  grid-template-columns:1fr!important;
+}
+
+/* Ficha de Relian criada no mesmo editor. */
+.story-side-preview .special-preview-grid{
+  grid-template-columns:1fr!important;
+}
+
+.story-side-preview .special-preview-moves > div{
+  grid-template-columns:28px minmax(0,1fr)!important;
+}
+
+.story-side-preview .story-card-head,
+.story-side-preview .story-card-body{
+  min-width:0!important;
+}
+
+.story-side-preview .story-card-head h2,
+.story-side-preview .story-card-head p,
+.story-side-preview .story-card-body p,
+.story-side-preview .special-preview-moves small{
+  overflow-wrap:anywhere;
+}
+
+/* Em colunas realmente estreitas, empilha tudo. */
+@media (max-width: 1180px){
+  .story-side-preview .character-sheet-header{
+    grid-template-columns:1fr!important;
+  }
+  .story-side-preview .character-portrait{
+    height:230px!important;
+  }
+  .story-side-preview .character-resources{
+    grid-template-columns:1fr!important;
+  }
+  .story-side-preview .character-preview-attrs{
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Mesmo em telas grandes, se a coluna lateral tiver pouco espaço,
+   a ficha preserva legibilidade. */
+@container (max-width: 480px){
+  .character-sheet-header{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* =========================================================
+   FIX DEFINITIVO — Criador de Fichas de Personagem / Relian
+   A prévia agora fica ABAIXO do editor em largura total.
+   ========================================================= */
+
+#story .story-editor-layout{
+  display:grid!important;
+  grid-template-columns:280px minmax(0,1fr)!important;
+  gap:20px!important;
+  align-items:start!important;
+}
+
+#story .story-workspace{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:20px!important;
+  min-width:0!important;
+  width:100%!important;
+}
+
+#story .story-main-editor{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+}
+
+#story .story-side-preview{
+  position:relative!important;
+  top:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  overflow:visible!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+
+/* Recupera o layout completo da ficha de personagem agora que há espaço. */
+#story .story-side-preview .character-sheet-preview{
+  width:100%!important;
+  max-width:none!important;
+  overflow:hidden!important;
+}
+
+#story .story-side-preview .character-sheet-header{
+  display:grid!important;
+  grid-template-columns:minmax(190px,230px) minmax(260px,1fr) minmax(260px,.9fr)!important;
+  min-height:230px!important;
+}
+
+#story .story-side-preview .character-portrait{
+  padding:16px!important;
+  height:auto!important;
+}
+
+#story .story-side-preview .character-portrait > div{
+  min-height:190px!important;
+  height:100%!important;
+}
+
+#story .story-side-preview .character-identity,
+#story .story-side-preview .character-resources{
+  padding:22px!important;
+}
+
+#story .story-side-preview .character-identity h2{
+  font-size:clamp(1.8rem,2.4vw,2.35rem)!important;
+}
+
+#story .story-side-preview .character-resources{
+  grid-column:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  gap:14px!important;
+  border-top:0!important;
+}
+
+#story .story-side-preview .character-resources > p{
+  margin:0!important;
+}
+
+#story .story-side-preview .character-sheet-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px!important;
+  padding:18px!important;
+}
+
+#story .story-side-preview .sheet-panel.wide{
+  grid-column:1 / -1!important;
+}
+
+#story .story-side-preview .character-preview-attrs{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+
+#story .story-side-preview .character-preview-equipment{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+#story .story-side-preview .character-backpack-preview{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+/* Relian específico também recebe toda a largura disponível. */
+#story .story-side-preview .special-relian-card{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+}
+
+#story .story-side-preview .special-preview-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+
+#story .story-side-preview .special-preview-moves > div{
+  grid-template-columns:42px minmax(0,1fr)!important;
+}
+
+/* Em notebooks/telas menores, mantém tudo legível. */
+@media(max-width:1050px){
+  #story .story-editor-layout{
+    grid-template-columns:1fr!important;
+  }
+  #story .story-sidebar{
+    position:static!important;
+  }
+}
+
+@media(max-width:850px){
+  #story .story-side-preview .character-sheet-header{
+    grid-template-columns:1fr!important;
+  }
+  #story .story-side-preview .character-portrait{
+    min-height:240px!important;
+  }
+  #story .story-side-preview .character-resources{
+    border-top:1px solid rgba(83,191,198,.25)!important;
+  }
+  #story .story-side-preview .character-sheet-grid,
+  #story .story-side-preview .special-preview-grid{
+    grid-template-columns:1fr!important;
+  }
+  #story .story-side-preview .sheet-panel.wide{
+    grid-column:auto!important;
+  }
+  #story .story-side-preview .character-preview-attrs,
+  #story .story-side-preview .character-preview-equipment,
+  #story .story-side-preview .character-backpack-preview{
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Importador de imagem da ficha de jogador */
+.character-image-import{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center;padding:12px;border:1px solid rgba(120,120,140,.16);border-radius:14px;background:rgba(120,120,140,.035)}
+.character-image-import-preview{width:150px;aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden;border-radius:12px;border:1px dashed rgba(120,120,140,.26);background:rgba(120,120,140,.055);font-size:.68rem;font-weight:800}
+.character-image-import-preview img{width:100%;height:100%;object-fit:cover}
+.character-image-import-copy{display:grid;gap:5px;min-width:0}.character-image-import-copy>b{font-size:.9rem}
+.character-image-import-copy>p{margin:0;font-size:.74rem;opacity:.72;line-height:1.45}
+.character-image-import-copy>small{font-size:.65rem;opacity:.68;overflow-wrap:anywhere}
+.character-image-import-actions{display:flex;flex-wrap:wrap;gap:7px;margin:3px 0}
+@media(max-width:620px){.character-image-import{grid-template-columns:1fr}.character-image-import-preview{width:min(180px,100%);justify-self:center}}

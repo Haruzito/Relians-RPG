@@ -46,31 +46,74 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "broto-impactante"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "mordida-ardente"
+    },
+    {
+      "nivel": 8,
+      "movimento": "investida-do-guardiao"
+    },
+    {
+      "nivel": 12,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 15,
+      "movimento": "chamas-guerreiras"
+    },
+    {
+      "nivel": 18,
+      "movimento": "mordida-de-feras"
+    },
+    {
+      "nivel": 23,
+      "movimento": "raiz-protetora"
+    },
+    {
+      "nivel": 30,
+      "movimento": "explosao-raivosa"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "vale-lumen",
-      "bioma": "campo",
+      "regiao": "jardim-vital",
+      "bioma": "savana",
       "periodos": [
-        "tarde",
-        "noite"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 20,
-      "nivelMaximo": 30,
-      "peso": 10
+      "nivelMaximo": 32,
+      "peso": 30
     },
     {
-      "regiao": "vale-lumen",
-      "bioma": "floresta",
+      "regiao": "serra-rubra",
+      "bioma": "savana",
       "periodos": [
-        "tarde",
-        "noite"
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 34,
+      "peso": 25
+    },
+    {
+      "regiao": "floresta-de-nym",
+      "bioma": "floresta-tropical",
+      "periodos": [
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 20,
-      "nivelMaximo": 30,
-      "peso": 10
+      "nivelMaximo": 35,
+      "peso": 20
     }
   ]
 }

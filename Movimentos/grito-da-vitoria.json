@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um grito poderoso que inspira aliados e intimida o inimigo.\nEfeito: Reduz o ataque do inimigo em 1 nível e aumenta o ataque do usuário em 1 nível.",
   "efeitos": [],
   "tags": []

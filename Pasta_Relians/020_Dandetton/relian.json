@@ -42,7 +42,40 @@
   "evolvesToMany": [],
   "metodoEvolucao": "",
   "tracos": [],
-  "movimentos": [],
+  "movimentos": [
+    {
+      "nivel": 1,
+      "movimento": "pelagem-polida"
+    },
+    {
+      "nivel": 1,
+      "movimento": "varredura-relia"
+    },
+    {
+      "nivel": 7,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 10,
+      "movimento": "passo-etereo"
+    },
+    {
+      "nivel": 14,
+      "movimento": "impacto-solido"
+    },
+    {
+      "nivel": 18,
+      "movimento": "choque-etereo"
+    },
+    {
+      "nivel": 22,
+      "movimento": "onda-sonora"
+    },
+    {
+      "nivel": 28,
+      "movimento": "ressonancia-ancia"
+    }
+  ],
   "aparicoes": [
     {
       "regiao": "vale-lumen",
@@ -53,7 +86,29 @@
       ],
       "nivelMinimo": 20,
       "nivelMaximo": 40,
+      "peso": 30
+    },
+    {
+      "regiao": "fortaleza-colossal",
+      "bioma": "cidade",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 42,
       "peso": 25
+    },
+    {
+      "regiao": "ruinas-azuis",
+      "bioma": "ruinas-antigas",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 38,
+      "peso": 20
     }
   ]
 }

@@ -52,6 +52,30 @@
     {
       "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 4,
+      "movimento": "estapear"
+    },
+    {
+      "nivel": 7,
+      "movimento": "barao-do-pedal"
+    },
+    {
+      "nivel": 9,
+      "movimento": "investida-selvagem"
+    },
+    {
+      "nivel": 12,
+      "movimento": "grunhir"
+    },
+    {
+      "nivel": 16,
+      "movimento": "impacto-solido"
     }
   ],
   "aparicoes": [
@@ -59,11 +83,34 @@
       "regiao": "ruinas-azuis",
       "bioma": "campo",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMaximo": 12,
+      "peso": 45
+    },
+    {
+      "regiao": "vale-lumen",
+      "bioma": "vilarejo",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 2,
+      "nivelMaximo": 14,
+      "peso": 35
+    },
+    {
+      "regiao": "fortaleza-colossal",
+      "bioma": "cidade",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 4,
+      "nivelMaximo": 16,
+      "peso": 25
     }
   ]
 }

@@ -255,3 +255,98 @@ body.rw-nav-ready .site-header{
     transition:none!important;
   }
 }
+
+
+/* =========================================================
+   Central de Jogos Relians
+   ========================================================= */
+.games-hub-panel{max-width:1240px;margin:0 auto;padding-bottom:24px}
+.games-hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:24px;
+  margin-bottom:14px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(83,191,198,.12),transparent 35%),
+    linear-gradient(160deg,rgba(28,34,44,.98),rgba(18,23,31,.98));
+  overflow:hidden;
+}
+.games-hero h2{margin:.25rem 0;font-size:clamp(2rem,4vw,3.1rem)}
+.games-hero p{margin:.35rem 0 0;opacity:.72;max-width:720px}
+.games-hero-badge{
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(83,191,198,.28);
+  background:rgba(83,191,198,.08);
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.game-card{
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr);
+  gap:14px;
+  padding:18px;
+  min-height:220px;
+  align-items:start;
+}
+.game-card.featured{
+  grid-column:span 2;
+  background:
+    linear-gradient(160deg,rgba(83,191,198,.07),rgba(255,255,255,.015));
+}
+.game-card-icon{
+  width:56px;height:56px;
+  display:grid;place-items:center;
+  border-radius:16px;
+  font-size:1.55rem;
+  background:rgba(83,191,198,.09);
+  border:1px solid rgba(83,191,198,.18);
+}
+.game-card-content{display:flex;flex-direction:column;min-height:100%}
+.game-card-tag{
+  width:max-content;
+  padding:3px 7px;
+  border-radius:999px;
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  background:rgba(83,191,198,.08);
+  border:1px solid rgba(83,191,198,.15);
+}
+.game-card h3{margin:8px 0 4px;font-size:1.25rem}
+.game-card p{margin:0 0 12px;font-size:.83rem;opacity:.72;line-height:1.45}
+.game-card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.game-card-meta span{
+  padding:4px 7px;border-radius:999px;
+  font-size:.64rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+.game-card button{margin-top:auto;align-self:flex-start}
+.game-card.locked{opacity:.72}
+
+@media(max-width:900px){
+  .games-grid{grid-template-columns:1fr}
+  .game-card.featured{grid-column:auto}
+}
+@media(max-width:620px){
+  .games-hero{align-items:flex-start;flex-direction:column}
+  .game-card{grid-template-columns:1fr}
+  .game-card-icon{width:48px;height:48px}
+}
+
+/* Navegação reorganizada em grupos */
+.relians-main-nav{gap:6px;align-items:center}
+.relians-main-nav>.nav-menu>.nav-menu-trigger{min-width:auto;padding-inline:11px}
+.relians-main-nav .nav-dropdown{width:min(330px,calc(100vw - 24px))}
+.relians-main-nav [data-nav-group="content"] .nav-dropdown{width:min(360px,calc(100vw - 24px))}
+@media(max-width:900px){.relians-main-nav{justify-content:flex-start;overflow-x:auto;scrollbar-width:thin}.relians-main-nav>.nav-menu{flex:0 0 auto}}

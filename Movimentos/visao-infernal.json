@@ -13,6 +13,9 @@
   "energia": 60,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um olhar aterrorizante que paralisa e drena energia.\nEfeito: Causa paralisia e drena 10 de energia do inimigo por 3 turnos.",
   "efeitos": [],
   "tags": []

@@ -12,6 +12,9 @@
   "energia": 15,
   "precisao": 30,
   "alcance": "5m",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um grunhido imbuído pela energia Relia pura, causando um medo em seu oponente. Só é eficaz em Relians de nível abaixo ao do Relian que usa este movimento.",
   "efeitos": [
     "Reduz a precisão",

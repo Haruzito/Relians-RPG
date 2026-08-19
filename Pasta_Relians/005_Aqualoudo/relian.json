@@ -55,20 +55,79 @@
       "movimento": "golpear"
     },
     {
+      "nivel": 1,
+      "movimento": "jato-abissal"
+    },
+    {
+      "nivel": 1,
+      "movimento": "tapa-molhado"
+    },
+    {
+      "nivel": 5,
+      "movimento": "bofetada-aquatica"
+    },
+    {
+      "nivel": 10,
+      "movimento": "mare-de-lama"
+    },
+    {
+      "nivel": 18,
+      "movimento": "jato-gasoso"
+    },
+    {
       "nivel": 20,
       "movimento": "punho-de-lama"
+    },
+    {
+      "nivel": 22,
+      "movimento": "golpe-de-gelo"
+    },
+    {
+      "nivel": 26,
+      "movimento": "diluvio-celeste"
+    },
+    {
+      "nivel": 30,
+      "movimento": "corrente-dragonica"
+    },
+    {
+      "nivel": 34,
+      "movimento": "diluvio-lunar"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "pantano-de-morgh",
+      "bioma": "brejo",
       "periodos": [
-        "manha"
+        "tarde",
+        "noite"
       ],
-      "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMinimo": 18,
+      "nivelMaximo": 30,
+      "peso": 35
+    },
+    {
+      "regiao": "costa-de-maris",
+      "bioma": "manguezal",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 20,
+      "nivelMaximo": 32,
+      "peso": 30
+    },
+    {
+      "regiao": "lago-espelhado",
+      "bioma": "lagos",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 22,
+      "nivelMaximo": 34,
+      "peso": 25
     }
   ]
 }

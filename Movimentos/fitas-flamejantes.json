@@ -12,6 +12,9 @@
   "energia": 28,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um golpe de cabeçada com suas fitas que causa uma queimadura de 3° grau ao encostar no alvo acertado, tendo a possibilidade de causar um efeito de status de (QUEIMANDO) por 3 turnos.",
   "efeitos": [],
   "tags": []

@@ -12,6 +12,9 @@
   "energia": 45,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Mordida tóxica que pode reduzir a Defesa e causar envenenamento.\nEfeito: 30% de chance de reduzir a Defesa (-1 estágio) e 20% de chance de envenenar.",
   "efeitos": [],
   "tags": []

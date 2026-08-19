@@ -13,6 +13,9 @@
   "energia": 55,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Lança uma labareda ancestral que pode queimar e reduzir a resistência especial do inimigo.\nEfeito: 20% de chance de queimar o alvo e reduzir Sp. Def (-1 estágio).",
   "efeitos": [],
   "tags": []

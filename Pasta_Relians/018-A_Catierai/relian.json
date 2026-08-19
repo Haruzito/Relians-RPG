@@ -44,7 +44,43 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "agulha-de-geada"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 1,
+      "movimento": "pulso-etereo"
+    },
+    {
+      "nivel": 6,
+      "movimento": "vento-cortante"
+    },
+    {
+      "nivel": 10,
+      "movimento": "presa-gelida"
+    },
+    {
+      "nivel": 12,
+      "movimento": "corte-glacial"
+    },
+    {
+      "nivel": 16,
+      "movimento": "investida-aerea"
+    },
+    {
+      "nivel": 20,
+      "movimento": "golpe-metalico"
+    },
+    {
+      "nivel": 24,
+      "movimento": "voo-determinado"
+    },
+    {
+      "nivel": 28,
+      "movimento": "cruz-do-guerreiro"
     }
   ],
   "aparicoes": [
@@ -52,21 +88,34 @@
       "regiao": "montanhas-de-lumen",
       "bioma": "picos-nevados",
       "periodos": [
-        "madrugada"
-      ],
-      "nivelMinimo": 30,
-      "nivelMaximo": 55,
-      "peso": 50
-    },
-    {
-      "regiao": "montanhas-de-lumen",
-      "bioma": "ruinas",
-      "periodos": [
+        "manha",
         "tarde"
       ],
       "nivelMinimo": 30,
       "nivelMaximo": 55,
-      "peso": 50
+      "peso": 25
+    },
+    {
+      "regiao": "pico-boreal",
+      "bioma": "montanhas-nevadas",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 32,
+      "nivelMaximo": 56,
+      "peso": 22
+    },
+    {
+      "regiao": "campos-da-aurora",
+      "bioma": "campos-congelados",
+      "periodos": [
+        "tarde",
+        "noite"
+      ],
+      "nivelMinimo": 34,
+      "nivelMaximo": 58,
+      "peso": 18
     }
   ]
 }

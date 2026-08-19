@@ -12,6 +12,9 @@
   "energia": 5,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "O DataMon acerta um tapa no inimigo, causando dano.",
   "efeitos": [],
   "tags": []

@@ -13,6 +13,9 @@
   "energia": 20,
   "precisao": 95,
   "alcance": "corpo a corpo",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Suja o punho com lama, desferindo um golpe no oponente que ao acertar, deixa seu oponente sujo e pesado, diminuindo -3 de velocidade. O efeito permanece até o Relian limpar.",
   "efeitos": [
     "Reduz -3 de velocidade"

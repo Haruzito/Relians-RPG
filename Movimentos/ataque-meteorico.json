@@ -13,6 +13,9 @@
   "energia": 70,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Dispara uma chuva de meteoritos metálicos que pode aumentar a própria velocidade.\nEfeito: 20% de chance de aumentar a velocidade (+20% de velocidade).\n\n(Efeito de campo)",
   "efeitos": [],
   "tags": []

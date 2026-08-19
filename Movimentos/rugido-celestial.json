@@ -13,6 +13,9 @@
   "energia": 40,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Emite um rugido ensurdecedor que causa dano e reduz o Ataque Especial do oponente.\nEfeito: Reduz o Sp. Atk do alvo (-1 estágio).",
   "efeitos": [],
   "tags": []

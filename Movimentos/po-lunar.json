@@ -13,6 +13,9 @@
   "energia": 60,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Uma leve brisa cheia do pó da lua.\nEfeito: Transforma o peso do adversário em dano, sendo PP 1d5, P 1d10, M 1d20, G 1d40, GG 1d80, XGG 1d180.",
   "efeitos": [],
   "tags": []

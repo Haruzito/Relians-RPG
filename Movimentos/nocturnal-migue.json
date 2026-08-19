@@ -13,6 +13,9 @@
   "energia": 20,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Um truque sorrateiro realizado à noite, onde o DataMon libera uma descarga elétrica súbita enquanto se esconde nas sombras, pegando o oponente desprevenido.\nEfeito: O adversário fica temporariamente paralisado por 1d10 turnos.",
   "efeitos": [],
   "tags": []

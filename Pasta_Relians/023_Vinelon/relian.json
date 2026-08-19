@@ -52,19 +52,70 @@
   "movimentos": [
     {
       "nivel": 1,
+      "movimento": "broto-impactante"
+    },
+    {
+      "nivel": 1,
       "movimento": "golpear"
+    },
+    {
+      "nivel": 4,
+      "movimento": "cuspe-de-nectar"
+    },
+    {
+      "nivel": 6,
+      "movimento": "torrente-de-ambar"
+    },
+    {
+      "nivel": 8,
+      "movimento": "bola-de-nectar"
+    },
+    {
+      "nivel": 10,
+      "movimento": "lustro-de-folhas"
+    },
+    {
+      "nivel": 13,
+      "movimento": "sugar-nectar"
+    },
+    {
+      "nivel": 16,
+      "movimento": "amarracao"
     }
   ],
   "aparicoes": [
     {
-      "regiao": "ruinas-azuis",
-      "bioma": "campo",
+      "regiao": "jardim-vital",
+      "bioma": "colinas-verdejantes",
       "periodos": [
-        "manha"
+        "manha",
+        "tarde"
       ],
       "nivelMinimo": 1,
-      "nivelMaximo": 10,
-      "peso": 10
+      "nivelMaximo": 12,
+      "peso": 50
+    },
+    {
+      "regiao": "bosque-de-elyr",
+      "bioma": "floresta-temperada",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 3,
+      "nivelMaximo": 14,
+      "peso": 40
+    },
+    {
+      "regiao": "oasis-lumen",
+      "bioma": "oasis",
+      "periodos": [
+        "manha",
+        "tarde"
+      ],
+      "nivelMinimo": 5,
+      "nivelMaximo": 16,
+      "peso": 25
     }
   ]
 }

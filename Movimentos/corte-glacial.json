@@ -1,0 +1,26 @@
+{
+  "kind": "move",
+  "tipoArquivo": "movimento",
+  "id": "corte-glacial",
+  "nome": "Corte Glacial",
+  "tipo": "OFS",
+  "elementos": [
+    "Geada",
+    "Éter"
+  ],
+  "elemento": "Geada, Éter",
+  "dano": 38,
+  "energia": 24,
+  "precisao": 95,
+  "alcance": "1",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
+  "descricao": "Reveste garras ou lâminas com frio Relia e desfere um corte preciso. Feito para caçadores ágeis e combatentes de Geada.",
+  "efeitos": [],
+  "tags": [
+    "corte",
+    "geada",
+    "tatico"
+  ]
+}

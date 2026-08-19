@@ -13,6 +13,9 @@
   "energia": 50,
   "precisao": 0,
   "alcance": "",
+  "alcanceTatico": 1,
+  "areaTatica": 0,
+  "formatoArea": "alvo",
   "descricao": "Taturá envolve seus punhos em chamas intensas e desfere um golpe poderoso.\nEfeito: Aumenta o Ataque em 1 estágio ao acertar o golpe.",
   "efeitos": [],
   "tags": []
