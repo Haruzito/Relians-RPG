@@ -1,0 +1,37 @@
+{
+  "kind": "story-sheet",
+  "tipoArquivo": "ficha-especial",
+  "id": "relian-beea-mszz8qcg",
+  "type": "relian",
+  "relian": {
+    "speciesId": "catierbee",
+    "nickname": "Beea",
+    "level": 10,
+    "color": "basic",
+    "gender": "Fêmea",
+    "size": "P",
+    "hpCurrent": 90,
+    "hpMax": 90,
+    "engCurrent": 75,
+    "engMax": 75,
+    "affinity": 2.5,
+    "attributes": {
+      "ataque": 8,
+      "defesa": 16,
+      "velocidade": 22,
+      "ataqueEspecial": 30,
+      "defesaEspecial": 10,
+      "precisao": 19
+    },
+    "traitId": "persistente",
+    "moves": [
+      "estapear",
+      "cuspe-de-nectar"
+    ],
+    "items": [],
+    "scene": "Companheira de viagem inicial.",
+    "notes": ""
+  },
+  "updatedAt": "2026-08-19T11:00:03.484Z",
+  "saveVersion": 2
+}

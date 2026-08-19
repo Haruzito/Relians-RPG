@@ -120,21 +120,5 @@
       "nivelMaximo": 30,
       "peso": 25
     }
-  ],
-  "regrasEvolucao": [
-    {
-      "alvo": "maginflora",
-      "tipo": "level",
-      "valor": "",
-      "rotulo": "Nível"
-    }
-  ],
-  "evolutionRules": [
-    {
-      "targetId": "maginflora",
-      "type": "level",
-      "value": "",
-      "label": "Nível"
-    }
   ]
 }

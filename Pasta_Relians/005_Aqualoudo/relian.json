@@ -129,21 +129,5 @@
       "nivelMaximo": 34,
       "peso": 25
     }
-  ],
-  "regrasEvolucao": [
-    {
-      "alvo": "draquecko",
-      "tipo": "custom",
-      "valor": "",
-      "rotulo": ""
-    }
-  ],
-  "evolutionRules": [
-    {
-      "targetId": "draquecko",
-      "type": "custom",
-      "value": "",
-      "label": ""
-    }
   ]
 }

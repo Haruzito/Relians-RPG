@@ -121,21 +121,5 @@
       "nivelMaximo": 13,
       "peso": 30
     }
-  ],
-  "regrasEvolucao": [
-    {
-      "alvo": "lihtobrux",
-      "tipo": "level",
-      "valor": "",
-      "rotulo": "Nível"
-    }
-  ],
-  "evolutionRules": [
-    {
-      "targetId": "lihtobrux",
-      "type": "level",
-      "value": "",
-      "label": "Nível"
-    }
   ]
 }

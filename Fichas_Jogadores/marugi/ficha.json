@@ -13,7 +13,7 @@
     "stars": 0,
     "rays": 0,
     "reliInf": 1,
-    "credits": 420,
+    "credits": 60,
     "money": 0,
     "image": "treinador.png",
     "imageFileName": "treinador.png",
@@ -93,7 +93,14 @@
         "description": ""
       }
     ],
-    "backpack": [],
+    "backpack": [
+      {
+        "itemId": "datacubo-basico",
+        "name": "DataCubo Básico",
+        "description": "DataCubo de uso geral para capturar Relians selvagens.",
+        "quantity": 2
+      }
+    ],
     "team": [
       {
         "speciesId": "seredige",
@@ -118,22 +125,31 @@
         "level": 10,
         "color": "basic",
         "notes": ""
+      },
+      {
+        "speciesId": "porppge",
+        "savedSheetId": "relian-mszyi7ab-0aeyu",
+        "nickname": "Porppge",
+        "level": 10,
+        "color": "basic",
+        "notes": "Capturado em combate"
       }
     ],
     "equippedRelianIds": [
       "relian-mszmdd5c-4o2c6",
-      "relian-mszmnli1-ncf9f"
+      "relian-mszmnli1-ncf9f",
+      "relian-mszyi7ab-0aeyu"
     ],
     "items": [],
     "notes": "",
     "battleStats": {
-      "battles": 1,
-      "wins": 1,
+      "battles": 2,
+      "wins": 2,
       "losses": 0,
-      "captures": 0,
-      "escapes": 0,
+      "captures": 1,
+      "escapes": 1,
       "trainerWins": 1,
-      "wildWins": 0,
+      "wildWins": 1,
       "creditsEarned": 420
     }
   },

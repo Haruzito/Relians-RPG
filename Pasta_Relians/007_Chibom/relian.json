@@ -110,21 +110,5 @@
       "nivelMaximo": 16,
       "peso": 25
     }
-  ],
-  "regrasEvolucao": [
-    {
-      "alvo": "incenderus",
-      "tipo": "custom",
-      "valor": "",
-      "rotulo": ""
-    }
-  ],
-  "evolutionRules": [
-    {
-      "targetId": "incenderus",
-      "type": "custom",
-      "value": "",
-      "label": ""
-    }
   ]
 }

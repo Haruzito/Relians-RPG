@@ -122,21 +122,5 @@
       "nivelMaximo": 36,
       "peso": 20
     }
-  ],
-  "regrasEvolucao": [
-    {
-      "alvo": "nezhaspyro",
-      "tipo": "custom",
-      "valor": "",
-      "rotulo": ""
-    }
-  ],
-  "evolutionRules": [
-    {
-      "targetId": "nezhaspyro",
-      "type": "custom",
-      "value": "",
-      "label": ""
-    }
   ]
 }

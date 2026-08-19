@@ -115,21 +115,5 @@
       "nivelMaximo": 14,
       "peso": 25
     }
-  ],
-  "regrasEvolucao": [
-    {
-      "alvo": "aqualoudo",
-      "tipo": "custom",
-      "valor": "",
-      "rotulo": ""
-    }
-  ],
-  "evolutionRules": [
-    {
-      "targetId": "aqualoudo",
-      "type": "custom",
-      "value": "",
-      "label": ""
-    }
   ]
 }
