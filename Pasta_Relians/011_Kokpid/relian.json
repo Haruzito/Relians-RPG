@@ -123,5 +123,21 @@
       "nivelMaximo": 12,
       "peso": 30
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "onnarachu",
+      "tipo": "level",
+      "valor": "",
+      "rotulo": "Nível"
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "onnarachu",
+      "type": "level",
+      "value": "",
+      "label": "Nível"
+    }
   ]
 }

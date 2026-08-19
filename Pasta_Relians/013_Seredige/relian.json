@@ -114,5 +114,21 @@
       "nivelMaximo": 18,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "bigsmoquil",
+      "tipo": "level",
+      "valor": "",
+      "rotulo": "Nível"
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "bigsmoquil",
+      "type": "level",
+      "value": "",
+      "label": "Nível"
+    }
   ]
 }

@@ -1335,8 +1335,8 @@ function renderCatalogDetail(relianOrId){
     box.innerHTML=`<div class="catalog-empty"><b>Não foi possível abrir esta entrada</b><span>${esc(error?.message||'Erro desconhecido no Catálogo.')}</span></div>`;
   }
 }
-window.editRelian=id=>{const r=data.relians.find(x=>x.id===id);if(!r)return;el('relianFormTitle').textContent='Editar Relian';el('relianId').value=r.id;el('relianCatalog').value=r.catalogNumber||'';el('relianCatalogVariant').value=normalizeCatalogVariant(r.catalogVariant);el('relianName').value=r.name;el('relianDescription').value=r.description||'';if(el('relianHabitatNotes'))el('relianHabitatNotes').value=r.habitatNotes||'';if(el('relianEvolutionNotes'))el('relianEvolutionNotes').value=r.evolutionNotes||'';el('relianClass').value=normalizeRelianClass(r.class);[1,2,3].forEach((n,i)=>{el('element'+n).value=r.elements[i]||'';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value=(r.specialElements||[])[i]||'';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();el('relianStage').value=r.stage||1;el('relianEnergy').value=r.baseEnergy||0;el('relianRarity').value=r.rarity||'comum';el('relianCaptureRate').value=r.captureRate??RARITY_BASE[r.rarity||'comum'];el('relianAffinity').value=r.baseAffinity??2;el('relianImageBasic').value=r.images?.basic||r.image||'';el('relianImageShiny').value=r.images?.shiny||'';el('relianImageSpecial').value=r.images?.special||'';el('relianGenders').value=(r.genders||[]).join(',');el('relianSizes').value=(r.sizes||[]).join(',');refreshEvolutionOptions(r.id);el('relianEvolvesFrom').value=r.evolvesFrom||'';const evolutionTargets=relianEvolutionTargets(r);[...el('relianEvolvesTo').options].forEach(o=>o.selected=evolutionTargets.includes(o.value));renderEvolutionTargetsEditor();el('relianEvolutionMethod').value=r.evolutionMethod||'';clearLearnsetEditor();(r.learnset||[]).sort((a,b)=>a.level-b.level).forEach(addLearnsetRow);el('encountersEditor').innerHTML='';(r.encounters||[]).forEach(addEncounterRow);document.querySelector('[data-tab="relians"]').click()}
-function clearRelianForm(){el('relianForm').reset();el('relianId').value='';if(el('relianHabitatNotes'))el('relianHabitatNotes').value='';if(el('relianEvolutionNotes'))el('relianEvolutionNotes').value='';if(el('relianCatalogVariant'))el('relianCatalogVariant').value='';el('relianFormTitle').textContent='Cadastrar Relian';el('relianStage').value=1;el('relianEnergy').value=85;el('relianRarity').value='comum';el('relianCaptureRate').value=40;el('relianAffinity').value=2;el('relianGenders').value='Macho,Fêmea';el('relianSizes').value='P,M,G';if(el('relianEvolvesFrom'))el('relianEvolvesFrom').value='';if(el('relianEvolvesTo'))[...el('relianEvolvesTo').options].forEach(o=>o.selected=false);renderEvolutionTargetsEditor();if(el('relianEvolutionMethod'))el('relianEvolutionMethod').value='';[1,2,3].forEach(n=>{el('element'+n).value='';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value='';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();clearLearnsetEditor();addLearnsetRow({level:1,moveId:Object.keys(data.moves||{})[0]||''});el('encountersEditor').innerHTML='';addEncounterRow()}
+window.editRelian=id=>{const r=data.relians.find(x=>x.id===id);if(!r)return;el('relianFormTitle').textContent='Editar Relian';el('relianId').value=r.id;el('relianCatalog').value=r.catalogNumber||'';el('relianCatalogVariant').value=normalizeCatalogVariant(r.catalogVariant);el('relianName').value=r.name;el('relianDescription').value=r.description||'';if(el('relianHabitatNotes'))el('relianHabitatNotes').value=r.habitatNotes||'';if(el('relianEvolutionNotes'))el('relianEvolutionNotes').value=r.evolutionNotes||'';el('relianClass').value=normalizeRelianClass(r.class);[1,2,3].forEach((n,i)=>{el('element'+n).value=r.elements[i]||'';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value=(r.specialElements||[])[i]||'';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();el('relianStage').value=r.stage||1;el('relianEnergy').value=r.baseEnergy||0;el('relianRarity').value=r.rarity||'comum';el('relianCaptureRate').value=r.captureRate??RARITY_BASE[r.rarity||'comum'];el('relianAffinity').value=r.baseAffinity??2;el('relianImageBasic').value=r.images?.basic||r.image||'';el('relianImageShiny').value=r.images?.shiny||'';el('relianImageSpecial').value=r.images?.special||'';el('relianGenders').value=(r.genders||[]).join(',');el('relianSizes').value=(r.sizes||[]).join(',');refreshEvolutionOptions(r.id);el('relianEvolvesFrom').value=r.evolvesFrom||'';const evolutionTargets=relianEvolutionTargets(r);[...el('relianEvolvesTo').options].forEach(o=>o.selected=evolutionTargets.includes(o.value));evolutionRuleDraft={};for(const targetId of evolutionTargets){const savedRule=(r.evolutionRules||[]).find(rule=>String(rule.targetId)===String(targetId));evolutionRuleDraft[targetId]=savedRule?{...savedRule}:legacyEvolutionRule(targetId,r.evolutionMethod||'')}renderEvolutionTargetsEditor();el('relianEvolutionMethod').value=r.evolutionMethod||'';clearLearnsetEditor();(r.learnset||[]).sort((a,b)=>a.level-b.level).forEach(addLearnsetRow);el('encountersEditor').innerHTML='';(r.encounters||[]).forEach(addEncounterRow);document.querySelector('[data-tab="relians"]').click()}
+function clearRelianForm(){el('relianForm').reset();evolutionRuleDraft={};el('relianId').value='';if(el('relianHabitatNotes'))el('relianHabitatNotes').value='';if(el('relianEvolutionNotes'))el('relianEvolutionNotes').value='';if(el('relianCatalogVariant'))el('relianCatalogVariant').value='';el('relianFormTitle').textContent='Cadastrar Relian';el('relianStage').value=1;el('relianEnergy').value=85;el('relianRarity').value='comum';el('relianCaptureRate').value=40;el('relianAffinity').value=2;el('relianGenders').value='Macho,Fêmea';el('relianSizes').value='P,M,G';if(el('relianEvolvesFrom'))el('relianEvolvesFrom').value='';if(el('relianEvolvesTo'))[...el('relianEvolvesTo').options].forEach(o=>o.selected=false);renderEvolutionTargetsEditor();if(el('relianEvolutionMethod'))el('relianEvolutionMethod').value='';[1,2,3].forEach(n=>{el('element'+n).value='';updateElementSelectStyle(el('element'+n));el('specialElement'+n).value='';updateElementSelectStyle(el('specialElement'+n))});renderElementPreview();clearLearnsetEditor();addLearnsetRow({level:1,moveId:Object.keys(data.moves||{})[0]||''});el('encountersEditor').innerHTML='';addEncounterRow()}
 
 function movementElementInfo(move){
   const raw=String(move?.element||'').trim();
@@ -1497,6 +1497,14 @@ el('relianForm').onsubmit=async e=>{
     const repeatedCatalog=data.relians.find(x=>x.id!==originalId&&normalizeCatalogNumber(x.catalogNumber)===catalogNumber&&normalizeCatalogVariant(x.catalogVariant)===catalogVariant);
     if(repeatedCatalog){alert(`O código de catálogo #${catalogCode(catalogNumber,catalogVariant)} já pertence a ${repeatedCatalog.name}.`);return}
     const selectedEvolutionIds=[...el('relianEvolvesTo').selectedOptions].map(o=>o.value).filter(Boolean);
+    const evolutionRules=readEvolutionRulesEditor();
+    for(const rule of evolutionRules){
+      if(!String(rule.value??'').trim()){
+        const targetName=data.relians.find(x=>x.id===rule.targetId)?.name||rule.targetId;
+        alert(`Defina o requisito de evolução para ${targetName}.`);return;
+      }
+      if(['level','affinity','wins'].includes(rule.type)&&Number(rule.value)<=0){alert('Os requisitos numéricos de evolução precisam ser maiores que zero.');return}
+    }
     const r={
       id,catalogNumber,catalogVariant,name,
       description:el('relianDescription').value.trim(),
@@ -1516,7 +1524,8 @@ el('relianForm').onsubmit=async e=>{
       evolvesFrom:el('relianEvolvesFrom').value,
       evolvesToMany:selectedEvolutionIds,
       evolvesTo:selectedEvolutionIds[0]||'',
-      evolutionMethod:el('relianEvolutionMethod').value.trim(),
+      evolutionMethod:evolutionMethodSummary(evolutionRules),
+      evolutionRules,
       traitIds:Array.isArray(oldRelian?.traitIds)?oldRelian.traitIds:[],
       learnset:readLearnsetEditor(),
       encounters
@@ -1609,7 +1618,7 @@ function relianFolderName(relian){
   const name=safeFolderName(relian?.name||'Relian').replace(/\s+/g,'_');
   return number?`${number}_${name}`:name;
 }
-function relianToFileData(r){return{kind:'relian',tipoArquivo:'relian',id:r.id,catalogNumber:normalizeCatalogNumber(r.catalogNumber),numeroCatalogo:normalizeCatalogNumber(r.catalogNumber),reliInfo:normalizeCatalogNumber(r.catalogNumber),catalogVariant:normalizeCatalogVariant(r.catalogVariant),variacaoCatalogo:normalizeCatalogVariant(r.catalogVariant),codigoCatalogo:catalogCode(r),nome:r.name,descricao:r.description||'',notasHabitat:r.habitatNotes||'',notasEvolucao:r.evolutionNotes||'',classe:r.class,elementos:r.elements,elementosEspeciais:r.specialElements||[],estagio:r.stage,energiaBase:r.baseEnergy,raridade:r.rarity,taxaCaptura:r.captureRate,afinidadeBase:r.baseAffinity,imagens:r.images,generos:r.genders,tamanhos:r.sizes,evoluiDe:r.evolvesFrom||'',evoluiPara:relianEvolutionTargets(r)[0]||'',evoluiParaMultiplas:relianEvolutionTargets(r),evolvesToMany:relianEvolutionTargets(r),metodoEvolucao:r.evolutionMethod||'',tracos:r.traitIds,movimentos:(r.learnset||[]).map(x=>({nivel:x.level,movimento:x.moveId})),aparicoes:(r.encounters||[]).map(e=>({regiao:e.region,bioma:e.biome,periodos:e.periods,nivelMinimo:e.minLevel,nivelMaximo:e.maxLevel,peso:e.weight}))}}
+function relianToFileData(r){return{kind:'relian',tipoArquivo:'relian',id:r.id,catalogNumber:normalizeCatalogNumber(r.catalogNumber),numeroCatalogo:normalizeCatalogNumber(r.catalogNumber),reliInfo:normalizeCatalogNumber(r.catalogNumber),catalogVariant:normalizeCatalogVariant(r.catalogVariant),variacaoCatalogo:normalizeCatalogVariant(r.catalogVariant),codigoCatalogo:catalogCode(r),nome:r.name,descricao:r.description||'',notasHabitat:r.habitatNotes||'',notasEvolucao:r.evolutionNotes||'',classe:r.class,elementos:r.elements,elementosEspeciais:r.specialElements||[],estagio:r.stage,energiaBase:r.baseEnergy,raridade:r.rarity,taxaCaptura:r.captureRate,afinidadeBase:r.baseAffinity,imagens:r.images,generos:r.genders,tamanhos:r.sizes,evoluiDe:r.evolvesFrom||'',evoluiPara:relianEvolutionTargets(r)[0]||'',evoluiParaMultiplas:relianEvolutionTargets(r),evolvesToMany:relianEvolutionTargets(r),metodoEvolucao:r.evolutionMethod||'',regrasEvolucao:(r.evolutionRules||[]).map(rule=>({alvo:rule.targetId,tipo:rule.type,valor:rule.value,rotulo:rule.label||''})),evolutionRules:r.evolutionRules||[],tracos:r.traitIds,movimentos:(r.learnset||[]).map(x=>({nivel:x.level,movimento:x.moveId})),aparicoes:(r.encounters||[]).map(e=>({regiao:e.region,bioma:e.biome,periodos:e.periods,nivelMinimo:e.minLevel,nivelMaximo:e.maxLevel,peso:e.weight}))}}
 async function writeJsonFile(dirName,fileName,payload){if(!linkedDirectory)return{saved:false,reason:'no-folder'};if(!await ensurePermission(linkedDirectory,true,'readwrite'))return{saved:false,reason:'permission'};const dir=await linkedDirectory.getDirectoryHandle(dirName,{create:true});const file=await dir.getFileHandle(fileName,{create:true});const writable=await file.createWritable();await writable.write(JSON.stringify(payload,null,2));await writable.close();folderSignature='';return{saved:true}}
 async function writeRootJsonFile(fileName,payload){
   if(!linkedDirectory)return{saved:false,reason:'no-folder'};
@@ -1811,7 +1820,7 @@ function normalizeTrait(raw){
   }
 }
 function normalizeMove(raw){const name=String(raw.name||raw.nome||'').trim();const source=Array.isArray(raw.elements||raw.elementos)?(raw.elements||raw.elementos):String(raw.element||raw.elemento||'').split(/[\/,+]/);const elements=[...new Set(source.map(x=>String(x||'').trim()).filter(x=>MOVE_ELEMENT_COLORS[x]))].slice(0,2);return{id:String(raw.id||slug(name)),name,type:String(raw.type||raw.tipo||'NEH'),damage:Number(raw.damage??raw.dano??0),energy:Number(raw.energy??raw.energia??0),elements,element:elements.join(', '),accuracy:Number(raw.accuracy??raw.precisao??0),range:String(raw.range||raw.alcance||''),tacticalRange:Math.max(1,Number(raw.tacticalRange??raw.alcanceTatico??1)||1),tacticalArea:Math.max(0,Number(raw.tacticalArea??raw.areaTatica??0)||0),tacticalShape:String(raw.tacticalShape||raw.formatoArea||'alvo'),description:String(raw.description||raw.descricao||''),effects:raw.effects||raw.efeitos||[],tags:raw.tags||raw.etiquetas||[]}}
-function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),habitatNotes:String(raw.habitatNotes||raw.notasHabitat||''),evolutionNotes:String(raw.evolutionNotes||raw.notasEvolucao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
+function normalizeRelian(raw){const name=String(raw.name||raw.nome||'').trim(),imgs=raw.images||raw.imagens||{};return{id:String(raw.id||slug(name)),catalogNumber:Number(raw.catalogNumber??raw.reliInfo??raw.numeroCatalogo??0)||null,catalogVariant:normalizeCatalogVariant(raw.catalogVariant??raw.variacaoCatalogo??raw.variacao??''),name,description:String(raw.description||raw.descricao||''),habitatNotes:String(raw.habitatNotes||raw.notasHabitat||''),evolutionNotes:String(raw.evolutionNotes||raw.notasEvolucao||''),class:normalizeRelianClass(raw.class||raw.classe||''),elements:raw.elements||raw.elementos||[],specialElements:raw.specialElements||raw.elementosEspeciais||raw.elementosEspecial||[],stage:Number(raw.stage??raw.estagio??1),baseEnergy:Number(raw.baseEnergy??raw.energiaBase??85),rarity:normalizeRarityId(raw.rarity||raw.raridade||'comum'),captureRate:Number(raw.captureRate??raw.taxaCaptura??RARITY_BASE[raw.rarity||raw.raridade||'comum']??40),baseAffinity:Number(raw.baseAffinity??raw.afinidadeBase??2),images:{basic:String(imgs.basic||imgs.basica||raw.image||raw.imagem||''),shiny:String(imgs.shiny||''),special:String(imgs.special||imgs.especial||'')},genders:raw.genders||raw.generos||['Indefinido'],sizes:raw.sizes||raw.tamanhos||['M'],traitIds:raw.traitIds||raw.tracos||[],evolvesFrom:String(raw.evolvesFrom||raw.evoluiDe||''),evolvesToMany:(Array.isArray(raw.evolvesToMany)?raw.evolvesToMany:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas:Array.isArray(raw.evolvesTo)?raw.evolvesTo:Array.isArray(raw.evoluiPara)?raw.evoluiPara:[raw.evolvesTo||raw.evoluiPara||'']).map(x=>String(x||'')).filter(Boolean),evolvesTo:String((Array.isArray(raw.evolvesToMany)?raw.evolvesToMany[0]:Array.isArray(raw.evoluiParaMultiplas)?raw.evoluiParaMultiplas[0]:Array.isArray(raw.evolvesTo)?raw.evolvesTo[0]:Array.isArray(raw.evoluiPara)?raw.evoluiPara[0]:raw.evolvesTo||raw.evoluiPara)||''),evolutionMethod:String(raw.evolutionMethod||raw.metodoEvolucao||''),evolutionRules:(raw.evolutionRules||raw.regrasEvolucao||[]).map(rule=>({targetId:String(rule.targetId||rule.alvo||rule.evoluiPara||''),type:String(rule.type||rule.tipo||'custom'),value:rule.value??rule.valor??'',label:String(rule.label||rule.rotulo||'')})).filter(rule=>rule.targetId),learnset:(raw.learnset||raw.movimentos||[]).map(x=>({level:Number(x.level??x.nivel??1),moveId:String(x.moveId||x.movimento||x.id||'')})),encounters:(raw.encounters||raw.aparicoes||[]).map(e=>({region:String(e.region||e.regiao||''),biome:String(e.biome||e.bioma||''),periods:e.periods||e.periodos||['manha'],minLevel:Number(e.minLevel??e.nivelMinimo??1),maxLevel:Number(e.maxLevel??e.nivelMaximo??100),weight:Number(e.weight??e.peso??10)}))}}
 async function fileToDataURL(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(file)})}
 async function importFileSet(files,{silent=false}={}){
   const list=[...files],jsonFiles=list.filter(f=>f.name.toLowerCase().endsWith('.json'));let added=0,updated=0,traits=0,moves=0,ignored=0;
@@ -1932,13 +1941,76 @@ function refreshEvolutionOptions(excludeId=''){
 }
 let activeEvolutionExcludeId='';
 function selectedEvolutionTargetIds(){const select=el('relianEvolvesTo');return select?[...select.selectedOptions].map(o=>o.value).filter(Boolean):[]}
+
+let evolutionRuleDraft={};
+
+function evolutionRuleTypeOptions(selected='custom'){
+  const types=[['level','Nível'],['item','Item'],['event','Evento'],['affinity','Afinidade'],['wins','Vitórias em batalha'],['region','Região'],['time','Período / horário'],['custom','Condição personalizada']];
+  return types.map(([id,label])=>`<option value="${id}" ${id===selected?'selected':''}>${label}</option>`).join('');
+}
+function legacyEvolutionRule(targetId,method=''){
+  const text=String(method||'').trim(),low=text.toLocaleLowerCase('pt-BR'),n=(text.match(/(\d+)/)||[])[1]||'';
+  if(!text)return {targetId,type:'custom',value:'',label:''};
+  if(low.includes('nível')||low.includes('nivel'))return {targetId,type:'level',value:n,label:text};
+  if(low.includes('item')||low.includes('stone')||low.includes('pedra'))return {targetId,type:'item',value:'',label:text};
+  if(low.includes('evento'))return {targetId,type:'event',value:'',label:text};
+  if(low.includes('afinidade')||low.includes('amizade'))return {targetId,type:'affinity',value:n,label:text};
+  return {targetId,type:'custom',value:text,label:text};
+}
+function evolutionRuleForTarget(targetId){return evolutionRuleDraft[targetId]||{targetId,type:'custom',value:'',label:''}}
+function evolutionRuleInputMarkup(rule){
+  const type=rule.type||'custom',value=esc(rule.value??'');
+  if(type==='level')return `<label class="evolution-rule-value">Nível necessário<input class="evo-rule-value" type="number" min="1" max="100" value="${value}" placeholder="Ex.: 20"></label>`;
+  if(type==='item')return `<label class="evolution-rule-value">Item necessário<input class="evo-rule-value" value="${value}" placeholder="Ex.: Pedra Relia"></label>`;
+  if(type==='event')return `<label class="evolution-rule-value">Evento necessário<input class="evo-rule-value" value="${value}" placeholder="Ex.: Eclipse de Nox"></label>`;
+  if(type==='affinity')return `<label class="evolution-rule-value">Afinidade mínima<input class="evo-rule-value" type="number" min="0" max="100" value="${value}" placeholder="Ex.: 80"></label>`;
+  if(type==='wins')return `<label class="evolution-rule-value">Vitórias necessárias<input class="evo-rule-value" type="number" min="1" value="${value}" placeholder="Ex.: 10"></label>`;
+  if(type==='region'){
+    const opts=(data.regions||[]).map(r=>`<option value="${esc(r.id)}" ${String(r.id)===String(rule.value)?'selected':''}>${esc(r.name)}</option>`).join('');
+    return `<label class="evolution-rule-value">Região necessária<select class="evo-rule-value"><option value="">Selecione...</option>${opts}</select></label>`;
+  }
+  if(type==='time')return `<label class="evolution-rule-value">Período necessário<select class="evo-rule-value"><option value="">Selecione...</option><option value="manha" ${rule.value==='manha'?'selected':''}>Manhã</option><option value="tarde" ${rule.value==='tarde'?'selected':''}>Tarde</option><option value="noite" ${rule.value==='noite'?'selected':''}>Noite</option><option value="madrugada" ${rule.value==='madrugada'?'selected':''}>Madrugada</option></select></label>`;
+  return `<label class="evolution-rule-value">Condição<input class="evo-rule-value" value="${value}" placeholder="Descreva exatamente a condição"></label>`;
+}
+function syncEvolutionRuleDraftFromDom(){
+  document.querySelectorAll('#evolutionTargetsEditor .evolution-target-row').forEach(row=>{
+    const targetId=String(row.dataset.targetId||'');if(!targetId)return;
+    evolutionRuleDraft[targetId]={targetId,type:row.querySelector('.evo-rule-type')?.value||'custom',value:row.querySelector('.evo-rule-value')?.value??'',label:''};
+  });
+}
+function readEvolutionRulesEditor(){syncEvolutionRuleDraftFromDom();return selectedEvolutionTargetIds().map(targetId=>evolutionRuleDraft[targetId]||{targetId,type:'custom',value:'',label:''})}
+function evolutionMethodSummary(rules=[]){
+  const labels={level:'Nível',item:'Item',event:'Evento',affinity:'Afinidade',wins:'Vitórias',region:'Região',time:'Período',custom:'Condição'};
+  return rules.map(rule=>`${data.relians.find(r=>r.id===rule.targetId)?.name||rule.targetId}: ${labels[rule.type]||rule.type}${String(rule.value??'').trim()?` ${rule.value}`:''}`).join(' | ');
+}
 function renderEvolutionTargetsEditor(){
   const box=el('evolutionTargetsEditor'),select=el('relianEvolvesTo');if(!box||!select)return;
+  syncEvolutionRuleDraftFromDom();
   const ids=selectedEvolutionTargetIds();
   if(!ids.length){box.innerHTML='<div class="evolution-target-empty">Nenhuma evolução adicionada.</div>';return}
-  box.innerHTML=ids.map(id=>{const r=data.relians.find(x=>x.id===id);if(!r)return'';return `<div class="evolution-target-row"><div><small>#${esc(catalogCode(r)||'—')}</small><strong>${esc(r.name)}</strong></div><button type="button" class="danger remove-evolution-target" data-id="${esc(id)}" title="Remover evolução">×</button></div>`}).join('');
-  box.querySelectorAll('.remove-evolution-target').forEach(btn=>btn.onclick=()=>{const option=[...select.options].find(o=>o.value===btn.dataset.id);if(option)option.selected=false;renderEvolutionTargetsEditor()});
+  box.innerHTML=ids.map(id=>{
+    const r=data.relians.find(x=>x.id===id);if(!r)return'';
+    const rule=evolutionRuleForTarget(id);
+    return `<div class="evolution-target-row evolution-target-rule-row" data-target-id="${esc(id)}">
+      <div class="evolution-target-identity"><small>#${esc(catalogCode(r)||'—')}</small><strong>${esc(r.name)}</strong></div>
+      <div class="evolution-rule-editor">
+        <label>Condição<select class="evo-rule-type">${evolutionRuleTypeOptions(rule.type)}</select></label>
+        <div class="evolution-rule-dynamic">${evolutionRuleInputMarkup(rule)}</div>
+      </div>
+      <button type="button" class="danger remove-evolution-target" data-id="${esc(id)}" title="Remover evolução">×</button>
+    </div>`;
+  }).join('');
+  box.querySelectorAll('.evo-rule-type').forEach(typeSelect=>typeSelect.onchange=()=>{
+    const row=typeSelect.closest('.evolution-target-row'),targetId=row?.dataset.targetId;if(!targetId)return;
+    evolutionRuleDraft[targetId]={targetId,type:typeSelect.value,value:'',label:''};
+    row.querySelector('.evolution-rule-dynamic').innerHTML=evolutionRuleInputMarkup(evolutionRuleDraft[targetId]);
+    row.querySelector('.evo-rule-value')?.addEventListener('input',syncEvolutionRuleDraftFromDom);
+    row.querySelector('.evo-rule-value')?.addEventListener('change',syncEvolutionRuleDraftFromDom);
+  });
+  box.querySelectorAll('.evo-rule-value').forEach(input=>{input.addEventListener('input',syncEvolutionRuleDraftFromDom);input.addEventListener('change',syncEvolutionRuleDraftFromDom)});
+  box.querySelectorAll('.remove-evolution-target').forEach(btn=>btn.onclick=()=>{const option=[...select.options].find(o=>o.value===btn.dataset.id);if(option)option.selected=false;delete evolutionRuleDraft[btn.dataset.id];renderEvolutionTargetsEditor()});
 }
+
 function renderEvolutionPickerList(){
   const box=el('evolutionPickerList');if(!box)return;
   const query=String(el('evolutionPickerSearch')?.value||'').trim().toLocaleLowerCase('pt-BR');

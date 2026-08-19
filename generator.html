@@ -133,7 +133,21 @@
       </fieldset>
       <fieldset><legend>Linha evolutiva</legend>
         <p class="field-help">Vincule esta espécie às formas anterior e seguinte. O vínculo inverso é atualizado automaticamente.</p>
-        <div class="grid three compact"><label>Evolui de<select id="relianEvolvesFrom"></select></label><div class="evolution-target-field"><span class="field-label">Evolui para <small>(uma ou mais)</small></span><select id="relianEvolvesTo" multiple hidden aria-hidden="true"></select><div id="evolutionTargetsEditor" class="evolution-targets-editor"></div><button type="button" id="addEvolutionTargetBtn" class="open-evolution-picker">+ Adicionar evolução</button><small class="field-help">Adicione uma evolução por vez. Você pode remover ou adicionar quantas precisar.</small></div><label>Método de evolução<input id="relianEvolutionMethod" placeholder="Nível, Stone-Eng, evento..." /></label></div>
+        <div class="grid two compact evolution-link-grid">
+          <label>Evolui de<select id="relianEvolvesFrom"></select></label>
+          <div class="evolution-target-field">
+            <span class="field-label">Evolui para <small>(uma ou mais)</small></span>
+            <select id="relianEvolvesTo" multiple hidden aria-hidden="true"></select>
+            <div id="evolutionTargetsEditor" class="evolution-targets-editor"></div>
+            <button type="button" id="addEvolutionTargetBtn" class="open-evolution-picker">+ Adicionar evolução</button>
+            <small class="field-help">Cada evolução pode ter sua própria condição: nível, item, evento, afinidade, vitórias, região, horário ou condição personalizada.</small>
+          </div>
+        </div>
+        <input id="relianEvolutionMethod" type="hidden" />
+        <div class="evolution-condition-help">
+          <b>Como funciona</b>
+          <span>Escolha a condição diretamente em cada evolução. Ex.: <strong>Nível 20</strong>, <strong>Item: Pedra Relia</strong> ou <strong>Evento: Eclipse de Nox</strong>.</span>
+        </div>
       </fieldset>
       <fieldset><legend>Imagens por coloração</legend>
         <p class="field-help">Os arquivos ficam dentro da pasta do Relian. Ex.: <code>Pasta_Relians/Loppypor/basic.png</code>.</p>

@@ -114,5 +114,21 @@
       "nivelMaximo": 20,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "lizbravos",
+      "tipo": "event",
+      "valor": "",
+      "rotulo": "evento"
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "lizbravos",
+      "type": "event",
+      "value": "",
+      "label": "evento"
+    }
   ]
 }

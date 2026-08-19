@@ -117,5 +117,21 @@
       "nivelMaximo": 16,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "aquamelon",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "aquamelon",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    }
   ]
 }

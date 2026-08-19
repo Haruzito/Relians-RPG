@@ -114,5 +114,21 @@
       "nivelMaximo": 14,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "dandetton",
+      "tipo": "level",
+      "valor": "",
+      "rotulo": "Nível"
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "dandetton",
+      "type": "level",
+      "value": "",
+      "label": "Nível"
+    }
   ]
 }

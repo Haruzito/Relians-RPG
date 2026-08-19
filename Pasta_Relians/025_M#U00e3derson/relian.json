@@ -112,5 +112,21 @@
       "nivelMaximo": 16,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "chaderson",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "chaderson",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    }
   ]
 }

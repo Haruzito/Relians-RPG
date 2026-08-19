@@ -110,5 +110,33 @@
       "nivelMaximo": 24,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "catierai",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    },
+    {
+      "alvo": "gatabuss",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "catierai",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    },
+    {
+      "targetId": "gatabuss",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    }
   ]
 }

@@ -116,5 +116,21 @@
       "nivelMaximo": 22,
       "peso": 30
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "loppypor",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "loppypor",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    }
   ]
 }

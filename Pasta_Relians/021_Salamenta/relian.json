@@ -142,5 +142,33 @@
       "nivelMaximo": 18,
       "peso": 25
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "coramenta",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    },
+    {
+      "alvo": "coramaliz",
+      "tipo": "custom",
+      "valor": "",
+      "rotulo": ""
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "coramenta",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    },
+    {
+      "targetId": "coramaliz",
+      "type": "custom",
+      "value": "",
+      "label": ""
+    }
   ]
 }

@@ -2519,3 +2519,13 @@ textarea{
 .character-image-import-copy>small{font-size:.65rem;opacity:.68;overflow-wrap:anywhere}
 .character-image-import-actions{display:flex;flex-wrap:wrap;gap:7px;margin:3px 0}
 @media(max-width:620px){.character-image-import{grid-template-columns:1fr}.character-image-import-preview{width:min(180px,100%);justify-self:center}}
+
+/* Evolução estruturada no Criador */
+.evolution-link-grid{align-items:start}
+.evolution-targets-editor{display:grid;gap:8px}
+.evolution-target-rule-row{display:grid!important;grid-template-columns:minmax(130px,.75fr) minmax(260px,1.6fr) 34px!important;gap:10px!important;align-items:center!important;padding:10px!important}
+.evolution-target-identity{display:grid;gap:2px}.evolution-target-identity small{opacity:.6;font-size:.62rem}
+.evolution-rule-editor{display:grid;grid-template-columns:160px minmax(0,1fr);gap:8px;align-items:end}.evolution-rule-editor label{margin:0}
+.evolution-condition-help{margin-top:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.07);border-radius:11px;background:rgba(255,255,255,.025);display:grid;gap:3px}
+.evolution-condition-help b{font-size:.72rem}.evolution-condition-help span{font-size:.68rem;opacity:.72;line-height:1.45}
+@media(max-width:760px){.evolution-target-rule-row{grid-template-columns:1fr 34px!important}.evolution-rule-editor{grid-column:1/-1;grid-row:2;grid-template-columns:1fr}}

@@ -13,7 +13,7 @@
     "stars": 0,
     "rays": 0,
     "reliInf": 1,
-    "credits": 0,
+    "credits": 420,
     "money": 0,
     "image": "treinador.png",
     "imageFileName": "treinador.png",
@@ -99,7 +99,7 @@
         "speciesId": "seredige",
         "savedSheetId": "relian-mszmdd5c-4o2c6",
         "nickname": "Seredige",
-        "level": 10,
+        "level": 11,
         "color": "basic",
         "notes": ""
       },
@@ -125,7 +125,17 @@
       "relian-mszmnli1-ncf9f"
     ],
     "items": [],
-    "notes": ""
+    "notes": "",
+    "battleStats": {
+      "battles": 1,
+      "wins": 1,
+      "losses": 0,
+      "captures": 0,
+      "escapes": 0,
+      "trainerWins": 1,
+      "wildWins": 0,
+      "creditsEarned": 420
+    }
   },
   "updatedAt": "2026-08-19T09:57:57.295Z",
   "saveVersion": 2,

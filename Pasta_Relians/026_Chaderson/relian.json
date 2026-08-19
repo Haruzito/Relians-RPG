@@ -118,5 +118,21 @@
       "nivelMaximo": 40,
       "peso": 20
     }
+  ],
+  "regrasEvolucao": [
+    {
+      "alvo": "gigaderson",
+      "tipo": "level",
+      "valor": "",
+      "rotulo": "Nível"
+    }
+  ],
+  "evolutionRules": [
+    {
+      "targetId": "gigaderson",
+      "type": "level",
+      "value": "",
+      "label": "Nível"
+    }
   ]
 }
