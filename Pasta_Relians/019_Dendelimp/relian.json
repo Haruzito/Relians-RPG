@@ -45,6 +45,8 @@
     "dandetton"
   ],
   "metodoEvolucao": "Nível",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

@@ -6,7 +6,7 @@
     {href:'index.html', icon:'⌂', title:'Início', desc:'Portal Relians World'},
     {href:'generator.html', icon:'🧬', title:'Gerador', desc:'Criação, fichas e catálogo'},
     {href:'updates.html', icon:'📰', title:'Blog', desc:'Novidades e mundo de Relians'},
-    {href:'tcg.html', icon:'🃏', title:'Relians Battle Card', desc:'Jogo de cartas de Relians'},
+    {href:'games.html', icon:'🎮', title:'Jogos', desc:'Battle Cards e Battle Arena'},
   ];
 
   function sideLink(item){

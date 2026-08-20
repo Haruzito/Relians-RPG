@@ -42,6 +42,8 @@
   "evoluiParaMultiplas": [],
   "evolvesToMany": [],
   "metodoEvolucao": "Nível 27",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

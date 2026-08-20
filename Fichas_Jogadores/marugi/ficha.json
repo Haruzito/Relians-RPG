@@ -119,26 +119,27 @@
         "notes": ""
       },
       {
-        "speciesId": "lihtoffle",
-        "savedSheetId": "relian-mszx3l4e-ihjfj",
-        "nickname": "Lihtoffle",
-        "level": 10,
-        "color": "basic",
-        "notes": ""
-      },
-      {
         "speciesId": "porppge",
         "savedSheetId": "relian-mszyi7ab-0aeyu",
         "nickname": "Porppge",
         "level": 10,
         "color": "basic",
         "notes": "Capturado em combate"
+      },
+      {
+        "speciesId": "lihtoffle",
+        "savedSheetId": "relian-mszx3l4e-ihjfj",
+        "nickname": "Lihtoffle",
+        "level": 10,
+        "color": "basic",
+        "notes": "Adicionado pela Central Relian"
       }
     ],
     "equippedRelianIds": [
       "relian-mszmdd5c-4o2c6",
       "relian-mszmnli1-ncf9f",
-      "relian-mszyi7ab-0aeyu"
+      "relian-mszyi7ab-0aeyu",
+      "relian-mszx3l4e-ihjfj"
     ],
     "items": [],
     "notes": "",
@@ -150,8 +151,21 @@
       "escapes": 1,
       "trainerWins": 1,
       "wildWins": 1,
-      "creditsEarned": 420
-    }
+      "creditsEarned": 420,
+      "reliansSold": 0,
+      "creditsFromRelianSales": 0,
+      "resourcesCollected": 0,
+      "resourcesSold": 0,
+      "creditsFromResources": 0
+    },
+    "ownedRelianIds": [
+      "relian-mszmdd5c-4o2c6",
+      "relian-mszmnli1-ncf9f",
+      "relian-mszx3l4e-ihjfj",
+      "relian-mszyi7ab-0aeyu"
+    ],
+    "battleHistory": [],
+    "resources": []
   },
   "updatedAt": "2026-08-19T09:57:57.295Z",
   "saveVersion": 2,

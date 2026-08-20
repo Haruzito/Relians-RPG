@@ -46,6 +46,8 @@
     "onnarachu"
   ],
   "metodoEvolucao": "Nível",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

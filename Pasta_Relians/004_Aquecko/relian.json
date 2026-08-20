@@ -45,6 +45,8 @@
     "aqualoudo"
   ],
   "metodoEvolucao": "",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

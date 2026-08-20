@@ -45,6 +45,8 @@
     "lizbravos"
   ],
   "metodoEvolucao": "evento",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

@@ -45,6 +45,8 @@
     "nezhaspyro"
   ],
   "metodoEvolucao": "",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

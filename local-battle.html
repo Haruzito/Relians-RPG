@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#203b2d" />
+  <title>Batalha Local — Relians World</title>
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="portal.css" />
+  <link rel="stylesheet" href="site-nav.css" />
+  <link rel="stylesheet" href="world-theme.css" />
+  <link rel="stylesheet" href="local-battle.css" />
+</head>
+<body class="relians-portal-page local-battle-page">
+  <header class="portal-topbar">
+    <a class="portal-brand" href="index.html"><img src="assets/icons/relians-logo.png" alt="Logo Relians" /><span><strong>RELIANS</strong><small>Local Battle</small></span></a>
+    <nav class="portal-quick-nav"><a href="games.html">Jogos</a><a href="battle-arena.html">Battle Arena</a><a href="generator.html">Gerador</a></nav>
+  </header>
+  <main class="local-shell">
+    <section class="local-hero">
+      <div><span class="local-kicker">MULTIJOGADOR · MESMO DISPOSITIVO</span><h1>Batalha Local</h1><p>Escolha dois personagens salvos e um Relian de cada equipe. Os jogadores alternam os turnos no mesmo dispositivo, e o resultado conta no histórico competitivo.</p></div>
+      <a href="games.html" class="local-back">← Jogos</a>
+    </section>
+
+    <section id="localSetup" class="local-card local-setup">
+      <div class="local-setup-head"><div><span class="local-kicker">PREPARAR PARTIDA</span><h2>Escolha os duelistas</h2></div><span class="local-rule-chip">1 × 1 · Turnos</span></div>
+      <div class="local-player-pickers">
+        <article class="local-picker p1"><span>JOGADOR 1</span><label>Personagem<select id="localChar1"></select></label><label>Relian<select id="localRelian1"></select></label><div id="localPreview1" class="local-preview"></div></article>
+        <div class="local-vs">VS</div>
+        <article class="local-picker p2"><span>JOGADOR 2</span><label>Personagem<select id="localChar2"></select></label><label>Relian<select id="localRelian2"></select></label><div id="localPreview2" class="local-preview"></div></article>
+      </div>
+      <div class="local-setup-actions"><p>Esta modalidade é <b>competitiva</b>: o vencedor recebe +1 vitória e o perdedor +1 derrota. HP, XP e créditos não são alterados.</p><button id="localStartBtn" type="button">Iniciar batalha</button></div>
+    </section>
+
+    <section id="localGame" class="local-game" hidden>
+      <div class="local-turn-banner"><small>TURNO ATUAL</small><b id="localTurnName">—</b><span id="localRound">Rodada 1</span></div>
+      <div class="local-battlefield">
+        <article id="localFighter1" class="local-fighter"></article>
+        <div class="local-center-mark"><span>VS</span></div>
+        <article id="localFighter2" class="local-fighter"></article>
+      </div>
+      <div class="local-card local-actions">
+        <div class="local-action-head"><div><span class="local-kicker">MOVIMENTOS</span><h3 id="localActionTitle">Escolha um golpe</h3></div><div id="localEngHint"></div></div>
+        <div id="localMoves" class="local-moves"></div>
+        <div class="local-action-footer"><button id="localPassBtn" type="button">Passar turno</button><button id="localQuitBtn" type="button" class="danger">Encerrar batalha</button></div>
+      </div>
+      <div class="local-card local-log"><span class="local-kicker">REGISTRO DA PARTIDA</span><div id="localLog"></div></div>
+    </section>
+  </main>
+  <div id="localResult" class="local-result" hidden></div>
+  <script src="local-battle.js"></script>
+</body>
+</html>

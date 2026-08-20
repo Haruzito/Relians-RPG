@@ -44,6 +44,8 @@
   "evoluiParaMultiplas": [],
   "evolvesToMany": [],
   "metodoEvolucao": "Evento",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

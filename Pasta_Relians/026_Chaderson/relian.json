@@ -45,6 +45,8 @@
     "gigaderson"
   ],
   "metodoEvolucao": "Nível",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

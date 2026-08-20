@@ -45,6 +45,8 @@
     "gatabuss"
   ],
   "metodoEvolucao": "",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

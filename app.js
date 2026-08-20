@@ -816,7 +816,7 @@ const RELIANS_PAGE_CONTEXT={
   battleTest:{category:'Jogos',title:'Arena Tática'},gamesHub:{category:'Jogos',title:'Central de Jogos'},playerPage:{category:'Jogador',title:'Página do Jogador'},shopPage:{category:'Jogador',title:'Loja'},recoveryPage:{category:'Jogador',title:'Centro de Recuperação'},
   generator:{category:'Fichas',title:'Gerar Relian'},story:{category:'Fichas',title:'Criar Ficha'},sheetbank:{category:'Fichas',title:'Banco de Fichas'},
   catalog:{category:'Catálogo',title:'Catálogo de Relians'},relians:{category:'Criação',title:'Criar Relian'},moves:{category:'Criação',title:'Criar Movimento'},
-  biomes:{category:'Criação',title:'Mundo'},creators:{category:'Comunidade',title:'Criadores'},rules:{category:'Config',title:'Regras e Modificadores'}
+  biomes:{category:'Criação',title:'Mundo'},creators:{category:'Comunidade',title:'Criadores'},rules:{category:'Config',title:'Regras e Modificadores'},arenaSettings:{category:'Battle Arena',title:'Dificuldade'}
 };
 function updatePageContext(tabId){const info=RELIANS_PAGE_CONTEXT[String(tabId)]||{category:'Relians',title:String(tabId||'')};const c=el('pageContextCategory'),t=el('pageContextTitle');if(c)c.textContent=info.category;if(t)t.textContent=info.title}
 function setupTabs(){
@@ -827,7 +827,7 @@ function setupTabs(){
     player:['playerPage','recoveryPage','shopPage'],
     content:['catalog','relians','moves','battleItems','biomes'],
     sheets:['generator','story','sheetbank'],
-    config:['rules']
+    config:['rules','arenaSettings']
   };
 
   const closeMenus=(except=null)=>{

@@ -45,6 +45,8 @@
     "incenderus"
   ],
   "metodoEvolucao": "",
+  "regrasEvolucao": [],
+  "evolutionRules": [],
   "tracos": [],
   "movimentos": [
     {

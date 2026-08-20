@@ -1,6 +1,6 @@
 # Relians RPG
 
-**Versão atual: v10.1.0**
+**Versão atual: v10.3.0**
 
 Gerador, editor, catálogo e banco de fichas do universo Relians.
 
@@ -15,6 +15,19 @@ Gerador, editor, catálogo e banco de fichas do universo Relians.
 - Interface responsiva para PC e celular.
 - Instalação como aplicativo em dispositivos compatíveis (PWA).
 - Aba Criadores com acesso ao Relians World e ao Blog oficial.
+
+
+## Destaques da v10.3.0
+
+- Ranking competitivo de E até S+, baseado em vitórias contra treinadores e outros jogadores.
+- Batalha Local entre dois personagens salvos no mesmo dispositivo.
+- Carteira do Explorador reorganizada com foco em identidade, Rank, equipe e histórico.
+- Central Relian com recuperação, Box, equipe e visualizador detalhado em abas.
+- Evolução por nível, item ou evento com confirmação e apresentação visual.
+- Venda de Relians, drops de recursos e Mercado de Recursos integrado à Loja.
+- Perfis de dificuldade Casual, Normal, Desafiador e Pesadelo, além de personalização.
+- Tela final de batalha com resumo do confronto, XP, recompensas e materiais.
+- Nova página Jogos para separar os modos jogáveis das ferramentas de criação.
 
 ## Destaques da v10.0.0
 

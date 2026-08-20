@@ -133,3 +133,12 @@ a{color:inherit}
   .portal-card{grid-template-columns:42px minmax(0,1fr)}
   .portal-card-arrow{display:none}
 }
+
+/* Relians Games */
+.games-selection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.game-selection-card{min-height:230px;align-items:flex-start}
+.game-status-chip{display:inline-flex;margin-top:12px;padding:5px 9px;border-radius:999px;font-size:.68rem;font-weight:800;letter-spacing:.05em;border:1px solid rgba(255,255,255,.12);opacity:.78}
+.game-status-chip.available{opacity:1}
+.arena-card{position:relative;overflow:hidden}
+.arena-card::before{content:"";position:absolute;inset:auto -20% -70% 25%;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(112,92,205,.18),transparent 68%);pointer-events:none}
+@media(max-width:760px){.games-selection-grid{grid-template-columns:1fr}.game-selection-card{min-height:190px}}

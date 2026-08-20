@@ -4,6 +4,116 @@ const W=14,H=9,MOVE_ENG=2;
 const $=id=>document.getElementById(id);
 let battle=null;
 
+const ARENA_SETTINGS_KEY='relians-battle-arena-settings-v1';
+const ARENA_DIFFICULTY_PRESETS={
+  casual:{id:'casual',label:'Casual',summary:'Combates mais leves, captura facilitada e menor pressão de ENG.',enemyLevel:-2,enemyStats:.85,aiMistake:35,playerMoveCost:.8,trainerExtra:-1,capture:1.2,credits:.9,xp:.95,drops:.9},
+  normal:{id:'normal',label:'Normal',summary:'Experiência equilibrada, pensada como padrão do Battle Arena.',enemyLevel:0,enemyStats:1,aiMistake:12,playerMoveCost:1,trainerExtra:0,capture:1,credits:1,xp:1,drops:1},
+  hard:{id:'hard',label:'Desafiador',summary:'Inimigos mais fortes e eficientes, com recompensas um pouco maiores.',enemyLevel:2,enemyStats:1.12,aiMistake:4,playerMoveCost:1.15,trainerExtra:1,capture:.9,credits:1.15,xp:1.12,drops:1.15},
+  nightmare:{id:'nightmare',label:'Pesadelo',summary:'Adversários muito mais perigosos, captura severa e gerenciamento de ENG exigente.',enemyLevel:4,enemyStats:1.25,aiMistake:0,playerMoveCost:1.3,trainerExtra:2,capture:.78,credits:1.35,xp:1.25,drops:1.35}
+};
+function defaultArenaSettings(){return {...ARENA_DIFFICULTY_PRESETS.normal}}
+function clampArenaSettings(raw={}){
+  return {
+    id:String(raw.id||'custom'),label:String(raw.label||'Personalizado'),summary:String(raw.summary||'Configuração personalizada.'),
+    enemyLevel:clamp(Number(raw.enemyLevel)||0,-5,8),
+    enemyStats:clamp(Number(raw.enemyStats)||1,.7,1.5),
+    aiMistake:clamp(Number(raw.aiMistake)||0,0,45),
+    playerMoveCost:clamp(Number(raw.playerMoveCost)||1,.7,1.6),
+    trainerExtra:clamp(Math.round(Number(raw.trainerExtra)||0),-1,3),
+    capture:clamp(Number(raw.capture)||1,.6,1.4),
+    credits:clamp(Number(raw.credits)||1,.7,1.6),
+    xp:clamp(Number(raw.xp)||1,.7,1.6),
+    drops:clamp(Number(raw.drops)||1,.6,1.6)
+  };
+}
+function loadArenaSettings(){
+  try{
+    const raw=JSON.parse(localStorage.getItem(ARENA_SETTINGS_KEY)||'null');
+    return raw?clampArenaSettings(raw):defaultArenaSettings();
+  }catch{return defaultArenaSettings()}
+}
+let arenaSettings=loadArenaSettings();
+function saveArenaSettings(next){
+  arenaSettings=clampArenaSettings(next);
+  try{localStorage.setItem(ARENA_SETTINGS_KEY,JSON.stringify(arenaSettings))}catch{}
+  renderArenaSettings();
+  return arenaSettings;
+}
+function arenaPlayerMoveCost(){return Math.max(1,Math.round(MOVE_ENG*arenaSettings.playerMoveCost))}
+function applyDifficultyToEnemy(enemy){
+  if(!enemy)return enemy;
+  const mult=arenaSettings.enemyStats;
+  for(const key of ['attack','defense','spAttack','spDefense','speed','precision'])enemy[key]=Math.max(1,Math.round((Number(enemy[key])||1)*mult));
+  const oldMax=Math.max(1,Number(enemy.maxHp)||1),oldEng=Math.max(1,Number(enemy.maxEng)||1);
+  enemy.maxHp=Math.max(1,Math.round(oldMax*mult));
+  enemy.hp=enemy.maxHp;
+  enemy.maxEng=Math.max(1,Math.round(oldEng*(.92+mult*.08)));
+  enemy.eng=enemy.maxEng;
+  return enemy;
+}
+function detectArenaPreset(settings=arenaSettings){
+  for(const preset of Object.values(ARENA_DIFFICULTY_PRESETS)){
+    if(['enemyLevel','enemyStats','aiMistake','playerMoveCost','trainerExtra','capture','credits','xp','drops'].every(k=>Math.abs(Number(settings[k])-Number(preset[k]))<.0001))return preset;
+  }
+  return {id:'custom',label:'Personalizado',summary:'Você ajustou manualmente os modificadores do Battle Arena.'};
+}
+function setArenaDifficultyPreset(id){
+  const preset=ARENA_DIFFICULTY_PRESETS[id]||ARENA_DIFFICULTY_PRESETS.normal;
+  saveArenaSettings({...preset});
+}
+function arenaSettingFromInputs(){
+  return {
+    id:'custom',label:'Personalizado',summary:'Configuração personalizada.',
+    enemyLevel:Number($('settingEnemyLevel')?.value)||0,
+    enemyStats:(Number($('settingEnemyStats')?.value)||100)/100,
+    aiMistake:Number($('settingAiMistake')?.value)||0,
+    playerMoveCost:(Number($('settingMoveCost')?.value)||100)/100,
+    trainerExtra:Number($('settingTrainerExtra')?.value)||0,
+    capture:(Number($('settingCapture')?.value)||100)/100,
+    credits:(Number($('settingCredits')?.value)||100)/100,
+    xp:(Number($('settingXp')?.value)||100)/100,
+    drops:(Number($('settingDrops')?.value)||100)/100
+  };
+}
+function renderArenaSettings(){
+  const preset=detectArenaPreset(arenaSettings);
+  const set=(id,val)=>{const e=$(id);if(e)e.value=String(val)};
+  set('settingEnemyLevel',arenaSettings.enemyLevel);
+  set('settingEnemyStats',Math.round(arenaSettings.enemyStats*100));
+  set('settingAiMistake',arenaSettings.aiMistake);
+  set('settingMoveCost',Math.round(arenaSettings.playerMoveCost*100));
+  set('settingTrainerExtra',arenaSettings.trainerExtra);
+  set('settingCapture',Math.round(arenaSettings.capture*100));
+  set('settingCredits',Math.round(arenaSettings.credits*100));
+  set('settingXp',Math.round(arenaSettings.xp*100));
+  set('settingDrops',Math.round(arenaSettings.drops*100));
+  const outs={
+    settingEnemyLevelOut:`${arenaSettings.enemyLevel>=0?'+':''}${arenaSettings.enemyLevel}`,
+    settingEnemyStatsOut:`${Math.round(arenaSettings.enemyStats*100)}%`,
+    settingAiMistakeOut:`${Math.round(arenaSettings.aiMistake)}%`,
+    settingMoveCostOut:`${Math.round(arenaSettings.playerMoveCost*100)}%`,
+    settingTrainerExtraOut:`${arenaSettings.trainerExtra>=0?'+':''}${arenaSettings.trainerExtra}`,
+    settingCaptureOut:`${Math.round(arenaSettings.capture*100)}%`,
+    settingCreditsOut:`${Math.round(arenaSettings.credits*100)}%`,
+    settingXpOut:`${Math.round(arenaSettings.xp*100)}%`,
+    settingDropsOut:`${Math.round(arenaSettings.drops*100)}%`
+  };
+  for(const [id,val] of Object.entries(outs)){const e=$(id);if(e)e.textContent=val}
+  if($('arenaDifficultyCurrent'))$('arenaDifficultyCurrent').textContent=preset.label;
+  if($('arenaDifficultySummary'))$('arenaDifficultySummary').textContent=preset.summary;
+  document.querySelectorAll('[data-difficulty-preset]').forEach(b=>b.classList.toggle('active',b.dataset.difficultyPreset===preset.id));
+  if($('arenaSettingsState'))$('arenaSettingsState').textContent=preset.id==='custom'?'Configuração personalizada salva automaticamente.':'Perfil salvo automaticamente.';
+}
+function bindArenaSettings(){
+  document.querySelectorAll('[data-difficulty-preset]').forEach(btn=>btn.addEventListener('click',()=>setArenaDifficultyPreset(btn.dataset.difficultyPreset)));
+  for(const id of ['settingEnemyLevel','settingEnemyStats','settingAiMistake','settingMoveCost','settingTrainerExtra','settingCapture','settingCredits','settingXp','settingDrops']){
+    $(id)?.addEventListener('input',()=>saveArenaSettings(arenaSettingFromInputs()));
+  }
+  $('resetArenaSettingsBtn')?.addEventListener('click',()=>setArenaDifficultyPreset('normal'));
+  renderArenaSettings();
+}
+
+
 function battleToast(text,type='info',duration=1100){
   const box=$('battleToast');
   if(!box)return;
@@ -41,31 +151,110 @@ function setFixedPlayer(id){
   renderRecoveryPage();
 }
 function ensureBattleStats(charSheet){
-  if(!charSheet?.character)return {battles:0,wins:0,losses:0,captures:0,escapes:0};
-  const s=charSheet.character.battleStats||(charSheet.character.battleStats={});
-  for(const k of ['battles','wins','losses','captures','escapes','trainerWins','wildWins','creditsEarned'])s[k]=Math.max(0,Number(s[k])||0);
-  charSheet.character.credits=Math.max(0,Number(charSheet.character.credits)||0);
+  if(!charSheet?.character)return {battles:0,wins:0,losses:0,captures:0,escapes:0,trainerWins:0,trainerLosses:0,playerWins:0,playerLosses:0,wildWins:0,creditsEarned:0};
+  const c=charSheet.character;
+  const s=c.battleStats||(c.battleStats={});
+  for(const k of ['battles','wins','losses','captures','escapes','trainerWins','trainerLosses','playerWins','playerLosses','wildWins','creditsEarned','reliansSold','creditsFromRelianSales','resourcesCollected','resourcesSold','creditsFromResources'])s[k]=Math.max(0,Number(s[k])||0);
+  c.credits=Math.max(0,Number(c.credits)||0);
+  c.battleHistory=Array.isArray(c.battleHistory)?c.battleHistory:[];
+
+  // Migração única: o sistema antigo misturava vitórias selvagens com o placar.
+  // O novo placar competitivo considera SOMENTE Treinador + Jogador.
+  if(!s.competitiveRecordV2){
+    const trainerLossesFromHistory=c.battleHistory.filter(x=>x?.mode==='trainer'&&x?.result==='loss').length;
+    const playerWinsFromHistory=c.battleHistory.filter(x=>x?.mode==='player'&&(x?.result==='playerWin'||x?.result==='win')).length;
+    const playerLossesFromHistory=c.battleHistory.filter(x=>x?.mode==='player'&&(x?.result==='playerLoss'||x?.result==='loss')).length;
+
+    s.playerWins=Math.max(s.playerWins,playerWinsFromHistory);
+    s.playerLosses=Math.max(s.playerLosses,playerLossesFromHistory);
+    s.trainerLosses=Math.max(s.trainerLosses,trainerLossesFromHistory);
+
+    s.wins=Math.max(0,s.trainerWins+s.playerWins);
+    s.losses=Math.max(0,s.trainerLosses+s.playerLosses);
+    s.battles=s.wins+s.losses;
+    s.competitiveRecordV2=true;
+  }
   return s;
 }
+function trainerBattleHistory(charSheet){
+  if(!charSheet?.character)return [];
+  ensureBattleStats(charSheet);
+  return charSheet.character.battleHistory;
+}
+function battleHistoryResultLabel(kind){
+  return ({win:'Vitória',trainerWin:'Vitória',playerWin:'Vitória',playerLoss:'Derrota',loss:'Derrota',capture:'Captura',escape:'Fuga'})[kind]||'Batalha';
+}
+function battleHistoryResultClass(kind){
+  if(kind==='win'||kind==='trainerWin'||kind==='playerWin')return'win';
+  if(kind==='loss'||kind==='playerLoss')return'loss';
+  if(kind==='capture')return'capture';
+  if(kind==='escape')return'escape';
+  return'neutral';
+}
+function battleHistoryDate(value){
+  const date=new Date(value);
+  if(Number.isNaN(date.getTime()))return 'Data desconhecida';
+  return date.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+function addBattleHistoryEntry(charSheet,kind,extra={}){
+  if(!charSheet?.character||!battle)return null;
+  const history=trainerBattleHistory(charSheet);
+  const used=[...(battle.usedRelians||[])];
+  const enemies=[...(battle.opponents||[])];
+  const entry={
+    id:`history-${battle.battleId||Date.now()}-${kind}`,
+    battleId:String(battle.battleId||''),
+    at:new Date().toISOString(),
+    result:kind,
+    mode:battle.modeType==='trainer'?'trainer':'wild',
+    trainerName:String(battle.trainerName||''),
+    opponent:String(battle.trainerName||battle.enemy?.nickname||'Desconhecido'),
+    opponents:enemies,
+    usedRelians:used,
+    captured:kind==='capture'?{speciesId:String(battle.enemy?.species?.id||''),name:String(battle.enemy?.nickname||battle.enemy?.species?.name||'Relian'),level:Number(battle.enemy?.level)||1}:null,
+    rounds:Number(battle.round)||1,
+    defeatedEnemies:Number(battle.defeatedEnemies)||0,
+    xp:Math.max(0,Number(extra.xp??battle.totalXp)||0),
+    credits:Math.max(0,Number(extra.credits)||0),
+    durationSeconds:Math.max(1,Math.round((Date.now()-(Number(battle.startedAt)||Date.now()))/1000)),
+    regionId:String(battle.arenaRegion||''),
+    arenaTheme:String(battle.arenaTheme||''),difficulty:detectArenaPreset(arenaSettings).label,drops:[...(battle.drops||[])].map(d=>({id:d.id,name:d.name,quantity:d.quantity,value:d.value}))
+  };
+  const idx=history.findIndex(row=>String(row.battleId)===String(entry.battleId));
+  if(idx>=0)history[idx]={...history[idx],...entry};
+  else history.unshift(entry);
+  charSheet.character.battleHistory=history.slice(0,120);
+  charSheet.character.lastBattle=entry;
+  return entry;
+}
+const EXPLORER_RANKS=[
+  {name:'E',min:0,next:10,tone:'e',label:'Iniciante'},
+  {name:'D',min:10,next:25,tone:'d',label:'Aprendiz'},
+  {name:'C',min:25,next:40,tone:'c',label:'Competente'},
+  {name:'B',min:40,next:55,tone:'b',label:'Experiente'},
+  {name:'B+',min:55,next:70,tone:'bp',label:'Veterano'},
+  {name:'A',min:70,next:85,tone:'a',label:'Elite'},
+  {name:'A+',min:85,next:100,tone:'ap',label:'Elite Superior'},
+  {name:'S',min:100,next:120,tone:'s',label:'Excepcional'},
+  {name:'S+',min:120,next:null,tone:'sp',label:'Ápice'}
+];
 function rankProgressInfo(wins){
   wins=Math.max(0,Number(wins)||0);
-  const tiers=[
-    {name:'Iniciante',min:0,next:3},{name:'Bronze',min:3,next:8},{name:'Prata',min:8,next:20},
-    {name:'Ouro',min:20,next:40},{name:'Platina',min:40,next:75},{name:'Mestre',min:75,next:null}
-  ];
-  const tier=[...tiers].reverse().find(t=>wins>=t.min)||tiers[0];
-  if(tier.next==null)return {name:tier.name,text:'Rank máximo alcançado',percent:100};
-  const span=tier.next-tier.min,done=wins-tier.min;
-  return {name:tier.name,text:`${wins}/${tier.next} vitórias de treinador`,percent:Math.max(0,Math.min(100,done/span*100))};
+  const tier=[...EXPLORER_RANKS].reverse().find(t=>wins>=t.min)||EXPLORER_RANKS[0];
+  const nextTier=EXPLORER_RANKS[EXPLORER_RANKS.indexOf(tier)+1]||null;
+  if(tier.next==null){
+    return {name:tier.name,label:tier.label,tone:tier.tone,text:`${wins} vitórias · Rank máximo`,percent:100,nextName:null,nextAt:null,remaining:0,min:tier.min};
+  }
+  const span=Math.max(1,tier.next-tier.min),done=Math.max(0,wins-tier.min);
+  return {
+    name:tier.name,label:tier.label,tone:tier.tone,
+    text:`${wins} / ${tier.next} vitórias`,
+    percent:Math.max(0,Math.min(100,done/span*100)),
+    nextName:nextTier?.name||null,nextAt:tier.next,remaining:Math.max(0,tier.next-wins),min:tier.min
+  };
 }
 function playerRank(wins){
-  wins=Math.max(0,Number(wins)||0);
-  if(wins>=75)return 'Mestre';
-  if(wins>=40)return 'Platina';
-  if(wins>=20)return 'Ouro';
-  if(wins>=8)return 'Prata';
-  if(wins>=3)return 'Bronze';
-  return 'Iniciante';
+  return rankProgressInfo(wins).name;
 }
 
 function addPlayerCredits(amount,reason=''){
@@ -82,32 +271,356 @@ function addPlayerCredits(amount,reason=''){
 }
 function trainerRewardFor(team,level){
   const count=Math.max(1,Number(team)||1),lv=Math.max(1,Number(level)||1);
-  return Math.round(90+lv*18+count*75);
+  return Math.max(1,Math.round((90+lv*18+count*75)*arenaSettings.credits));
 }
 
 function battleOwnerCharacter(){
   const ownerId=String(battle?.ownerCharacterId||battle?.player?.characterId||'');
   return characters().find(x=>String(x.id)===ownerId)||fixedPlayer()||null;
 }
-function recordPlayerResult(kind){
+function recordPlayerResult(kind,extra={}){
   const c=battleOwnerCharacter();if(!c)return null;
   const token=`${kind}:${battle?.battleId||''}`;
   battle.recordedResults=battle.recordedResults||new Set();
   if(battle.recordedResults.has(token))return ensureBattleStats(c);
   battle.recordedResults.add(token);
+
   const s=ensureBattleStats(c);
-  if(kind==='win'){s.battles++;s.wins++;s.wildWins++}
-  else if(kind==='trainerWin'){s.battles++;s.wins++;s.trainerWins++}
-  else if(kind==='loss'){s.battles++;s.losses++}
-  else if(kind==='capture'){s.battles++;s.wins++;s.wildWins++;s.captures++}
-  else if(kind==='escape'){s.escapes++}
-  c.character.lastBattle={kind,at:new Date().toISOString(),opponent:battle?.trainerName||battle?.enemy?.nickname||'Desconhecido',rounds:Number(battle?.round)||1};
+  const trainerBattle=battle?.modeType==='trainer';
+
+  if(kind==='trainerWin'){
+    s.battles++;s.wins++;s.trainerWins++;
+  }else if(kind==='loss'&&trainerBattle){
+    s.battles++;s.losses++;s.trainerLosses++;
+  }else if(kind==='capture'){
+    s.captures++;
+  }else if(kind==='escape'){
+    s.escapes++;
+  }else if(kind==='win'){
+    // Vitória contra Relian selvagem não altera o placar competitivo.
+    s.wildWins++;
+  }
+
+  addBattleHistoryEntry(c,kind,extra);
   try{doSave()}catch(err){console.warn('Falha ao salvar resultado da batalha',err)}
   renderPlayerPage();renderShop();
   return s;
 }
 
+
+const CENTRAL_TEAM_LIMIT=7;
+function ensureRelianOwnership(charSheet){
+  if(!charSheet?.character)return [];
+  const c=charSheet.character;
+  c.team=Array.isArray(c.team)?c.team:[];
+  c.ownedRelianIds=Array.isArray(c.ownedRelianIds)?c.ownedRelianIds.map(String):[];
+
+  for(const member of c.team){
+    const id=String(member?.savedSheetId||'');
+    if(id&&!c.ownedRelianIds.includes(id))c.ownedRelianIds.push(id);
+  }
+
+  const charId=String(charSheet.id||'');
+  const trainerName=normalizedText(c.name||'');
+  for(const sheet of data.savedRelianSheets||[]){
+    const id=String(sheet?.id||'');if(!id)continue;
+    const explicitOwner=String(sheet?.ownerCharacterId||sheet?.trainerCharacterId||'');
+    const originalTrainer=normalizedText(sheet?.originalTrainer||sheet?.trainerName||'');
+    if((explicitOwner&&explicitOwner===charId)||(trainerName&&originalTrainer&&originalTrainer===trainerName)){
+      if(!c.ownedRelianIds.includes(id))c.ownedRelianIds.push(id);
+      if(!sheet.ownerCharacterId)sheet.ownerCharacterId=charId;
+    }
+  }
+
+  c.ownedRelianIds=c.ownedRelianIds.filter((id,i,a)=>id&&a.indexOf(id)===i&&!!savedById(id));
+  for(const id of c.ownedRelianIds){
+    const sheet=savedById(id);
+    if(sheet&&!sheet.ownerCharacterId)sheet.ownerCharacterId=charId;
+  }
+  return c.ownedRelianIds;
+}
+function ownedRelians(charSheet){
+  return ensureRelianOwnership(charSheet).map(id=>savedById(id)).filter(Boolean);
+}
+function teamMemberForSheet(charSheet,sheetId){
+  return (charSheet?.character?.team||[]).find(m=>String(m.savedSheetId)===String(sheetId))||null;
+}
+function addRelianToTeam(charSheet,sheetId){
+  if(!charSheet?.character)return false;
+  ensureRelianOwnership(charSheet);
+  const id=String(sheetId),sheet=savedById(id);
+  if(!sheet||!charSheet.character.ownedRelianIds.includes(id))return false;
+  if(teamMemberForSheet(charSheet,id))return true;
+  if(charSheet.character.team.length>=CENTRAL_TEAM_LIMIT)return false;
+  charSheet.character.team.push({speciesId:sheet.speciesId,savedSheetId:sheet.id,nickname:sheet.nickname||sheet.speciesName,level:Number(sheet.level)||1,color:sheet.color||'basic',notes:'Adicionado pela Central Relian'});
+  charSheet.character.equippedRelianIds=Array.isArray(charSheet.character.equippedRelianIds)?charSheet.character.equippedRelianIds:[];
+  if(!charSheet.character.equippedRelianIds.includes(id))charSheet.character.equippedRelianIds.push(id);
+  try{doSave()}catch{}
+  refreshSetup();renderPlayerPage();renderRecoveryPage();
+  return true;
+}
+function removeRelianFromTeam(charSheet,sheetId){
+  if(!charSheet?.character)return false;
+  const id=String(sheetId);
+  charSheet.character.team=(charSheet.character.team||[]).filter(m=>String(m.savedSheetId)!==id);
+  charSheet.character.equippedRelianIds=(charSheet.character.equippedRelianIds||[]).filter(x=>String(x)!==id);
+  try{doSave()}catch{}
+  refreshSetup();renderPlayerPage();renderRecoveryPage();
+  return true;
+}
+function relianElementNames(sp){
+  const ids=[sp?.element,sp?.element2,sp?.primaryElement,sp?.secondaryElement,...(Array.isArray(sp?.elements)?sp.elements:[])].filter(Boolean);
+  return [...new Set(ids.map(id=>getData()?.elements?.find?.(e=>String(e.id)===String(id))?.name||String(id)))];
+}
+
+const RELIAN_SALE_RARITY={
+  comum:{label:'Comum',mult:1},
+  incomum:{label:'Incomum',mult:1.35},
+  raro:{label:'Raro',mult:1.85},
+  epico:{label:'Épico',mult:2.55},
+  lendario:{label:'Lendário',mult:3.8},
+  unico:{label:'Único',mult:5.2}
+};
+function saleRarityInfo(value){
+  const id=normalizedText(value||'comum').replace(/\s+/g,'');
+  if(id.includes('unico'))return RELIAN_SALE_RARITY.unico;
+  if(id.includes('lendario'))return RELIAN_SALE_RARITY.lendario;
+  if(id.includes('epico'))return RELIAN_SALE_RARITY.epico;
+  if(id.includes('incomum'))return RELIAN_SALE_RARITY.incomum;
+  if(id.includes('raro'))return RELIAN_SALE_RARITY.raro;
+  return RELIAN_SALE_RARITY.comum;
+}
+function relianSaleValuation(sheet){
+  const sp=species(sheet?.speciesId)||{},attrs=sheet?.attributes||{};
+  const rarity=saleRarityInfo(sheet?.rarity||sp?.rarity);
+  const level=Math.max(1,Number(sheet?.level)||1);
+  const statValues=['ataque','defesa','ataqueEspecial','defesaEspecial','velocidade','precisao'].map(k=>Math.max(0,Number(attrs[k])||0));
+  const statTotal=statValues.reduce((a,b)=>a+b,0);
+  const statAvg=statTotal/Math.max(1,statValues.length);
+  const expected=Math.max(8,18+level*1.35);
+  const quality=Math.max(.75,Math.min(1.85,statAvg/expected));
+  const color=String(sheet?.color||'basic').toLowerCase();
+  const colorMult=color==='special'||color==='especial'?2.15:color==='shiny'?1.65:1;
+  const stage=Math.max(1,Number(sp?.stage)||1);
+  const stageMult=1+(stage-1)*.18;
+  const affinity=Math.max(0,Number(sheet?.affinity)||0);
+  const affinityMult=1+Math.min(5,affinity)*.035;
+  const moveCount=(sheet?.moves||[]).length;
+  const moveMult=1+Math.min(6,moveCount)*.018;
+  const base=90+level*18+statTotal*2.15;
+  const raw=base*rarity.mult*quality*colorMult*stageMult*affinityMult*moveMult;
+  const value=Math.max(50,Math.round(raw/5)*5);
+  return {
+    value,rarity,level,statTotal,statAvg,quality,color,colorMult,stage,stageMult,affinity,moveCount,
+    parts:[
+      {label:'Base + nível',value:Math.round(90+level*18)},
+      {label:'Qualidade dos status',value:`${Math.round(quality*100)}%`},
+      {label:`Raridade ${rarity.label}`,value:`×${rarity.mult.toFixed(2)}`},
+      {label:'Coloração',value:colorMult>1?`${color==='shiny'?'Shiny':'Especial'} ×${colorMult.toFixed(2)}`:'Básica ×1.00'},
+      {label:'Estágio evolutivo',value:`×${stageMult.toFixed(2)}`},
+      {label:'Afinidade / movimentos',value:`×${(affinityMult*moveMult).toFixed(2)}`}
+    ]
+  };
+}
+function canSellRelian(charSheet,sheet){
+  if(!charSheet?.character||!sheet)return {ok:false,reason:'Relian inválido.'};
+  ensureRelianOwnership(charSheet);
+  if(!charSheet.character.ownedRelianIds.includes(String(sheet.id)))return {ok:false,reason:'Este Relian não pertence ao explorador ativo.'};
+  const owned=ownedRelians(charSheet);
+  if(owned.length<=1)return {ok:false,reason:'Você não pode vender seu último Relian.'};
+  const team=(charSheet.character.team||[]);
+  const isTeam=!!teamMemberForSheet(charSheet,sheet.id);
+  if(isTeam&&team.length<=1)return {ok:false,reason:'Remova outro Relian da Box para a equipe antes de vender o único membro ativo.'};
+  if(battle&&!battle.finished&&String(battle.player?.sheetId||'')===String(sheet.id))return {ok:false,reason:'Este Relian está sendo usado em uma batalha.'};
+  return {ok:true,reason:''};
+}
+function sellOwnedRelian(charSheet,sheet){
+  const check=canSellRelian(charSheet,sheet);if(!check.ok)return {ok:false,reason:check.reason};
+  const valuation=relianSaleValuation(sheet),id=String(sheet.id);
+  charSheet.character.team=(charSheet.character.team||[]).filter(m=>String(m.savedSheetId)!==id);
+  charSheet.character.equippedRelianIds=(charSheet.character.equippedRelianIds||[]).filter(x=>String(x)!==id);
+  charSheet.character.ownedRelianIds=(charSheet.character.ownedRelianIds||[]).filter(x=>String(x)!==id);
+  const idx=(data.savedRelianSheets||[]).findIndex(s=>String(s.id)===id);
+  if(idx>=0)data.savedRelianSheets.splice(idx,1);
+  const stats=ensureBattleStats(charSheet);
+  charSheet.character.credits=Math.max(0,Number(charSheet.character.credits)||0)+valuation.value;
+  stats.creditsEarned+=valuation.value;
+  stats.reliansSold++;
+  stats.creditsFromRelianSales+=valuation.value;
+  charSheet.character.saleHistory=Array.isArray(charSheet.character.saleHistory)?charSheet.character.saleHistory:[];
+  charSheet.character.saleHistory.unshift({
+    id:`sale-${Date.now().toString(36)}`,at:new Date().toISOString(),sheetId:id,
+    name:String(sheet.nickname||sheet.speciesName||species(sheet.speciesId)?.name||'Relian'),
+    speciesId:String(sheet.speciesId||''),level:Number(sheet.level)||1,rarity:String(sheet.rarity||species(sheet.speciesId)?.rarity||'comum'),
+    color:String(sheet.color||'basic'),value:valuation.value
+  });
+  charSheet.character.saleHistory=charSheet.character.saleHistory.slice(0,100);
+  try{doSave()}catch(err){console.warn('Falha ao salvar venda de Relian',err)}
+  refreshSetup();renderPlayerPage();renderRecoveryPage();renderShop();
+  return {ok:true,value:valuation.value,valuation};
+}
+function openRelianSaleConfirm(sheetId){
+  const c=fixedPlayer(),sheet=savedById(sheetId);if(!c||!sheet)return;
+  const check=canSellRelian(c,sheet);
+  if(!check.ok){alert(check.reason);return}
+  const valuation=relianSaleValuation(sheet),sp=species(sheet.speciesId),img=imageFor(sp,sheet.color);
+  document.querySelector('.relian-sale-overlay')?.remove();
+  const over=document.createElement('div');over.className='battle-switch-overlay relian-sale-overlay';
+  over.innerHTML=`<div class="card relian-sale-card">
+    <button type="button" class="central-detail-close" data-cancel-relian-sale="1">×</button>
+    <div class="section-kicker">VENDA DE RELIAN</div>
+    <div class="relian-sale-hero">${img?`<img src="${escapeHtml(img)}" alt="">`:'◆'}<div><h2>Vender ${escapeHtml(sheet.nickname||sp?.name||'Relian')}?</h2><p>${escapeHtml(sp?.name||sheet.speciesName||'')} · Nv. ${Number(sheet.level)||1} · ${escapeHtml(valuation.rarity.label)}</p><strong>${valuation.value.toLocaleString('pt-BR')} C$</strong></div></div>
+    <div class="relian-sale-breakdown">${valuation.parts.map(x=>`<span><small>${escapeHtml(x.label)}</small><b>${escapeHtml(String(x.value))}</b></span>`).join('')}</div>
+    <div class="relian-sale-warning"><b>Esta venda é permanente.</b><span>A ficha salva deste Relian será removida do explorador e do Banco de Relians.</span></div>
+    <div class="relian-sale-actions"><button type="button" data-cancel-relian-sale="1">Cancelar</button><button type="button" class="danger" data-confirm-relian-sale="${escapeHtml(sheet.id)}">Confirmar venda por ${valuation.value.toLocaleString('pt-BR')} C$</button></div>
+  </div>`;
+  document.body.appendChild(over);
+  over.querySelectorAll('[data-cancel-relian-sale]').forEach(b=>b.onclick=()=>over.remove());
+  over.querySelector('[data-confirm-relian-sale]').onclick=()=>{
+    const result=sellOwnedRelian(c,sheet);
+    if(!result.ok)return alert(result.reason);
+    over.remove();closeCentralRelianDetail();
+    battleToast(`${sheet.nickname||sp?.name||'Relian'} vendido por ${result.value.toLocaleString('pt-BR')} C$!`,'capture',1800);
+  };
+}
+
+function centralRelianCard(sheet,charSheet,inTeam){
+  const sp=species(sheet.speciesId),img=imageFor(sp,sheet.color);
+  const hp=Number(sheet.hpCurrent??sheet.hpMax??0),maxHp=Math.max(1,Number(sheet.hpMax)||1);
+  const eng=Number(sheet.engCurrent??sheet.engMax??0),maxEng=Math.max(1,Number(sheet.engMax)||1);
+  const els=relianElementNames(sp).join(' · ');
+  return `<article class="central-relian-card ${hp<=0?'down':''}" data-central-sheet="${escapeHtml(sheet.id)}">
+    <button type="button" class="central-relian-open" data-open-relian-detail="${escapeHtml(sheet.id)}">
+      <div class="central-relian-sprite">${img?`<img src="${escapeHtml(img)}" alt="">`:'◆'}</div>
+      <div class="central-relian-copy"><b>${escapeHtml(sheet.nickname||sp?.name||sheet.speciesName||'Relian')}</b><small>${escapeHtml(sp?.name||sheet.speciesName||'')} · Nv. ${Number(sheet.level)||1}</small><em>${escapeHtml(els||'Elemento não informado')}</em><strong class="central-relian-value">${relianSaleValuation(sheet).value.toLocaleString('pt-BR')} C$</strong></div>
+      <div class="central-mini-bars"><span>HP ${Math.round(hp)}/${Math.round(maxHp)}</span><i><em style="width:${Math.max(0,Math.min(100,hp/maxHp*100))}%"></em></i><span>ENG ${Math.round(eng)}/${Math.round(maxEng)}</span><i class="eng"><em style="width:${Math.max(0,Math.min(100,eng/maxEng*100))}%"></em></i></div>
+    </button>
+    <div class="central-relian-actions">
+      ${inTeam?`<button type="button" data-remove-team="${escapeHtml(sheet.id)}">Enviar à Box</button>`:`<button type="button" class="primary" data-add-team="${escapeHtml(sheet.id)}">Adicionar à equipe</button>`}
+      <button type="button" data-recover-owned="${escapeHtml(sheet.id)}" ${hp>=maxHp&&eng>=maxEng?'disabled':''}>Recuperar</button>
+      <button type="button" class="central-sell-btn" data-sell-relian="${escapeHtml(sheet.id)}">Vender</button>
+    </div>
+  </article>`;
+}
+function openCentralRelianDetail(sheetId){
+  const c=fixedPlayer(),sheet=savedById(sheetId),modal=$('centralRelianModal'),body=$('centralRelianDetailBody');
+  if(!c||!sheet||!modal||!body)return;
+  const sp=species(sheet.speciesId),img=imageFor(sp,sheet.color),member=teamMemberForSheet(c,sheet.id);
+  const attrs=sheet.attributes||{};
+  const moves=(sheet.moves||[]).map(id=>moveById(id)).filter(Boolean);
+  const tr=traitById(sheet.traitId);
+  const hp=Number(sheet.hpCurrent??sheet.hpMax??0),eng=Number(sheet.engCurrent??sheet.engMax??0);
+  const evo=readyEvolutionOptions(sheet,member||{level:sheet.level},c);
+  const moveCards=moves.length?moves.map(m=>{
+    const damage=typeof moveDamage==='function'?moveDamage(m):Number(m.damage||m.power||0);
+    const cost=typeof moveCost==='function'?moveCost(m):Number(m.energyCost||m.cost||0);
+    const range=typeof parseRange==='function'?parseRange(m):Number(m.range||1);
+    const accuracy=typeof moveAccuracy==='function'?moveAccuracy(m):Number(m.accuracy||100);
+    const description=String(m.description||m.effectText||m.effect||m.notes||'Sem descrição adicional.');
+    return `<article class="central-move-detail">
+      <div class="central-move-detail-head"><div><b>${escapeHtml(m.name||m.id)}</b><small>${escapeHtml(m.element||m.type||m.tipo||'Neutro')}</small></div><strong>${cost} ENG</strong></div>
+      <div class="central-move-metrics"><span>Dano <b>${damage||'—'}</b></span><span>Alcance <b>${range}</b></span><span>Precisão <b>${accuracy}%</b></span><span>Área <b>${typeof shapeLabel==='function'?escapeHtml(shapeLabel(m)):'Alvo'}</b></span></div>
+      <p>${escapeHtml(description)}</p>
+    </article>`;
+  }).join(''):'<div class="central-detail-empty">Nenhum movimento salvo nesta ficha.</div>';
+  const evolutionText=(sp?.evolutions||sp?.evolution||sheet.evolutions||[]);
+  const evolutionList=Array.isArray(evolutionText)?evolutionText:[evolutionText].filter(Boolean);
+  body.innerHTML=`<div class="central-detail-hero central-catalog-hero">
+    <div class="central-detail-image central-catalog-art">
+      <span class="central-catalog-color">${escapeHtml(String(sheet.color||'basic'))}</span>
+      ${img?`<img src="${escapeHtml(img)}" alt="">`:'<span class="central-catalog-placeholder">?</span>'}
+    </div>
+    <div class="central-catalog-identity">
+      <div class="central-catalog-topline"><span>${member?'NA EQUIPE':'BOX RELIAN'}</span><span>NV. ${Number(sheet.level)||1}</span></div>
+      <h2 id="centralRelianDetailTitle">${escapeHtml(sheet.nickname||sp?.name||'Relian')}</h2>
+      <p class="central-catalog-species">${escapeHtml(sp?.name||sheet.speciesName||'')}</p>
+      <div class="central-catalog-rarity">✦ ${escapeHtml(sheet.rarity||sp?.rarity||'Comum')}</div>
+      <div class="central-catalog-divider"></div>
+      <div class="central-catalog-elements"><small>ELEMENTOS</small><div class="player-profile-tags">${relianElementNames(sp).map(x=>`<span>${escapeHtml(x)}</span>`).join('')||'<span>—</span>'}</div></div>
+      <div class="central-catalog-quickfacts">
+        <span><small>Coloração</small><b>${escapeHtml(String(sheet.color||'basic'))}</b></span>
+        <span><small>Afinidade</small><b>${Number(sheet.affinity)||0}</b></span>
+        <span><small>Valor</small><b>${relianSaleValuation(sheet).value.toLocaleString('pt-BR')} C$</b></span>
+      </div>
+    </div>
+  </div>
+  <div class="central-detail-tabs" role="tablist" aria-label="Detalhes do Relian">
+    <button type="button" class="active" data-relian-detail-tab="status">Status</button>
+    <button type="button" data-relian-detail-tab="moves">Movimentos <small>${moves.length}</small></button>
+    <button type="button" data-relian-detail-tab="trait">Traço</button>
+    <button type="button" data-relian-detail-tab="profile">Ficha</button>
+  </div>
+  <div class="central-detail-tab-panel active" data-relian-detail-panel="status">
+    <section class="central-catalog-section">
+      <div class="central-catalog-section-title"><div><small>RECURSOS</small><h3>Condição atual</h3></div><span>${member?'Relian ativo':'Armazenado na Box'}</span></div>
+      <div class="central-resource-bars">
+        <article class="central-resource-bar hp"><div><b>♥ HP</b><strong>${Math.round(hp)} / ${Math.round(Number(sheet.hpMax)||1)}</strong></div><i><em style="width:${Math.max(0,Math.min(100,(hp/Math.max(1,Number(sheet.hpMax)||1))*100))}%"></em></i></article>
+        <article class="central-resource-bar eng"><div><b>⚡ ENG</b><strong>${Math.round(eng)} / ${Math.round(Number(sheet.engMax)||1)}</strong></div><i><em style="width:${Math.max(0,Math.min(100,(eng/Math.max(1,Number(sheet.engMax)||1))*100))}%"></em></i></article>
+        <article class="central-resource-bar xp"><div><b>✦ XP</b><strong>${Number(sheet.xp)||0} / ${typeof xpNeeded==='function'?xpNeeded(Number(sheet.level)||1):'—'}</strong></div><i><em style="width:${typeof xpNeeded==='function'?Math.max(0,Math.min(100,((Number(sheet.xp)||0)/Math.max(1,xpNeeded(Number(sheet.level)||1)))*100)):0}%"></em></i></article>
+      </div>
+    </section>
+    <section class="central-catalog-section">
+      <div class="central-catalog-section-title"><div><small>ATRIBUTOS</small><h3>Status de combate</h3></div></div>
+      <div class="central-detail-stats central-catalog-stats">
+        ${[['ATQ','Ataque',attrs.ataque],['DEF','Defesa',attrs.defesa],['ATQ.ESP','Ataque Especial',attrs.ataqueEspecial],['DEF.ESP','Defesa Especial',attrs.defesaEspecial],['VEL','Velocidade',attrs.velocidade],['PREC','Precisão',attrs.precisao]].map(([n,label,v])=>`<span><small>${n}</small><b>${Number(v)||0}</b><em>${label}</em></span>`).join('')}
+      </div>
+    </section>
+    <section class="central-catalog-section compact">
+      <div class="central-detail-status-note central-catalog-notes"><span><small>Coloração</small><b>${escapeHtml(String(sheet.color||'basic'))}</b></span><span><small>Raridade</small><b>${escapeHtml(sheet.rarity||sp?.rarity||'—')}</b></span><span><small>Afinidade</small><b>${Number(sheet.affinity)||0}</b></span><span><small>Local</small><b>${member?'Equipe':'Box'}</b></span></div>
+    </section>
+  </div>
+  <div class="central-detail-tab-panel" data-relian-detail-panel="moves">${moveCards}</div>
+  <div class="central-detail-tab-panel" data-relian-detail-panel="trait">
+    <section class="central-trait-detail"><div class="section-kicker">TRAÇO ATUAL</div><h3>${escapeHtml(tr?.name||'Nenhum')}</h3><p>${escapeHtml(tr?.description||tr?.effect||'Este Relian não possui um traço registrado.')}</p>${tr?.effectText?`<div class="central-trait-effect"><small>EFEITO</small><b>${escapeHtml(tr.effectText)}</b></div>`:''}</section>
+  </div>
+  <div class="central-detail-tab-panel" data-relian-detail-panel="profile">
+    <div class="central-profile-detail-grid">
+      <span><small>ID da ficha</small><b>${escapeHtml(sheet.id||'—')}</b></span>
+      <span><small>Espécie</small><b>${escapeHtml(sp?.name||sheet.speciesName||'—')}</b></span>
+      <span><small>Nível</small><b>${Number(sheet.level)||1}</b></span>
+      <span><small>Afinidade</small><b>${Number(sheet.affinity)||0}</b></span>
+      <span><small>Elementos</small><b>${escapeHtml(relianElementNames(sp).join(' / ')||'—')}</b></span>
+      <span><small>Valor estimado</small><b>${relianSaleValuation(sheet).value.toLocaleString('pt-BR')} C$</b></span>
+    </div>
+    <section class="central-profile-evolution"><div class="section-kicker">EVOLUÇÃO</div>${evo.length?`<h3>Pronto para evoluir</h3><p>${evo.map(x=>escapeHtml(x.target?.name||'Evolução')).join(', ')}</p>`:`<h3>${evolutionList.length?'Linha evolutiva registrada':'Sem evolução disponível agora'}</h3><p>${evolutionList.length?escapeHtml(evolutionList.map(x=>typeof x==='string'?x:(x?.name||x?.targetName||x?.target||'Evolução')).join(' · ')):'Esta ficha ainda não atende a uma condição de evolução.'}</p>`}</section>
+  </div>
+  ${evo.length?`<div class="central-evolution-ready"><b>✦ Evolução disponível</b><span>${evo.map(x=>escapeHtml(x.target?.name||'Evolução')).join(', ')}</span><button type="button" data-central-evolve="${escapeHtml(sheet.id)}">Evoluir?</button></div>`:''}
+  <section class="central-sale-estimate"><div><div class="section-kicker">VALOR DE MERCADO</div><h3>${relianSaleValuation(sheet).value.toLocaleString('pt-BR')} C$</h3><p>Estimativa baseada em raridade, nível, atributos, coloração, evolução, afinidade e movimentos.</p></div><button type="button" class="danger" data-sell-relian="${escapeHtml(sheet.id)}">Vender Relian</button></section>
+  <div class="central-detail-footer">${member?`<button type="button" data-remove-team="${escapeHtml(sheet.id)}">Enviar à Box</button>`:`<button type="button" class="primary" data-add-team="${escapeHtml(sheet.id)}">Adicionar à equipe</button>`}<button type="button" data-recover-owned="${escapeHtml(sheet.id)}">Recuperar HP/ENG</button></div>`;
+  body.querySelectorAll('[data-relian-detail-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    const tab=btn.dataset.relianDetailTab;
+    body.querySelectorAll('[data-relian-detail-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+    body.querySelectorAll('[data-relian-detail-panel]').forEach(x=>x.classList.toggle('active',x.dataset.relianDetailPanel===tab));
+  }));
+  modal.hidden=false;document.body.classList.add('central-modal-open');
+  bindCentralActions(body);
+}
+function closeCentralRelianDetail(){const m=$('centralRelianModal');if(m)m.hidden=true;document.body.classList.remove('central-modal-open')}
+function recoverOwnedRelian(sheetId){
+  const c=fixedPlayer();if(!c||!ensureRelianOwnership(c).includes(String(sheetId)))return;
+  const sheet=savedById(sheetId);if(!sheet)return;
+  recoverSavedRelianSheet(sheet);try{doSave()}catch{}
+  renderRecoveryPage();renderPlayerPage();
+}
+function recoverAllOwned(){
+  const c=fixedPlayer();if(!c)return alert('Defina um treinador primeiro.');
+  ownedRelians(c).forEach(recoverSavedRelianSheet);try{doSave()}catch{}
+  renderRecoveryPage();renderPlayerPage();battleToast('Todos os Relians da Box foram recuperados!','heal',1300);
+}
+function bindCentralActions(scope=document){
+  scope.querySelectorAll?.('[data-open-relian-detail]').forEach(b=>b.onclick=()=>openCentralRelianDetail(b.dataset.openRelianDetail));
+  scope.querySelectorAll?.('[data-add-team]').forEach(b=>b.onclick=()=>{
+    const c=fixedPlayer();if(!c)return;
+    if((c.character.team||[]).length>=CENTRAL_TEAM_LIMIT&&!teamMemberForSheet(c,b.dataset.addTeam))return alert(`A equipe já possui ${CENTRAL_TEAM_LIMIT} Relians.`);
+    addRelianToTeam(c,b.dataset.addTeam);closeCentralRelianDetail();
+  });
+  scope.querySelectorAll?.('[data-remove-team]').forEach(b=>b.onclick=()=>{const c=fixedPlayer();if(c)removeRelianFromTeam(c,b.dataset.removeTeam);closeCentralRelianDetail()});
+  scope.querySelectorAll?.('[data-recover-owned]').forEach(b=>b.onclick=()=>recoverOwnedRelian(b.dataset.recoverOwned));
+  scope.querySelectorAll?.('[data-sell-relian]').forEach(b=>b.onclick=()=>openRelianSaleConfirm(b.dataset.sellRelian));
+  scope.querySelectorAll?.('[data-central-evolve]').forEach(b=>b.onclick=()=>{closeCentralRelianDetail();requestEvolution(b.dataset.centralEvolve)});
+}
 function recoveryPlayer(){return fixedPlayer()}
+
 function recoverSavedRelianSheet(sheet){
   if(!sheet)return false;
   const maxHp=Math.max(1,Number(sheet.hpMax)||1);
@@ -118,7 +631,7 @@ function recoverSavedRelianSheet(sheet){
   return changed;
 }
 function recoverOneRelian(sheetId){
-  const c=recoveryPlayer();if(!c)return alert('Defina um jogador primeiro.');
+  const c=recoveryPlayer();if(!c)return alert('Defina um treinador primeiro.');
   const member=(c.character?.team||[]).find(m=>String(m.savedSheetId)===String(sheetId));
   const sheet=member?savedById(member.savedSheetId):null;
   if(!sheet)return;
@@ -128,7 +641,7 @@ function recoverOneRelian(sheetId){
   battleToast(changed?`${member.nickname||sheet.nickname||sheet.speciesName} recuperado!`:'Este Relian já está totalmente recuperado.','heal',1100);
 }
 function recoverAllTeam(){
-  const c=recoveryPlayer();if(!c)return alert('Defina um jogador primeiro.');
+  const c=recoveryPlayer();if(!c)return alert('Defina um treinador primeiro.');
   let count=0;
   for(const member of c.character?.team||[]){
     const sheet=savedById(member.savedSheetId);
@@ -139,40 +652,30 @@ function recoverAllTeam(){
   battleToast(count?`${count} Relian${count>1?'s':''} recuperado${count>1?'s':''}!`:'A equipe já está totalmente recuperada.','heal',1300);
 }
 function renderRecoveryPage(){
-  const c=recoveryPlayer(),grid=$('recoveryTeamGrid'),name=$('recoveryPlayerName'),summary=$('recoveryTeamStatus'),detail=$('recoveryTeamDetail');
-  if(name)name.textContent=c?.character?.name||'Nenhum jogador';
-  if(!grid)return;
+  const c=recoveryPlayer(),teamGrid=$('centralTeamGrid'),boxGrid=$('centralBoxGrid'),name=$('recoveryPlayerName'),summary=$('recoveryTeamStatus'),detail=$('recoveryTeamDetail');
+  if(name)name.textContent=c?.character?.name||'Nenhum treinador';
+  if(!teamGrid||!boxGrid)return;
   if(!c){
-    if(summary)summary.textContent='—';
-    if(detail)detail.textContent='Defina um jogador na Página do Jogador.';
-    grid.innerHTML='<div class="recovery-empty"><b>Nenhum jogador definido</b><span>Escolha seu personagem ativo antes de usar o Centro de Recuperação.</span></div>';
+    if(summary)summary.textContent='—';if(detail)detail.textContent='Defina um treinador na Carteira do Explorador.';
+    teamGrid.innerHTML=boxGrid.innerHTML='<div class="recovery-empty"><b>Nenhum explorador definido</b><span>Escolha o personagem ativo para acessar a Central Relian.</span></div>';
+    if($('centralTeamCount'))$('centralTeamCount').textContent=`0/${CENTRAL_TEAM_LIMIT}`;if($('centralBoxCount'))$('centralBoxCount').textContent='0';
     return;
   }
-  const members=(c.character?.team||[]).map(member=>({member,sheet:savedById(member.savedSheetId)})).filter(x=>x.sheet);
-  const healthy=members.filter(({sheet})=>Number(sheet.hpCurrent??sheet.hpMax)>=Number(sheet.hpMax)&&Number(sheet.engCurrent??sheet.engMax)>=Number(sheet.engMax)).length;
-  if(summary)summary.textContent=`${healthy}/${members.length} prontos`;
-  if(detail)detail.textContent=members.length?`${members.length-healthy} precisam de recuperação.`:'Este personagem ainda não possui Relians.';
-  grid.innerHTML=members.length?members.map(({member,sheet})=>{
-    const sp=species(sheet.speciesId),img=imageFor(sp,sheet.color);
-    const hp=Number(sheet.hpCurrent??sheet.hpMax??0),maxHp=Math.max(1,Number(sheet.hpMax)||1);
-    const eng=Number(sheet.engCurrent??sheet.engMax??0),maxEng=Math.max(1,Number(sheet.engMax)||1);
-    const full=hp>=maxHp&&eng>=maxEng;
-    return `<article class="card recovery-relian-card ${full?'ready':'needs-care'}">
-      <div class="recovery-relian-top">
-        <div class="recovery-relian-img">${img?`<img src="${escapeHtml(img)}" alt="">`:'<span>◆</span>'}</div>
-        <div><h4>${escapeHtml(member.nickname||sheet.nickname||sp?.name||'Relian')}</h4><small>${escapeHtml(sp?.name||sheet.speciesName||'')} · Nv. ${Number(member.level||sheet.level)||1}</small></div>
-        <span class="recovery-state">${full?'Pronto':'Recuperar'}</span>
-      </div>
-      <div class="recovery-bars">
-        <div><span>HP <b>${Math.round(hp)}/${Math.round(maxHp)}</b></span><i><em style="width:${Math.max(0,Math.min(100,hp/maxHp*100))}%"></em></i></div>
-        <div><span>ENG <b>${Math.round(eng)}/${Math.round(maxEng)}</b></span><i class="eng"><em style="width:${Math.max(0,Math.min(100,eng/maxEng*100))}%"></em></i></div>
-      </div>
-      <button type="button" data-recover-relian="${escapeHtml(sheet.id)}" ${full?'disabled':''}>${full?'Totalmente recuperado':'Recuperar gratuitamente'}</button>
-    </article>`;
-  }).join(''):'<div class="recovery-empty"><b>Equipe vazia</b><span>Adicione Relians ao personagem para vê-los aqui.</span></div>';
-  grid.querySelectorAll('[data-recover-relian]').forEach(btn=>btn.onclick=()=>recoverOneRelian(btn.dataset.recoverRelian));
+  ensureRelianOwnership(c);
+  const owned=ownedRelians(c),teamIds=new Set((c.character.team||[]).map(m=>String(m.savedSheetId)));
+  const team=owned.filter(s=>teamIds.has(String(s.id)));
+  const query=String($('centralBoxSearch')?.value||'').trim().toLocaleLowerCase('pt-BR');
+  const boxOnly=owned.filter(sheet=>!teamIds.has(String(sheet.id)));
+  const filtered=boxOnly.filter(sheet=>{const sp=species(sheet.speciesId);return !query||`${sheet.nickname||''} ${sheet.speciesName||''} ${sp?.name||''} ${relianElementNames(sp).join(' ')}`.toLocaleLowerCase('pt-BR').includes(query)});
+  const healthy=owned.filter(s=>Number(s.hpCurrent??s.hpMax)>=Number(s.hpMax)&&Number(s.engCurrent??s.engMax)>=Number(s.engMax)).length;
+  if(summary)summary.textContent=`${healthy}/${owned.length} prontos`;
+  if(detail)detail.textContent=`${owned.length} Relians pertencem a ${c.character?.name||'este treinador'}.`;
+  if($('centralTeamCount'))$('centralTeamCount').textContent=`${team.length}/${CENTRAL_TEAM_LIMIT}`;
+  if($('centralBoxCount'))$('centralBoxCount').textContent=String(boxOnly.length);
+  teamGrid.innerHTML=team.length?team.map(s=>centralRelianCard(s,c,true)).join(''):'<div class="recovery-empty"><b>Equipe vazia</b><span>Escolha Relians da Box para montar sua equipe.</span></div>';
+  boxGrid.innerHTML=filtered.length?filtered.map(s=>centralRelianCard(s,c,false)).join(''):'<div class="recovery-empty"><b>Nenhum Relian encontrado</b><span>Os Relians capturados por este treinador aparecerão aqui.</span></div>';
+  bindCentralActions(teamGrid);bindCentralActions(boxGrid);
 }
-
 
 function evolutionRulesForSpecies(sp){
   const targets=Array.isArray(sp?.evolvesToMany)?sp.evolvesToMany.filter(Boolean):(sp?.evolvesTo?[sp.evolvesTo]:[]);
@@ -243,6 +746,231 @@ function requestEvolution(sheetId){
   over.querySelector('[data-evo-cancel]').onclick=()=>over.remove();
 }
 
+
+function renderTrainerBattleHistory(charSheet){
+  const list=$('trainerBattleHistory'),summary=$('trainerHistorySummary'),filter=$('trainerHistoryFilter');
+  if(!list)return;
+  if(!charSheet){
+    if(summary)summary.innerHTML='';
+    list.innerHTML='<div class="trainer-history-empty">Defina um explorador para visualizar o histórico.</div>';
+    return;
+  }
+  const history=[...trainerBattleHistory(charSheet)];
+  const mode=String(filter?.value||'all');
+  const filtered=history.filter(entry=>{
+    if(mode==='all')return true;
+    if(mode==='win')return entry.result==='win'||entry.result==='trainerWin';
+    if(mode==='loss')return entry.result==='loss';
+    if(mode==='capture')return entry.result==='capture';
+    if(mode==='escape')return entry.result==='escape';
+    if(mode==='trainer')return entry.mode==='trainer';
+    if(mode==='player')return entry.mode==='player';
+    if(mode==='wild')return entry.mode==='wild';
+    return true;
+  });
+  if(summary){
+    const trainerCount=history.filter(x=>x.mode==='trainer').length;
+    const playerCount=history.filter(x=>x.mode==='player').length;
+    const wildCount=history.filter(x=>x.mode==='wild').length;
+    const earned=history.reduce((sum,x)=>sum+(Number(x.credits)||0),0);
+    const xp=history.reduce((sum,x)=>sum+(Number(x.xp)||0),0);
+    summary.innerHTML=`<span><b>${history.length}</b> registros</span><span><b>${trainerCount}</b> treinadores</span><span><b>${playerCount}</b> jogadores</span><span><b>${wildCount}</b> selvagens</span><span><b>${xp}</b> XP registrado</span><span><b>${earned.toLocaleString('pt-BR')} C$</b> em recompensas</span>`;
+  }
+  if(!filtered.length){
+    list.innerHTML='<div class="trainer-history-empty">Nenhuma batalha corresponde a este filtro.</div>';
+    return;
+  }
+  list.innerHTML=filtered.map(entry=>{
+    const result=battleHistoryResultLabel(entry.result),cls=battleHistoryResultClass(entry.result);
+    const used=(entry.usedRelians||[]).map(r=>`<span>${escapeHtml(r.name||'Relian')} <small>Nv.${Number(r.level)||1}</small></span>`).join('');
+    const opponents=(entry.opponents||[]).map(r=>escapeHtml(r.name||'Relian')).join(', ')||escapeHtml(entry.opponent||'Desconhecido');
+    const capture=entry.captured?`<div class="history-capture">◈ Capturado: <b>${escapeHtml(entry.captured.name)}</b> · Nv.${Number(entry.captured.level)||1}</div>`:'';
+    return `<article class="trainer-history-entry ${cls}">
+      <div class="trainer-history-result"><span>${result}</span><small>${entry.mode==='trainer'?'Treinador':entry.mode==='player'?'Jogador':'Selvagem'}</small></div>
+      <div class="trainer-history-main">
+        <div class="trainer-history-title"><b>${entry.mode==='trainer'?`vs. ${escapeHtml(entry.trainerName||entry.opponent||'Treinador')}`:entry.mode==='player'?`vs. ${escapeHtml(entry.opponent||'Jogador')}`:`vs. ${escapeHtml(entry.opponent||'Relian selvagem')}`}</b><time>${battleHistoryDate(entry.at)}</time></div>
+        <p>Oponentes: ${opponents}</p>
+        <div class="trainer-history-relians"><small>Relians utilizados</small>${used||'<span>Não registrado</span>'}</div>
+        ${capture}
+      </div>
+      <div class="trainer-history-rewards">
+        <span><small>Rodadas</small><b>${Number(entry.rounds)||1}</b></span>
+        <span><small>XP</small><b>+${Number(entry.xp)||0}</b></span>
+        <span><small>C$</small><b>${Number(entry.credits)||0}</b></span>
+        <span><small>Duração</small><b>${Number(entry.durationSeconds)||0}s</b></span>
+      </div>
+    </article>`;
+  }).join('');
+}
+function clearTrainerHistory(){
+  const c=fixedPlayer();if(!c)return;
+  if(!confirm(`Limpar todo o histórico de batalhas de ${c.character?.name||'este explorador'}? As estatísticas totais não serão apagadas.`))return;
+  c.character.battleHistory=[];
+  try{doSave()}catch{}
+  renderPlayerPage();
+}
+
+
+
+const RELIAN_RESOURCE_DEFS={
+  agua:{id:'escama-abissal',name:'Escama Abissal',value:32,icon:'≋',description:'Escama úmida e resistente encontrada em Relians ligados à água.'},
+  abissal:{id:'escama-abissal',name:'Escama Abissal',value:32,icon:'≋',description:'Escama úmida e resistente encontrada em Relians ligados ao Abissal.'},
+  fogo:{id:'cinza-ignea',name:'Cinza Ígnea',value:36,icon:'▲',description:'Cinza quente que conserva traços de energia ígnea.'},
+  ignea:{id:'cinza-ignea',name:'Cinza Ígnea',value:36,icon:'▲',description:'Cinza quente que conserva traços de energia ígnea.'},
+  vital:{id:'fibra-vital',name:'Fibra Vital',value:28,icon:'♧',description:'Fibra orgânica impregnada de energia vital.'},
+  floresta:{id:'fibra-vital',name:'Fibra Vital',value:28,icon:'♧',description:'Fibra orgânica impregnada de energia vital.'},
+  terra:{id:'fragmento-terrestre',name:'Fragmento Terrestre',value:30,icon:'◆',description:'Fragmento mineral endurecido pelo corpo de um Relian.'},
+  colossal:{id:'fragmento-terrestre',name:'Fragmento Terrestre',value:30,icon:'◆',description:'Fragmento mineral endurecido pelo corpo de um Relian.'},
+  gelo:{id:'cristal-de-geada',name:'Cristal de Geada',value:38,icon:'✧',description:'Cristal gelado que demora a perder sua baixa temperatura.'},
+  geada:{id:'cristal-de-geada',name:'Cristal de Geada',value:38,icon:'✧',description:'Cristal gelado que demora a perder sua baixa temperatura.'},
+  astral:{id:'poeira-astral',name:'Poeira Astral',value:45,icon:'✦',description:'Poeira luminosa com pequenas oscilações de energia astral.'},
+  halo:{id:'fragmento-de-halo',name:'Fragmento de Halo',value:42,icon:'☼',description:'Fragmento claro que emite um brilho suave.'},
+  umbral:{id:'residuo-umbral',name:'Resíduo Umbral',value:44,icon:'◐',description:'Matéria escura deixada por Relians de energia umbral.'},
+  tempestade:{id:'filamento-tempestuoso',name:'Filamento Tempestuoso',value:40,icon:'ϟ',description:'Filamento que acumula pequenas descargas elétricas.'},
+  eter:{id:'essencia-de-eter',name:'Essência de Éter',value:48,icon:'◇',description:'Resíduo energético raro e instável.'}
+};
+const GENERIC_RELIAN_RESOURCE={id:'residuo-relian',name:'Resíduo Relian',value:22,icon:'•',description:'Material biológico ou energético coletado após uma batalha.'};
+const RARE_RELIAN_RESOURCE={id:'nucleo-relian',name:'Núcleo Relian',value:125,icon:'◈',description:'Núcleo energético raro preservado após uma batalha difícil.'};
+
+function explorerResourceInventory(charSheet){
+  if(!charSheet?.character)return [];
+  const c=charSheet.character;
+  c.resources=Array.isArray(c.resources)?c.resources:[];
+  return c.resources;
+}
+function resourceDefinition(id){
+  if(String(id)===RARE_RELIAN_RESOURCE.id)return RARE_RELIAN_RESOURCE;
+  return Object.values(RELIAN_RESOURCE_DEFS).find(x=>x.id===String(id))||GENERIC_RELIAN_RESOURCE;
+}
+function addExplorerResource(charSheet,def,quantity=1){
+  if(!charSheet?.character||!def)return;
+  const inv=explorerResourceInventory(charSheet),qty=Math.max(1,Math.round(Number(quantity)||1));
+  let row=inv.find(x=>String(x.id||x.resourceId)===String(def.id));
+  if(row)row.quantity=Math.max(0,Number(row.quantity)||0)+qty;
+  else inv.push({id:def.id,name:def.name,quantity:qty,value:def.value,description:def.description||'',icon:def.icon||'◆'});
+  const stats=ensureBattleStats(charSheet);stats.resourcesCollected+=qty;
+}
+function resourceForSpecies(sp){
+  const elements=typeof relianElementNames==='function'?relianElementNames(sp):[];
+  for(const raw of elements){
+    const key=normalizedText(raw).replace(/\s+/g,'');
+    if(RELIAN_RESOURCE_DEFS[key])return RELIAN_RESOURCE_DEFS[key];
+  }
+  return GENERIC_RELIAN_RESOURCE;
+}
+function dropRarityBonus(sp){
+  const r=normalizedText(sp?.rarity||'comum');
+  if(r.includes('unico'))return .24;
+  if(r.includes('mitico'))return .20;
+  if(r.includes('lendario'))return .16;
+  if(r.includes('epico'))return .12;
+  if(r.includes('raro'))return .08;
+  if(r.includes('incomum'))return .04;
+  return 0;
+}
+function rollRelianDrops(enemy){
+  if(!enemy?.species)return [];
+  const drops=[],sp=enemy.species,level=Math.max(1,Number(enemy.level)||1);
+  const chance=clamp((.58+dropRarityBonus(sp))*Math.max(.6,Number(arenaSettings.drops)||1),.2,.96);
+  const main=resourceForSpecies(sp);
+  if(Math.random()<chance){
+    const qty=1+(level>=25?1:0)+(level>=60&&Math.random()<.5?1:0);
+    drops.push({...main,quantity:qty});
+  }
+  const rareChance=clamp((.025+dropRarityBonus(sp)*.42+level*.0007)*Math.max(.6,Number(arenaSettings.drops)||1),.01,.28);
+  if(Math.random()<rareChance)drops.push({...RARE_RELIAN_RESOURCE,quantity:1});
+  return drops;
+}
+function awardBattleDrops(enemy){
+  const char=battleOwnerCharacter();if(!char)return [];
+  const drops=rollRelianDrops(enemy);
+  for(const d of drops)addExplorerResource(char,d,d.quantity);
+  if(drops.length){
+    battle.drops=Array.isArray(battle.drops)?battle.drops:[];
+    for(const d of drops){
+      const existing=battle.drops.find(x=>x.id===d.id);
+      if(existing)existing.quantity+=d.quantity;else battle.drops.push({...d});
+    }
+    try{doSave()}catch{}
+    log(`Recursos obtidos: ${drops.map(d=>`${d.name} ×${d.quantity}`).join(', ')}.`);
+  }
+  return drops;
+}
+function resourceInventoryValue(charSheet){
+  return explorerResourceInventory(charSheet).reduce((sum,row)=>sum+Math.max(0,Number(row.quantity)||0)*Math.max(0,Number(row.value??resourceDefinition(row.id).value)||0),0);
+}
+function sellExplorerResource(resourceId,quantity=null){
+  const c=fixedPlayer();if(!c)return;
+  const inv=explorerResourceInventory(c),row=inv.find(x=>String(x.id||x.resourceId)===String(resourceId));if(!row)return;
+  const have=Math.max(0,Number(row.quantity)||0),qty=quantity==null?have:clamp(Math.round(Number(quantity)||0),1,have);
+  if(!qty)return;
+  const value=Math.max(0,Number(row.value??resourceDefinition(resourceId).value)||0)*qty;
+  row.quantity=have-qty;
+  c.character.resources=inv.filter(x=>Math.max(0,Number(x.quantity)||0)>0);
+  c.character.credits=Math.max(0,Number(c.character.credits)||0)+value;
+  const stats=ensureBattleStats(c);stats.resourcesSold+=qty;stats.creditsFromResources+=value;stats.creditsEarned+=value;
+  try{doSave()}catch{}
+  battleToast(`${qty}× ${row.name||resourceDefinition(resourceId).name} vendido por ${value.toLocaleString('pt-BR')} C$`,'capture',1600);
+  renderResourceMarket();renderPlayerPage();renderShop();
+}
+function sellAllExplorerResources(){
+  const c=fixedPlayer();if(!c)return;
+  const inv=explorerResourceInventory(c),qty=inv.reduce((s,x)=>s+Math.max(0,Number(x.quantity)||0),0),value=resourceInventoryValue(c);
+  if(!qty)return;
+  if(!confirm(`Vender todos os ${qty} recursos por ${value.toLocaleString('pt-BR')} C$?`))return;
+  c.character.resources=[];
+  c.character.credits=Math.max(0,Number(c.character.credits)||0)+value;
+  const stats=ensureBattleStats(c);stats.resourcesSold+=qty;stats.creditsFromResources+=value;stats.creditsEarned+=value;
+  try{doSave()}catch{}
+  battleToast(`Recursos vendidos por ${value.toLocaleString('pt-BR')} C$!`,'capture',1700);
+  renderResourceMarket();renderPlayerPage();renderShop();
+}
+function renderResourceMarket(){
+  const c=fixedPlayer(),grid=$('resourceInventoryGrid'),total=$('resourceInventoryValue'),sellAll=$('sellAllResourcesBtn');
+  if(!grid)return;
+  if(!c){
+    grid.innerHTML='<div class="resource-market-empty"><b>Nenhum explorador definido</b><span>Escolha um explorador para acessar seus recursos.</span></div>';
+    if(total)total.textContent='—';if(sellAll)sellAll.disabled=true;return;
+  }
+  const inv=explorerResourceInventory(c).filter(x=>Math.max(0,Number(x.quantity)||0)>0);
+  if(total)total.textContent=`${resourceInventoryValue(c).toLocaleString('pt-BR')} C$`;
+  if(sellAll)sellAll.disabled=!inv.length;
+  grid.innerHTML=inv.length?inv.map(row=>{
+    const def=resourceDefinition(row.id),qty=Math.max(0,Number(row.quantity)||0),unit=Math.max(0,Number(row.value??def.value)||0);
+    return `<article class="resource-card">
+      <div class="resource-card-icon">${escapeHtml(row.icon||def.icon||'◆')}</div>
+      <div class="resource-card-copy"><b>${escapeHtml(row.name||def.name)}</b><small>${escapeHtml(row.description||def.description||'Recurso Relian')}</small><span>${qty} unidade${qty===1?'':'s'} · ${unit.toLocaleString('pt-BR')} C$ cada</span></div>
+      <div class="resource-card-sale"><strong>${(qty*unit).toLocaleString('pt-BR')} C$</strong><button type="button" data-sell-resource="${escapeHtml(row.id)}">Vender tudo</button></div>
+    </article>`;
+  }).join(''):'<div class="resource-market-empty"><b>Nenhum recurso coletado</b><span>Derrote Relians para encontrar materiais que podem ser vendidos.</span></div>';
+  grid.querySelectorAll('[data-sell-resource]').forEach(btn=>btn.onclick=()=>sellExplorerResource(btn.dataset.sellResource));
+}
+
+function explorerEconomyInfo(charSheet){
+  if(!charSheet?.character)return {earned:0,resources:0,owned:0};
+  const c=charSheet.character,stats=ensureBattleStats(charSheet);
+  const inventories=[
+    ...(Array.isArray(c.resources)?c.resources:[]),
+    ...(Array.isArray(c.materials)?c.materials:[]),
+    ...(Array.isArray(c.inventoryResources)?c.inventoryResources:[])
+  ];
+  let resources=0;
+  for(const item of inventories){
+    if(typeof item==='number')resources+=Math.max(0,item);
+    else resources+=Math.max(0,Number(item?.quantity??item?.qty??item?.amount)||0);
+  }
+  const owned=typeof ensureRelianOwnership==='function'?ensureRelianOwnership(charSheet).length:(c.team||[]).length;
+  return {
+    earned:Math.max(0,Number(stats.creditsEarned)||0),
+    resources,
+    owned,
+    sold:Math.max(0,Number(stats.reliansSold)||0),
+    saleCredits:Math.max(0,Number(stats.creditsFromRelianSales)||0),
+    resourcesCollected:Math.max(0,Number(stats.resourcesCollected)||0),
+    resourceCredits:Math.max(0,Number(stats.creditsFromResources)||0)
+  };
+}
+
 function renderPlayerPage(){
   const sel=$('fixedPlayerSelect'),chars=characters(),fixed=fixedPlayer();
   if(sel){
@@ -252,11 +980,11 @@ function renderPlayerPage(){
   }
 
   const pill=$('playerFixedPill');
-  if(pill)pill.textContent=fixed?`Ativo: ${fixed.character?.name||'Personagem'}`:'Nenhum jogador definido';
+  if(pill)pill.textContent=fixed?`Ativo: ${fixed.character?.name||'Personagem'}`:'Nenhum explorador definido';
   const notice=$('pendingBattleNotice');if(notice)notice.hidden=!pendingGeneratedBattle;
 
   const stats=fixed?ensureBattleStats(fixed):{battles:0,wins:0,losses:0,captures:0,escapes:0,trainerWins:0};
-  const rank=rankProgressInfo(stats.trainerWins||0);
+  const rank=rankProgressInfo(stats.wins||0);
   const card=$('playerProfileCard');
   const overview=$('playerTeamOverview');
 
@@ -269,7 +997,7 @@ function renderPlayerPage(){
       card.innerHTML=`<div class="player-profile-main">
         <div class="player-profile-avatar">${img?`<img src="${escapeHtml(img)}" alt="">`:`<span>${escapeHtml((c.name||'?')[0])}</span>`}</div>
         <div class="player-profile-copy">
-          <div class="section-kicker">JOGADOR ATIVO</div>
+          <div class="section-kicker">EXPLORADOR ATIVO</div>
           <h2>${escapeHtml(c.name||'Personagem')}</h2>
           <p>${escapeHtml(c.player||'Sem jogador informado')} · Nv. ${Number(c.level)||1}</p>
           <div class="player-profile-tags"><span>${escapeHtml(c.region||'Região não definida')}</span><span>${alive}/${members.length} Relians aptos</span><span>${escapeHtml(rank.name)}</span></div>
@@ -279,7 +1007,7 @@ function renderPlayerPage(){
   }
 
   if(overview){
-    if(!fixed)overview.innerHTML='<div class="player-team-empty">Defina um jogador para visualizar a equipe.</div>';
+    if(!fixed)overview.innerHTML='<div class="player-team-empty">Defina um explorador para visualizar a equipe.</div>';
     else{
       const members=(fixed.character?.team||[]).map(m=>({m,s:savedById(m.savedSheetId)})).filter(x=>x.s);
       overview.innerHTML=members.length?members.map(({m,s})=>{
@@ -300,15 +1028,36 @@ function renderPlayerPage(){
   const teamTotal=fixed?.character?.team?.length||0;
   const teamAlive=fixed?aliveTeam(fixed).length:0;
   const credits=Math.max(0,Number(fixed?.character?.credits)||0);
+  const economy=fixed?explorerEconomyInfo(fixed):{earned:0,resources:0,owned:0};
   const map={
     playerStatBattles:stats.battles,playerStatWins:stats.wins,playerStatLosses:stats.losses,
-    playerStatCaptures:stats.captures,playerStatEscapes:stats.escapes,playerStatTrainerWins:stats.trainerWins||0,
+    playerStatCaptures:stats.captures,playerStatEscapes:stats.escapes,playerStatTrainerWins:stats.wins||0,
     playerStatCredits:credits,playerStatRank:rank.name,playerEconomyCredits:`${credits.toLocaleString('pt-BR')} C$`,
+    playerEconomyEarned:`${economy.earned.toLocaleString('pt-BR')} C$`,
+    playerEconomyResources:economy.resources.toLocaleString('pt-BR'),
+    playerEconomyOwned:economy.owned.toLocaleString('pt-BR'),
+    playerEconomySold:(economy.sold||0).toLocaleString('pt-BR'),
+    playerEconomySaleCredits:`${(economy.saleCredits||0).toLocaleString('pt-BR')} C$`,
+    playerEconomyResourcesCollected:(economy.resourcesCollected||0).toLocaleString('pt-BR'),
+    playerEconomyResourceCredits:`${(economy.resourceCredits||0).toLocaleString('pt-BR')} C$`,
     playerEconomyRank:rank.name,playerEconomyTeam:`${teamAlive}/${teamTotal}`
   };
   Object.entries(map).forEach(([id,v])=>{const e=$(id);if(e)e.textContent=v});
   const progressText=$('playerRankProgressText');if(progressText)progressText.textContent=rank.text;
   const progressBar=$('playerRankProgressBar');if(progressBar)progressBar.style.width=`${rank.percent}%`;
+  const rankCard=$('explorerRankShowcase');
+  if(rankCard){
+    rankCard.dataset.rank=rank.tone;
+    rankCard.classList.toggle('max-rank',rank.name==='S+');
+  }
+  const emblem=$('explorerRankEmblem');if(emblem)emblem.textContent=rank.name;
+  const rankTitle=$('explorerRankName');if(rankTitle)rankTitle.textContent=`Rank ${rank.name}`;
+  const rankLabel=$('explorerRankLabel');if(rankLabel)rankLabel.textContent=rank.label;
+  const rankWins=$('explorerRankWins');if(rankWins)rankWins.textContent=`${stats.wins||0} vitórias competitivas`;
+  const nextName=$('explorerRankNext');if(nextName)nextName.textContent=rank.nextName?`Próximo: Rank ${rank.nextName}`:'RANK MÁXIMO';
+  const remaining=$('explorerRankRemaining');if(remaining)remaining.textContent=rank.nextName?`Faltam ${rank.remaining} vitórias`:'Você alcançou o ápice do ranking.';
+  const bigBar=$('explorerRankBar');if(bigBar)bigBar.style.width=`${rank.percent}%`;
+  renderTrainerBattleHistory(fixed);
 }
 function openPlayerPage(){
   const btn=document.querySelector('.tab[data-tab="playerPage"]');if(btn)btn.click();
@@ -366,7 +1115,7 @@ function captureChance(item=null){
   const statusBonus=(e.status?.burn||e.status?.speedDown)?8:0;
   const levelPenalty=Math.max(0,(Number(e.level)||1)-(Number(battle.player?.level)||1))*.8;
   const cubeBonus=Math.max(0,Number(item?.captureBonus)||0);
-  return clamp(Math.round(18+hpBonus+statusBonus-levelPenalty+cubeBonus),8,98);
+  return clamp(Math.round((18+hpBonus+statusBonus-levelPenalty+cubeBonus)*arenaSettings.capture),5,98);
 }
 function consumeBattleItem(item){
   const char=battleCharacterRecord(),slot=char?.character?.backpack?.[item?._backpackIndex];
@@ -393,10 +1142,12 @@ function attemptCapture(item){
     if(Math.random()*100<chance){
       battle.finished=true;
       battle.enemy.captured=true;
-      saveCapturedEnemy(true);
-      recordPlayerResult('capture');
+      const capturedSheet=saveCapturedEnemy(true);
+      recordPlayerResult('capture',{xp:Number(battle.totalXp)||0});
       render();
-      showBattleResult('capture',`${battle.enemy.nickname} foi capturado!`,'O combate terminou com uma captura bem-sucedida.');
+      chooseCapturedRelianDestination(capturedSheet,choice=>{
+        showBattleResult('capture',`${battle.enemy.nickname} foi capturado!`,choice==='team'?'O novo Relian foi adicionado à sua equipe.':'O novo Relian está guardado na Central Relian.',0,0,{totalXp:battle.totalXp});
+      });
     }else{
       log(`${battle.enemy.nickname} escapou do DataCubo!`);
       battleToast(`${battle.enemy.nickname} escapou!`,'miss',1000);
@@ -405,6 +1156,37 @@ function attemptCapture(item){
     }
   },620);
 }
+
+function chooseCapturedRelianDestination(sheet,onDone){
+  const char=battleOwnerCharacter()||fixedPlayer();
+  if(!char||!sheet){onDone?.('box');return}
+  ensureRelianOwnership(char);
+  const hasSpace=(char.character.team||[]).length<CENTRAL_TEAM_LIMIT;
+  if(!hasSpace){
+    battleToast(`${sheet.nickname||sheet.speciesName} foi enviado à Box. A equipe está cheia.`,'capture',1500);
+    renderRecoveryPage();onDone?.('box');return;
+  }
+  document.querySelector('.capture-destination-overlay')?.remove();
+  const sp=species(sheet.speciesId),img=imageFor(sp,sheet.color),over=document.createElement('div');
+  over.className='battle-switch-overlay capture-destination-overlay';
+  over.innerHTML=`<div class="card capture-destination-card">
+    <div class="section-kicker">NOVO RELIAN</div>
+    <div class="capture-destination-hero">${img?`<img src="${escapeHtml(img)}" alt="">`:'◆'}<div><h2>${escapeHtml(sheet.nickname||sp?.name||'Relian')} foi para sua Box!</h2><p>Há espaço na equipe. Deseja colocá-lo na equipe agora?</p></div></div>
+    <div class="capture-destination-actions">
+      <button type="button" class="primary" data-capture-destination="team">Adicionar à equipe</button>
+      <button type="button" data-capture-destination="box">Manter na Box</button>
+    </div>
+  </div>`;
+  document.body.appendChild(over);
+  over.querySelectorAll('[data-capture-destination]').forEach(btn=>btn.onclick=()=>{
+    const choice=btn.dataset.captureDestination;
+    if(choice==='team')addRelianToTeam(char,sheet.id);
+    over.remove();
+    renderRecoveryPage();renderPlayerPage();
+    onDone?.(choice);
+  });
+}
+
 function itemEffectLabel(effect){
   return ({
     heal_hp:'Recuperar HP',
@@ -462,10 +1244,11 @@ const SHOP_CATEGORY_LABELS={
 let shopCategoryFilter='all';
 function shopCharacter(){return fixedPlayer()}
 function renderShop(){
+  renderResourceMarket();
   const c=shopCharacter(),credits=$('shopCredits'),box=$('shopItemsGrid'),cats=$('shopCategoryList');
   const playerLabel=$('shopPlayerLabel');
   if(credits)credits.textContent=c?`${Math.max(0,Number(c.character?.credits)||0).toLocaleString('pt-BR')} C$`:'—';
-  if(playerLabel)playerLabel.textContent=c?c.character?.name||'Personagem ativo':'Nenhum jogador definido';
+  if(playerLabel)playerLabel.textContent=c?c.character?.name||'Personagem ativo':'Nenhum explorador definido';
   if(!box)return;
 
   const allItems=loadBattleItems().filter(i=>i.official&&Number(i.price)>0);
@@ -672,16 +1455,18 @@ function saveCapturedEnemy(alreadyMarked=false){
   data.savedRelianSheets=Array.isArray(data.savedRelianSheets)?data.savedRelianSheets:[];
   data.savedRelianSheets.push(migrated);
   char.character.team=Array.isArray(char.character.team)?char.character.team:[];
-  char.character.team.push({speciesId:migrated.speciesId,savedSheetId:migrated.id,nickname:migrated.nickname,level:migrated.level,color:migrated.color,notes:'Capturado em combate'});
+  ensureRelianOwnership(char);
+  migrated.ownerCharacterId=String(char.id||'');
+  migrated.originalTrainer=String(char.character?.name||migrated.originalTrainer||'');
+  if(!char.character.ownedRelianIds.includes(String(migrated.id)))char.character.ownedRelianIds.push(String(migrated.id));
   char.character.equippedRelianIds=Array.isArray(char.character.equippedRelianIds)?char.character.equippedRelianIds:[];
-  if(char.character.equippedRelianIds.length<7)char.character.equippedRelianIds.push(migrated.id);
   try{doSave();refreshTeam()}catch{}
   return migrated;
 }
 function captureEnemy(){
   const captured=saveCapturedEnemy(false);if(!captured)return;
   document.querySelector('.battle-capture-overlay')?.remove();
-  showBattleResult('capture',`${captured.nickname} foi capturado!`,'O novo Relian foi adicionado ao personagem usado na batalha.');
+  showBattleResult('capture',`${captured.nickname} foi capturado!`,'O novo Relian foi enviado à Central Relian do treinador.');
 }
 function offerCapture(xp,levels){
   const old=document.querySelector('.battle-capture-overlay');if(old)old.remove();
@@ -690,7 +1475,7 @@ function offerCapture(xp,levels){
   overlay.innerHTML=`<div class="card battle-capture-dialog">
     <div class="battle-capture-portrait">${img?`<img src="${escapeHtml(img)}" alt="">`:''}</div>
     <div><div class="section-kicker">RELIAN ENFRAQUECIDO</div><h2>${escapeHtml(battle.enemy.nickname)} desmaiou</h2>
-    <p>Você venceu e recebeu <b>${xp} XP</b>${levels?` · +${levels} nível${levels>1?'s':''}`:''}. Deseja capturar este Relian e adicioná-lo ao personagem usado na batalha?</p></div>
+    <p>Você venceu e recebeu <b>${xp} XP</b>${levels?` · +${levels} nível${levels>1?'s':''}`:''}. Deseja capturar este Relian? Ele será registrado na Box do treinador e entrará na equipe automaticamente se houver espaço.</p></div>
     <div class="battle-capture-actions"><button type="button" class="primary" data-capture-enemy="1">Capturar</button><button type="button" data-skip-capture="1">Deixar ir</button></div>
   </div>`;
   document.body.appendChild(overlay);
@@ -933,7 +1718,7 @@ async function animatePlayerMovement(dest){
 
   const path=findBattlePath(battle.player.pos,dest);
   const speedLimit=maxWalk(battle.player);
-  const energyLimit=Math.floor(Math.max(0,battle.player.eng)/MOVE_ENG);
+  const energyLimit=Math.floor(Math.max(0,battle.player.eng)/arenaPlayerMoveCost());
   const allowed=Math.min(speedLimit,energyLimit);
 
   if(!path.length){
@@ -958,7 +1743,7 @@ async function animatePlayerMovement(dest){
       await battleWait(100);
     }
 
-    const cost=path.length*MOVE_ENG;
+    const cost=path.length*arenaPlayerMoveCost();
     battle.player.eng=Math.max(0,battle.player.eng-cost);
     battle.player.moved=true;
     log(`${battle.player.nickname} se moveu ${path.length} casa${path.length>1?'s':''} (-${cost} ENG).`);
@@ -1098,6 +1883,7 @@ function buildFromGenerated(g){
   return {side:'enemy',species:sp,nickname:sp.name,level:g.level,color:g.color?.id||'basic',hp:g.currentHp,maxHp:g.hp,eng:g.currentEnergy,maxEng:g.energy,attack:attrs('ataque'),defense:attrs('defesa'),spAttack:attrs('ataqueEspecial'),spDefense:attrs('defesaEspecial'),speed:attrs('velocidade'),precision:attrs('precisao'),moves:(g.moves||[]).map(x=>x.move).filter(Boolean),pos:{x:W-2,y:Math.floor(H/2)},moved:false,acted:false,knocked:false,generatedUid:g.uid,regionId:String(g.regionId||''),biomeId:String(g.biomeId||'')};
 }
 function buildRandomEnemy(level){
+  level=clamp((Number(level)||1)+arenaSettings.enemyLevel,1,100);
   const d=getData(),pool=(d?.relians||[]).filter(Boolean);if(!pool.length)return null;
   const levelPool=pool.filter(r=>(r.encounters||[]).some(e=>level>=Number(e.minLevel||1)&&level<=Number(e.maxLevel||100)));
   const choices=levelPool.length?levelPool:pool,sp=choices[Math.floor(Math.random()*choices.length)];
@@ -1106,7 +1892,7 @@ function buildRandomEnemy(level){
   const trIds=Object.keys(d?.traits||{}),tr=trIds.length?d.traits[trIds[Math.floor(Math.random()*trIds.length)]]:null;
   let resources={hp:100,energy:Number(sp.baseEnergy)||65};try{resources=calculateRelianResources(level,tr)}catch{}
   const randAttr=()=>{try{return rollAttribute()}catch{return 20+Math.floor(Math.random()*20)}};
-  return{side:'enemy',species:sp,nickname:sp.name,level,color:'basic',hp:resources.hp,maxHp:resources.hp,eng:resources.energy,maxEng:resources.energy,attack:randAttr(),defense:randAttr(),spAttack:randAttr(),spDefense:randAttr(),speed:randAttr(),precision:randAttr(),moves:getMovesFor(sp,level,null),pos:{x:W-2,y:Math.floor(H/2)},moved:false,acted:false,knocked:false,regionId:String(enc.region||''),biomeId:String(enc.biome||'')};
+  return applyDifficultyToEnemy({side:'enemy',species:sp,nickname:sp.name,level,color:'basic',hp:resources.hp,maxHp:resources.hp,eng:resources.energy,maxEng:resources.energy,attack:randAttr(),defense:randAttr(),spAttack:randAttr(),spDefense:randAttr(),speed:randAttr(),precision:randAttr(),moves:getMovesFor(sp,level,null),pos:{x:W-2,y:Math.floor(H/2)},moved:false,acted:false,knocked:false,regionId:String(enc.region||''),biomeId:String(enc.biome||'')});
 }
 function aliveTeam(charSheet){
   return (charSheet?.character?.team||[]).map(m=>({member:m,sheet:savedById(m.savedSheetId)})).filter(x=>x.sheet && Number(x.sheet.hpCurrent??x.sheet.hpMax??1)>0);
@@ -1119,7 +1905,7 @@ function refreshSetup(){
  const fixed=fixedPlayer(),old=fixed?.id||sel.value;
  sel.innerHTML='<option value="">Selecione...</option>'+cs.map(s=>`<option value="${escapeHtml(s.id)}">${escapeHtml(s.character?.name||'Personagem')}</option>`).join('');
  if(cs.some(s=>String(s.id)===String(old)))sel.value=old;
- if(fixed){sel.disabled=true;sel.title='Personagem fixo definido na Página do Jogador.'}else{sel.disabled=false;sel.title=''}
+ if(fixed){sel.disabled=true;sel.title='Personagem fixo definido na Carteira do Explorador.'}else{sel.disabled=false;sel.title=''}
  refreshTeam();
 }
 function refreshTeam(){
@@ -1140,7 +1926,7 @@ function startBattle(player,enemy,label='Arena de Teste',options={}){
 
   battleActionView='none';
   const arenaRegion=String(options.regionId||enemy.regionId||'');const arenaTheme=arenaThemeForRegion(arenaRegion);
-  battle={player,enemy,round:1,turn:null,mode:null,selectedMove:null,label,finished:false,terrain:makeTerrain(arenaTheme),arenaRegion,arenaTheme,animatingMove:false,modeType:options.modeType||'wild',trainerName:options.trainerName||'',trainerQueue:Array.isArray(options.trainerQueue)?options.trainerQueue:[],trainerReward:Number(options.trainerReward)||0,trainerLevel:Number(options.trainerLevel)||enemy.level||1,ownerCharacterId:String(player.characterId||''),battleId:`battle-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,recordedResults:new Set(),startedAt:Date.now(),defeatedEnemies:0,totalXp:0};
+  battle={player,enemy,round:1,turn:null,mode:null,selectedMove:null,label,finished:false,terrain:makeTerrain(arenaTheme),arenaRegion,arenaTheme,animatingMove:false,modeType:options.modeType||'wild',trainerName:options.trainerName||'',trainerQueue:Array.isArray(options.trainerQueue)?options.trainerQueue:[],trainerReward:Number(options.trainerReward)||0,trainerLevel:Number(options.trainerLevel)||enemy.level||1,ownerCharacterId:String(player.characterId||''),battleId:`battle-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,recordedResults:new Set(),startedAt:Date.now(),defeatedEnemies:0,totalXp:0,drops:[],difficultySnapshot:{...arenaSettings},usedRelians:[{sheetId:String(player.sheetId||''),speciesId:String(player.species?.id||''),name:String(player.nickname||player.species?.name||'Relian'),level:Number(player.level)||1}],opponents:[{speciesId:String(enemy.species?.id||''),name:String(enemy.nickname||enemy.species?.name||'Relian'),level:Number(enemy.level)||1}]};
 
   if(empty)empty.hidden=true;
   game.hidden=false;game.removeAttribute('hidden');game.style.display='grid';
@@ -1181,9 +1967,10 @@ function openBattleTab(){
 const TRAINER_NAMES=['Mira','Kael','Toren','Lumi','Ravi','Selene','Dario','Nira','Valen','Aya','Ciro','Mael'];
 function buildTrainerEncounter(level){
   const lv=clamp(Number(level)||5,1,100);
-  const fixed=fixedPlayer(),stats=fixed?ensureBattleStats(fixed):{trainerWins:0};
-  const rank=playerRank(stats.trainerWins);
-  const teamSize=rank==='Mestre'?4:['Platina','Ouro'].includes(rank)?3:2;
+  const fixed=fixedPlayer(),stats=fixed?ensureBattleStats(fixed):{wins:0};
+  const rank=playerRank(stats.wins);
+  const baseTeamSize=['S+','S'].includes(rank)?4:['A+','A','B+'].includes(rank)?3:2;
+  const teamSize=clamp(baseTeamSize+arenaSettings.trainerExtra,1,6);
   const trainer=TRAINER_NAMES[Math.floor(Math.random()*TRAINER_NAMES.length)];
   const team=Array.from({length:teamSize},(_,i)=>buildRandomEnemy(clamp(lv+(i?Math.floor(Math.random()*5)-2:0),1,100))).filter(Boolean);
   team.forEach(e=>{e.trainerOwned=true});
@@ -1206,6 +1993,7 @@ function nextTrainerRelian(){
   next.pos={x:W-2,y:Math.floor(H/2)};
   ensureCombatState(next);ensureMoves(next);resetUnitTurn(next);
   battle.enemy=next;
+  battle.opponents=battle.opponents||[];battle.opponents.push({speciesId:String(next.species?.id||''),name:String(next.nickname||next.species?.name||'Relian'),level:Number(next.level)||1});
   battle.finished=false;
   battle.mode=null;battle.selectedMove=null;
   log(`${battle.trainerName} enviou ${next.nickname}!`);
@@ -1318,7 +2106,7 @@ function at(pos){for(const c of [battle.player,battle.enemy])if(!c.knocked&&c.po
 function canReach(pos){
  if(!battle||at(pos)||terrainAt(pos)==='rock'||battle.player.moved)return false;
  const path=findBattlePath(battle.player.pos,pos);
- const limit=Math.min(maxWalk(battle.player),Math.floor(battle.player.eng/MOVE_ENG));
+ const limit=Math.min(maxWalk(battle.player),Math.floor(battle.player.eng/arenaPlayerMoveCost()));
  return path.length>0&&path.length<=limit;
 }
 function returnBattleCommandHome(){
@@ -1552,6 +2340,10 @@ function enemyTurn(){
     .filter(m=>e.eng>=moveCost(m))
     .sort((a,b)=>aiScoreMove(e,p,b)-aiScoreMove(e,p,a));
 
+  if(usable.length>1&&Math.random()*100<arenaSettings.aiMistake){
+    const wrongIndex=1+Math.floor(Math.random()*(usable.length-1));
+    const [mistake]=usable.splice(wrongIndex,1);usable.unshift(mistake);
+  }
   let chosen=usable[0]||null;
   let range=chosen?parseRange(chosen):1;
 
@@ -1591,7 +2383,7 @@ function xpRewardFor(enemy,player){
  const mult={comum:1,incomum:1.15,raro:1.35,lendario:1.7,mitico:2,unico:2.2}[rarity]||1;
  const levelGap=(Number(enemy?.level)||1)-(Number(player?.level)||1);
  const gapMult=clamp(1+levelGap*.06,.6,1.6);
- return Math.max(10,Math.round((22+(Number(enemy?.level)||1)*8)*mult*gapMult));
+ return Math.max(10,Math.round((22+(Number(enemy?.level)||1)*8)*mult*gapMult*arenaSettings.xp));
 }
 function finishBattleSession(){
   closeBattleBag();
@@ -1608,6 +2400,7 @@ function showBattleResult(type,title,description,xp=0,levels=0,extra={}){
     rounds:Number(battle?.round)||1,defeated:Number(battle?.defeatedEnemies)||0,
     xp:Number(extra.totalXp??battle?.totalXp??xp)||0,credits:Number(extra.credits)||0,
     rank:String(extra.rank||''),trainer:String(extra.trainer||battle?.trainerName||''),
+    drops:[...(battle?.drops||[])],
     player:String(battle?.player?.nickname||''),mode:battle?.modeType==='trainer'?'Batalha de Treinador':'Encontro Selvagem',
     duration:Math.max(1,Math.round((Date.now()-(Number(battle?.startedAt)||Date.now()))/1000))
   };
@@ -1627,17 +2420,34 @@ function showBattleResult(type,title,description,xp=0,levels=0,extra={}){
       <div><span>Duração</span><b>${snapshot.duration}s</b></div>
     </div>
     ${snapshot.trainer?`<div class="battle-summary-opponent"><span>Treinador enfrentado</span><b>${escapeHtml(snapshot.trainer)}</b></div>`:''}
+    ${snapshot.drops.length?`<div class="battle-result-drops"><div class="section-kicker">RECURSOS OBTIDOS</div><div>${snapshot.drops.map(d=>`<span><b>${escapeHtml(d.icon||'◆')} ${escapeHtml(d.name)}</b><small>×${Number(d.quantity)||1} · ${(Number(d.value)||0).toLocaleString('pt-BR')} C$/un.</small></span>`).join('')}</div></div>`:''}
     ${levels?`<div class="battle-result-rewards"><span>${escapeHtml(snapshot.player||'Seu Relian')} subiu ${levels} nível${levels>1?'s':''}!</span></div>`:''}
-    <button type="button" class="primary" data-close-result="1">Finalizar combate</button>
+    <div class="battle-result-actions">
+      <button type="button" class="primary" data-result-go="battleTest">Nova batalha</button>
+      <button type="button" data-result-go="playerPage">Carteira do Explorador</button>
+      <button type="button" data-result-go="recoveryPage">Central Relian</button>
+    </div>
   </div>`;
   document.body.appendChild(overlay);requestAnimationFrame(()=>overlay.classList.add('show'));
-  overlay.querySelector('[data-close-result]').onclick=()=>{overlay.classList.remove('show');setTimeout(()=>{overlay.remove();finishBattleSession()},180)};
+  overlay.querySelectorAll('[data-result-go]').forEach(btn=>btn.onclick=()=>{
+    const target=btn.dataset.resultGo;
+    overlay.classList.remove('show');
+    setTimeout(()=>{
+      overlay.remove();finishBattleSession();
+      const tab=document.querySelector(`[data-tab="${target}"]`);
+      if(tab)tab.click();
+      if(target==='playerPage')renderPlayerPage();
+      if(target==='recoveryPage')renderRecoveryPage();
+    },180);
+  });
 }
 
 function victory(){
   battle.enemy.knocked=true;
   syncPlayerResources();
-  const xp=xpRewardFor(battle.enemy,battle.player),levels=awardXp(battle.player,xp);battle.defeatedEnemies=(battle.defeatedEnemies||0)+1;battle.totalXp=(battle.totalXp||0)+xp;
+  const defeatedEnemy=battle.enemy;
+  const xp=xpRewardFor(defeatedEnemy,battle.player),levels=awardXp(battle.player,xp);battle.defeatedEnemies=(battle.defeatedEnemies||0)+1;battle.totalXp=(battle.totalXp||0)+xp;
+  awardBattleDrops(defeatedEnemy);
   log(`${battle.enemy.nickname} foi derrotado! ${battle.player.nickname} ganhou ${xp} XP.${levels?` Subiu ${levels} nível${levels>1?'s':''}!`:''}`);
 
   if(battle.modeType==='trainer'&&battle.trainerQueue?.length){
@@ -1649,14 +2459,14 @@ function victory(){
   battle.finished=true;battleActionView='none';setBattleActionView('none');
 
   if(battle.modeType==='trainer'){
-    const stats=recordPlayerResult('trainerWin')||ensureBattleStats(battleOwnerCharacter());
     const reward=addPlayerCredits(battle.trainerReward,`Vitória contra ${battle.trainerName}`);
-    const rank=playerRank(stats?.trainerWins||0);
+    const stats=recordPlayerResult('trainerWin',{xp:Number(battle.totalXp)||0,credits:reward})||ensureBattleStats(battleOwnerCharacter());
+    const rank=playerRank(stats?.wins||0);
     $('battleHint').textContent=`Vitória sobre ${battle.trainerName}! +${reward} C$`;
     renderPlayerPage();render();
-    setTimeout(()=>showBattleResult('victory',`Você venceu ${battle.trainerName}!`,`Vitória contabilizada: ${stats?.trainerWins||0} contra treinadores.`,xp,levels,{credits:reward,rank,trainer:battle.trainerName,totalXp:battle.totalXp}),260);
+    setTimeout(()=>showBattleResult('victory',`Você venceu ${battle.trainerName}!`,`Vitória competitiva contabilizada. Total: ${stats?.wins||0}.`,xp,levels,{credits:reward,rank,trainer:battle.trainerName,totalXp:battle.totalXp}),260);
   }else{
-    recordPlayerResult('win');
+    recordPlayerResult('win',{xp:Number(battle.totalXp)||0});
     $('battleHint').textContent=`Vitória! +${xp} XP`;
     render();
     setTimeout(()=>showBattleResult('victory','Vitória!',`${battle.enemy.nickname} foi derrotado.`,xp,levels,{totalXp:battle.totalXp}),260);
@@ -1674,11 +2484,12 @@ function awardXp(c,amount){
 }
 function syncPlayerResources(){const s=savedById(battle.player.sheetId);if(!s)return;const hpMax=Math.max(1,Number(s.hpMax)||Number(battle.player.maxHp)||1),engMax=Math.max(1,Number(s.engMax)||Number(battle.player.maxEng)||1);s.hpMax=hpMax;s.engMax=engMax;s.hpCurrent=clamp(Math.round(battle.player.hp),0,hpMax);s.engCurrent=clamp(Math.round(battle.player.eng),0,engMax);doSave();refreshTeam()}
 function defeatPlayer(){battle.player.knocked=true;syncPlayerResources();log(`${battle.player.nickname} não consegue mais lutar.`);render();showSwitch()}
-function showSwitch(){const c=characters().find(x=>String(x.id)===String(battle.player.characterId));const candidates=aliveTeam(c).filter(x=>String(x.sheet.id)!==String(battle.player.sheetId));const over=document.createElement('div');over.className='battle-switch-overlay';over.innerHTML=`<div class="card battle-switch-dialog"><div><div class="section-kicker">RELIAN DERROTADO</div><h2>Escolha outro Relian</h2><p>${candidates.length?'Você pode continuar a batalha com outro membro da equipe.':'Nenhum outro Relian está apto a lutar.'}</p></div><div class="battle-switch-list">${candidates.map(x=>`<button type="button" class="battle-switch-choice" data-switch="${escapeHtml(x.sheet.id)}"><b>${escapeHtml(x.member.nickname||x.sheet.nickname||x.sheet.speciesName)}</b><span>Nv. ${x.member.level||x.sheet.level}</span></button>`).join('')}</div><button type="button" class="danger" data-flee-switch="1">Fugir do combate</button></div>`;document.body.appendChild(over);over.querySelectorAll('[data-switch]').forEach(b=>b.onclick=()=>{const found=candidates.find(x=>String(x.sheet.id)===b.dataset.switch);if(!found)return;const old=battle.player.pos;battle.player=buildFromSaved(found.sheet,found.member,c);ensureCombatState(battle.player);ensureMoves(battle.player);battle.player.pos=old;battle.player.knocked=false;battle.player.moved=false;battle.player.acted=false;battle.mode=null;battle.selectedMove=null;battle.turn='player';battle.finished=false;over.remove();log(`${battle.player.nickname} entrou no campo!`);$('battleHint').textContent=`${battle.player.nickname} entrou no combate. Escolha uma ação.`;render()});over.querySelector('[data-flee-switch]').onclick=()=>{over.remove();if(!candidates.length){if(!battle.finished){battle.finished=true;recordPlayerResult('loss');showBattleResult('defeat','Derrota','Todos os Relians aptos do personagem foram derrotados.')}}else flee()}}
-function flee(){if(!battle||battle.finished)return;syncPlayerResources();battle.finished=true;recordPlayerResult('escape');$('battleHint').textContent='Combate encerrado.';log('Você fugiu do combate.');render();showBattleResult('flee','Você fugiu','A batalha terminou sem vencedor.')}
+function showSwitch(){const c=characters().find(x=>String(x.id)===String(battle.player.characterId));const candidates=aliveTeam(c).filter(x=>String(x.sheet.id)!==String(battle.player.sheetId));const over=document.createElement('div');over.className='battle-switch-overlay';over.innerHTML=`<div class="card battle-switch-dialog"><div><div class="section-kicker">RELIAN DERROTADO</div><h2>Escolha outro Relian</h2><p>${candidates.length?'Você pode continuar a batalha com outro membro da equipe.':'Nenhum outro Relian está apto a lutar.'}</p></div><div class="battle-switch-list">${candidates.map(x=>`<button type="button" class="battle-switch-choice" data-switch="${escapeHtml(x.sheet.id)}"><b>${escapeHtml(x.member.nickname||x.sheet.nickname||x.sheet.speciesName)}</b><span>Nv. ${x.member.level||x.sheet.level}</span></button>`).join('')}</div><button type="button" class="danger" data-flee-switch="1">Fugir do combate</button></div>`;document.body.appendChild(over);over.querySelectorAll('[data-switch]').forEach(b=>b.onclick=()=>{const found=candidates.find(x=>String(x.sheet.id)===b.dataset.switch);if(!found)return;const old=battle.player.pos;battle.player=buildFromSaved(found.sheet,found.member,c);battle.usedRelians=battle.usedRelians||[];if(!battle.usedRelians.some(x=>String(x.sheetId)===String(found.sheet.id)))battle.usedRelians.push({sheetId:String(found.sheet.id),speciesId:String(found.sheet.speciesId||''),name:String(found.member.nickname||found.sheet.nickname||found.sheet.speciesName||'Relian'),level:Number(found.member.level||found.sheet.level)||1});ensureCombatState(battle.player);ensureMoves(battle.player);battle.player.pos=old;battle.player.knocked=false;battle.player.moved=false;battle.player.acted=false;battle.mode=null;battle.selectedMove=null;battle.turn='player';battle.finished=false;over.remove();log(`${battle.player.nickname} entrou no campo!`);$('battleHint').textContent=`${battle.player.nickname} entrou no combate. Escolha uma ação.`;render()});over.querySelector('[data-flee-switch]').onclick=()=>{over.remove();if(!candidates.length){if(!battle.finished){battle.finished=true;recordPlayerResult('loss',{xp:Number(battle.totalXp)||0});showBattleResult('defeat','Derrota','Todos os Relians aptos do personagem foram derrotados.')}}else flee()}}
+function flee(){if(!battle||battle.finished)return;syncPlayerResources();battle.finished=true;recordPlayerResult('escape',{xp:Number(battle.totalXp)||0});$('battleHint').textContent='Combate encerrado.';log('Você fugiu do combate.');render();showBattleResult('flee','Você fugiu','A batalha terminou sem vencedor.')}
 function log(txt){const box=$('battleLog');if(!box)return;const row=document.createElement('div');row.className='battle-log-entry';row.textContent=txt;box.prepend(row)}
 
 function init(){
+ bindArenaSettings();
  refreshSetup();
  $('battleCharacterSelect')?.addEventListener('change',()=>{refreshTeam();const lv=$('battleRandomLevel');if(lv)lv.value=5});
  $('setFixedPlayerBtn')?.addEventListener('click',()=>{
@@ -1690,7 +2501,13 @@ function init(){
  });
  $('clearFixedPlayerBtn')?.addEventListener('click',()=>setFixedPlayer(''));
  $('recoverAllTeamBtn')?.addEventListener('click',recoverAllTeam);
+ $('recoverAllOwnedBtn')?.addEventListener('click',recoverAllOwned);
+ $('centralBoxSearch')?.addEventListener('input',renderRecoveryPage);
+ document.querySelectorAll('[data-close-relian-detail]').forEach(b=>b.addEventListener('click',closeCentralRelianDetail));
  $('shopSearchInput')?.addEventListener('input',renderShop);
+ $('sellAllResourcesBtn')?.addEventListener('click',sellAllExplorerResources);
+ $('trainerHistoryFilter')?.addEventListener('change',()=>renderTrainerBattleHistory(fixedPlayer()));
+ $('clearTrainerHistoryBtn')?.addEventListener('click',clearTrainerHistory);
  $('fixedPlayerSelect')?.addEventListener('change',()=>{});
  document.addEventListener('click',e=>{
    if(e.target.closest('[data-tab="playerPage"]'))setTimeout(renderPlayerPage,0);
@@ -1712,7 +2529,7 @@ function init(){
    if(!battle||battle.turn!=='player'||battle.finished||battle.animatingMove)return;
    returnBattleCommandHome();
    battle.mode='move';battle.selectedMove=null;
-   const limit=Math.min(maxWalk(battle.player),Math.floor(battle.player.eng/MOVE_ENG));
+   const limit=Math.min(maxWalk(battle.player),Math.floor(battle.player.eng/arenaPlayerMoveCost()));
    $('battleHint').textContent=`Escolha uma casa destacada. Velocidade ${Math.round(battle.player.speed||0)} = até ${limit} casa${limit===1?'':'s'} neste turno.`;
    renderGrid();
  });
