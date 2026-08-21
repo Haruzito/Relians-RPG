@@ -7,6 +7,7 @@
     {href:'generator.html', icon:'🧬', title:'Gerador', desc:'Criação, fichas e catálogo'},
     {href:'updates.html', icon:'📰', title:'Blog', desc:'Novidades e mundo de Relians'},
     {href:'games.html', icon:'🎮', title:'Jogos', desc:'Battle Cards e Battle Arena'},
+    {href:'mods.html', icon:'🧩', title:'Mods', desc:'Conteúdo externo e extensões'},
   ];
 
   function sideLink(item){

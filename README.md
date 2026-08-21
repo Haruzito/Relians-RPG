@@ -1,6 +1,6 @@
 # Relians RPG
 
-**Versão atual: v10.3.0**
+**Versão atual: v10.4.0**
 
 Gerador, editor, catálogo e banco de fichas do universo Relians.
 
@@ -16,6 +16,23 @@ Gerador, editor, catálogo e banco de fichas do universo Relians.
 - Instalação como aplicativo em dispositivos compatíveis (PWA).
 - Aba Criadores com acesso ao Relians World e ao Blog oficial.
 
+
+## Atualização v10.4.0 — Sistema de Mods
+
+- Nova página de Mods com ativação e desativação individual.
+- Primeiro Mod Loader oficial do Relians.
+- Suporte inicial a Relians, movimentos, itens, traços, regiões e biomas externos.
+- Diagnóstico de conflitos e compatibilidade de versão.
+- Mods de dados em JSON sem execução de JavaScript externo.
+- Conteúdo de mods separado do save principal.
+
+## Patch v10.3.1
+
+- Limpeza de arquivos antigos, duplicados e fallbacks sem uso.
+- Reorganização dos estilos e de partes do JavaScript em módulos.
+- Correção de colisão interna entre funções de leitura de diretórios.
+- Revisão de referências locais após a reorganização.
+- Compatibilidade de saves e funcionalidades da v10.3.0 preservada.
 
 ## Destaques da v10.3.0
 

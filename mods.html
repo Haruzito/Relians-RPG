@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR" data-rw-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mods — Relians</title>
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="stylesheet" href="portal.css">
+  <link rel="stylesheet" href="site-nav.css">
+  <link rel="stylesheet" href="world-theme.css">
+  <link rel="stylesheet" href="world-mobile.css">
+  <link rel="stylesheet" href="styles/core/theme-fixes.css">
+  <link rel="stylesheet" href="mods.css">
+</head>
+<body class="mods-page">
+  <main class="mods-shell">
+    <section class="mods-hero">
+      <div>
+        <span class="mods-kicker">RELIANS • MOD MANAGER</span>
+        <h1>Mods</h1>
+        <p>Gerencie conteúdo externo sem alterar os arquivos oficiais. Mods ativos são carregados por cima do banco principal quando o Gerador ou Battle Arena é aberto.</p>
+      </div>
+      <div class="mods-toolbar">
+        <button type="button" id="refreshMods">↻ Atualizar lista</button>
+        <button type="button" id="importMods">＋ Instalar Mod</button>
+        <button type="button" class="primary" id="chooseModsFolder">📁 Vincular pasta Mods</button>
+        <input id="modFolderInput" type="file" webkitdirectory multiple hidden>
+      </div>
+    </section>
+
+    <section class="mods-stats">
+      <div class="mods-stat"><b id="installedCount">0</b><span>Instalados</span></div>
+      <div class="mods-stat"><b id="enabledCount">0</b><span>Ativos</span></div>
+      <div class="mods-stat"><b id="issueCount">0</b><span>Avisos</span></div>
+    </section>
+
+    <section class="mods-layout">
+      <aside class="mods-list-panel">
+        <div class="mods-panel-title">Mods instalados</div>
+        <div id="modList"></div>
+      </aside>
+      <section class="mods-detail-panel">
+        <div id="modDetail"></div>
+      </section>
+    </section>
+
+    <div class="mods-status" id="modsStatus">Pronto. Selecione sua pasta <code>mods/</code> para importar conteúdo.</div>
+    <aside class="mods-help">
+      <b>Formato inicial suportado</b><br>
+      Cada mod deve possuir um <code>mod.json</code> e pode conter as pastas
+      <code>relians/</code>, <code>movimentos/</code>, <code>tracos/</code>,
+      <code>regioes/</code>, <code>biomas/</code> e <code>itens/</code>.
+      Esta primeira versão aceita somente mods de dados — nenhum JavaScript externo é executado.
+    </aside>
+  </main>
+
+  <script src="src/mods/mod-loader.js"></script>
+  <script src="src/mods/mod-manager.js"></script>
+  <script src="site-nav.js"></script>
+</body>
+</html>

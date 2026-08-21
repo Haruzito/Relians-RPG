@@ -10,16 +10,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="mobile.css" />
+  <link rel="stylesheet" href="styles/core/app.css" />
+  <link rel="stylesheet" href="styles/core/responsive.css" />
   <link rel="stylesheet" href="site-nav.css" />
   <link rel="stylesheet" href="world-theme.css" />
   <link rel="stylesheet" href="world-mobile.css" />
-  <link rel="stylesheet" href="theme-fixes.css" />
+  <link rel="stylesheet" href="styles/core/theme-fixes.css" />
 </head>
 <body class="relians-generator-page">
 <header class="topbar app-header">
-  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><small class="world-product-label">Relians World • Ferramentas</small><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v10.3.0</small></div></div>
+  <div class="brand-block"><div class="brand-mark"><img src="assets/icons/icon-192.png" alt="Ícone dos Relians" /></div><div><h1>Gerador de Relians</h1><small class="world-product-label">Relians World • Ferramentas</small><p>Encontros, fichas e catálogo vivo dos Relians</p><small class="version-label">Versão v10.4.0</small></div></div>
   <div class="header-navigation">
 <nav class="tabs relians-main-nav" aria-label="Navegação principal">
     <div class="nav-menu" data-nav-group="content">
@@ -477,6 +477,10 @@ Afasta 2 m"></textarea></label><label>Tags <span class="field-help">Separadas po
   <div id="sheetCaptureStatus" class="sheet-capture-status">Escolha o formato da captura.</div>
 </dialog>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="src/mods/mod-loader.js"></script>
+<script src="src/core/format.js"></script>
+<script src="src/relians/catalog-utils.js"></script>
+<script src="src/battle/tactical-utils.js"></script>
 <script src="app.js"></script>
 
 <dialog id="newsDialog" class="news-dialog">

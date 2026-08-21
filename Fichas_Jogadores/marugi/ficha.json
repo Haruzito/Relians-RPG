@@ -13,7 +13,7 @@
     "stars": 0,
     "rays": 0,
     "reliInf": 1,
-    "credits": 60,
+    "credits": 45,
     "money": 0,
     "image": "treinador.png",
     "imageFileName": "treinador.png",
@@ -98,34 +98,16 @@
         "itemId": "datacubo-basico",
         "name": "DataCubo Básico",
         "description": "DataCubo de uso geral para capturar Relians selvagens.",
-        "quantity": 2
+        "quantity": 3
+      },
+      {
+        "itemId": "datacubo-reforcado",
+        "name": "DataCubo Reforçado",
+        "description": "DataCubo com contenção reforçada para alvos mais resistentes.",
+        "quantity": 1
       }
     ],
     "team": [
-      {
-        "speciesId": "seredige",
-        "savedSheetId": "relian-mszmdd5c-4o2c6",
-        "nickname": "Seredige",
-        "level": 11,
-        "color": "basic",
-        "notes": ""
-      },
-      {
-        "speciesId": "aquecko",
-        "savedSheetId": "relian-mszmnli1-ncf9f",
-        "nickname": "Aquecko",
-        "level": 10,
-        "color": "basic",
-        "notes": ""
-      },
-      {
-        "speciesId": "porppge",
-        "savedSheetId": "relian-mszyi7ab-0aeyu",
-        "nickname": "Porppge",
-        "level": 10,
-        "color": "basic",
-        "notes": "Capturado em combate"
-      },
       {
         "speciesId": "lihtoffle",
         "savedSheetId": "relian-mszx3l4e-ihjfj",
@@ -133,39 +115,179 @@
         "level": 10,
         "color": "basic",
         "notes": "Adicionado pela Central Relian"
+      },
+      {
+        "speciesId": "aquecko",
+        "savedSheetId": "relian-mszmnli1-ncf9f",
+        "nickname": "Aquecko",
+        "level": 10,
+        "color": "basic",
+        "notes": "Adicionado pela Central Relian"
+      },
+      {
+        "speciesId": "seredige",
+        "savedSheetId": "relian-mszmdd5c-4o2c6",
+        "nickname": "Seredige",
+        "level": 11,
+        "color": "basic",
+        "notes": "Adicionado pela Central Relian"
       }
     ],
     "equippedRelianIds": [
-      "relian-mszmdd5c-4o2c6",
+      "relian-mszx3l4e-ihjfj",
       "relian-mszmnli1-ncf9f",
-      "relian-mszyi7ab-0aeyu",
-      "relian-mszx3l4e-ihjfj"
+      "relian-mszmdd5c-4o2c6"
     ],
     "items": [],
     "notes": "",
     "battleStats": {
-      "battles": 2,
-      "wins": 2,
+      "battles": 1,
+      "wins": 1,
       "losses": 0,
       "captures": 1,
       "escapes": 1,
       "trainerWins": 1,
-      "wildWins": 1,
-      "creditsEarned": 420,
-      "reliansSold": 0,
-      "creditsFromRelianSales": 0,
+      "wildWins": 3,
+      "creditsEarned": 825,
+      "reliansSold": 1,
+      "creditsFromRelianSales": 405,
       "resourcesCollected": 0,
       "resourcesSold": 0,
-      "creditsFromResources": 0
+      "creditsFromResources": 0,
+      "trainerLosses": 0,
+      "playerWins": 0,
+      "playerLosses": 0,
+      "competitiveRecordV2": true
     },
     "ownedRelianIds": [
       "relian-mszmdd5c-4o2c6",
       "relian-mszmnli1-ncf9f",
-      "relian-mszx3l4e-ihjfj",
-      "relian-mszyi7ab-0aeyu"
+      "relian-mszx3l4e-ihjfj"
     ],
-    "battleHistory": [],
-    "resources": []
+    "battleHistory": [
+      {
+        "id": "history-battle-1787251842876-5v2yr-win",
+        "battleId": "battle-1787251842876-5v2yr",
+        "at": "2026-08-20T18:51:55.606Z",
+        "result": "win",
+        "mode": "wild",
+        "trainerName": "",
+        "opponent": "Vinelon",
+        "opponents": [
+          {
+            "speciesId": "vinelon",
+            "name": "Vinelon",
+            "level": 10
+          }
+        ],
+        "usedRelians": [
+          {
+            "sheetId": "relian-mszx3l4e-ihjfj",
+            "speciesId": "lihtoffle",
+            "name": "Lihtoffle",
+            "level": 10
+          }
+        ],
+        "captured": null,
+        "rounds": 8,
+        "defeatedEnemies": 1,
+        "xp": 102,
+        "credits": 0,
+        "durationSeconds": 73,
+        "regionId": "oasis-lumen",
+        "arenaTheme": "deserto",
+        "difficulty": "Normal",
+        "drops": []
+      },
+      {
+        "id": "history-battle-1787251279739-sobra-win",
+        "battleId": "battle-1787251279739-sobra",
+        "at": "2026-08-20T18:42:02.768Z",
+        "result": "win",
+        "mode": "wild",
+        "trainerName": "",
+        "opponent": "Lihtoffle",
+        "opponents": [
+          {
+            "speciesId": "lihtoffle",
+            "name": "Lihtoffle",
+            "level": 10
+          }
+        ],
+        "usedRelians": [
+          {
+            "sheetId": "relian-mszx3l4e-ihjfj",
+            "speciesId": "lihtoffle",
+            "name": "Lihtoffle",
+            "level": 10
+          },
+          {
+            "sheetId": "relian-mszmnli1-ncf9f",
+            "speciesId": "aquecko",
+            "name": "Aquecko",
+            "level": 10
+          }
+        ],
+        "captured": null,
+        "rounds": 8,
+        "defeatedEnemies": 1,
+        "xp": 102,
+        "credits": 0,
+        "durationSeconds": 43,
+        "regionId": "jardim-vital",
+        "arenaTheme": "floresta",
+        "difficulty": "Normal",
+        "drops": []
+      }
+    ],
+    "resources": [],
+    "lastBattle": {
+      "id": "history-battle-1787251842876-5v2yr-win",
+      "battleId": "battle-1787251842876-5v2yr",
+      "at": "2026-08-20T18:51:55.606Z",
+      "result": "win",
+      "mode": "wild",
+      "trainerName": "",
+      "opponent": "Vinelon",
+      "opponents": [
+        {
+          "speciesId": "vinelon",
+          "name": "Vinelon",
+          "level": 10
+        }
+      ],
+      "usedRelians": [
+        {
+          "sheetId": "relian-mszx3l4e-ihjfj",
+          "speciesId": "lihtoffle",
+          "name": "Lihtoffle",
+          "level": 10
+        }
+      ],
+      "captured": null,
+      "rounds": 8,
+      "defeatedEnemies": 1,
+      "xp": 102,
+      "credits": 0,
+      "durationSeconds": 73,
+      "regionId": "oasis-lumen",
+      "arenaTheme": "deserto",
+      "difficulty": "Normal",
+      "drops": []
+    },
+    "saleHistory": [
+      {
+        "id": "sale-mt1vjzbl",
+        "at": "2026-08-20T18:49:24.369Z",
+        "sheetId": "relian-mszyi7ab-0aeyu",
+        "name": "Porppge",
+        "speciesId": "porppge",
+        "level": 10,
+        "rarity": "comum",
+        "color": "basic",
+        "value": 405
+      }
+    ]
   },
   "updatedAt": "2026-08-19T09:57:57.295Z",
   "saveVersion": 2,

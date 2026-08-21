@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="blog.css" />
   <link rel="stylesheet" href="world-theme.css" />
   <link rel="stylesheet" href="world-mobile.css" />
-  <link rel="stylesheet" href="theme-fixes.css" />
+  <link rel="stylesheet" href="styles/core/theme-fixes.css" />
 </head>
 <body class="blog-page relians-blog-page">
   <header class="blog-topbar">
@@ -33,7 +33,7 @@
         <h1>Bem-vindo ao Blog de Relians</h1>
         <p>Atualizações do projeto, diário de desenvolvimento, registros do mundo, novidades do Gerador e tudo que está crescendo dentro do universo Relians.</p>
         <div class="blog-hero-meta">
-          <span>📦 Versão atual: <b>v10.3.0</b></span>
+          <span>📦 Versão atual: <b>v10.4.0</b></span>
           <span>🌐 Conteúdo oficial conectado ao GitHub</span>
         </div>
       </div>
@@ -46,18 +46,18 @@
       <article class="dashboard-card feature-card">
         <div class="card-heading">
           <span class="blog-eyebrow">DESTAQUE</span>
-          <a href="#battle-update">Ver atualização</a>
+          <a href="#v10-4-0">Ver atualização</a>
         </div>
         <div class="feature-copy">
-          <span class="feature-date">20 AGO 2026</span>
-          <h2>Relians v10.3.0 — Battle Arena, Ranking Competitivo e Exploração</h2>
-          <p>O Battle Arena cresceu como modo de jogo: Carteira do Explorador, Central Relian, Box e equipes, evolução, venda de Relians, recursos, dificuldades, Batalha Local e um novo Ranking competitivo de E até S+.</p>
+          <span class="feature-date">21 AGO 2026</span>
+          <h2>Relians v10.4.0 — Sistema de Mods</h2>
+          <p>O Relians agora possui suporte inicial a Mods! Instale conteúdo externo, ative ou desative extensões e adicione novos Relians, movimentos, itens, traços, regiões e biomas sem modificar os arquivos oficiais.</p>
           <div class="tag-row">
-            <span class="tag">v10.3.0</span>
-            <span class="tag">Battle Arena</span>
-            <span class="tag">Ranking</span>
-            <span class="tag">PvP Local</span>
-            <span class="tag">Exploração</span>
+            <span class="tag">v10.4.0</span>
+            <span class="tag">Mods</span>
+            <span class="tag">Mod Loader</span>
+            <span class="tag">Conteúdo</span>
+            <span class="tag">Expansões</span>
           </div>
         </div>
       </article>
@@ -107,6 +107,60 @@
         </div>
 
         <div class="post-grid" id="blogPostGrid">
+          <article class="blog-post major" id="v10-4-0" data-blog-kind="update">
+            <div class="post-art emblem-art">
+              <img src="assets/icons/icon-512.png" alt="" />
+            </div>
+            <div class="post-copy">
+              <div class="post-meta">21 DE AGOSTO DE 2026 • v10.4.0</div>
+              <h3>Relians v10.4.0 — O Sistema de Mods chegou!</h3>
+              <p>O Relians ganhou sua primeira estrutura oficial para conteúdo criado pela comunidade. A nova página de Mods permite instalar, visualizar, ativar e desativar extensões sem precisar substituir os arquivos oficiais do projeto.</p>
+              <div class="post-details">
+                <span>🧩 Nova página de Mods integrada ao menu principal do Relians</span>
+                <span>📁 Suporte para importar e vincular pastas contendo mods</span>
+                <span>🔌 Novo Mod Loader que aplica conteúdo externo por cima do banco oficial</span>
+                <span>🐾 Mods podem adicionar Relians sem editar diretamente o catálogo original</span>
+                <span>⚔️ Suporte inicial para movimentos e itens adicionados por mods</span>
+                <span>✨ Mods também podem fornecer traços, regiões e biomas</span>
+                <span>🎛️ Mods instalados podem ser ativados ou desativados individualmente</span>
+                <span>🔎 Tela de detalhes mostra versão, autor, descrição, compatibilidade e quantidade de conteúdo</span>
+                <span>⚠️ Novo diagnóstico detecta conflitos de IDs entre mods ativos e problemas de compatibilidade</span>
+                <span>🏷️ Conteúdo carregado recebe internamente a identificação do mod de origem</span>
+                <span>💾 Conteúdo temporário de mods não é incorporado permanentemente ao save normal</span>
+                <span>🛡️ Nesta primeira versão, mods utilizam somente dados JSON e não executam JavaScript externo</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">v10.4.0</span><span class="tag">Mods</span><span class="tag">Mod Loader</span><span class="tag">Comunidade</span><span class="tag">Expansões</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-post major" id="v10-3-1" data-blog-kind="update">
+            <div class="post-art emblem-art">
+              <img src="assets/icons/icon-512.png" alt="" />
+            </div>
+            <div class="post-copy">
+              <div class="post-meta">21 DE AGOSTO DE 2026 • v10.3.1</div>
+              <h3>Relians v10.3.1 — Patch de manutenção, limpeza e estabilidade</h3>
+              <p>A v10.3.1 é uma atualização de manutenção. Ela não adiciona um novo sistema de jogo; o foco foi corrigir a estrutura interna do projeto, eliminar arquivos redundantes e preparar uma base mais organizada para as próximas expansões do Relians.</p>
+              <div class="post-details">
+                <span>🧹 Arquivos antigos, duplicados e fallbacks que já não eram utilizados foram removidos do pacote principal</span>
+                <span>🗂️ CSS principal reorganizado em uma estrutura própria para estilos gerais, responsividade, temas e Battle Arena</span>
+                <span>⚙️ Parte das funções JavaScript foi separada em módulos menores para catálogo, formatação e utilidades de batalha</span>
+                <span>⚔️ O antigo arquivo de protótipo battle-test.js passou a fazer parte oficialmente da estrutura do Battle Arena</span>
+                <span>🔧 Corrigida uma colisão interna entre duas funções de leitura de diretórios que possuíam o mesmo nome</span>
+                <span>📦 Removidas cópias redundantes de pacotes e arquivos que não participavam mais da execução do projeto</span>
+                <span>🔗 Referências de HTML, CSS e JavaScript foram revisadas após a reorganização para evitar caminhos quebrados</span>
+                <span>🧪 Scripts e arquivos de dados passaram por uma nova validação estrutural após a limpeza</span>
+                <span>💾 Formatos de save, fichas, personagens, Relians e dados oficiais foram preservados para manter compatibilidade</span>
+                <span>✨ Nenhuma mecânica principal foi removida: este patch é voltado principalmente à estabilidade e manutenção</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">v10.3.1</span><span class="tag">Patch</span><span class="tag">Correções</span><span class="tag">Estabilidade</span><span class="tag">Manutenção</span>
+              </div>
+            </div>
+          </article>
+
           <article class="blog-post major" id="v10-3" data-blog-kind="update">
             <div class="post-art emblem-art">
               <img src="assets/icons/icon-512.png" alt="" />
@@ -258,6 +312,83 @@
           </div>
 
           <details class="version-entry" open>
+            <summary>
+              <span><b>v10.4.0</b><small>21 de agosto de 2026</small></span>
+              <span>Primeiro sistema oficial de Mods do Relians</span>
+            </summary>
+            <div class="version-body">
+              <p>A <b>v10.4.0</b> inaugura o suporte oficial a Mods. A ideia é permitir que novos conteúdos sejam adicionados ao Relians sem modificar diretamente os dados oficiais, criando uma base para expansões feitas pela comunidade e para conteúdos experimentais.</p>
+
+              <h4>🧩 Gerenciador de Mods</h4>
+              <ul>
+                <li>Adicionada uma nova página <b>Mods</b> ao menu principal.</li>
+                <li>A página lista os mods instalados e mostra nome, versão, autor, descrição e estado atual.</li>
+                <li>Mods podem ser ativados e desativados individualmente sem serem apagados.</li>
+                <li>O painel exibe contadores de mods instalados, ativos e avisos encontrados.</li>
+              </ul>
+
+              <h4>📦 Mod Loader</h4>
+              <ul>
+                <li>Criado o primeiro carregador de Mods do Relians.</li>
+                <li>O conteúdo dos mods é aplicado por cima dos dados oficiais durante o carregamento.</li>
+                <li>O formato inicial suporta Relians, movimentos, itens, traços, regiões e biomas.</li>
+                <li>Itens fornecidos por mods também podem ser disponibilizados ao Battle Arena.</li>
+              </ul>
+
+              <h4>⚠️ Compatibilidade e diagnóstico</h4>
+              <ul>
+                <li>O gerenciador verifica requisitos mínimos e máximos de versão informados pelo mod.</li>
+                <li>IDs repetidos entre mods ativos geram avisos de conflito.</li>
+                <li>O conteúdo carregado guarda a identificação do mod de origem para facilitar futuras integrações.</li>
+              </ul>
+
+              <h4>🛡️ Segurança e saves</h4>
+              <ul>
+                <li>Esta primeira implementação trabalha apenas com mods baseados em dados JSON.</li>
+                <li>JavaScript externo de mods não é executado pelo Relians.</li>
+                <li>Dados temporários fornecidos por mods não são gravados permanentemente dentro do save principal.</li>
+                <li>Um modelo de <code>mod.json</code> e documentação básica foram adicionados à pasta <code>mods/</code>.</li>
+              </ul>
+
+              <p>Esta é a primeira base do sistema. Novas categorias e ferramentas para criadores de mods poderão ser adicionadas em atualizações futuras.</p>
+            </div>
+          </details>
+
+          <details class="version-entry">
+            <summary>
+              <span><b>v10.3.1</b><small>21 de agosto de 2026</small></span>
+              <span>Patch de manutenção, limpeza estrutural e estabilidade</span>
+            </summary>
+            <div class="version-body">
+              <p>A <b>v10.3.1</b> é um patch corretivo voltado à saúde interna do projeto. A atualização reorganiza arquivos acumulados durante o desenvolvimento, remove redundâncias e corrige pontos estruturais sem alterar o funcionamento esperado das mecânicas atuais.</p>
+
+              <h4>🧹 Limpeza e organização</h4>
+              <ul>
+                <li>Removidos arquivos CSS antigos que já haviam sido substituídos pela nova estrutura de estilos.</li>
+                <li>Removidos arquivos duplicados e recursos internos que não eram mais carregados pelo projeto.</li>
+                <li>O código do Battle Arena deixou de utilizar nomenclatura de protótipo e foi movido para sua estrutura definitiva.</li>
+              </ul>
+
+              <h4>🔧 Correções internas</h4>
+              <ul>
+                <li>Corrigida uma colisão entre duas funções de leitura de diretórios que compartilhavam o mesmo nome.</li>
+                <li>Funções reutilizáveis começaram a ser separadas em módulos próprios de catálogo, formatação e batalha.</li>
+                <li>Referências locais de HTML, CSS e JavaScript foram revisadas após a reorganização.</li>
+              </ul>
+
+              <h4>🧪 Validação e compatibilidade</h4>
+              <ul>
+                <li>Scripts JavaScript e arquivos JSON foram revisados após a limpeza estrutural.</li>
+                <li>Os caminhos utilizados pelas páginas principais foram conferidos para evitar arquivos ausentes.</li>
+                <li>O formato dos saves e das fichas existentes foi preservado.</li>
+                <li>Battle Arena, Battle Card, Gerador, Catálogo, Carteira do Explorador e demais sistemas permanecem disponíveis.</li>
+              </ul>
+
+              <p><b>Nota:</b> por ser uma atualização corretiva da linha v10.3, ela utiliza a terceira casa da versão: <b>v10.3.1</b>.</p>
+            </div>
+          </details>
+
+          <details class="version-entry">
             <summary>
               <span><b>v10.3.0</b><small>20 de agosto de 2026</small></span>
               <span>Battle Arena, Ranking E–S+, Batalha Local, Central Relian e economia de exploração</span>

@@ -59,12 +59,7 @@ function renderElementPreview(){
   renderElementSetPreview('elementPreview','element','Sem elemento selecionado');
   renderElementSetPreview('specialElementPreview','specialElement','Usará os mesmos elementos da Basic Color');
 }
-function normalizeColorId(value='basic'){
-  const raw=String(value||'basic').trim().toLowerCase();
-  if(raw==='special'||raw==='especial'||raw.includes('especial')||raw.includes('special'))return 'special';
-  if(raw==='shiny'||raw.includes('shiny'))return 'shiny';
-  return 'basic';
-}
+function normalizeColorId(value='basic'){return ReliansCore.Format.normalizeColorId(value)}
 function colorName(value='basic'){
   const color=normalizeColorId(value);
   if(color==='shiny')return 'Shiny Color';
@@ -90,11 +85,7 @@ function getMoveElements(move){
   const valid=raw.map(x=>String(x||'').trim()).filter(Boolean).filter(x=>MOVE_ELEMENT_COLORS[x]);
   return [...new Set(valid)].slice(0,2);
 }
-function hexToRgb(hex){
-  const clean=String(hex||'').replace('#','');
-  const value=clean.length===3?clean.split('').map(x=>x+x).join(''):clean.padEnd(6,'0').slice(0,6);
-  return [parseInt(value.slice(0,2),16)||0,parseInt(value.slice(2,4),16)||0,parseInt(value.slice(4,6),16)||0];
-}
+function hexToRgb(hex){return ReliansCore.Format.hexToRgb(hex)}
 function mixHex(a,b,weight=.55){
   const x=hexToRgb(a),y=hexToRgb(b),w=Math.max(0,Math.min(1,weight));
   return '#'+x.map((v,i)=>Math.round(v*w+y[i]*(1-w)).toString(16).padStart(2,'0')).join('');
@@ -282,17 +273,12 @@ const defaultData={
   ]
 };
 let data=loadData();
+if(window.ReliansMods)window.ReliansMods.applyStoredMods(data);
 let selectedSavedSheetId=''; // ficha selecionada no Banco de Fichas; precisa existir antes de qualquer render/sincronização
 let linkedDirectory=null,folderSignature='',syncTimer=null;
 let folderWriteQueue=Promise.resolve(),folderWriteInProgress=false,lastFolderWriteAt=0,folderSyncDebounceTimer=null;
 
-function normalizeRarityId(value){
-  const raw=String(value||'comum').trim().toLowerCase();
-  const clean=raw.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim();
-  if(clean==='lendario especial')return 'unico';
-  if(clean==='unico')return 'unico';
-  return raw;
-}
+function normalizeRarityId(value){return ReliansCore.Format.normalizeRarityId(value)}
 
 function migrateRelianRecord(raw={}){
   const normalized=normalizeRelian(raw);
@@ -555,6 +541,7 @@ async function loadOfficialWorldDataFromWeb({silent=true}={}){
       biomeResults.filter(x=>x.status==='rejected').length+
       regionResults.filter(x=>x.status==='rejected').length;
 
+    if(window.ReliansMods)window.ReliansMods.applyStoredMods(data);
     renderAll();
 
     const status=el('folderStatus');
@@ -597,11 +584,11 @@ function normalizeRelativeDataPath(path){
   return String(path||'').replace(/\\/g,'/').replace(/^\.?\//,'');
 }
 
-async function collectDirectoryFiles(handle,prefix=''){
+async function collectOfficialDirectoryFiles(handle,prefix=''){
   const files=[];
   for await(const [name,entry] of handle.entries()){
     const rel=prefix?`${prefix}/${name}`:name;
-    if(entry.kind==='directory')files.push(...await collectDirectoryFiles(entry,rel));
+    if(entry.kind==='directory')files.push(...await collectOfficialDirectoryFiles(entry,rel));
     else files.push({path:rel,file:await entry.getFile()});
   }
   return files;
@@ -679,6 +666,7 @@ async function applyOfficialDataFiles(fileEntries,{silent=false}={}){
   mergeNamedList(data.biomes,officialBiomes);
   mergeNamedList(data.regions,officialRegions);
 
+  if(window.ReliansMods)window.ReliansMods.applyStoredMods(data);
   renderAll();
 
   const summary=`Pacote ${packageInfo.version||'sem versão'} vinculado · ${officialRelians.length} Relians · ${officialMoves.length} movimentos · ${officialBiomes.length} biomas · ${officialRegions.length} regiões`;
@@ -693,7 +681,7 @@ async function applyOfficialDataFiles(fileEntries,{silent=false}={}){
 async function syncOfficialDataDirectory({silent=false}={}){
   if(officialDataDirectory){
     if(!await ensurePermission(officialDataDirectory,true,'read'))throw new Error('Permissão de leitura da pasta negada.');
-    const files=await collectDirectoryFiles(officialDataDirectory);
+    const files=await collectOfficialDirectoryFiles(officialDataDirectory);
     return applyOfficialDataFiles(files,{silent});
   }
   if(officialDataFilesFallback){
@@ -801,8 +789,9 @@ async function checkOfficialDataUpdate({silent=false}={}){
 
 function persistDataOnly({sync=true}={}){
   data=migrateData(data);
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-  writeSheetsBackup(data);
+  const persistable=window.ReliansMods?window.ReliansMods.stripRuntimeMods(clone(data)):data;
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(persistable));
+  writeSheetsBackup(persistable);
   if(sync)queueFullFolderSync('saveData');
   return data;
 }
@@ -1595,24 +1584,10 @@ el('rulesForm').onsubmit=async e=>{e.preventDefault();const shiny=+el('ruleShiny
 
 
 function safeFolderName(name){return String(name||'Relian').replace(/[<>:"/\\|?*\x00-\x1F]/g,'').trim()||'Relian'}
-function normalizeCatalogNumber(value){
-  const number=Number(value);
-  return Number.isInteger(number)&&number>0?number:null;
-}
-function formatCatalogNumber(value){
-  const number=normalizeCatalogNumber(value);
-  return number===null?'':String(number).padStart(3,'0');
-}
-function normalizeCatalogVariant(value){
-  return String(value||'').trim().toLocaleUpperCase('pt-BR').replace(/[^A-Z0-9]/g,'').slice(0,3);
-}
-function catalogCode(relianOrNumber,variant=''){
-  const number=typeof relianOrNumber==='object'?relianOrNumber?.catalogNumber:relianOrNumber;
-  const resolvedVariant=typeof relianOrNumber==='object'?relianOrNumber?.catalogVariant:variant;
-  const base=formatCatalogNumber(number);
-  const suffix=normalizeCatalogVariant(resolvedVariant);
-  return base?`${base}${suffix?`-${suffix}`:''}`:'';
-}
+function normalizeCatalogNumber(value){return Relians.CatalogUtils.normalizeCatalogNumber(value)}
+function formatCatalogNumber(value){return Relians.CatalogUtils.formatCatalogNumber(value)}
+function normalizeCatalogVariant(value){return Relians.CatalogUtils.normalizeCatalogVariant(value)}
+function catalogCode(relianOrNumber,variant=''){return Relians.CatalogUtils.catalogCode(relianOrNumber,variant)}
 function relianFolderName(relian){
   const number=catalogCode(relian);
   const name=safeFolderName(relian?.name||'Relian').replace(/\s+/g,'_');
@@ -1674,7 +1649,7 @@ async function writeFullFolderSnapshot(){
     for(const relian of data.relians||[])await writeRelianFile(relian,null);
     for(const sheet of data.storySheets||[])await writeStorySheetFile(sheet,'');
     lastFolderWriteAt=Date.now();
-    try{const files=await collectDirectoryFiles(linkedDirectory);folderSignature=signatureOf(files)}catch{folderSignature=''}
+    try{const files=await collectLinkedDirectoryFiles(linkedDirectory);folderSignature=signatureOf(files)}catch{folderSignature=''}
     setFolderStatus(`Tudo sincronizado com ${linkedDirectory.name} · ${new Date().toLocaleTimeString()}`,true);
     return true;
   }finally{folderWriteInProgress=false}
@@ -1843,14 +1818,14 @@ el('relianFolderInput').onchange=async e=>{if(e.target.files.length)await import
 function openHandleDB(){return new Promise((res,rej)=>{const q=indexedDB.open(HANDLE_DB,1);q.onupgradeneeded=()=>q.result.createObjectStore('handles');q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})}
 async function saveHandle(h){const db=await openHandleDB();return new Promise((res,rej)=>{const tx=db.transaction('handles','readwrite');tx.objectStore('handles').put(h,'root');tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}
 async function loadHandle(){const db=await openHandleDB();return new Promise((res,rej)=>{const q=db.transaction('handles').objectStore('handles').get('root');q.onsuccess=()=>res(q.result||null);q.onerror=()=>rej(q.error)})}
-async function collectDirectoryFiles(dir,prefix=''){const out=[];for await(const[name,handle]of dir.entries()){const path=prefix?`${prefix}/${name}`:name;if(handle.kind==='file'){const f=await handle.getFile();Object.defineProperty(f,'webkitRelativePath',{value:path});out.push(f)}else out.push(...await collectDirectoryFiles(handle,path))}return out}
+async function collectLinkedDirectoryFiles(dir,prefix=''){const out=[];for await(const[name,handle]of dir.entries()){const path=prefix?`${prefix}/${name}`:name;if(handle.kind==='file'){const f=await handle.getFile();Object.defineProperty(f,'webkitRelativePath',{value:path});out.push(f)}else out.push(...await collectLinkedDirectoryFiles(handle,path))}return out}
 function signatureOf(files){return files.map(f=>`${f.webkitRelativePath}:${f.size}:${f.lastModified}`).sort().join('|')}
 async function ensurePermission(handle,request=false,mode='read'){if(!handle)return false;const opts={mode};if(await handle.queryPermission(opts)==='granted')return true;return request&&(await handle.requestPermission(opts)==='granted')}
 async function syncLinkedFolder({request=false,silent=false,writeBack=true}={}){
   if(!linkedDirectory)return false;
   if(folderWriteInProgress)return true;
   if(!await ensurePermission(linkedDirectory,request,'readwrite')){setFolderStatus('Pasta encontrada, mas precisa de autorização de leitura e gravação.',false,true);return false}
-  const files=await collectDirectoryFiles(linkedDirectory),sig=signatureOf(files);
+  const files=await collectLinkedDirectoryFiles(linkedDirectory),sig=signatureOf(files);
   if(sig!==folderSignature){
     folderSignature=sig;
     await importFileSet(files,{silent:true});

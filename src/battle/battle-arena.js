@@ -181,21 +181,9 @@ function trainerBattleHistory(charSheet){
   ensureBattleStats(charSheet);
   return charSheet.character.battleHistory;
 }
-function battleHistoryResultLabel(kind){
-  return ({win:'Vitória',trainerWin:'Vitória',playerWin:'Vitória',playerLoss:'Derrota',loss:'Derrota',capture:'Captura',escape:'Fuga'})[kind]||'Batalha';
-}
-function battleHistoryResultClass(kind){
-  if(kind==='win'||kind==='trainerWin'||kind==='playerWin')return'win';
-  if(kind==='loss'||kind==='playerLoss')return'loss';
-  if(kind==='capture')return'capture';
-  if(kind==='escape')return'escape';
-  return'neutral';
-}
-function battleHistoryDate(value){
-  const date=new Date(value);
-  if(Number.isNaN(date.getTime()))return 'Data desconhecida';
-  return date.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
-}
+function battleHistoryResultLabel(kind){return ReliansCore.Format.battleHistoryResultLabel(kind)}
+function battleHistoryResultClass(kind){return ReliansCore.Format.battleHistoryResultClass(kind)}
+function battleHistoryDate(value){return ReliansCore.Format.battleHistoryDate(value)}
 function addBattleHistoryEntry(charSheet,kind,extra={}){
   if(!charSheet?.character||!battle)return null;
   const history=trainerBattleHistory(charSheet);
@@ -689,7 +677,7 @@ function evolutionRulesForSpecies(sp){
     return{targetId,type:'custom',value:legacy};
   });
 }
-function normalizedText(v){return String(v??'').trim().toLocaleLowerCase('pt-BR')}
+function normalizedText(v){return ReliansCore.Format.normalizedText(v)}
 function findBackpackItem(charSheet,required){const wanted=normalizedText(required);if(!wanted)return null;return(charSheet?.character?.backpack||[]).find(item=>normalizedText(item.itemId)===wanted||normalizedText(item.name)===wanted)||null}
 function completedEvent(charSheet,sheet,eventName){const wanted=normalizedText(eventName);if(!wanted)return false;return[...(charSheet?.character?.completedEvents||[]),...(charSheet?.character?.eventsCompleted||[]),...(sheet?.completedEvents||[])].map(normalizedText).includes(wanted)}
 function ruleReadyForEvolution(rule,sp,sheet,member,charSheet){
@@ -1094,8 +1082,12 @@ function loadBattleItems(){
     const raw=JSON.parse(localStorage.getItem(BATTLE_ITEM_STORAGE)||'[]');
     custom=Array.isArray(raw)?raw:[];
   }catch{}
-  const customIds=new Set(custom.map(x=>String(x.id)));
-  return [...RELIANS_OFFICIAL_ITEMS.filter(x=>!customIds.has(String(x.id))),...custom];
+  const modItems=window.ReliansMods?window.ReliansMods.runtimeItems():[];
+  const merged=new Map();
+  for(const item of RELIANS_OFFICIAL_ITEMS)merged.set(String(item.id),item);
+  for(const item of modItems)merged.set(String(item.id),item);
+  for(const item of custom)merged.set(String(item.id),item);
+  return [...merged.values()];
 }
 function saveBattleItems(items){
   const custom=(Array.isArray(items)?items:[]).filter(x=>!x?.official);
@@ -1513,16 +1505,7 @@ function getMovesFor(sp,level,sheet){
   if(fromSheet.length)return fromSheet.slice(0,4);
   return (sp?.learnset||[]).filter(x=>Number(x.level)<=level).sort((a,b)=>Number(b.level)-Number(a.level)).slice(0,4).map(x=>moveById(x.moveId)).filter(Boolean);
 }
-function parseRange(move){
-  const explicit=Number(move?.tacticalRange??move?.alcanceTatico);
-  if(Number.isFinite(explicit)&&explicit>0)return clamp(Math.round(explicit),1,12);
-  const raw=String(move?.range||move?.alcance||'').toLowerCase();
-  const n=raw.match(/\d+/);
-  if(n)return clamp(Number(n[0]),1,8);
-  if(/corpo|melee|adjacen/.test(raw))return 1;
-  if(/longo|longa|dist/.test(raw))return 4;
-  return ['EFT','HIB'].includes(String(move?.type||move?.tipo||'').toUpperCase())?3:1;
-}
+function parseRange(move){return ReliansBattle.Tactical.parseRange(move)}
 function areaRadius(move){
   const explicit=Number(move?.tacticalArea??move?.areaTatica);
   if(Number.isFinite(explicit)&&explicit>=0)return clamp(Math.round(explicit),0,4);
@@ -1533,8 +1516,8 @@ function areaRadius(move){
   return 0;
 }
 
-function areaShape(move){return String(move?.tacticalShape||move?.formatoArea||'alvo').toLowerCase()}
-function shapeLabel(move){return ({alvo:'Alvo',cruz:'Cruz',quadrado:'Quadrado',linha:'Linha'})[areaShape(move)]||'Alvo'}
+function areaShape(move){return ReliansBattle.Tactical.areaShape(move)}
+function shapeLabel(move){return ReliansBattle.Tactical.shapeLabel(move)}
 function inArea(center,pos,move,origin){
   const r=areaRadius(move),shape=areaShape(move);if(r<=0)return center.x===pos.x&&center.y===pos.y;
   const dx=Math.abs(pos.x-center.x),dy=Math.abs(pos.y-center.y);
